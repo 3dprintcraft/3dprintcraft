@@ -57,6 +57,7 @@ function applyPanel(C){
       ? "0 30px 80px rgba(0,0,0,.25)"
       : "0 20px 50px rgba(0,0,0,.12)"
   );
+  r.style.setProperty("--panel-bg", "red");
 }
 
 
@@ -73,8 +74,9 @@ function applyPanel(C){
     
     applyTypography(C);
     applyBackground(C);
-    applyButtonsTheme(C);
 	 applyPanel(C);
+    applyButtonsTheme(C);
+	
 
     setText("shop-name", C.brand?.name);
     setText("shop-slogan", C.brand?.slogan);
