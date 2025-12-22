@@ -1,8 +1,8 @@
 const CONFIG = {
   brand: {
     name: "",
-    slogan: "Η Απόλυτη επιλογή στον πάγο!",
-    hours: "Καθημερινά 07:00–23:00"
+    slogan: "",
+    hours: ""
   },
 
   logo: {
@@ -43,7 +43,7 @@ const CONFIG = {
     { id: "phone", enabled: true, order: 0 },
    
     { id: "site", enabled: true, order: 1 },
-    { id: "instagram", enabled: false, order: 2}
+    { id: "instagram", enabled: true, order: 2}
   ],
 
   /* EXTRA LINKS (custom icons) */
