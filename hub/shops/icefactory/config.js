@@ -8,7 +8,7 @@ const CONFIG = {
   logo: {
     mode: "image", // image | text | none
     src: "/hub/shops/icefactory/icefactory.png",
-    widthPercent: 80,
+    widthPercent: 100,
     maxWidth: 140
   },
 
@@ -100,7 +100,7 @@ const CONFIG = {
     },
 
     buttons: {
-      variant: "outline", // filled | outline | soft
+      variant: "soft", // filled | outline | soft
       background: "#82b2e8",
       backgroundOpacity: 1,
       text: "#ffffff",
