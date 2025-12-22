@@ -110,7 +110,7 @@ const CONFIG = {
     },
 
     primary: {
-      background: "#111827",
+      background: "#dcdcdc",
       backgroundOpacity: 0.8,
       text: "#ffffff"
     }
