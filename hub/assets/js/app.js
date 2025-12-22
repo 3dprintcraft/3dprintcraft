@@ -28,37 +28,42 @@ window.addEventListener("error", e => {
   };
 
 function applyPanel(C){
-  if(!C.panel || !C.panel.background) return;
+  const root = document.documentElement;
 
-  const bg = C.panel.background;
-  const r = document.documentElement;
+  const panel = C.panel || {};
+  const bg = panel.background || {};
 
-  // 🔴 ΣΒΗΝΟΥΜΕ ΠΑΝΤΑ Ο,ΤΙ ΥΠΗΡΧΕ
-  r.style.removeProperty("--panel-bg");
-
-  if(bg.type === "solid"){
-    r.style.setProperty("--panel-bg", bg.color);
+  // background
+  if(bg.type === "solid" && bg.color){
+    root.style.setProperty("--panel-bg", bg.color);
   }
 
-  if(bg.type === "gradient"){
-    r.style.setProperty(
-      "--panel-bg",
-      `linear-gradient(${bg.gradient.direction},
-        ${bg.gradient.from},
-        ${bg.gradient.to})`
+  if(bg.type === "gradient" && bg.gradient){
+    const g = bg.gradient;
+    if(g.direction && g.from && g.to){
+      root.style.setProperty(
+        "--panel-bg",
+        `linear-gradient(${g.direction}, ${g.from}, ${g.to})`
+      );
+    }
+  }
+
+  // radius
+  if(typeof panel.radius === "number"){
+    root.style.setProperty("--panel-radius", panel.radius + "px");
+  }
+
+  // shadow
+  if(panel.shadow){
+    root.style.setProperty(
+      "--panel-shadow",
+      panel.shadow === "strong"
+        ? "0 30px 80px rgba(0,0,0,.25)"
+        : "0 20px 50px rgba(0,0,0,.12)"
     );
   }
-
-  r.style.setProperty("--panel-radius", C.panel.radius + "px");
-
-  r.style.setProperty(
-    "--panel-shadow",
-    C.panel.shadow === "strong"
-      ? "0 30px 80px rgba(0,0,0,.25)"
-      : "0 20px 50px rgba(0,0,0,.12)"
-  );
-  
 }
+
 
 
 
