@@ -1,5 +1,11 @@
 const CONFIG = {
 	
+	meta: {
+  title: "",
+  description: ""
+},
+
+	
   brand: {
     name: "",
     slogan: "",

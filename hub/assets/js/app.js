@@ -1,3 +1,8 @@
+window.addEventListener("error", e => {
+  document.body.innerHTML = "<p style='padding:20px'>⚠️ Σφάλμα φόρτωσης σελίδας</p>";
+});
+
+
 (function(){
   const qs = new URLSearchParams(location.search);
   const shop = qs.get("shop") || "demo";
@@ -23,7 +28,12 @@
   };
 
   function init(C){
-    document.title = C.brand?.name || "Business";
+	  
+	document.title =
+    C.meta?.title ||
+    C.brand?.name ||
+    "3DPrintCraft";
+    
     applyTypography(C);
     applyBackground(C);
     applyButtonsTheme(C);
