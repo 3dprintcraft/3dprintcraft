@@ -132,20 +132,19 @@ body::before{
   padding:14px 16px;
   margin:10px 0;
 
+  text-decoration:none;
   font-weight:700;
   font-size:var(--body-size);
-  text-decoration:none;
 
   border-radius:var(--btn-radius);
   border:var(--btn-border-width) solid var(--btn-border-color);
 
   color:var(--btn-text);
-  background: var(--btn-bg);
-  box-shadow:var(--btn-shadow);
+  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
 
+  box-shadow:var(--btn-shadow);
   transition:transform .15s ease, box-shadow .15s ease;
 }
-
 
 
 .btn:hover{transform:translateY(-2px); box-shadow:var(--btn-shadow-hover)}
