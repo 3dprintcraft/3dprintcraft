@@ -180,8 +180,8 @@ body::before{
   max-width:520px; width:100%; background:#fff; border-radius:22px;
   padding:18px; box-shadow:0 30px 80px rgba(2,6,23,.30);
 }
-.popup-title{font-weight:800; margin:0 0 6px 0}
-.popup-message{margin:0 0 12px 0}
+.popup-title{font-weight:800; margin:0 0 6px 0; align-items:center;}
+.popup-message{margin:0 0 12px 0; align-items:center;}
 .popup-actions{display:flex; gap:10px}
 .popup-btn{flex:1; padding:12px; border-radius:14px; font-weight:800; cursor:pointer}
 .popup-close{background:#f1f5f9; border:1px solid #e2e8f0}
