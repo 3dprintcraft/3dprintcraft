@@ -74,6 +74,7 @@ function applyPanel(C){
     applyTypography(C);
     applyBackground(C);
     applyButtonsTheme(C);
+	 applyPanel(C);
 
     setText("shop-name", C.brand?.name);
     setText("shop-slogan", C.brand?.slogan);
@@ -295,4 +296,3 @@ if (ctaBtn) ctaBtn.onclick = close;
 })();
 
 
- applyPanel(C);
