@@ -66,6 +66,16 @@ const CONFIG = {
     // }
   ],
 
+	footer: {
+  enabled: true,
+  text: "",
+  subtext: "Powered by 3DPrintCraft",
+  align: "center", // left | center | right
+  color: "#475569",
+  size: "small" // small | normal
+}
+
+
   sticky: {
     enabled: false,
     text: "Άνοιγμα",
