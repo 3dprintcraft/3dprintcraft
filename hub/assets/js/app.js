@@ -38,6 +38,15 @@
     renderDelivery(C);
     renderSticky(C);
     maybePopup(C);
+	
+	const hasTitle = !!C.brand?.name?.trim();
+const hasSlogan = !!C.brand?.slogan?.trim();
+const hasHours = !!C.brand?.hours?.trim();
+
+if (!hasTitle && !hasSlogan && !hasHours) {
+  document.querySelector(".card.header")?.classList.add("header--logo-only");
+}
+
   }
 
   function setText(id, v){

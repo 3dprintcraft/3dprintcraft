@@ -65,6 +65,11 @@ body::before{
   text-align: center;
 }
 
+.header--logo-only {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .logo{
   display: flex;
   justify-content: center;
