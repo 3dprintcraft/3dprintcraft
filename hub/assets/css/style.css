@@ -14,16 +14,16 @@
   --h1-size: 32px;
   --body-size: 16px;
   --small-size: 14px;
+/* Buttons */
+--btn-bg-rgb: 17,24,39;
+--btn-bg-alpha: 1;
+--btn-text: #ffffff;
+--btn-radius: 14px;
+--btn-border-width: 2px;
+--btn-border-color: #111827;
+--btn-shadow: 0 10px 24px rgba(2,6,23,.10);
+--btn-shadow-hover: 0 16px 30px rgba(2,6,23,.14);
 
-  /* Buttons */
-  --btn-bg:#111827;
-  --btn-bg-alpha:1;
-  --btn-text:#ffffff;
-  --btn-radius:14px;
-  --btn-border-width:2px;
-  --btn-border-color:#111827;
-  --btn-shadow:0 10px 24px rgba(2,6,23,.10);
-  --btn-shadow-hover:0 16px 30px rgba(2,6,23,.14);
 
   /* Primary */
   --primary-bg:#111827;
@@ -96,16 +96,29 @@ body::before{
 
 /* Buttons */
 .btn{
-  display:flex; align-items:center; gap:10px;
-  width:100%; padding:14px 16px; margin:10px 0;
-  text-decoration:none; font-weight:700; font-size:var(--body-size);
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  width:100%;
+  padding:14px 16px;
+  margin:10px 0;
+
+  text-decoration:none;
+  font-weight:700;
+  font-size:var(--body-size);
+
   border-radius:var(--btn-radius);
   border:var(--btn-border-width) solid var(--btn-border-color);
+
   color:var(--btn-text);
-  background:rgba(17,24,39,var(--btn-bg-alpha));
+  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
+
   box-shadow:var(--btn-shadow);
   transition:transform .15s ease, box-shadow .15s ease;
 }
+
+
 .btn:hover{transform:translateY(-2px); box-shadow:var(--btn-shadow-hover)}
 .btn--outline{background:transparent; color:var(--btn-border-color)}
 .btn--soft{background:rgba(17,24,39,.08); color:var(--text); border:1px solid rgba(2,6,23,.10); box-shadow:none}
