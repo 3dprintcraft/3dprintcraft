@@ -102,11 +102,11 @@ const CONFIG = {
 
     buttons: {
       variant: "filled", // filled | outline | soft
-      background: "#82b2e8",
+      background: "#dcdcdc",
       backgroundOpacity: 1,
       text: "#ffffff",
       radius: 14,
-      border: { width: 2, color: "#111827" }
+      border: { width: 2, color: "#00b4f1" }
     },
 
     primary: {
