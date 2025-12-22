@@ -1,4 +1,11 @@
 const CONFIG = {
+	
+	meta: {
+  title: "Ice Factory – Παγοτεχνική",
+  description: ""
+}
+
+
   brand: {
     name: "",
     slogan: "",

@@ -1,4 +1,11 @@
 const CONFIG = {
+	
+	meta: {
+  title: "3DPrintCraft",
+  description: ""
+}
+
+
   brand: {
     name: "SHOP NAME",
     slogan: "Mini description / tagline",
