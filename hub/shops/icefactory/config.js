@@ -127,7 +127,7 @@ panel: {
   variant: "filled",   // ⬅️ ΟΧΙ filled
   background: "#0EA5E9",
   backgroundOpacity: 1,
-  text: "##db140d",
+  text: "#db140d",
   radius: 14,
   border: { width: 2, color: "#00B5E2" }
 },
