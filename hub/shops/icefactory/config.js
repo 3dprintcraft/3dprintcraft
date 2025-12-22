@@ -8,7 +8,7 @@ const CONFIG = {
   logo: {
     mode: "image", // image | text | none
     src: "/hub/shops/icefactory/icefactory.png",
-    widthPercent: 28,
+    widthPercent: 80,
     maxWidth: 140
   },
 
