@@ -2,6 +2,21 @@ window.addEventListener("error", e => {
   document.body.innerHTML = "<p style='padding:20px'>⚠️ Σφάλμα φόρτωσης σελίδας</p>";
 });
 
+function hexToRgb(hex) {
+  hex = hex.replace("#", "");
+  if (hex.length === 3) {
+    hex = hex.split("").map(c => c + c).join("");
+  }
+  const num = parseInt(hex, 16);
+  return {
+    r: (num >> 16) & 255,
+    g: (num >> 8) & 255,
+    b: num & 255
+  };
+}
+
+
+
 
 (function(){
   const qs = new URLSearchParams(location.search);
@@ -241,18 +256,38 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     document.body.style.backgroundColor=b.color||"#fff";
   }
 
-  function applyButtonsTheme(C){
-    const t=C.theme?.buttons||{}, p=C.theme?.primary||{}, r=document.documentElement;
-    t.background && r.style.setProperty("--btn-bg", t.background);
-    typeof t.backgroundOpacity==="number" && r.style.setProperty("--btn-bg-alpha", t.backgroundOpacity);
-    t.text && r.style.setProperty("--btn-text", t.text);
-    t.radius!=null && r.style.setProperty("--btn-radius", t.radius+"px");
-    t.border?.width!=null && r.style.setProperty("--btn-border-width", t.border.width+"px");
-    t.border?.color && r.style.setProperty("--btn-border-color", t.border.color);
-    p.background && r.style.setProperty("--primary-bg", p.background);
-    typeof p.backgroundOpacity==="number" && r.style.setProperty("--primary-bg-alpha", p.backgroundOpacity);
-    p.text && r.style.setProperty("--primary-text", p.text);
+  function applyButtonsTheme(C) {
+  const t = C.theme?.buttons;
+  if (!t) return;
+
+  const r = document.documentElement;
+
+  if (t.background) {
+    const { r: rr, g, b } = hexToRgb(t.background);
+    r.style.setProperty("--btn-bg-rgb", `${rr}, ${g}, ${b}`);
   }
+
+  if (typeof t.backgroundOpacity === "number") {
+    r.style.setProperty("--btn-bg-alpha", t.backgroundOpacity);
+  }
+
+  if (t.text) {
+    r.style.setProperty("--btn-text", t.text);
+  }
+
+  if (t.radius) {
+    r.style.setProperty("--btn-radius", t.radius + "px");
+  }
+
+  if (t.border?.width !== undefined) {
+    r.style.setProperty("--btn-border-width", t.border.width + "px");
+  }
+
+  if (t.border?.color) {
+    r.style.setProperty("--btn-border-color", t.border.color);
+  }
+}
+
 
   function maybePopup(C){
     const p=C.popup; if(!p?.enabled) return;
