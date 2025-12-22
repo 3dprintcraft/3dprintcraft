@@ -28,33 +28,37 @@ window.addEventListener("error", e => {
   };
 
 function applyPanel(C){
-  if(!C.panel) return;
+  if(!C.panel || !C.panel.background) return;
 
-  const p = C.panel;
+  const bg = C.panel.background;
   const r = document.documentElement;
 
-  if(p.background.type === "solid"){
-    r.style.setProperty("--panel-bg", p.background.color);
+  // 🔴 ΣΒΗΝΟΥΜΕ ΠΑΝΤΑ Ο,ΤΙ ΥΠΗΡΧΕ
+  r.style.removeProperty("--panel-bg");
+
+  if(bg.type === "solid"){
+    r.style.setProperty("--panel-bg", bg.color);
   }
 
-  if(p.background.type === "gradient"){
+  if(bg.type === "gradient"){
     r.style.setProperty(
       "--panel-bg",
-      `linear-gradient(${p.background.gradient.direction},
-        ${p.background.gradient.from},
-        ${p.background.gradient.to})`
+      `linear-gradient(${bg.gradient.direction},
+        ${bg.gradient.from},
+        ${bg.gradient.to})`
     );
   }
 
-  r.style.setProperty("--panel-radius", p.radius + "px");
+  r.style.setProperty("--panel-radius", C.panel.radius + "px");
 
   r.style.setProperty(
     "--panel-shadow",
-    p.shadow === "strong"
+    C.panel.shadow === "strong"
       ? "0 30px 80px rgba(0,0,0,.25)"
       : "0 20px 50px rgba(0,0,0,.12)"
   );
 }
+
 
 
   function init(C){
