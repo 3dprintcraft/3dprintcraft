@@ -1,13 +1,13 @@
 const CONFIG = {
   brand: {
-    name: "SHOP NAME",
-    slogan: "Mini description / tagline",
+    name: "",
+    slogan: "Η Απόλυτη επιλογή στον πάγο!",
     hours: "Καθημερινά 07:00–23:00"
   },
 
   logo: {
     mode: "image", // image | text | none
-    src: "/hub/assets/images/logo.svg",
+    src: "/hub/shops/icefactory/icefactory.png",
     widthPercent: 28,
     maxWidth: 140
   },
@@ -26,11 +26,11 @@ const CONFIG = {
 
   links: {
     review: "",
-    phone: "",
+    phone: "+30 2610 335 415",
     email: "",
     maps: "",
-    site: "",
-    instagram: "",
+    site: "https://ice-factory.gr/",
+    instagram: "https://www.instagram.com/icefactorygr/",
     facebook: "",
     tiktok: "",
     efood: "",
@@ -39,11 +39,11 @@ const CONFIG = {
   },
 
   buttons: [
-    { id: "review", enabled: true, order: 0 },
-    { id: "phone", enabled: true, order: 1 },
-    { id: "maps", enabled: true, order: 2 },
-    { id: "site", enabled: true, order: 3 },
-    { id: "instagram", enabled: false, order: 4 }
+    
+    { id: "phone", enabled: true, order: 0 },
+   
+    { id: "site", enabled: true, order: 1 },
+    { id: "instagram", enabled: false, order: 2}
   ],
 
   /* EXTRA LINKS (custom icons) */
@@ -71,9 +71,9 @@ const CONFIG = {
     show: "once", // once | always
     start: "",
     end: "",
-    title: "Προσφορά",
-    message: "−10% σε όλα τα ροφήματα",
-    closeLabel: "Κλείσιμο",
+    title: "Καλώς Ήρθατε",
+    message: "Η ΑΠΟΛΥΤΗ ΕΠΙΛΟΓΗ ΣΤΟΝ ΠΑΓΟ",
+    closeLabel: "",
     ctaLabel: "ΟΚ"
   },
 
@@ -90,7 +90,7 @@ const CONFIG = {
 
     background: {
       type: "solid", // solid | gradient | image
-      color: "#ffffff",
+      color: "#f2f2f2",
       gradient: "linear-gradient(135deg,#ffffff,#f1f5f9)",
       image: {
         url: "",
@@ -101,7 +101,7 @@ const CONFIG = {
 
     buttons: {
       variant: "outline", // filled | outline | soft
-      background: "#111827",
+      background: "#82b2e8",
       backgroundOpacity: 1,
       text: "#ffffff",
       radius: 14,
