@@ -73,7 +73,7 @@ const CONFIG = {
   align: "center", // left | center | right
   color: "#475569",
   size: "small" // small | normal
-}
+},
 
 
   sticky: {
