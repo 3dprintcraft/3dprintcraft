@@ -104,7 +104,7 @@ const CONFIG = {
   variant: "outline",   // ⬅️ ΟΧΙ filled
   background: "#ffffff",
   backgroundOpacity: 0,
-  text: "#111827",
+  text: "#000000",
   radius: 14,
   border: { width: 2, color: "#00b4f1" }
 },
