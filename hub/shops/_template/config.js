@@ -98,15 +98,15 @@ const CONFIG = {
       },
       overlay: "rgba(255,255,255,.72)"
     },
+buttons: {
+  variant: "outline",   // ⬅️ ΟΧΙ filled
+  background: "#ffffff",
+  backgroundOpacity: 0,
+  text: "#111827",
+  radius: 14,
+  border: { width: 2, color: "#00b4f1" }
+},
 
-    buttons: {
-      variant: "outline", // filled | outline | soft
-      background: "#111827",
-      backgroundOpacity: 1,
-      text: "#ffffff",
-      radius: 14,
-      border: { width: 2, color: "#111827" }
-    },
 
     primary: {
       background: "#111827",

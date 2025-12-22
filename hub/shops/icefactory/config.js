@@ -101,13 +101,14 @@ const CONFIG = {
     },
 
     buttons: {
-      variant: "filled", // filled | outline | soft
-      background: "#dcdcdc",
-      backgroundOpacity: 1,
-      text: "#ffffff",
-      radius: 14,
-      border: { width: 2, color: "#00b4f1" }
-    },
+  variant: "outline",   // ⬅️ ΟΧΙ filled
+  background: "#ffffff",
+  backgroundOpacity: 0,
+  text: "#111827",
+  radius: 14,
+  border: { width: 2, color: "#00b4f1" }
+},
+
 
     primary: {
       background: "#dcdcdc",
