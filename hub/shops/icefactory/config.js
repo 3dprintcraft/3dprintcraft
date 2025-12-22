@@ -91,7 +91,7 @@ const CONFIG = {
 
     background: {
       type: "solid", // solid | gradient | image
-      color: "#f2f2f2",
+      color: "##bdbdbd",
       gradient: "linear-gradient(135deg,#ffffff,#f1f5f9)",
       image: {
         url: "",
