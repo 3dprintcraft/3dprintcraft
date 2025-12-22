@@ -1,5 +1,9 @@
 :root{
   /* Page */
+  --panel-bg: #ffffff;
+--panel-radius: 24px;
+--panel-shadow: 0 20px 50px rgba(0,0,0,.12);
+
   --page-bg:#ffffff;
   --text:#0f172a;
   --muted:#475569;
@@ -54,6 +58,15 @@ body::before{
 }
 .page{position:relative; z-index:1; padding:18px}
 
+
+.panel{
+  background: var(--panel-bg);
+  border-radius: var(--panel-radius);
+  box-shadow: var(--panel-shadow);
+  padding: 16px;
+}
+
+
 .card{
   max-width:520px;
   margin:0 auto 14px auto;
@@ -64,6 +77,13 @@ body::before{
   backdrop-filter:blur(10px);
   text-align: center;
 }
+
+.panel .card{
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
 
 .header--logo-only {
   padding-top: 10px;

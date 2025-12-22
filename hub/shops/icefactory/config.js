@@ -1,7 +1,7 @@
 const CONFIG = {
 	
 	meta: {
-  title: "",
+  title: "ICE FACTORY",
   description: ""
 },
 
@@ -95,6 +95,22 @@ const CONFIG = {
       h1Size: 32,
       bodySize: 16
     },
+
+panel: {
+  background: {
+    type: "gradient", // solid | gradient
+    color: "#ffffff",
+
+    gradient: {
+      direction: "135deg",
+      from: "#ffffff",
+      to: "#e6f6ff"
+    }
+  },
+  radius: 24,
+  shadow: "soft" // soft | strong
+},
+
 
     background: {
       type: "solid", // solid | gradient | image

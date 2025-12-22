@@ -27,7 +27,40 @@ window.addEventListener("error", e => {
     box: svgBox()
   };
 
+function applyPanel(C){
+  if(!C.panel) return;
+
+  const p = C.panel;
+  const r = document.documentElement;
+
+  if(p.background.type === "solid"){
+    r.style.setProperty("--panel-bg", p.background.color);
+  }
+
+  if(p.background.type === "gradient"){
+    r.style.setProperty(
+      "--panel-bg",
+      `linear-gradient(${p.background.gradient.direction},
+        ${p.background.gradient.from},
+        ${p.background.gradient.to})`
+    );
+  }
+
+  r.style.setProperty("--panel-radius", p.radius + "px");
+
+  r.style.setProperty(
+    "--panel-shadow",
+    p.shadow === "strong"
+      ? "0 30px 80px rgba(0,0,0,.25)"
+      : "0 20px 50px rgba(0,0,0,.12)"
+  );
+}
+
+
   function init(C){
+	  
+	  applyPanel(C);
+
 	  
 	document.title =
     C.meta?.title ||
