@@ -3,6 +3,21 @@ window.addEventListener("error", e => {
 });
 
 
+const btn = CONFIG.theme.buttons;
+
+document.documentElement.style.setProperty(
+  "--btn-bg",
+  btn.variant === "outline"
+    ? "transparent"
+    : hexToRgba(btn.background, btn.backgroundOpacity)
+);
+
+document.documentElement.style.setProperty("--btn-text", btn.text);
+document.documentElement.style.setProperty("--btn-radius", btn.radius + "px");
+document.documentElement.style.setProperty("--btn-border-width", btn.border.width + "px");
+document.documentElement.style.setProperty("--btn-border-color", btn.border.color);
+
+
 (function(){
   const qs = new URLSearchParams(location.search);
   const shop = qs.get("shop") || "demo";
