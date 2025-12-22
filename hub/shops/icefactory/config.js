@@ -139,4 +139,5 @@ panel: {
       text: "#ffffff"
     }
   }
+  console.log("CONFIG LOADED", CONFIG);
 };

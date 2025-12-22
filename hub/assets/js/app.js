@@ -28,7 +28,7 @@ window.addEventListener("error", e => {
   };
 
 function applyPanel(C){
-	console.log("applyPanel RUN", C.panel?.background);
+	
 
   const root = document.documentElement;
 
