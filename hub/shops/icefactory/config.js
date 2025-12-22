@@ -139,5 +139,9 @@ panel: {
       text: "#ffffff"
     }
   }
-  console.log("CONFIG LOADED", CONFIG);
+  
 };
+
+
+console.log(CONFIG);
+window.CONFIG = CONFIG;
