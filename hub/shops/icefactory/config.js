@@ -69,7 +69,7 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "always", // once | always
+    show: "once", // once | always
     start: "",
     end: "",
     title: "ICE FACTORY",
