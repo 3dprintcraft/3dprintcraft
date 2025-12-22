@@ -64,8 +64,16 @@ body::before{
   border-radius: var(--panel-radius);
   box-shadow: var(--panel-shadow);
   padding: 16px;
+  width:100%;
+  max-width:420px;   /* 👈 ΕΔΩ ΕΙΝΑΙ ΤΟ ΜΥΣΤΙΚΟ */
+  margin:0 auto;
+  
 }
-
+@media (min-width:768px){
+  .panel{
+    max-width:420px;
+  }
+}
 
 .card{
   max-width:520px;
