@@ -69,7 +69,7 @@ const CONFIG = {
   sticky: {
     enabled: true,
     text: "Άνοιγμα",
-    url: "",
+    url: "https://www.google.gr/",
     // προαιρετικό custom icon (inline SVG)
     // icon: "<svg ...></svg>"
   },
