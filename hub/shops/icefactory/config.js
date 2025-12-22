@@ -124,9 +124,9 @@ panel: {
     },
 
     buttons: {
-  variant: "outline",   // ⬅️ ΟΧΙ filled
+  variant: "filled",   // ⬅️ ΟΧΙ filled
   background: "#ffffff",
-  backgroundOpacity: 0,
+  backgroundOpacity: 1,
   text: "#000000",
   radius: 14,
   border: { width: 2, color: "#00b4f1" }
