@@ -40,7 +40,17 @@
     maybePopup(C);
   }
 
-  function setText(id, v){ const e=document.getElementById(id); if(e) e.textContent=v||""; }
+  function setText(id, v){
+  const e = document.getElementById(id);
+  if (!e) return;
+
+  if (!v || v.trim() === "") {
+    e.style.display = "none";
+  } else {
+    e.textContent = v;
+    e.style.display = "";
+  }
+}
 
   function renderLogo(C){
     const el = document.getElementById("logo-container");
@@ -185,17 +195,24 @@
     const k=`hub_popup_seen_${shop}`;
     if(p.show==="once" && localStorage.getItem(k)==="1") return;
     const root=document.getElementById("popup-root");
-    root.innerHTML=`
-      <div class="popup-backdrop">
-        <div class="popup-card">
-          <div class="popup-title">${p.title||"Προσφορά"}</div>
-          <div class="popup-message">${p.message||""}</div>
-          <div class="popup-actions">
-            <button class="popup-btn popup-close">${p.closeLabel||"Κλείσιμο"}</button>
-            <button class="popup-btn popup-cta">${p.ctaLabel||"ΟΚ"}</button>
-          </div>
-        </div>
-      </div>`;
+   root.innerHTML = `
+  <div class="popup-backdrop">
+    <div class="popup-card">
+      ${p.title ? `<div class="popup-title">${p.title}</div>` : ``}
+      ${p.message ? `<div class="popup-message">${p.message}</div>` : ``}
+
+      <div class="popup-actions">
+        ${p.closeLabel ? `<button class="popup-btn popup-close">${p.closeLabel}</button>` : ``}
+        ${p.ctaLabel ? `<button class="popup-btn popup-cta">${p.ctaLabel}</button>` : ``}
+      </div>
+    </div>
+  </div>`;
+const closeBtn = root.querySelector(".popup-close");
+const ctaBtn = root.querySelector(".popup-cta");
+
+if (closeBtn) closeBtn.onclick = close;
+if (ctaBtn) ctaBtn.onclick = close;
+
     root.querySelector(".popup-close").onclick=close;
     root.querySelector(".popup-cta").onclick=close;
     root.querySelector(".popup-backdrop").onclick=e=>{ if(e.target.classList.contains("popup-backdrop")) close(); };
