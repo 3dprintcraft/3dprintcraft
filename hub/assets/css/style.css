@@ -51,12 +51,17 @@ body{
 }
 body::before{
   content:"";
-  position:fixed; inset:0;
+  position:fixed;
+  inset:0;
   background:var(--bg-overlay);
   pointer-events:none;
   z-index:0;
 }
-.page{position:relative; z-index:1; padding:18px}
+
+.page{
+  position:relative;
+  z-index:1;
+}
 
 
 .panel{
