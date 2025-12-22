@@ -86,25 +86,6 @@ const CONFIG = {
   },
 
   theme: {
-	  
-	  
-	  panel: {
-  background: {
-    type: "solid", // solid | gradient
-    color: "#000000",
-
-   /* gradient: {
-      direction: "135deg",
-      from: "#ffffff",
-      to: "#e6f6ff"
-    }*/},
-	
-	
-  radius: 24,
-  shadow: "soft" // soft | strong
-},
-	  
-	  
     typography: {
       googleFont: "Inter",
       cssFamily: "'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial",
@@ -126,10 +107,9 @@ panel: {
       to: "#e6f6ff"
     }*/},
 	
-	
   radius: 24,
   shadow: "soft" // soft | strong
-}
+},
 
 
     background: {

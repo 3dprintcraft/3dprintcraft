@@ -32,8 +32,7 @@ function applyPanel(C){
 
   const root = document.documentElement;
 
- const panel = C.theme?.panel || {};
-
+  const panel = C.panel || {};
   const bg = panel.background || {};
 
   // background
