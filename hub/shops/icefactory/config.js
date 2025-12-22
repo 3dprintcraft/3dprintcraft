@@ -99,7 +99,7 @@ const CONFIG = {
 panel: {
   background: {
     type: "solid", // solid | gradient
-    color: "#ffffff",
+    color: "#F8FAFC",
 
    /* gradient: {
       direction: "135deg",
@@ -125,16 +125,16 @@ panel: {
 
     buttons: {
   variant: "filled",   // ⬅️ ΟΧΙ filled
-  background: "#ffffff",
+  background: "#0EA5E9",
   backgroundOpacity: 1,
-  text: "#000000",
+  text: "#FFFFFF",
   radius: 14,
-  border: { width: 2, color: "#00b4f1" }
+  border: { width: 2, color: "#00B5E2" }
 },
 
 
     primary: {
-      background: "#dcdcdc",
+      background: "#1F2933",
       backgroundOpacity: 0.8,
       text: "#ffffff"
     }
