@@ -67,7 +67,7 @@ const CONFIG = {
   ],
 
   sticky: {
-    enabled: false,
+    enabled: true,
     text: "Άνοιγμα",
     url: "",
     // προαιρετικό custom icon (inline SVG)
