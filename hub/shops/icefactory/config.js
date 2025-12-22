@@ -108,7 +108,7 @@ panel: {
     }*/},
 
   radius: 24,
-  shadow: "soft" // soft | strong
+  shadow: "strong" // soft | strong
 },
 
 
