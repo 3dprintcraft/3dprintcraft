@@ -28,7 +28,11 @@ window.addEventListener("error", e => {
   };
 
 function applyPanel(C){
-  if(!C.panel || !C.panel.background) return;
+  const panel = C.panel || {};
+const bg = panel.background || {};
+
+if(!bg.type) return;
+
 
   const bg = C.panel.background;
   const r = document.documentElement;
@@ -36,9 +40,9 @@ function applyPanel(C){
   // 🔴 ΣΒΗΝΟΥΜΕ ΠΑΝΤΑ Ο,ΤΙ ΥΠΗΡΧΕ
   r.style.removeProperty("--panel-bg");
 
-  if(bg.type === "solid"){
-    r.style.setProperty("--panel-bg", bg.color);
-  }
+ if(bg.type === "solid"){
+  root.style.setProperty("--panel-bg", bg.color);
+}
 
   if(bg.type === "gradient"){
     r.style.setProperty(
