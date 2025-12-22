@@ -114,7 +114,7 @@ panel: {
 
     background: {
       type: "solid", // solid | gradient | image
-      color: "#84bad1",
+      color: "#F8FAFC",
       gradient: "linear-gradient(135deg,#ffffff,#f1f5f9)",
       image: {
         url: "",
@@ -125,11 +125,11 @@ panel: {
 
     buttons: {
   variant: "filled",   // ⬅️ ΟΧΙ filled
-  background: "#ffffff",
+  background: "#0EA5E9",
   backgroundOpacity: 1,
-  text: "#000000",
+  text: "#1F2933",
   radius: 14,
-  border: { width: 2, color: "#00b4f1" }
+  border: { width: 2, color: "#00B5E2" }
 },
 
 
