@@ -8,7 +8,7 @@ const CONFIG = {
   logo: {
     mode: "image", // image | text | none
     src: "/hub/shops/icefactory/icefactory.png",
-    widthPercent: 120,
+    widthPercent: 100,
     maxWidth: 140
   },
 
@@ -27,7 +27,7 @@ const CONFIG = {
   links: {
     review: "",
     phone: "+30 2610 335 415",
-    email: "",
+    email: "info@ice-factory.gr",
     maps: "",
     site: "https://ice-factory.gr/",
     instagram: "https://www.instagram.com/icefactorygr/",
