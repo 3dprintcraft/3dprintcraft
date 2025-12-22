@@ -99,7 +99,7 @@ const CONFIG = {
 panel: {
   background: {
     type: "solid", // solid | gradient
-    color: "#e9f0f5",
+    color: "#91ffaf",
 
    /* gradient: {
       direction: "135deg",
