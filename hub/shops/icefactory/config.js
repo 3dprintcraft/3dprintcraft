@@ -67,7 +67,7 @@ const CONFIG = {
   ],
 
   sticky: {
-    enabled: true,
+    enabled: false,
     text: "Άνοιγμα",
     url: "https://www.google.gr/",
     // προαιρετικό custom icon (inline SVG)
@@ -76,7 +76,7 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "once", // once | always
+    show: "always", // once | always
     start: "",
     end: "",
     title: "ICE FACTORY",
