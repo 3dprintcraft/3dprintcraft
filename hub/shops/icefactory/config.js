@@ -8,7 +8,7 @@ const CONFIG = {
   logo: {
     mode: "image", // image | text | none
     src: "/hub/shops/icefactory/icefactory.png",
-    widthPercent: 100,
+    widthPercent: 120,
     maxWidth: 140
   },
 
@@ -41,9 +41,10 @@ const CONFIG = {
   buttons: [
     
     { id: "phone", enabled: true, order: 0 },
+	{ id: "email", enabled: true, order: 1 },
    
-    { id: "site", enabled: true, order: 1 },
-    { id: "instagram", enabled: true, order: 2}
+    { id: "site", enabled: true, order: 2 },
+    { id: "instagram", enabled: true, order: 3}
   ],
 
   /* EXTRA LINKS (custom icons) */
@@ -68,13 +69,13 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "once", // once | always
+    show: "always", // once | always
     start: "",
     end: "",
-    title: "Καλώς Ήρθατε",
+    title: "ICE FACTORY",
     message: "Η ΑΠΟΛΥΤΗ ΕΠΙΛΟΓΗ ΣΤΟΝ ΠΑΓΟ",
     closeLabel: "",
-    ctaLabel: "ΟΚ"
+    ctaLabel: "Κλείσιμο"
   },
 
   theme: {
@@ -100,7 +101,7 @@ const CONFIG = {
     },
 
     buttons: {
-      variant: "soft", // filled | outline | soft
+      variant: "filled", // filled | outline | soft
       background: "#82b2e8",
       backgroundOpacity: 1,
       text: "#ffffff",
@@ -110,7 +111,7 @@ const CONFIG = {
 
     primary: {
       background: "#111827",
-      backgroundOpacity: 1,
+      backgroundOpacity: 0.8,
       text: "#ffffff"
     }
   }
