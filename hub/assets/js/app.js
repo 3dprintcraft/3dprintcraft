@@ -78,7 +78,7 @@ function applyPanel(C){
 
   function init(C){
 	  
-	  applyPanel(C);
+	
 
 	  
 	document.title =
@@ -308,3 +308,4 @@ if (ctaBtn) ctaBtn.onclick = close;
   function svgScooter(){return `<svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 15h7l3-6h4"/></svg>`}
   function svgBox(){return `<svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg>`}
 })();
+  applyPanel(C);
