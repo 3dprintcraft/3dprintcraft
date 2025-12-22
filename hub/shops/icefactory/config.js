@@ -98,14 +98,14 @@ const CONFIG = {
 
 panel: {
   background: {
-    type: "gradient", // solid | gradient
-    color: "#ffffff",
+    type: "solid", // solid | gradient
+    color: "##bfd0db",
 
-    gradient: {
+   /* gradient: {
       direction: "135deg",
       from: "#ffffff",
       to: "#e6f6ff"
-    }
+    }*/
   },
   radius: 24,
   shadow: "soft" // soft | strong
@@ -114,7 +114,7 @@ panel: {
 
     background: {
       type: "solid", // solid | gradient | image
-      color: "#9aacb8",
+      color: "#728b9c",
       gradient: "linear-gradient(135deg,#ffffff,#f1f5f9)",
       image: {
         url: "",
