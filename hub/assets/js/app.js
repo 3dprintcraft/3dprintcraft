@@ -23,11 +23,7 @@
   };
 
   function init(C){
-    document.title =
-  C.meta?.title ||
-  C.brand?.name ||
-  "3DPrintCraft";
-
+    document.title = C.brand?.name || "Business";
     applyTypography(C);
     applyBackground(C);
     applyButtonsTheme(C);
