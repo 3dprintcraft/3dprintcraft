@@ -149,36 +149,32 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }
   }
 
-function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
+function mkBtn({ label, url, variant="outline", icon=null, primary=false }) {
   const a = document.createElement("a");
   a.href = url;
-  a.className = "btn";
+  a.className = "btn btn-pill-brand" + (primary ? " btn--primary" : "");
 
-  if (variant === "pill") {
-    a.classList.add("btn-pill-brand");
-  } else {
-    if (primary) a.classList.add("btn--primary");
-    if (variant === "outline") a.classList.add("btn--outline");
-    if (variant === "soft") a.classList.add("btn--soft");
-  }
+  if (variant === "outline") a.classList.add("btn--outline");
+  if (variant === "soft") a.classList.add("btn--soft");
 
-  // icon (προαιρετικό)
-  if (icon) {
+  // ICON
+  if (icon && ICONS[icon]) {
     const s = document.createElement("span");
     s.className = "btn-icon";
-    s.innerHTML = icon;
+    s.innerHTML = ICONS[icon]; // 👈 ΕΔΩ μπαίνει το SVG
     a.appendChild(s);
   } else {
     a.classList.add("no-icon");
   }
 
+  // TEXT
   const t = document.createElement("span");
-  t.className = "btn-label";
   t.textContent = label;
   a.appendChild(t);
 
   return a;
 }
+
 
 
   function renderPrimary(C){
