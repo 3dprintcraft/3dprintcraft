@@ -239,7 +239,7 @@ body::before{
 .footer{
   margin: 56px auto 28px auto;
   text-align: center;
-  transform: translateY(6px);
+  transform: translateY(0px);
 }
 
 .footer-sub{
