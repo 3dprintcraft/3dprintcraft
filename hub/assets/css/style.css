@@ -63,7 +63,7 @@ body::before{
   background: var(--panel-bg);
   border-radius: var(--panel-radius);
   box-shadow: var(--panel-shadow);
-  padding: 16px;
+  padding: 8px;
   width: 100%;
   max-width: 420px;
   margin: 0 auto;
