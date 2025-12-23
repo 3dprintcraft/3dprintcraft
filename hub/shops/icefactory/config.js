@@ -51,7 +51,7 @@ const CONFIG = {
   {
     label: "Email",
     url: "mailto:info@ice-factory.gr",
-    icon: "email",
+    icon: "/hub/assets/images/email.svg",
     enabled: true,
     order: 1
   },
