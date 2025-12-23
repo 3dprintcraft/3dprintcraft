@@ -187,27 +187,6 @@ body::before{
 }
 
 
-.btn.no-icon{
-  justify-content: center;
-}
-
-.btn.no-icon span:last-child{
-  transform: none;
-}
-
-.btn.no-icon .btn-icon{
-  display: none;
-}
-
-
-.btn.pill-brand{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 22px;
-  border-radius: 999px;
-}
-
 .btn-icon{
   width: 44px;
   height: 44px;
@@ -220,6 +199,42 @@ body::before{
 }
 
 .btn-no-icon{
+  justify-content: center;
+}
+
+.btn-pill-brand{
+  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
+  color: var(--btn-text);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  border-radius: 999px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: none;
+  min-height: 52px;
+}
+
+/* εικονίδιο */
+.btn-pill-brand .btn-icon{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ΚΕΝΤΡΑΡΙΣΜΑ ΚΕΙΜΕΝΟΥ */
+.btn-pill-brand .btn-label{
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ΧΩΡΙΣ ICON → ΤΕΛΕΙΟ ΚΕΝΤΡΟ */
+.btn-pill-brand.no-icon{
   justify-content: center;
 }
 
