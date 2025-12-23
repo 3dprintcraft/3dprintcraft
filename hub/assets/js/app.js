@@ -156,6 +156,7 @@ if (!hasTitle && !hasSlogan && !hasHours) {
   if (primary) a.classList.add("btn--primary");
   if (variant === "outline") a.classList.add("btn--outline");
   if (variant === "soft") a.classList.add("btn--soft");
+  if(variant==="pill") a.classList.add("pill-brand");
 
   if (icon) {
     const s = document.createElement("span");

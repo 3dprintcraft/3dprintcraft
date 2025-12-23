@@ -152,7 +152,7 @@ panel: {
     },
 
     buttons: {
-  variant: "filled",   // ⬅️ ΟΧΙ filled
+  variant: "pill",   // ⬅️ ΟΧΙ filled
   background: "#d4e4e4",
   backgroundOpacity: 1,
   text: "#606161",
