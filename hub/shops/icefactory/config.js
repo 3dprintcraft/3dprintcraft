@@ -153,7 +153,7 @@ panel: {
 
     buttons: {
   variant: "filled",   // ⬅️ ΟΧΙ filled
-  background: "#ffffff",
+  background: "#d4e4e4",
   backgroundOpacity: 1,
   text: "#606161",
   radius: 30,
