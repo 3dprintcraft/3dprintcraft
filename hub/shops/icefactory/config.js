@@ -88,10 +88,11 @@ const CONFIG = {
   enabled: true,
   text: "",
   subtext: "Powered by 3DPrintCraft",
-  align: "center", // left | center | right
-  color: "#475569",
-  size: "small" // small | normal
-},
+  align: "center",   // left | center | right
+  color: "#94a3b8",  // διακριτικό γκρι
+  size: "small"      // small | normal
+}
+,
 
 
   sticky: {
