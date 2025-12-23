@@ -111,6 +111,8 @@ function applyPanel(C){
     renderDelivery(C);
     renderSticky(C);
     maybePopup(C);
+	renderFooter(C);
+
 	
 	const hasTitle = !!C.brand?.name?.trim();
 const hasSlogan = !!C.brand?.slogan?.trim();
@@ -336,6 +338,26 @@ if (ctaBtn) ctaBtn.onclick = close;
     root.querySelector(".popup-backdrop").onclick=e=>{ if(e.target.classList.contains("popup-backdrop")) close(); };
     function close(){ root.innerHTML=""; localStorage.setItem(k,"1"); }
   }
+  
+  
+  function renderFooter(C){
+  const f = document.querySelector(".footer");
+  if (!f || !C.footer?.enabled) {
+    if (f) f.style.display = "none";
+    return;
+  }
+
+  f.style.display = "block";
+  f.style.textAlign = C.footer.align || "center";
+  f.style.color = C.footer.color || "#94a3b8";
+  f.className = "footer footer--" + (C.footer.size || "small");
+
+  f.innerHTML = `
+    ${C.footer.text ? `<div class="footer-main">${C.footer.text}</div>` : ``}
+    ${C.footer.subtext ? `<div class="footer-sub">${C.footer.subtext}</div>` : ``}
+  `;
+}
+
 
   function fetchIcon(file){
     // inline fetch once; simple sync fallback via <img> is avoided to keep color inherit
