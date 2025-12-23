@@ -78,7 +78,7 @@ body::before{
 .card{
   max-width:520px;
   margin:0 auto 14px auto;
-  padding:16px 18px;
+  padding:8px 8px;
   border-radius:20px;
   background:var(--card-bg);
   border:1px solid var(--card-border);
