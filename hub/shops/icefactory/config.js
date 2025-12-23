@@ -105,7 +105,7 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "once", // once | always
+    show: "always", // once | always
     start: "",
     end: "",
     title: "Savilooooo",
