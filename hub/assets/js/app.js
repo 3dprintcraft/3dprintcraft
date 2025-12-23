@@ -147,28 +147,31 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }
   }
 
- function mkBtn({ label, url, variant="outline", icon, primary=false }) {
+function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
   const a = document.createElement("a");
   a.href = url;
-  a.className = "btn pill-brand" + (primary ? " btn--primary" : "");
+  a.className = "btn";
 
+  if (variant === "pill") {
+    a.classList.add("btn-pill-brand");
+  } else {
+    if (primary) a.classList.add("btn--primary");
+    if (variant === "outline") a.classList.add("btn--outline");
+    if (variant === "soft") a.classList.add("btn--soft");
+  }
 
-  if (primary) a.classList.add("btn--primary");
-  if (variant === "outline") a.classList.add("btn--outline");
-  if (variant === "soft") a.classList.add("btn--soft");
-  if(variant==="pill") a.classList.add("pill-brand");
-
+  // icon (προαιρετικό)
   if (icon) {
     const s = document.createElement("span");
-    s.className = "btn-icon";   // ⬅️ ΟΧΙ "icon"
+    s.className = "btn-icon";
     s.innerHTML = icon;
     a.appendChild(s);
   } else {
-    a.classList.add("no-icon"); // ⬅️ για κεντράρισμα
+    a.classList.add("no-icon");
   }
 
   const t = document.createElement("span");
-  t.className = "btn-label";   // ⬅️ ΤΟ ΚΛΕΙΔΙ
+  t.className = "btn-label";
   t.textContent = label;
   a.appendChild(t);
 

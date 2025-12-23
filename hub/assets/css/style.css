@@ -205,69 +205,41 @@ body::before{
 }
 
 
-.btn.pill-brand{
-  width: 100%;
-  min-height: 68px;
-
+.btn-pill-brand{
+  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
+  color: var(--btn-text);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  border-radius: 999px;
   padding: 18px 22px;
-
   display: flex;
   align-items: center;
-
-  background: #ffffff;
-  color: #606161;
-
-  border: 2px solid #00B5E2;
-  border-radius: 999px;
-
-  font-size: 16px;
-  font-weight: 600;
-
+  gap: 16px;
   box-shadow: none;
+  min-height: 64px;
 }
 
-.btn.pill-brand span:last-child{
-  flex: 1;
-  text-align: center;
-  transform: translateX(-21px);
-}
-
-.btn.pill-brand .icon{
+/* εικονίδιο */
+.btn-pill-brand .btn-icon{
   width: 44px;
   height: 44px;
-
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: #f1f5f9;
-  color: #111;
-
   flex-shrink: 0;
 }
 
+/* ΚΕΝΤΡΑΡΙΣΜΑ ΚΕΙΜΕΝΟΥ */
+.btn-pill-brand .btn-label{
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+}
 
-
-.btn-pill-brand .btn-icon{
-  position: absolute;
-  left: 14px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
+/* ΧΩΡΙΣ ICON → ΤΕΛΕΙΟ ΚΕΝΤΡΟ */
+.btn-pill-brand.no-icon{
   justify-content: center;
 }
-/* 🔥 ΑΥΤΟ ΛΥΝΕΙ ΤΑ ΠΑΝΤΑ */
-.btn-pill-brand .btn-label{
-  width: 100%;
-  text-align: center;
-  font-weight: 700;
-}
-  
-
 
 
 

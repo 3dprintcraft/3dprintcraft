@@ -151,8 +151,8 @@ panel: {
       overlay: "rgba(255,255,255,.72)"
     },
 
-    buttons: {
-  variant: "pill",   // ⬅️ ΟΧΙ filled
+   buttons: {
+  variant: "pill",
   background: "#d4e4e4",
   backgroundOpacity: 1,
   text: "#606161",
