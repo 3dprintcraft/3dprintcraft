@@ -153,7 +153,7 @@ panel: {
 
    buttons: {
   variant: "pill",
-  background: "#d4e4e4",
+  background: "#f3f3f3",
   backgroundOpacity: 1,
   text: "#606161",
   radius: 30,

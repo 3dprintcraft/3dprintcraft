@@ -210,12 +210,12 @@ body::before{
   color: var(--btn-text);
   border: var(--btn-border-width) solid var(--btn-border-color);
   border-radius: 999px;
-  padding: 18px 22px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   box-shadow: none;
-  min-height: 64px;
+  min-height: 52px;
 }
 
 /* εικονίδιο */
