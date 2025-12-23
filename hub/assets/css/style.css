@@ -123,6 +123,40 @@ body::before{
 }
 
 /* Buttons */
+
+
+
+.btn .btn-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* =========================
+   Brand button colors
+   ========================= */
+
+.btn[data-brand="efood"] .btn-icon{
+  background:#e60023;
+}
+
+.btn[data-brand="wolt"] .btn-icon{
+  background:#00bcd4;
+}
+
+.btn[data-brand="box"] .btn-icon{
+  background:#ffcc00;
+}
+
+.btn[data-brand="google"] .btn-icon{
+  background:#ffffff;
+}
+
+
 .btn{
   display:flex;
   align-items:center;
@@ -156,6 +190,28 @@ body::before{
   color:var(--primary-text);
 }
 
+
+.btn.no-icon{
+  justify-content: center;
+}
+
+.btn.no-icon .btn-icon{
+  display: none;
+}
+
+
+.btn.pill-brand{
+  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
+
+  color: var(--btn-text);
+  border: var(--btn-border-width) solid var(--btn-border-color);
+  border-radius: 999px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: none;
+}
 /* Icon */
 .icon{width:20px; height:20px; display:inline-flex}
 .icon svg{width:100%; height:100%; fill:currentColor}

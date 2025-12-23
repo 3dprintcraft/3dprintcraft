@@ -173,36 +173,42 @@ if (!hasTitle && !hasSlogan && !hasHours) {
   }
 
   function renderButtons(C){
-    const wrap=document.getElementById("actions"); wrap.innerHTML="";
-    const v=C.theme?.buttons?.variant||"outline";
+  const wrap = document.getElementById("actions");
+  wrap.innerHTML = "";
 
-    const defs={
-      phone:{l:C.labels?.phone||"Τηλέφωνο", u:C.links?.phone, i:ICONS.phone},
-      email:{l:C.labels?.email||"Email", u:C.links?.email, i:ICONS.email},
-      maps:{l:C.labels?.maps||"Τοποθεσία", u:C.links?.maps, i:ICONS.maps},
-      site:{l:C.labels?.site||"Ιστοσελίδα", u:C.links?.site, i:ICONS.site},
-      instagram:{l:"Instagram", u:C.links?.instagram, i:ICONS.instagram},
-      facebook:{l:"Facebook", u:C.links?.facebook, i:ICONS.facebook},
-      tiktok:{l:"TikTok", u:C.links?.tiktok, i:ICONS.tiktok}
-    };
+  const variant = C.theme?.buttons?.variant || "outline";
 
-    (C.buttons||[])
-      .filter(b=>b.enabled && b.id!=="review")
-      .sort((a,b)=>(a.order??999)-(b.order??999))
-      .forEach(b=>{
-        if(defs[b.id]?.u){
-          wrap.appendChild(mkBtn({label:defs[b.id].l,url:defs[b.id].u,variant:v,icon:defs[b.id].i}));
-        }
-      });
+  (C.buttons || [])
+    .filter(b => b.enabled)
+    .sort((a,b) => (a.order ?? 999) - (b.order ?? 999))
+    .forEach(b => {
+      const label = C.labels?.[b.id];
+      const url   = C.links?.[b.id];
 
-    // EXTRA custom links
-    (C.extraLinks||[]).filter(x=>x.enabled).sort((a,b)=>(a.order??999)-(b.order??999)).forEach(x=>{
-      const icon = x.icon?.svg
-        ? x.icon.svg
-        : (x.icon?.file ? fetchIcon(x.icon.file) : "");
-      wrap.appendChild(mkBtn({label:x.label,url:x.url,variant:v,icon}));
+      if (!label || !url) return;
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.className = "btn pill-brand";
+      a.dataset.brand = b.id;
+
+      // icon (προαιρετικό)
+      if (b.icon && ICONS[b.id]) {
+        const icon = document.createElement("span");
+        icon.className = "btn-icon";
+        icon.innerHTML = ICONS[b.id];
+        a.appendChild(icon);
+      }
+
+      const text = document.createElement("span");
+      text.className = "btn-text";
+      text.textContent = label;
+      a.appendChild(text);
+
+      wrap.appendChild(a);
     });
-  }
+}
+
 
   function renderDelivery(C){
     const wrap=document.getElementById("delivery-section"); wrap.innerHTML="";

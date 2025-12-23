@@ -21,10 +21,9 @@ const CONFIG = {
 
   labels: {
     review: "Αξιολόγησέ μας στο Google",
-    phone: "Τηλέφωνο",
-    email: "Email",
+  
     maps: "Τοποθεσία",
-    site: "Ιστοσελίδα",
+   
     deliveryTitle: "Delivery",
     efood: "efood",
     wolt: "Wolt",
@@ -33,26 +32,45 @@ const CONFIG = {
 
   links: {
     review: "",
-    phone: "+30 2610 335 415",
-    email: "info@ice-factory.gr",
+   
     maps: "",
     site: "https://ice-factory.gr/",
-    instagram: "https://www.instagram.com/icefactorygr/",
-    facebook: "",
-    tiktok: "",
-    efood: "",
+   
     wolt: "",
     box: ""
   },
 
   buttons: [
-    
-    { id: "phone", enabled: true, order: 0 },
-	{ id: "email", enabled: true, order: 1 },
-   
-    { id: "site", enabled: true, order: 2 },
-    { id: "instagram", enabled: true, order: 3}
-  ],
+  {
+    label: "Τηλέφωνο",
+    url: "tel:+302610335415",
+    icon: "phone",
+    enabled: true,
+    order: 0
+  },
+  {
+    label: "Email",
+    url: "mailto:info@ice-factory.gr",
+    icon: "email",
+    enabled: true,
+    order: 1
+  },
+  {
+    label: "Ιστοσελίδα",
+    url: "https://ice-factory.gr/",
+    icon: null,              // ⬅️ ΧΩΡΙΣ ΕΙΚΟΝΑ
+    enabled: true,
+    order: 2
+  },
+  {
+    label: "Instagram",
+    url: "https://www.instagram.com/icefactorygr/",
+    icon: "instagram",
+    enabled: true,
+    order: 3
+  }
+],
+
 
   /* EXTRA LINKS (custom icons) */
   extraLinks: [
