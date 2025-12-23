@@ -65,18 +65,13 @@ body::before{
   box-shadow: var(--panel-shadow);
   padding: 8px;
   width: 100%;
-  max-width: 420px;
+  max-width: 740px;
   margin: 0 auto;
 }
 
-@media (min-width:768px){
-  .panel{
-    max-width:420px;
-  }
-}
 
 .card{
-  max-width:520px;
+  max-width:740px;
   margin:0 auto 14px auto;
   padding:8px 8px;
   border-radius:20px;
