@@ -138,7 +138,7 @@ panel: {
   background: "#ffffff",
   backgroundOpacity: 1,
   text: "#606161",
-  radius: 14,
+  radius: 30,
   border: { width: 2, color: "#00B5E2" }
 },
 
