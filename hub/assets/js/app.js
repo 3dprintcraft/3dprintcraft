@@ -149,44 +149,36 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }
   }
 
-function mkBtn({ label, url, variant = "outline", icon, iconFile, primary = false }) {
+function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
   const a = document.createElement("a");
   a.href = url;
-  a.className = "btn pill-brand";
-  if (primary) a.classList.add("btn--primary");
+  a.className = "btn";
 
-  // ICON
-  if (icon || iconFile) {
-    const wrap = document.createElement("span");
-    wrap.className = "btn-icon";
-
-    if (icon) {
-      wrap.innerHTML = icon; // inline svg
-    }
-
-    if (iconFile) {
-      const img = document.createElement("img");
-      img.src = iconFile;
-      img.alt = "";
-      img.style.width = "22px";
-      img.style.height = "22px";
-      wrap.appendChild(img);
-    }
-
-    a.appendChild(wrap);
+  if (variant === "pill") {
+    a.classList.add("btn-pill-brand");
   } else {
-    a.classList.add("btn-no-icon");
+    if (primary) a.classList.add("btn--primary");
+    if (variant === "outline") a.classList.add("btn--outline");
+    if (variant === "soft") a.classList.add("btn--soft");
   }
 
-  // TEXT
+  // icon (προαιρετικό)
+  if (icon) {
+    const s = document.createElement("span");
+    s.className = "btn-icon";
+    s.innerHTML = icon;
+    a.appendChild(s);
+  } else {
+    a.classList.add("no-icon");
+  }
+
   const t = document.createElement("span");
-  t.className = "btn-text";
+  t.className = "btn-label";
   t.textContent = label;
   a.appendChild(t);
 
   return a;
 }
-
 
 
   function renderPrimary(C){

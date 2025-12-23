@@ -187,20 +187,18 @@ body::before{
 }
 
 
-.btn-icon{
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #000; /* ή brand color */
-  display: flex;
-  align-items: center;
+.btn.no-icon{
   justify-content: center;
-  flex-shrink: 0;
 }
 
-.btn-no-icon{
-  justify-content: center;
+.btn.no-icon span:last-child{
+  transform: none;
 }
+
+.btn.no-icon .btn-icon{
+  display: none;
+}
+
 
 .btn-pill-brand{
   background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));

@@ -48,10 +48,12 @@ const CONFIG = {
     enabled: true,
     order: 0
   },
- {
+  {
     label: "Email",
     url: "mailto:info@ice-factory.gr",
-    iconFile: "/hub/assets/icons/email.svg",
+   icon: {
+      file: "/hub/assets/icons/email.svg"
+    },
     enabled: true,
     order: 1
   },
@@ -105,7 +107,7 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "once", // once | always
+    show: "always", // once | always
     start: "",
     end: "",
     title: "Savilooooo",
