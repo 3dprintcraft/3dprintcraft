@@ -330,11 +330,12 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
 const closeBtn = root.querySelector(".popup-close");
 const ctaBtn = root.querySelector(".popup-cta");
 
+const closeBtn = root.querySelector(".popup-close");
+const ctaBtn = root.querySelector(".popup-cta");
+
 if (closeBtn) closeBtn.onclick = close;
 if (ctaBtn) ctaBtn.onclick = close;
 
-    root.querySelector(".popup-close").onclick=close;
-    root.querySelector(".popup-cta").onclick=close;
     root.querySelector(".popup-backdrop").onclick=e=>{ if(e.target.classList.contains("popup-backdrop")) close(); };
     function close(){ root.innerHTML=""; localStorage.setItem(k,"1"); }
   }
