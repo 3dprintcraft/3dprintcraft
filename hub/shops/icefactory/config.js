@@ -105,11 +105,11 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "once", // once | always
+    show: "always", // once | always
     start: "",
     end: "",
-    title: "ICE FACTORY",
-    message: "Η ΑΠΟΛΥΤΗ ΕΠΙΛΟΓΗ ΣΤΟΝ ΠΑΓΟ",
+    title: "Savilooooo",
+    message: "Μπήκαμε λάθος?",
     closeLabel: "",
     ctaLabel: "Κλείσιμο"
   },
