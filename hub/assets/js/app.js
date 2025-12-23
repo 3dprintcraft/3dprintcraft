@@ -172,42 +172,34 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }));
   }
 
-  function renderButtons(C){
+ function renderButtons(C){
   const wrap = document.getElementById("actions");
   wrap.innerHTML = "";
 
   const variant = C.theme?.buttons?.variant || "outline";
 
   (C.buttons || [])
-    .filter(b => b.enabled)
-    .sort((a,b) => (a.order ?? 999) - (b.order ?? 999))
+    .filter(b => b.enabled && b.url)
+    .sort((a,b)=>(a.order ?? 999)-(b.order ?? 999))
     .forEach(b => {
-      const label = C.labels?.[b.id];
-      const url   = C.links?.[b.id];
 
-      if (!label || !url) return;
+      let iconSvg = "";
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.className = "btn pill-brand";
-      a.dataset.brand = b.id;
-
-      // icon (προαιρετικό)
-      if (b.icon && ICONS[b.id]) {
-        const icon = document.createElement("span");
-        icon.className = "btn-icon";
-        icon.innerHTML = ICONS[b.id];
-        a.appendChild(icon);
+      if (b.icon && ICONS[b.icon]) {
+        iconSvg = ICONS[b.icon];
       }
 
-      const text = document.createElement("span");
-      text.className = "btn-text";
-      text.textContent = label;
-      a.appendChild(text);
-
-      wrap.appendChild(a);
+      wrap.appendChild(
+        mkBtn({
+          label: b.label,
+          url: b.url,
+          variant,
+          icon: iconSvg || null
+        })
+      );
     });
 }
+
 
 
   function renderDelivery(C){
