@@ -147,19 +147,32 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }
   }
 
-  function mkBtn({label,url,variant="outline",icon,primary=false}){
-    const a=document.createElement("a");
-    a.href=url; a.className="btn"+(primary?" btn--primary":"");
-    if(!primary){
-      if(variant==="outline") a.classList.add("btn--outline");
-      if(variant==="soft") a.classList.add("btn--soft");
-    }
-    if(icon){
-      const s=document.createElement("span"); s.className="icon"; s.innerHTML=icon; a.appendChild(s);
-    }
-    const t=document.createElement("span"); t.textContent=label; a.appendChild(t);
-    return a;
+ function mkBtn({ label, url, variant="outline", icon, primary=false }) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.className = "btn btn-pill-brand";
+
+  if (primary) a.classList.add("btn--primary");
+  if (variant === "outline") a.classList.add("btn--outline");
+  if (variant === "soft") a.classList.add("btn--soft");
+
+  if (icon) {
+    const s = document.createElement("span");
+    s.className = "btn-icon";   // ⬅️ ΟΧΙ "icon"
+    s.innerHTML = icon;
+    a.appendChild(s);
+  } else {
+    a.classList.add("no-icon"); // ⬅️ για κεντράρισμα
   }
+
+  const t = document.createElement("span");
+  t.className = "btn-label";   // ⬅️ ΤΟ ΚΛΕΙΔΙ
+  t.textContent = label;
+  a.appendChild(t);
+
+  return a;
+}
+
 
   function renderPrimary(C){
     const wrap=document.getElementById("primary-action"); wrap.innerHTML="";

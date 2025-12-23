@@ -216,7 +216,7 @@ body::before{
 }
 .btn-pill-brand .btn-icon{
   position: absolute;
-  left: 14px;                         /* ⬅️ σταθερή θέση */
+  left: 14px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -224,6 +224,11 @@ body::before{
   align-items: center;
   justify-content: center;
 }
+/* 🔥 ΑΥΤΟ ΛΥΝΕΙ ΤΑ ΠΑΝΤΑ */
+.btn-pill-brand .btn-label{
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
 
 /* Icon */
 .icon{width:20px; height:20px; display:inline-flex}
