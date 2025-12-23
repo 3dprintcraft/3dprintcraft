@@ -307,49 +307,35 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
 }
 
 
-function maybePopup(C){
-  const p = C.popup;
-  if (!p?.enabled) return;
+  function maybePopup(C){
+    const p=C.popup; if(!p?.enabled) return;
+    const now=new Date();
+    if(p.start && now<new Date(p.start+"T00:00:00")) return;
+    if(p.end && now>new Date(p.end+"T23:59:59")) return;
+    const k=`hub_popup_seen_${shop}`;
+    if(p.show==="once" && localStorage.getItem(k)==="1") return;
+    const root=document.getElementById("popup-root");
+   root.innerHTML = `
+  <div class="popup-backdrop">
+    <div class="popup-card">
+      ${p.title ? `<div class="popup-title">${p.title}</div>` : ``}
+      ${p.message ? `<div class="popup-message">${p.message}</div>` : ``}
 
-  const now = new Date();
-  if (p.start && now < new Date(p.start + "T00:00:00")) return;
-  if (p.end && now > new Date(p.end + "T23:59:59")) return;
-
-  const k = `hub_popup_seen_${shop}`;
-  if (p.show === "once" && localStorage.getItem(k) === "1") return;
-
-  const root = document.getElementById("popup-root");
-
-  root.innerHTML = `
-    <div class="popup-backdrop">
-      <div class="popup-card">
-        ${p.title ? `<div class="popup-title">${p.title}</div>` : ``}
-        ${p.message ? `<div class="popup-message">${p.message}</div>` : ``}
-
-        <div class="popup-actions">
-          ${p.closeLabel ? `<button class="popup-btn popup-close">${p.closeLabel}</button>` : ``}
-          ${p.ctaLabel ? `<button class="popup-btn popup-cta">${p.ctaLabel}</button>` : ``}
-        </div>
+      <div class="popup-actions">
+        ${p.closeLabel ? `<button class="popup-btn popup-close">${p.closeLabel}</button>` : ``}
+        ${p.ctaLabel ? `<button class="popup-btn popup-cta">${p.ctaLabel}</button>` : ``}
       </div>
     </div>
-  `;
+  </div>`;
+const closeBtn = root.querySelector(".popup-close");
+const ctaBtn = root.querySelector(".popup-cta");
 
-  const closeBtn = root.querySelector(".popup-close");
-  const ctaBtn = root.querySelector(".popup-cta");
+if (closeBtn) closeBtn.onclick = close;
+if (ctaBtn) ctaBtn.onclick = close;
 
-  if (closeBtn) closeBtn.onclick = close;
-  if (ctaBtn) ctaBtn.onclick = close;
-
-  root.querySelector(".popup-backdrop").onclick = e => {
-    if (e.target.classList.contains("popup-backdrop")) close();
-  };
-
-  function close(){
-    root.innerHTML = "";
-    localStorage.setItem(k, "1");
+    root.querySelector(".popup-backdrop").onclick=e=>{ if(e.target.classList.contains("popup-backdrop")) close(); };
+    function close(){ root.innerHTML=""; localStorage.setItem(k,"1"); }
   }
-}
-
   
   
   function renderFooter(C){
