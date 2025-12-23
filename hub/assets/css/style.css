@@ -200,39 +200,26 @@ body::before{
 }
 
 
-.btn-pill-brand{
-  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
-  color: var(--btn-text);
-  border: var(--btn-border-width) solid var(--btn-border-color);
-  border-radius: 999px;
-  padding: 12px 20px;
+.btn.pill-brand{
   display: flex;
   align-items: center;
   gap: 14px;
-  box-shadow: none;
-  min-height: 52px;
+  padding: 14px 22px;
+  border-radius: 999px;
 }
 
-/* εικονίδιο */
-.btn-pill-brand .btn-icon{
-  width: 30px;
-  height: 30px;
+.btn-icon{
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  background: #000; /* ή brand color */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-/* ΚΕΝΤΡΑΡΙΣΜΑ ΚΕΙΜΕΝΟΥ */
-.btn-pill-brand .btn-label{
-  flex: 1;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* ΧΩΡΙΣ ICON → ΤΕΛΕΙΟ ΚΕΝΤΡΟ */
-.btn-pill-brand.no-icon{
+.btn-no-icon{
   justify-content: center;
 }
 
