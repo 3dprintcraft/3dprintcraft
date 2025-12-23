@@ -166,6 +166,13 @@ function mkBtn({ label, url, variant="outline", icon=null, primary=false }) {
   } else {
     a.classList.add("no-icon");
   }
+if (icon?.file) {
+  fetch(icon.file)
+    .then(r => r.text())
+    .then(svg => {
+      s.innerHTML = svg;
+    });
+}
 
   // TEXT
   const t = document.createElement("span");
