@@ -150,7 +150,8 @@ if (!hasTitle && !hasSlogan && !hasHours) {
  function mkBtn({ label, url, variant="outline", icon, primary=false }) {
   const a = document.createElement("a");
   a.href = url;
-  a.className = "btn btn-pill-brand";
+  a.className = "btn pill-brand" + (primary ? " btn--primary" : "");
+
 
   if (primary) a.classList.add("btn--primary");
   if (variant === "outline") a.classList.add("btn--outline");

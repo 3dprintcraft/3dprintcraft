@@ -158,27 +158,28 @@ body::before{
 
 
 .btn{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
 
-  width:100%;
-  padding:14px 16px;
-  margin:10px 0;
+  padding: 18px 22px;
+  margin: 14px 0;
 
-  text-decoration:none;
-  font-weight:700;
-  font-size:var(--body-size);
+  border-radius: 999px;
+  border: 2px solid var(--btn-border-color);
 
-  border-radius:var(--btn-radius);
-  border:var(--btn-border-width) solid var(--btn-border-color);
+  background: #ffffff;
+  color: var(--btn-text);
 
-  color:var(--btn-text);
-  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
 
-  box-shadow:var(--btn-shadow);
-  transition:transform .15s ease, box-shadow .15s ease;
+  box-shadow: none;
 }
+
 
 
 .btn:hover{transform:translateY(-2px); box-shadow:var(--btn-shadow-hover)}
@@ -195,25 +196,58 @@ body::before{
   justify-content: center;
 }
 
+.btn.no-icon span:last-child{
+  transform: none;
+}
+
 .btn.no-icon .btn-icon{
   display: none;
 }
 
 
-.btn-pill-brand{
-  position: relative;                /* ⬅️ απαραίτητο */
-  background: rgba(var(--btn-bg-rgb), var(--btn-bg-alpha));
-  color: var(--btn-text);
-  border: var(--btn-border-width) solid var(--btn-border-color);
-  border-radius: 999px;
-  padding: 14px 18px;
+.btn.pill-brand{
+  width: 100%;
+  min-height: 64px;
+
+  padding: 18px 22px;
 
   display: flex;
   align-items: center;
-  justify-content: center;            /* ⬅️ text στο ΚΕΝΤΡΟ */
+
+  background: #ffffff;
+  color: #606161;
+
+  border: 2px solid #00B5E2;
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 600;
 
   box-shadow: none;
 }
+.btn.pill-brand span:last-child{
+  flex: 1;
+  text-align: center;
+  transform: translateX(-21px);
+}
+
+.btn.pill-brand .icon{
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #f1f5f9;
+  color: #111;
+
+  flex-shrink: 0;
+}
+
+
 .btn-pill-brand .btn-icon{
   position: absolute;
   left: 14px;
