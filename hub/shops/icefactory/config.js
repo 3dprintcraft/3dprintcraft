@@ -52,7 +52,7 @@ const CONFIG = {
     label: "Email",
     url: "mailto:info@ice-factory.gr",
    icon: {
-      file: "/hub/assets/icons/email.svg"
+      file: "/hub/assets/icons/gmail.png"
     },
     enabled: true,
     order: 1
