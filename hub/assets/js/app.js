@@ -208,6 +208,10 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
       if (b.icon && ICONS[b.icon]) {
         iconSvg = ICONS[b.icon];
       }
+      // support custom icon files: { file: "/hub/assets/icons/email.svg" }
+      else if (b.icon && b.icon.file) {
+        iconSvg = fetchIcon(b.icon.file);
+      }
 
       wrap.appendChild(
         mkBtn({
@@ -358,8 +362,9 @@ if (ctaBtn) ctaBtn.onclick = close;
 
 
   function fetchIcon(file){
-    // inline fetch once; simple sync fallback via <img> is avoided to keep color inherit
-    return `<svg viewBox="0 0 24 24"><use href="${file}#icon"/></svg>`;
+    // simple fallback: return an <img> for external SVG files
+    // (keeps implementation synchronous; could be enhanced to inline-load SVG for color inheritance)
+    return `<img src="${file}" alt="" />`;
   }
 
   /* --- SVG ICONS (inline, color inherits) --- */

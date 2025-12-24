@@ -194,6 +194,13 @@ body::before{
   fill: currentColor;
 }
 
+/* file-based icons (img fallback) */
+.btn-icon img{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
 
 .btn.no-icon{
   justify-content: center;
