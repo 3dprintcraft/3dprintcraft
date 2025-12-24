@@ -119,8 +119,8 @@ window.CONFIG = {
   },
 
   popup: {
-    enabled: once,
-    show: "always", // once | always
+    enabled: true,
+    show: "once", // once | always
     start: "",
     end: "",
     title: "Savilooooo",
