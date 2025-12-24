@@ -199,31 +199,25 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
   const variant = C.theme?.buttons?.variant || "outline";
 
   (C.buttons || [])
-  .filter(b => b.enabled)
-  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
-  .forEach(b => {
-    let iconHTML = "";
+    .filter(b => b.enabled && b.url)
+    .sort((a,b)=>(a.order ?? 999)-(b.order ?? 999))
+    .forEach(b => {
 
-    // built-in icon (string)
-    if (typeof b.icon === "string" && ICONS[b.icon]) {
-      iconHTML = ICONS[b.icon];
-    }
+      let iconSvg = "";
 
-    // custom svg file
-    if (b.icon?.file) {
-      iconHTML = `<img src="${b.icon.file}" alt="" />`;
-    }
+      if (b.icon && ICONS[b.icon]) {
+        iconSvg = ICONS[b.icon];
+      }
 
-    wrap.appendChild(
-      mkBtn({
-        label: b.label,
-        url: b.url,
-        variant: v,
-        icon: iconHTML || null
-      })
-    );
-  });
-
+      wrap.appendChild(
+        mkBtn({
+          label: b.label,
+          url: b.url,
+          variant,
+          icon: iconSvg || null
+        })
+      );
+    });
 }
 
 
