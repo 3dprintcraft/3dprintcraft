@@ -149,18 +149,27 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }
   }
 
-function mkBtn({ label, url, variant="outline", icon=null, primary=false }) {
+function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
   const a = document.createElement("a");
   a.href = url;
-  a.className = "btn btn-pill-brand";
+  a.className = "btn";
 
-  if (!icon) a.classList.add("btn-no-icon");
+  if (variant === "pill") {
+    a.classList.add("btn-pill-brand");
+  } else {
+    if (primary) a.classList.add("btn--primary");
+    if (variant === "outline") a.classList.add("btn--outline");
+    if (variant === "soft") a.classList.add("btn--soft");
+  }
 
+  // icon (προαιρετικό)
   if (icon) {
     const s = document.createElement("span");
     s.className = "btn-icon";
     s.innerHTML = icon;
     a.appendChild(s);
+  } else {
+    a.classList.add("no-icon");
   }
 
   const t = document.createElement("span");
@@ -170,7 +179,6 @@ function mkBtn({ label, url, variant="outline", icon=null, primary=false }) {
 
   return a;
 }
-
 
 
   function renderPrimary(C){
