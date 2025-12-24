@@ -85,7 +85,7 @@ function applyPanel(C){
 
 
 
-  function init(C){
+  async function init(C){
 	  
 	 
 
@@ -107,7 +107,7 @@ function applyPanel(C){
 
     renderLogo(C);
     renderPrimary(C);
-    renderButtons(C);
+    await renderButtons(C);
     renderDelivery(C);
     renderSticky(C);
     maybePopup(C);
@@ -192,36 +192,54 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
     }));
   }
 
- function renderButtons(C){
+ async function renderButtons(C){
   const wrap = document.getElementById("actions");
   wrap.innerHTML = "";
 
   const variant = C.theme?.buttons?.variant || "outline";
 
-  (C.buttons || [])
+  const buttons = (C.buttons || [])
     .filter(b => b.enabled && b.url)
-    .sort((a,b)=>(a.order ?? 999)-(b.order ?? 999))
-    .forEach(b => {
+    .sort((a,b)=>(a.order ?? 999)-(b.order ?? 999));
 
-      let iconSvg = "";
+  for (const b of buttons) {
+    let iconSvg = "";
+    if (b.icon && ICONS[b.icon]) {
+      iconSvg = ICONS[b.icon];
+    }
 
-      if (b.icon && ICONS[b.icon]) {
-        iconSvg = ICONS[b.icon];
+    const a = mkBtn({ label: b.label, url: b.url, variant, icon: iconSvg || null });
+    wrap.appendChild(a);
+
+    if (b.icon && b.icon.file) {
+      try {
+        const resp = await fetch(b.icon.file);
+        if (!resp.ok) throw new Error('fetch failed');
+        let svg = await resp.text();
+        svg = svg.replace(/<\?xml[^>]*>/g, '').trim();
+        svg = svg.replace(/\s(width|height)="[^"]*"/g, '');
+        svg = svg.replace(/(stroke|fill)="#(?:[0-9a-fA-F]{3,6})"/g, '$1="currentColor"');
+
+        let s = a.querySelector('.btn-icon');
+        if (!s) {
+          s = document.createElement('span');
+          s.className = 'btn-icon';
+          a.classList.remove('no-icon');
+          a.insertBefore(s, a.firstChild);
+        }
+        s.innerHTML = svg;
+      } catch (err) {
+        let s = a.querySelector('.btn-icon');
+        if (!s) {
+          s = document.createElement('span');
+          s.className = 'btn-icon';
+          a.classList.remove('no-icon');
+          a.insertBefore(s, a.firstChild);
+        }
+        s.innerHTML = `<img src="${b.icon.file}" alt="" />`;
       }
-      // support custom icon files: { file: "/hub/assets/icons/email.svg" }
-      else if (b.icon && b.icon.file) {
-        iconSvg = fetchIcon(b.icon.file);
-      }
-
-      wrap.appendChild(
-        mkBtn({
-          label: b.label,
-          url: b.url,
-          variant,
-          icon: iconSvg || null
-        })
-      );
-    });
+    }
+  }
 }
 
 
