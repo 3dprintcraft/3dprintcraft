@@ -219,7 +219,7 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
         if (!svg.includes('<svg')) throw new Error('not svg');
         svg = svg.replace(/<\?xml[^>]*>/g, '').trim();
         svg = svg.replace(/\s(width|height)="[^"]*"/g, '');
-        svg = svg.replace(/(stroke|fill)="#(?:[0-9a-fA-F]{3,6})"/g, '$1="currentColor"');
+        svg = svg.replace(/(stroke|fill)="[^"]*"/g, '$1="currentColor"');
 
         let s = a.querySelector('.btn-icon');
         if (!s) {
