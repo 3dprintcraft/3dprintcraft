@@ -223,7 +223,6 @@ body::before{
   padding: 12px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 14px;
   box-shadow: none;
   min-height: 52px;
@@ -242,6 +241,7 @@ body::before{
 
 /* ΚΕΝΤΡΑΡΙΣΜΑ ΚΕΙΜΕΝΟΥ */
 .btn-pill-brand .btn-label{
+  flex: 1;
   text-align: center;
   font-weight: 600;
 }
