@@ -24,7 +24,7 @@ function hexToRgb(hex) {
 
   const cfg = document.createElement("script");
   cfg.src = `/hub/shops/${shop}/config.js`;
-  cfg.onload = () => init(CONFIG);
+  cfg.onload = async () => { try { await init(CONFIG); } catch(e) { document.body.innerHTML = "<p style='padding:20px'>⚠️ Error loading page</p>"; } };
   cfg.onerror = () => document.body.innerHTML = "Shop not found";
   document.head.appendChild(cfg);
 
@@ -105,7 +105,7 @@ function applyPanel(C){
     };
     addMeta('og:title', C.meta?.title || C.brand?.name);
     addMeta('og:description', C.meta?.description || C.brand?.slogan);
-    addMeta('og:image', C.logo?.src ? new URL(C.logo.src, location.origin).href : '');
+    addMeta('og:image', C.logo?.src ? location.origin + C.logo.src : '');
     addMeta('og:url', location.href);
     addMeta('og:type', 'website');
     addMeta('twitter:card', 'summary_large_image');
