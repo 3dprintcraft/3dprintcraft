@@ -119,7 +119,7 @@ window.CONFIG = {
   },
 
   popup: {
-    enabled: true,
+    enabled: once,
     show: "always", // once | always
     start: "",
     end: "",
