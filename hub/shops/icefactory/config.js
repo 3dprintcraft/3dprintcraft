@@ -75,6 +75,15 @@ const CONFIG = {
     enabled: true,
     order: 3
   }
+  {
+    label: "Χάρτης",
+    url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=/maps/place//data%3D!4m2!3m1!1s0x135e372d7f6ecd67:0xd26c3d7796457646%3Fsa%3DX%26ved%3D1t:8290%26ictx%3D111&ved=2ahUKEwjfxoGb69aRAxWmQPEDHX-QKJ4Q4kB6BAgjEAM&usg=AOvVaw2F3TfqVXky5c6iOc2AH5qm",
+    icon: {
+      file: "/hub/assets/icons/maps.svg"
+    },
+    enabled: true,
+    order: 4
+  }
 ],
 
 
