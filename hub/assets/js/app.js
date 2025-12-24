@@ -24,7 +24,7 @@ function hexToRgb(hex) {
 
   const cfg = document.createElement("script");
   cfg.src = `/hub/shops/${shop}/config.js`;
-  cfg.onload = async () => { try { await init(CONFIG); } catch(e) { document.body.innerHTML = "<p style='padding:20px'>⚠️ Error loading page</p>"; } };
+  cfg.onload = async () => { try { await init(window.CONFIG); } catch(e) { document.body.innerHTML = "<p style='padding:20px'>⚠️ Error: " + e.message + "</p>"; } };
   cfg.onerror = () => document.body.innerHTML = "Shop not found";
   document.head.appendChild(cfg);
 

@@ -1,4 +1,4 @@
-const CONFIG = {
+window.CONFIG = {
   brand: {
     name: "SHOP NAME",
     slogan: "Mini description / tagline",
