@@ -85,7 +85,7 @@ function applyPanel(C){
 
 
 
-  function init(C){
+  async function init(C){
 	  
 	 
 
@@ -107,7 +107,7 @@ function applyPanel(C){
 
     renderLogo(C);
     renderPrimary(C);
-    renderButtons(C);
+    await renderButtons(C);
     renderDelivery(C);
     renderSticky(C);
     maybePopup(C);
