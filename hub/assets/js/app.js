@@ -95,6 +95,27 @@ function applyPanel(C){
     C.brand?.name ||
     "3DPrintCraft";
     
+    // Add meta tags for link previews
+    const addMeta = (property, content) => {
+      if (!content) return;
+      const m = document.createElement('meta');
+      m.setAttribute('property', property);
+      m.content = content;
+      document.head.appendChild(m);
+    };
+    addMeta('og:title', C.meta?.title || C.brand?.name);
+    addMeta('og:description', C.meta?.description || C.brand?.slogan);
+    addMeta('og:image', C.logo?.src ? new URL(C.logo.src, location.origin).href : '');
+    addMeta('og:url', location.href);
+    addMeta('og:type', 'website');
+    addMeta('twitter:card', 'summary_large_image');
+    
+    // Also add standard meta description
+    const descMeta = document.createElement('meta');
+    descMeta.name = 'description';
+    descMeta.content = C.meta?.description || C.brand?.slogan || '';
+    if (descMeta.content) document.head.appendChild(descMeta);
+    
     applyTypography(C);
     applyBackground(C);
 	 applyPanel(C);
