@@ -67,7 +67,9 @@ const CONFIG = {
   {
     label: "Instagram",
     url: "https://www.instagram.com/icefactorygr/",
-    icon: "instagram",
+    icon: {
+      file: "/hub/assets/icons/instagram.svg"
+    },
     enabled: true,
     order: 3
   }
