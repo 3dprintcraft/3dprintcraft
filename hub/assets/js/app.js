@@ -1,6 +1,3 @@
-window.addEventListener("error", e => {
-  document.body.innerHTML = "<p style='padding:20px'>⚠️ Σφάλμα φόρτωσης σελίδας</p>";
-});
 
 function hexToRgb(hex) {
   hex = hex.replace("#", "");
