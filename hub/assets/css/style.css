@@ -131,6 +131,13 @@ body::before{
   flex-shrink: 0;
 }
 
+.btn-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+
 /* =========================
    Brand button colors
    ========================= */

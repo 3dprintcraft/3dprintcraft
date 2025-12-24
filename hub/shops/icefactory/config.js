@@ -48,15 +48,13 @@ const CONFIG = {
     enabled: true,
     order: 0
   },
-  {
-    label: "Email",
-    url: "mailto:info@ice-factory.gr",
-   icon: {
-      file: "/hub/assets/icons/email.svg"
-    },
-    enabled: true,
-    order: 1
-  },
+ {
+  label: "Email",
+  url: "mailto:info@ice-factory.gr",
+  icon: { file: "/hub/assets/icons/email.svg" },
+  enabled: true,
+  order: 1
+},
   {
     label: "Ιστοσελίδα",
     url: "https://ice-factory.gr/",

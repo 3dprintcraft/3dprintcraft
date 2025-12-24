@@ -149,27 +149,18 @@ if (!hasTitle && !hasSlogan && !hasHours) {
     }
   }
 
-function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
+function mkBtn({ label, url, variant="outline", icon=null, primary=false }) {
   const a = document.createElement("a");
   a.href = url;
-  a.className = "btn";
+  a.className = "btn btn-pill-brand";
 
-  if (variant === "pill") {
-    a.classList.add("btn-pill-brand");
-  } else {
-    if (primary) a.classList.add("btn--primary");
-    if (variant === "outline") a.classList.add("btn--outline");
-    if (variant === "soft") a.classList.add("btn--soft");
-  }
+  if (!icon) a.classList.add("btn-no-icon");
 
-  // icon (προαιρετικό)
   if (icon) {
     const s = document.createElement("span");
     s.className = "btn-icon";
     s.innerHTML = icon;
     a.appendChild(s);
-  } else {
-    a.classList.add("no-icon");
   }
 
   const t = document.createElement("span");
@@ -179,6 +170,7 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
 
   return a;
 }
+
 
 
   function renderPrimary(C){
@@ -199,25 +191,31 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
   const variant = C.theme?.buttons?.variant || "outline";
 
   (C.buttons || [])
-    .filter(b => b.enabled && b.url)
-    .sort((a,b)=>(a.order ?? 999)-(b.order ?? 999))
-    .forEach(b => {
+  .filter(b => b.enabled)
+  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+  .forEach(b => {
+    let iconHTML = "";
 
-      let iconSvg = "";
+    // built-in icon (string)
+    if (typeof b.icon === "string" && ICONS[b.icon]) {
+      iconHTML = ICONS[b.icon];
+    }
 
-      if (b.icon && ICONS[b.icon]) {
-        iconSvg = ICONS[b.icon];
-      }
+    // custom svg file
+    if (b.icon?.file) {
+      iconHTML = `<img src="${b.icon.file}" alt="" />`;
+    }
 
-      wrap.appendChild(
-        mkBtn({
-          label: b.label,
-          url: b.url,
-          variant,
-          icon: iconSvg || null
-        })
-      );
-    });
+    wrap.appendChild(
+      mkBtn({
+        label: b.label,
+        url: b.url,
+        variant: v,
+        icon: iconHTML || null
+      })
+    );
+  });
+
 }
 
 
