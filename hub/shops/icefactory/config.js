@@ -60,7 +60,9 @@ const CONFIG = {
   {
     label: "Ιστοσελίδα",
     url: "https://ice-factory.gr/",
-    icon: null,              // ⬅️ ΧΩΡΙΣ ΕΙΚΟΝΑ
+     icon: {
+      file: "/hub/assets/icons/website.svg"
+    },
     enabled: true,
     order: 2
   },
