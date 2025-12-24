@@ -107,7 +107,7 @@ const CONFIG = {
 
   popup: {
     enabled: true,
-    show: "always", // once | always
+    show: "once", // once | always
     start: "",
     end: "",
     title: "Savilooooo",
@@ -158,7 +158,7 @@ panel: {
   variant: "pill",
   background: "#f3f3f3",
   backgroundOpacity: 1,
-  text: "#606161",
+  text: "#00B5E2",
   radius: 30,
   border: { width: 2, color: "#00B5E2" }
 },

@@ -122,8 +122,8 @@ body::before{
 
 
 .btn .btn-icon{
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -159,9 +159,9 @@ body::before{
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 64px;
+  min-height: 54px;
 
-  padding: 18px 22px;
+  padding: 14px 18px;
   margin: 14px 0;
 
   border-radius: 999px;
@@ -186,6 +186,12 @@ body::before{
   background:rgba(17,24,39,var(--primary-bg-alpha));
   border-color:transparent;
   color:var(--primary-text);
+}
+
+.btn-icon svg{
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 
 
