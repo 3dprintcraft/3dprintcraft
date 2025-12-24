@@ -158,7 +158,7 @@ panel: {
   variant: "pill",
   background: "#f3f3f3",
   backgroundOpacity: 1,
-  text: "#00B5E2",
+  text: "#e20044ff",
   radius: 30,
   border: { width: 2, color: "#00B5E2" }
 },
