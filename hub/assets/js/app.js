@@ -152,9 +152,12 @@ function applyPanel(C){
     setText("shop-hours", C.brand?.hours);
 
     // Apply custom fonts for brand elements
-    if (C.brand?.fonts?.name) document.getElementById('shop-name').style.fontFamily = C.brand.fonts.name;
-    if (C.brand?.fonts?.slogan) document.getElementById('shop-slogan').style.fontFamily = C.brand.fonts.slogan;
-    if (C.brand?.fonts?.hours) document.getElementById('shop-hours').style.fontFamily = C.brand.fonts.hours;
+    if (C.brand?.fonts?.name) {
+      document.getElementById('shop-name').style.fontFamily = `'${C.brand.fonts.name}'`;
+      console.log('Setting font for shop-name:', `'${C.brand.fonts.name}'`);
+    }
+    if (C.brand?.fonts?.slogan) document.getElementById('shop-slogan').style.fontFamily = `'${C.brand.fonts.slogan}'`;
+    if (C.brand?.fonts?.hours) document.getElementById('shop-hours').style.fontFamily = `'${C.brand.fonts.hours}'`;
 
     renderLogo(C);
     renderPrimary(C);
