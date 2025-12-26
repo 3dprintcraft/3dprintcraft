@@ -100,12 +100,17 @@ function applyPanel(C){
       m.content = content;
       document.head.appendChild(m);
     };
+    const imageUrl = C.logo?.src ? location.origin + C.logo.src : '';
     addMeta('og:title', C.meta?.title || C.brand?.name);
     addMeta('og:description', C.meta?.description || C.brand?.slogan);
-    addMeta('og:image', C.logo?.src ? location.origin + C.logo.src : '');
+    addMeta('og:image', imageUrl);
     addMeta('og:url', location.href);
     addMeta('og:type', 'website');
+    addMeta('og:site_name', C.brand?.name || '3DPrintCraft');
     addMeta('twitter:card', 'summary_large_image');
+    addMeta('twitter:title', C.meta?.title || C.brand?.name);
+    addMeta('twitter:description', C.meta?.description || C.brand?.slogan);
+    addMeta('twitter:image', imageUrl);
     
     // Also add standard meta description
     const descMeta = document.createElement('meta');
