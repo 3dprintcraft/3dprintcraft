@@ -1,12 +1,12 @@
 window.CONFIG = {
 	
 	meta: {
-  title: "ICE FACTORY",
-  description: "Η Απόλυτη επιλογή στον πάγο.",
-  ogTitle: "ICE FACTORY",
-  ogDescription: "Η Απόλυτη επιλογή στον πάγο.",
-  ogImage: "/hub/shops/icefactory/icefactory.png",
-  ogSiteName: "ICE FACTORY",
+  title: "MILU",
+  description: "milu.is.attitude",
+  ogTitle: "MILU",
+  ogDescription: "milu.is.attitude",
+  ogImage: "/hub/shops/icefactory/milu.jpg",
+  ogSiteName: "Milu",
   twitterCard: "summary_large_image"
 },
 
@@ -19,7 +19,7 @@ window.CONFIG = {
 
   logo: {
     mode: "image", // image | text | none
-    src: "/hub/shops/icefactory/icefactory.png",
+    src: "/hub/shops/milu/milu.jpg",
     widthPercent: 100,
     maxWidth: 140
   },
@@ -35,15 +35,6 @@ window.CONFIG = {
     box: "BOX"
   },
 
-  links: {
-    review: "",
-   
-    maps: "",
-    site: "https://ice-factory.gr/",
-   
-    wolt: "",
-    box: ""
-  },
 
   buttons: [
   {
@@ -148,7 +139,7 @@ window.CONFIG = {
 panel: {
   background: {
     type: "solid", // solid | gradient
-    color: "#ffffff",
+    color: "#F3C091",
 
    /* gradient: {
       direction: "135deg",
@@ -176,9 +167,9 @@ panel: {
   variant: "pill",
   background: "#f3f3f3",
   backgroundOpacity: 1,
-  text: "#00B5E2",
+  text: "#75655A",
   radius: 30,
-  border: { width: 2, color: "#00B5E2" }
+  border: { width: 2, color: "#75655A" }
 },
 
 
