@@ -16,7 +16,7 @@ window.CONFIG = {
     slogan: "",
     hours: "",
     fonts: {
-      name: "Courier New",
+      name: "Prompt",
       slogan: "Times New Roman",
       hours: "Courier New"
     }
