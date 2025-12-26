@@ -12,8 +12,8 @@ window.CONFIG = {
 
 	
   brand: {
-    name: "Milu",
-    slogan: "",
+    name: "",
+    slogan: "@milu.is.attitude",
     hours: ""
   },
 
