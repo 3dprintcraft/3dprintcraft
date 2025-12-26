@@ -12,7 +12,7 @@ window.CONFIG = {
 
 	
   brand: {
-    name: "@milu.is.attitude",
+    name: "Milu",
     slogan: "",
     hours: ""
   },
