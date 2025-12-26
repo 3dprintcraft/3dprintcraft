@@ -321,10 +321,20 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
 
   function applyTypography(C){
     const t=C.theme?.typography; if(!t) return;
-    if(t.googleFont){
-      const w=(t.weights||[]).join(";"); const href=`https://fonts.googleapis.com/css2?family=${encodeURIComponent(t.googleFont)}:wght@${w}&display=swap`;
-      if(!document.querySelector(`link[href="${href}"]`)){
-        const l=document.createElement("link"); l.rel="stylesheet"; l.href=href; document.head.appendChild(l);
+    const fonts = new Set();
+    if (t.googleFont) fonts.add(t.googleFont);
+    if (C.brand?.fonts?.name) fonts.add(C.brand.fonts.name);
+    if (C.brand?.fonts?.slogan) fonts.add(C.brand.fonts.slogan);
+    if (C.brand?.fonts?.hours) fonts.add(C.brand.fonts.hours);
+    if (fonts.size > 0) {
+      const w = (t.weights || []).join(";");
+      const families = Array.from(fonts).map(f => `family=${encodeURIComponent(f)}:wght@${w}`);
+      const href = `https://fonts.googleapis.com/css2?${families.join('&')}&display=swap`;
+      if (!document.querySelector(`link[href="${href}"]`)) {
+        const l = document.createElement("link");
+        l.rel = "stylesheet";
+        l.href = href;
+        document.head.appendChild(l);
       }
     }
     const r=document.documentElement;
