@@ -134,7 +134,7 @@ window.CONFIG = {
       googleFont: "Inter",
       cssFamily: "'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial",
       weights: [400,600,700],
-      weightBase: 400,
+      weightBase: 300,
       weightStrong: 700,
       h1Size: 32,
       bodySize: 16
