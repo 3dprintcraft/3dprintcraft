@@ -329,10 +329,9 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
     if (C.brand?.fonts?.name) fonts.add(C.brand.fonts.name);
     if (C.brand?.fonts?.slogan) fonts.add(C.brand.fonts.slogan);
     if (C.brand?.fonts?.hours) fonts.add(C.brand.fonts.hours);
-    if (fonts.size > 0) {
-      const w = (t.weights || []).join(";");
-      const families = Array.from(fonts).map(f => `family=${encodeURIComponent(f)}:wght@${w}`);
-      const href = `https://fonts.googleapis.com/css2?${families.join('&')}&display=swap`;
+    const w = (t.weights || []).join(";");
+    for (const f of fonts) {
+      const href = `http://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}:wght@${w}&display=block`;
       if (!document.querySelector(`link[href="${href}"]`)) {
         const l = document.createElement("link");
         l.rel = "stylesheet";
