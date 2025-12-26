@@ -158,7 +158,7 @@ panel: {
 
     background: {
       type: "solid", // solid | gradient | image
-      color: "#d4e4e4",
+      color: "#75655A",
       gradient: "linear-gradient(135deg,#ffffff,#f1f5f9)",
       image: {
         url: "",
