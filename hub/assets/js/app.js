@@ -331,7 +331,7 @@ function mkBtn({ label, url, variant = "outline", icon, primary = false }) {
     if (C.brand?.fonts?.hours) fonts.add(C.brand.fonts.hours);
     const w = (t.weights || []).join(";");
     for (const f of fonts) {
-      const href = `http://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}:wght@${w}&display=block`;
+      const href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(f)}:wght@${w}&display=swap`;
       if (!document.querySelector(`link[href="${href}"]`)) {
         const l = document.createElement("link");
         l.rel = "stylesheet";
