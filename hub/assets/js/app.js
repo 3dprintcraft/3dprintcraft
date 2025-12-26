@@ -19,20 +19,34 @@ function hexToRgb(hex) {
   const qs = new URLSearchParams(location.search);
   const shop = qs.get("shop") || "demo";
 
-  const cfg = document.createElement("script");
-  cfg.src = `/hub/shops/${shop}/config.js`;
-  cfg.onload = async () => { 
-    console.log('Config loaded, CONFIG:', window.CONFIG);
-    try { 
-      await init(window.CONFIG); 
-      console.log('Init completed');
-    } catch(e) { 
-      console.error('Init error:', e);
-      document.body.innerHTML = "<p style='padding:20px'>⚠️ Error: " + e.message + "</p>"; 
-    } 
-  };
-  cfg.onerror = () => document.body.innerHTML = "Shop not found";
-  document.head.appendChild(cfg);
+  // Load config as JSON instead of script to avoid execution issues
+  fetch(`/hub/shops/${shop}/config.js`)
+    .then(resp => {
+      if (!resp.ok) throw new Error('Config not found');
+      return resp.text();
+    })
+    .then(text => {
+      // Execute the text as JS to set window.CONFIG
+      const script = document.createElement('script');
+      script.textContent = text;
+      document.head.appendChild(script);
+      // Wait a bit for execution
+      setTimeout(async () => {
+        if (!window.CONFIG) throw new Error('CONFIG not set');
+        console.log('Config loaded, CONFIG:', window.CONFIG);
+        try { 
+          await init(window.CONFIG); 
+          console.log('Init completed');
+        } catch(e) { 
+          console.error('Init error:', e);
+          document.body.innerHTML = "<p style='padding:20px'>⚠️ Error: " + e.message + "</p>"; 
+        }
+      }, 10);
+    })
+    .catch(e => {
+      console.error('Config load error:', e);
+      document.body.innerHTML = "Shop not found";
+    });
 
   const ICONS = {
     review: svgStar(),
