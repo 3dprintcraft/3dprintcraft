@@ -164,7 +164,7 @@ panel: {
         url: "",
         fallbackColor: "#ffffff"
       },
-      overlay: "rgba(255,255,255,.72)"
+      overlay: "rgba(255,255,255,0)"
     },
 
    buttons: {
