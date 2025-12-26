@@ -11,12 +11,16 @@ window.CONFIG = {
 },
 
 	
-  brand: {
-    name: "",
-    slogan: "@milu.is.attitude",
-    hours: ""
+   brand: {
+    name: "@milu.is.attitude",
+    slogan: "",
+    hours: "",
+    fonts: {
+      name: "MuseoModerno",
+      slogan: "Times New Roman",
+      hours: "Courier New"
+    }
   },
-
   logo: {
     mode: "image", // image | text | none
     src: "/hub/shops/milu/milu.jpg",

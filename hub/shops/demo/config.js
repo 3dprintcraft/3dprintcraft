@@ -12,7 +12,12 @@ window.CONFIG = {
   brand: {
     name: "SHOP NAME",
     slogan: "Mini description / tagline",
-    hours: "Καθημερινά 07:00–23:00"
+    hours: "Καθημερινά 07:00–23:00",
+    fonts: {
+      name: "",
+      slogan: "",
+      hours: ""
+    }
   },
 
   logo: {

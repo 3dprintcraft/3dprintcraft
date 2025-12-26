@@ -14,7 +14,12 @@ window.CONFIG = {
   brand: {
     name: "",
     slogan: "",
-    hours: ""
+    hours: "",
+    fonts: {
+      name: "Arial",
+      slogan: "Times New Roman",
+      hours: "Courier New"
+    }
   },
 
   logo: {
