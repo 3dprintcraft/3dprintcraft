@@ -136,7 +136,7 @@ window.CONFIG = {
       weights: [400,600,700],
       weightBase: 300,
       weightStrong: 700,
-      h1Size: 32,
+      h1Size: 26,
       bodySize: 16
     },
 
