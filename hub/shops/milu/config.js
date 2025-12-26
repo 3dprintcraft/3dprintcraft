@@ -178,7 +178,7 @@ panel: {
 
 
     primary: {
-      background: "#dcdcdc",
+      background: "#75655A",
       backgroundOpacity: 0.8,
       text: "#ffffff"
     }
