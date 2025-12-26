@@ -159,7 +159,7 @@ body::before{
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 54px;
+  min-height: 58px;
 
   padding: 14px 18px;
   margin: 14px 0;
