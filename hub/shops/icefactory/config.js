@@ -2,7 +2,12 @@ window.CONFIG = {
 	
 	meta: {
   title: "ICE FACTORY",
-  description: ""
+  description: "",
+  ogTitle: "ICE FACTORY - Ice Cream Shop",
+  ogDescription: "Visit ICE FACTORY for the best ice cream in town. Delicious flavors and friendly service.",
+  ogImage: "/hub/shops/icefactory/icefactory.png",
+  ogSiteName: "ICE FACTORY",
+  twitterCard: "summary_large_image"
 },
 
 	

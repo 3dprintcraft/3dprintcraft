@@ -4,7 +4,12 @@ window.CONFIG = {
 		
 	meta: {
   title: "",
-  description: ""
+  description: "",
+  ogTitle: "",
+  ogDescription: "",
+  ogImage: "",
+  ogSiteName: "",
+  twitterCard: "summary_large_image"
 },
 
 

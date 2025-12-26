@@ -1,4 +1,14 @@
 window.CONFIG = {
+  meta: {
+    title: "Demo Shop",
+    description: "A demo shop for 3DPrintCraft",
+    ogTitle: "Demo Shop - 3DPrintCraft",
+    ogDescription: "Explore our demo shop with various features.",
+    ogImage: "/hub/assets/images/logo.svg",
+    ogSiteName: "Demo Shop",
+    twitterCard: "summary_large_image"
+  },
+
   brand: {
     name: "SHOP NAME",
     slogan: "Mini description / tagline",
