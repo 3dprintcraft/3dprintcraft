@@ -25,7 +25,7 @@
 
         @media (max-width: 480px) {
             body {
-                padding: 12px;
+                padding: 8px;
             }
         }
         
@@ -74,8 +74,8 @@
 
         @media (max-width: 480px) {
             .week-badge {
-                font-size: 0.8em;
-                padding: 6px 16px;
+                font-size: 0.75em;
+                padding: 6px 14px;
             }
         }
         
@@ -89,7 +89,7 @@
 
         @media (max-width: 480px) {
             .deals-section {
-                padding: 16px;
+                padding: 12px;
                 border-radius: 20px;
             }
         }
@@ -121,8 +121,8 @@
 
         @media (max-width: 480px) {
             .deal-item {
-                padding: 12px;
-                gap: 12px;
+                padding: 10px;
+                gap: 10px;
                 border-radius: 15px;
             }
         }
@@ -143,8 +143,8 @@
 
         @media (max-width: 480px) {
             .deal-image {
-                width: 90px;
-                height: 90px;
+                width: 95px;
+                height: 95px;
                 border-radius: 10px;
             }
         }
@@ -164,9 +164,9 @@
 
         @media (max-width: 480px) {
             .deal-image-placeholder {
-                width: 90px;
-                height: 90px;
-                font-size: 2em;
+                width: 95px;
+                height: 95px;
+                font-size: 2.2em;
             }
         }
 
@@ -187,7 +187,7 @@
 
         @media (max-width: 480px) {
             .deal-header {
-                gap: 4px;
+                gap: 8px;
             }
         }
 
@@ -206,7 +206,7 @@
 
         @media (max-width: 480px) {
             .deal-title-section h3 {
-                font-size: 0.95em;
+                font-size: 1em;
                 margin-bottom: 3px;
             }
         }
@@ -223,7 +223,7 @@
 
         @media (max-width: 480px) {
             .deal-title-section p {
-                font-size: 0.75em;
+                font-size: 0.8em;
                 -webkit-line-clamp: 1;
             }
         }
@@ -242,7 +242,7 @@
 
         @media (max-width: 480px) {
             .original-price {
-                font-size: 0.7em;
+                font-size: 0.75em;
             }
         }
         
@@ -255,7 +255,7 @@
 
         @media (max-width: 480px) {
             .discount-price {
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
         }
         
@@ -273,8 +273,8 @@
 
         @media (max-width: 480px) {
             .discount-badge {
-                font-size: 0.65em;
-                padding: 3px 8px;
+                font-size: 0.68em;
+                padding: 3px 9px;
                 margin-top: 3px;
             }
         }
@@ -369,7 +369,7 @@
 
     <script>
         // ⚙️ CONFIGURATION - REPLACE THIS WITH YOUR GOOGLE SHEET INFO
-       const SHEET_ID = '1xvJEZxp4SjFV-BoeDP6Sgv8T1hslORv643GYNOXzboA';
+        const SHEET_ID = '1xvJEZxp4SjFV-BoeDP6Sgv8T1hslORv643GYNOXzboA';
         const API_KEY = 'AIzaSyDBbVMAlBdT4-mF815c7Yu2LabBD1Ri8KM';
         
         // Sheet ranges
@@ -402,10 +402,24 @@
             }
         }
 
-        function getCurrentWeek() {
-            const date = new Date();
-            const options = { month: 'short', day: 'numeric', year: 'numeric' };
-            return `Week of ${date.toLocaleDateString('en-US', options)}`;
+        function getWeekRange() {
+            const today = new Date();
+            
+            // Get Monday of current week
+            const dayOfWeek = today.getDay();
+            const monday = new Date(today);
+            monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+            
+            // Get Sunday of current week
+            const sunday = new Date(monday);
+            sunday.setDate(monday.getDate() + 6);
+            
+            // Format dates
+            const options = { month: 'short', day: 'numeric' };
+            const mondayStr = monday.toLocaleDateString('en-US', options);
+            const sundayStr = sunday.toLocaleDateString('en-US', options);
+            
+            return `${mondayStr} - ${sundayStr}`;
         }
 
         function calculateDiscount(original, discount) {
@@ -438,7 +452,7 @@
                 <div class="header">
                     <h1>🛒 ${marketInfo.name || 'Your Market'}</h1>
                     <p>Exclusive NFC Keychain Deals</p>
-                    <div class="week-badge">${getCurrentWeek()}</div>
+                    <div class="week-badge">${getWeekRange()}</div>
                 </div>
                 
                 <div class="deals-section">
