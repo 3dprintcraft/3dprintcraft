@@ -403,37 +403,23 @@
         }
 
         function getWeekRange() {
-    const today = new Date();
-
-    // Υπολογισμός Δευτέρας
-    const day = today.getDay();
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1));
-
-    // Υπολογισμός Σαββάτου
-    const saturday = new Date(monday);
-    saturday.setDate(monday.getDate() + 5);
-
-    // Ονόματα ημερών στα ελληνικά
-    const weekdays = [
-        'Κυριακή',
-        'Δευτέρα',
-        'Τρίτη',
-        'Τετάρτη',
-        'Πέμπτη',
-        'Παρασκευή',
-        'Σάββατο'
-    ];
-
-    const startDayName = weekdays[monday.getDay()];
-    const endDayName = weekdays[saturday.getDay()];
-
-    const startDay = monday.getDate();
-    const endDay = saturday.getDate();
-
-    return `${startDayName} ${startDay} - ${endDayName} ${endDay}`;
-}
-
+            const today = new Date();
+            
+            // Get Monday of current week
+            const dayOfWeek = today.getDay();
+            const monday = new Date(today);
+            monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+            
+            // Get Sunday of current week
+            const sunday = new Date(monday);
+            sunday.setDate(monday.getDate() + 6);
+            
+            // Format dates
+            const options = { month: 'short', day: 'numeric' };
+            const mondayStr = monday.toLocaleDateString('el-GR', options);
+            const sundayStr = sunday.toLocaleDateString('el-GR', options);
+            
+            return `${mondayStr} - ${sundayStr}`;
         }
 
         function calculateDiscount(original, discount) {
@@ -520,7 +506,7 @@
                 </div>
                 
                 <div class="footer">
-                    <p>Νέες προσφορές κάθε εβδομάδα</p>
+                    <p>💳 Δείξτε αυτή τη σελίδα στο ταμείο για να λάβετε τις προσφορές</p>
                     <p></p>
                 </div>
             `;
