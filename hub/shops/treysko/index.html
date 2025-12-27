@@ -217,13 +217,17 @@
             try {
                 // Fetch deals
                 const dealsUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${DEALS_RANGE}?key=${API_KEY}`;
+                console.log('Fetching deals from:', dealsUrl);
                 const dealsResponse = await fetch(dealsUrl);
                 const dealsData = await dealsResponse.json();
+                console.log('Deals response:', dealsData);
                 
                 // Fetch market info
                 const infoUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${INFO_RANGE}?key=${API_KEY}`;
+                console.log('Fetching info from:', infoUrl);
                 const infoResponse = await fetch(infoUrl);
                 const infoData = await infoResponse.json();
+                console.log('Info response:', infoData);
                 
                 return {
                     deals: dealsData.values || [],
@@ -258,8 +262,13 @@
 
             // Filter active deals only
             const activeDeals = deals.filter(deal => {
-                // Check if deal has required fields and is active (column F)
-                return deal[0] && deal[2] && deal[3] && (deal[5] === undefined || deal[5].toLowerCase() !== 'no');
+                console.log('Checking deal:', deal);
+                // Check if deal has required fields
+                const hasRequiredFields = deal[0] && deal[2] && deal[3];
+                // Check if active (column F) - if empty or "Yes", consider it active
+                const isActive = !deal[5] || deal[5].toLowerCase() === 'yes' || deal[5].toLowerCase() === 'y';
+                console.log('Has required fields:', hasRequiredFields, 'Is active:', isActive);
+                return hasRequiredFields && isActive;
             });
 
             let html = `
