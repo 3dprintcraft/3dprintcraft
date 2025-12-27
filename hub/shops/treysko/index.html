@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Deals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .week-badge {
+            display: inline-block;
+            background: #ffd93d;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .deals-section {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .deals-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+        
+        .deal-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+        
+        .deal-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .deal-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 15px;
+            object-fit: cover;
+            background: white;
+        }
+        
+        .deal-image-placeholder {
+            width: 90px;
+            height: 90px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+        }
+        
+        .deal-info {
+            flex: 1;
+        }
+        
+        .deal-info h3 {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+        
+        .deal-info p {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .deal-price {
+            text-align: right;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        .discount-price {
+            color: #e74c3c;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .discount-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            display: inline-block;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        
+        .info-section {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .info-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .info-item strong {
+            color: #333;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 0.95em;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        .error {
+            background: #fee;
+            border: 2px solid #fcc;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #c33;
+        }
+
+        .no-deals {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loading" id="loading">Loading deals... 🛒</div>
+        <div id="content" style="display: none;"></div>
+    </div>
+
+    <script>
+        // ⚙️ CONFIGURATION - REPLACE THIS WITH YOUR GOOGLE SHEET INFO
+        const SHEET_ID = '1xvJEZxp4SjFV-BoeDP6Sgv8T1hslORv643GYNOXzboA';
+        const API_KEY = 'AIzaSyDBbVMAlBdT4-mF815c7Yu2LabBD1Ri8KM';
+        
+        // Sheet ranges
+        const DEALS_RANGE = 'Deals!A2:F';  // Product Name, Description, Original Price, Discount Price, Image URL, Active
+        const INFO_RANGE = 'Info!A2:B5';   // Key-Value pairs for market info
+
+        async function fetchSheetData() {
+            try {
+                // Fetch deals
+                const dealsUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${DEALS_RANGE}?key=${API_KEY}`;
+                const dealsResponse = await fetch(dealsUrl);
+                const dealsData = await dealsResponse.json();
+                
+                // Fetch market info
+                const infoUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${INFO_RANGE}?key=${API_KEY}`;
+                const infoResponse = await fetch(infoUrl);
+                const infoData = await infoResponse.json();
+                
+                return {
+                    deals: dealsData.values || [],
+                    info: infoData.values || []
+                };
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                throw error;
+            }
+        }
+
+        function getCurrentWeek() {
+            const date = new Date();
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            return `Week of ${date.toLocaleDateString('en-US', options)}`;
+        }
+
+        function calculateDiscount(original, discount) {
+            return Math.round(((original - discount) / original) * 100);
+        }
+
+        function renderPage(data) {
+            const { deals, info } = data;
+            
+            // Parse market info
+            const marketInfo = {};
+            info.forEach(row => {
+                if (row[0] && row[1]) {
+                    marketInfo[row[0].toLowerCase()] = row[1];
+                }
+            });
+
+            // Filter active deals only
+            const activeDeals = deals.filter(deal => {
+                // Check if deal has required fields and is active (column F)
+                return deal[0] && deal[2] && deal[3] && (deal[5] === undefined || deal[5].toLowerCase() !== 'no');
+            });
+
+            let html = `
+                <div class="header">
+                    <h1>🛒 ${marketInfo.name || 'Your Market'}</h1>
+                    <p>Exclusive NFC Keychain Deals</p>
+                    <div class="week-badge">${getCurrentWeek()}</div>
+                </div>
+                
+                <div class="deals-section">
+                    <h2>🎉 This Week's Special Offers</h2>
+            `;
+
+            if (activeDeals.length === 0) {
+                html += '<div class="no-deals">No deals available this week. Check back soon! 😊</div>';
+            } else {
+                activeDeals.forEach(deal => {
+                    const name = deal[0];
+                    const description = deal[1] || '';
+                    const originalPrice = parseFloat(deal[2]);
+                    const discountPrice = parseFloat(deal[3]);
+                    const imageUrl = deal[4] || '';
+                    const discount = calculateDiscount(originalPrice, discountPrice);
+
+                    html += `
+                        <div class="deal-item">
+                            ${imageUrl ? 
+                                `<img src="${imageUrl}" alt="${name}" class="deal-image">` :
+                                `<div class="deal-image-placeholder">🏷️</div>`
+                            }
+                            <div class="deal-info">
+                                <h3>${name}</h3>
+                                ${description ? `<p>${description}</p>` : ''}
+                            </div>
+                            <div class="deal-price">
+                                <div class="original-price">€${originalPrice.toFixed(2)}</div>
+                                <div class="discount-price">€${discountPrice.toFixed(2)}</div>
+                                <div class="discount-badge">-${discount}%</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            html += `
+                </div>
+                
+                <div class="info-section">
+                    <h3>📍 Visit Us</h3>
+                    <div class="info-item"><strong>Address:</strong> ${marketInfo.address || 'Not available'}</div>
+                    <div class="info-item"><strong>Phone:</strong> ${marketInfo.phone || 'Not available'}</div>
+                    <div class="info-item"><strong>Hours:</strong> ${marketInfo.hours || 'Not available'}</div>
+                </div>
+                
+                <div class="footer">
+                    <p>💳 Show this page at checkout to claim your discount</p>
+                    <p>New deals every week!</p>
+                </div>
+            `;
+
+            document.getElementById('content').innerHTML = html;
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        function showError(message) {
+            document.getElementById('content').innerHTML = `
+                <div class="error">
+                    <h3>⚠️ Configuration Needed</h3>
+                    <p>${message}</p>
+                    <p style="margin-top: 15px; font-size: 0.9em;">Please check the setup instructions.</p>
+                </div>
+            `;
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        // Initialize
+        async function init() {
+            // Check if configured
+            if (SHEET_ID === 'YOUR_SHEET_ID_HERE' || API_KEY === 'YOUR_API_KEY_HERE') {
+                showError('Please configure your Google Sheet ID and API Key in the HTML file.');
+                return;
+            }
+
+            try {
+                const data = await fetchSheetData();
+                renderPage(data);
+            } catch (error) {
+                showError('Error loading deals. Please check your Google Sheet configuration and make sure the sheet is publicly accessible.');
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>
