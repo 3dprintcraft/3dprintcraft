@@ -503,7 +503,9 @@
                     <div class="info-item"><strong>Τηλέφωνο:</strong> ${marketInfo.phone || '26220 23542'}</div>
 
                     <div class="info-item"><strong>Διεύθυνση:</strong> ${marketInfo.address || 'Γ. Παπανδρέου 95, Αμαλιάδα'}</div>
-                    <div class="info-item"><strong>Ώρες λειτουργίας:</strong> ${marketInfo.hours || ''}</div>
+                    <div class="info-item"><strong>Ώρες Λειτουργίας:</strong><br>
+${marketInfo.hours.replace(/\n/g, '<br>')}
+</div>
                 </div>
                 
                 <div class="footer">
