@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Deals</title>
+    <title>TREYSKO - MARKET</title>
     <style>
         * {
             margin: 0;
@@ -363,7 +363,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="loading" id="loading">Loading deals... 🛒</div>
+        <div class="loading" id="loading">Εύρεση Προσφορών ... 🛒</div>
         <div id="content" style="display: none;"></div>
     </div>
 
@@ -450,13 +450,13 @@
 
             let html = `
                 <div class="header">
-                    <h1>🛒 ${marketInfo.name || 'Your Market'}</h1>
-                    <p>Exclusive NFC Keychain Deals</p>
+                    <h1>🛒 ${marketInfo.name || 'TREYSKO'}</h1>
+                    <p>Αποκλειστικές προσφορές κάθε εβδομάδα!</p>
                     <div class="week-badge">${getWeekRange()}</div>
                 </div>
                 
                 <div class="deals-section">
-                    <h2>🎉 This Week's Special Offers</h2>
+                    <h2>🎉 Προσφορές Εβδομάδας</h2>
             `;
 
             if (activeDeals.length === 0) {
@@ -499,14 +499,14 @@
                 
                 <div class="info-section">
                     <h3>📍 Visit Us</h3>
-                    <div class="info-item"><strong>Address:</strong> ${marketInfo.address || 'Not available'}</div>
-                    <div class="info-item"><strong>Phone:</strong> ${marketInfo.phone || 'Not available'}</div>
-                    <div class="info-item"><strong>Hours:</strong> ${marketInfo.hours || 'Not available'}</div>
+                    <div class="info-item"><strong>Address:</strong> ${marketInfo.address || 'Γεωργίου Παπανδρέου 95 Αμαλιάδα'}</div>
+                    <div class="info-item"><strong>Phone:</strong> ${marketInfo.phone || '26220 23542'}</div>
+                    <div class="info-item"><strong></strong> ${marketInfo.hours || ''}</div>
                 </div>
                 
                 <div class="footer">
-                    <p>💳 Show this page at checkout to claim your discount</p>
-                    <p>New deals every week!</p>
+                    <p>💳 Δείξτε αυτή τη σελίδα στο ταμείο για να λάβετε τις προσφορές</p>
+                    <p></p>
                 </div>
             `;
 
