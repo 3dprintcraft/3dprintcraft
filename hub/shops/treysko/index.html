@@ -416,8 +416,8 @@
             
             // Format dates
             const options = { month: 'short', day: 'numeric' };
-            const mondayStr = monday.toLocaleDateString('en-US', options);
-            const sundayStr = sunday.toLocaleDateString('en-US', options);
+            const mondayStr = monday.toLocaleDateString('el-GR', options);
+            const sundayStr = sunday.toLocaleDateString('el-GR', options);
             
             return `${mondayStr} - ${sundayStr}`;
         }
@@ -498,7 +498,7 @@
                 </div>
                 
                 <div class="info-section">
-                    <h3>☎️  Επικοινωνία/h3>
+                    <h3>☎️  Επικοινωνία</h3>
                     <div class="info-item"><strong>Τηλέφωνο:</strong> ${marketInfo.phone || '26220 23542'}</div>
 
                     <div class="info-item"><strong>Διεύθυνση:</strong> ${marketInfo.address || 'Γεωργίου Παπανδρέου 95, Αμαλιάδα'}</div>
