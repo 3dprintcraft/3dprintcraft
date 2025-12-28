@@ -14,6 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const STAFF_TOKEN = localStorage.getItem("STAFF_TOKEN");
 
+  function renderSkeleton(max = 6) {
+  progress.innerHTML = "";
+
+  for (let i = 1; i <= max; i++) {
+    const span = document.createElement("span");
+    span.textContent = "☕";
+    span.style.opacity = "0.15";
+    progress.appendChild(span);
+  }
+
+  counter.textContent = "Φόρτωση...";
+}
+
+
   // =========================
   // LOAD CARD STATUS
   // =========================
