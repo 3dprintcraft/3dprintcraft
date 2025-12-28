@@ -18,9 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // LOAD CARD STATUS
   // =========================
   async function loadCard() {
-    const res = await fetch(
-      `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}`
-    );
+    const ts = Date.now();
+    renderSkeleton(6);
+  const res = await fetch(
+  `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}&t=${Date.now()}`,
+  { cache: "no-store" }
+);
 
     if (!res.ok) {
       counter.textContent = "Σφάλμα φόρτωσης κάρτας";
@@ -55,12 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     addBtn.addEventListener("click", async () => {
 
-      const ts = Date.now();
+      
       const res = await fetch(
         "https://bigbenloyalty.contactprintcraft3d.workers.dev/api/add-coffee",
         {  
           method: "POST",
-          cache: "no-store",
+          
           headers: {
             "Authorization": "Bearer " + STAFF_TOKEN,
             "Content-Type": "application/json"
