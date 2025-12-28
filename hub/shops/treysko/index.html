@@ -35,6 +35,8 @@
             box-sizing: border-box;
         }
         
+
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
@@ -54,6 +56,19 @@
                 padding-bottom: 80px;
             }
         }
+
+        .brand-light {
+            font-weight: 500;
+             opacity: 0.7;
+                    }
+
+        .hero-divider {
+             width: 60px;
+              height: 4px;
+               margin: 10px auto 14px;
+              border-radius: 4px;
+              background: linear-gradient(135deg, #56ab2f, #a8e063);
+            }
         
         .header {
             background: white;
@@ -96,7 +111,8 @@
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9em;
-            animation: pulse 2s infinite;
+            animation: none;
+            opacity: 0.95
         }
 
         @keyframes pulse {
@@ -697,9 +713,12 @@
 
             let html = `
                 <div class="header">
-                    <h1>🛒 ${marketInfo.name || 'TREYSKO MARKET'}</h1>
-                    <p>Προϊόντα που συμφέρουν!</p>
-                    ${marketInfo.week ? `<div class="week-badge">⏰ ${marketInfo.week}</div>` : ''}
+                    <h1>TREYSKO <span class="brand-light">market</span></h1>
+                    <p>Καθημερινές επιλογές σε τίμιες τιμές</p>
+
+                    <div class="hero-divider"></div>
+
+                    ${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
                 </div>
                 
                 <div class="deals-section">
