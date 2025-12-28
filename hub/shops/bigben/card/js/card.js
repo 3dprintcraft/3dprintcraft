@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
     addBtn.hidden = false;
 
     addBtn.addEventListener("click", async () => {
+
+      const ts = Date.now();
       const res = await fetch(
         "https://bigbenloyalty.contactprintcraft3d.workers.dev/api/add-coffee",
         {  
