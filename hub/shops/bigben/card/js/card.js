@@ -56,8 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
     addBtn.addEventListener("click", async () => {
       const res = await fetch(
         "https://bigbenloyalty.contactprintcraft3d.workers.dev/api/add-coffee",
-        {  { cache: "no-store" }
+        {  
           method: "POST",
+          cache: "no-store",
           headers: {
             "Authorization": "Bearer " + STAFF_TOKEN,
             "Content-Type": "application/json"
