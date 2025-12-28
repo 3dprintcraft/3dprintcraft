@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <!-- HTML Meta Tags -->
 <title>TREYSKO - MARKET</title>
-<meta name="description" content="Προσφορές που συμφέρουν!">
+<meta name="description" content="">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://3dprintcraft.gr/hub/shops/treysko/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TREYSKO - MARKET">
-<meta property="og:description" content="Προσφορές που συμφέρουν!">
+<meta property="og:description" content="">
 <meta property="og:image" content="https://www.3dprintcraft.gr/hub/shops/treysko/treysko.png">
 
 <!-- Twitter Meta Tags -->
@@ -16,8 +16,10 @@
 <meta property="twitter:domain" content="3dprintcraft.gr">
 <meta property="twitter:url" content="https://3dprintcraft.gr/hub/shops/treysko/">
 <meta name="twitter:title" content="TREYSKO - MARKET">
-<meta name="twitter:description" content="Προσφορές που συμφέρουν!">
-<meta name="twitter:image" content="https://www.3dprintcraft.gr/hub/shops/treysko/treysko.png">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="YOUR_IMAGE_URL_HERE">
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -32,10 +34,9 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 16px;
-            padding-bottom: 80px;
         }
         
         .container {
@@ -46,7 +47,6 @@
         @media (max-width: 480px) {
             body {
                 padding: 8px;
-                padding-bottom: 80px;
             }
         }
         
@@ -67,7 +67,7 @@
         }
         
         .header h1 {
-            color: #56ab2f;
+            color: #667eea;
             font-size: 2.2em;
             margin-bottom: 10px;
         }
@@ -85,18 +85,12 @@
         
         .week-badge {
             display: inline-block;
-            background: #ff6b6b;
-            color: white;
+            background: #ffd93d;
+            color: #333;
             padding: 8px 20px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9em;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         @media (max-width: 480px) {
@@ -122,7 +116,7 @@
         }
         
         .deals-section h2 {
-            color: #56ab2f;
+            color: #667eea;
             margin-bottom: 16px;
             font-size: 1.6em;
         }
@@ -132,160 +126,6 @@
                 font-size: 1.3em;
                 margin-bottom: 12px;
             }
-        }
-
-        .top-choice-badge {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
-        }
-
-        .featured-deal {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
-            border: 3px solid #ff9933;
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(255, 153, 51, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .featured-deal::before {
-            content: '⭐';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 4em;
-            opacity: 0.2;
-        }
-
-        @media (max-width: 480px) {
-            .featured-deal {
-                padding: 12px;
-            }
-        }
-
-        .featured-content {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        @media (max-width: 480px) {
-            .featured-content {
-                gap: 12px;
-            }
-        }
-
-        .featured-image {
-            width: 130px;
-            height: 130px;
-            border-radius: 15px;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .featured-image {
-                width: 110px;
-                height: 110px;
-            }
-        }
-
-        .featured-image-placeholder {
-            width: 130px;
-            height: 130px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #ff9933 0%, #ffbb33 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5em;
-            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .featured-image-placeholder {
-                width: 110px;
-                height: 110px;
-                font-size: 3em;
-            }
-        }
-
-        .featured-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .featured-info h3 {
-            color: #1a1a1a;
-            font-size: 1.4em;
-            margin-bottom: 6px;
-            font-weight: 800;
-        }
-
-        @media (max-width: 480px) {
-            .featured-info h3 {
-                font-size: 1.1em;
-            }
-        }
-
-        .featured-info p {
-            color: #555;
-            font-size: 0.9em;
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 480px) {
-            .featured-info p {
-                font-size: 0.8em;
-            }
-        }
-
-        .featured-price {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .featured-original {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.9em;
-        }
-
-        .featured-discount-price {
-            color: #ff3333;
-            font-size: 2.2em;
-            font-weight: 900;
-        }
-
-        @media (max-width: 480px) {
-            .featured-discount-price {
-                font-size: 1.8em;
-            }
-        }
-
-        .featured-badge {
-            background: #ff3333;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-            box-shadow: 0 3px 10px rgba(255, 51, 51, 0.4);
         }
         
         .deal-item {
@@ -334,12 +174,12 @@
             width: 100px;
             height: 100px;
             border-radius: 12px;
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5em;
-            box-shadow: 0 2px 8px rgba(86, 171, 47, 0.3);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
             flex-shrink: 0;
         }
 
@@ -476,7 +316,7 @@
         }
         
         .info-section h3 {
-            color: #56ab2f;
+            color: #667eea;
             margin-bottom: 15px;
             font-size: 1.3em;
         }
@@ -494,16 +334,6 @@
             line-height: 1.6;
         }
 
-        .info-item a {
-            color: #56ab2f;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .info-item a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 480px) {
             .info-item {
                 margin-bottom: 8px;
@@ -513,58 +343,6 @@
         
         .info-item strong {
             color: #333;
-        }
-
-        .sticky-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
-            padding: 12px;
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-        }
-
-        .footer-button {
-            flex: 1;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
-
-        .footer-button:active {
-            transform: scale(0.95);
-        }
-
-        .call-button {
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(86, 171, 47, 0.4);
-        }
-
-        .directions-button {
-            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4);
-        }
-
-        @media (max-width: 480px) {
-            .footer-button {
-                font-size: 0.9em;
-                padding: 12px;
-            }
         }
         
         .footer {
@@ -610,34 +388,25 @@
         <div id="content" style="display: none;"></div>
     </div>
 
-    <div class="sticky-footer">
-        <a href="tel:2622023542" class="footer-button call-button">
-            📞 Καλέστε μας
-        </a>
-        <a href="https://www.google.com/maps?client=firefox-b-d&um=1&ie=UTF-8&fb=1&gl=gr&sa=X&geocode=KRsS43_6u2ATMemys1f_LH0b&daddr=%CE%93%CE%B5%CF%89%CF%81.+%CE%A0%CE%B1%CF%80%CE%B1%CE%BD%CE%B4%CF%81%CE%AD%CE%BF%CF%85+95,+%CE%91%CE%BC%CE%B1%CE%BB%CE%B9%CE%AC%CE%B4%CE%B1+272+00" 
-           target="_blank" 
-           rel="noopener" 
-           class="footer-button directions-button">
-            🗺️ Οδηγίες
-        </a>
-    </div>
-
     <script>
-        // ⚙️ CONFIGURATION
+        // ⚙️ CONFIGURATION - REPLACE THIS WITH YOUR GOOGLE SHEET INFO
         const SHEET_ID = '1xvJEZxp4SjFV-BoeDP6Sgv8T1hslORv643GYNOXzboA';
         const API_KEY = 'AIzaSyDBbVMAlBdT4-mF815c7Yu2LabBD1Ri8KM';
         
-        const DEALS_RANGE = 'Deals!A2:F';
-        const INFO_RANGE = 'Info!A1:B5';
+        // Sheet ranges
+        const DEALS_RANGE = 'Deals!A2:F';  // Product Name, Description, Original Price, Discount Price, Image URL, Active
+        const INFO_RANGE = 'Info!A1:B5';   // Key-Value pairs for market info
 
         async function fetchSheetData() {
             try {
+                // Fetch deals
                 const dealsUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${DEALS_RANGE}?key=${API_KEY}`;
                 console.log('Fetching deals from:', dealsUrl);
                 const dealsResponse = await fetch(dealsUrl);
                 const dealsData = await dealsResponse.json();
                 console.log('Deals response:', dealsData);
                 
+                // Fetch market info
                 const infoUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${INFO_RANGE}?key=${API_KEY}`;
                 console.log('Fetching info from:', infoUrl);
                 const infoResponse = await fetch(infoUrl);
@@ -656,12 +425,17 @@
 
         function getWeekRange() {
             const today = new Date();
+            
+            // Get Monday of current week
             const dayOfWeek = today.getDay();
             const monday = new Date(today);
             monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+            
+            // Get Sunday of current week
             const sunday = new Date(monday);
             sunday.setDate(monday.getDate() + 6);
             
+            // Format dates
             const options = { month: 'short', day: 'numeric' };
             const mondayStr = monday.toLocaleDateString('el-GR', options);
             const sundayStr = sunday.toLocaleDateString('el-GR', options);
@@ -676,6 +450,7 @@
         function renderPage(data) {
             const { deals, info } = data;
             
+            // Parse market info
             const marketInfo = {};
             info.forEach(row => {
                 if (row[0] && row[1]) {
@@ -683,9 +458,14 @@
                 }
             });
 
+            // Filter active deals only
             const activeDeals = deals.filter(deal => {
+                console.log('Checking deal:', deal);
+                // Check if deal has required fields
                 const hasRequiredFields = deal[0] && deal[2] && deal[3];
+                // Check if active (column F) - if empty or "Yes", consider it active
                 const isActive = !deal[5] || deal[5].toLowerCase() === 'yes' || deal[5].toLowerCase() === 'y';
+                console.log('Has required fields:', hasRequiredFields, 'Is active:', isActive);
                 return hasRequiredFields && isActive;
             });
 
@@ -693,7 +473,8 @@
                 <div class="header">
                     <h1>🛒 ${marketInfo.name || 'TREYSKO MARKET'}</h1>
                     <p>Προϊόντα που συμφέρουν!</p>
-                    ${marketInfo.week ? `<div class="week-badge">⏰ ${marketInfo.week}</div>` : ''}
+                    ${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
+
                 </div>
                 
                 <div class="deals-section">
@@ -701,40 +482,9 @@
             `;
 
             if (activeDeals.length === 0) {
-                html += '<div class="no-deals">Δεν υπάρχουν προσφορές αυτή την εβδομάδα 😊</div>';
+                html += '<div class="no-deals">No deals available this week. Check back soon! 😊</div>';
             } else {
-                // Featured deal (first one)
-                const featured = activeDeals[0];
-                const featName = featured[0];
-                const featDesc = featured[1] || '';
-                const featOriginal = parseFloat(featured[2]);
-                const featDiscount = parseFloat(featured[3]);
-                const featImage = featured[4] || '';
-                const featDiscountPercent = calculateDiscount(featOriginal, featDiscount);
-
-                html += `
-                    <div class="featured-deal">
-                        <div class="top-choice-badge">⭐ Κορυφαία Επιλογή</div>
-                        <div class="featured-content">
-                            ${featImage ? 
-                                `<img src="${featImage}" alt="${featName}" class="featured-image">` :
-                                `<div class="featured-image-placeholder">🏷️</div>`
-                            }
-                            <div class="featured-info">
-                                <h3>${featName}</h3>
-                                ${featDesc ? `<p>${featDesc}</p>` : ''}
-                                <div class="featured-price">
-                                    <span class="featured-original">€${featOriginal.toFixed(2)}</span>
-                                    <span class="featured-discount-price">€${featDiscount.toFixed(2)}</span>
-                                    <span class="featured-badge">-${featDiscountPercent}%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                // Rest of the deals
-                activeDeals.slice(1).forEach(deal => {
+                activeDeals.forEach(deal => {
                     const name = deal[0];
                     const description = deal[1] || '';
                     const originalPrice = parseFloat(deal[2]);
@@ -770,19 +520,25 @@
                 </div>
                 
                 <div class="info-section">
-                    <h3>☎️ Επικοινωνία</h3>
-                    <div class="info-item"><strong>Τηλέφωνο:</strong> <a href="tel:2622023542">26220 23542</a></div>
-                    <div class="info-item">
-                        <strong>Διεύθυνση:</strong>
-                        <a href="https://www.google.com/maps?client=firefox-b-d&um=1&ie=UTF-8&fb=1&gl=gr&sa=X&geocode=KRsS43_6u2ATMemys1f_LH0b&daddr=%CE%93%CE%B5%CF%89%CF%81.+%CE%A0%CE%B1%CF%80%CE%B1%CE%BD%CE%B4%CF%81%CE%AD%CE%BF%CF%85+95,+%CE%91%CE%BC%CE%B1%CE%BB%CE%B9%CE%AC%CE%B4%CE%B1+272+00" target="_blank" rel="noopener">
-                            Γ. Παπανδρέου 95, Αμαλιάδα
-                        </a>
-                    </div>
-                    <div class="info-item">${marketInfo.hours || ''}</div>
+                    <h3>☎️  Επικοινωνία</h3>
+                    <div class="info-item"><strong>Τηλέφωνο: </strong><a href="tel:2622023542">26220 23542</a></div>
+
+<div class="info-item">
+    <strong>Διεύθυνση:</strong>
+    <a 
+        href="https://www.google.com/maps?client=firefox-b-d&um=1&ie=UTF-8&fb=1&gl=gr&sa=X&geocode=KRsS43_6u2ATMemys1f_LH0b&daddr=%CE%93%CE%B5%CF%89%CF%81.+%CE%A0%CE%B1%CF%80%CE%B1%CE%BD%CE%B4%CF%81%CE%AD%CE%BF%CF%85+95,+%CE%91%CE%BC%CE%B1%CE%BB%CE%B9%CE%AC%CE%B4%CE%B1+272+00"
+        target="_blank"
+        rel="noopener"
+    >
+        Γ. Παπανδρέου 95, Αμαλιάδα
+    </a>
+</div>
+                    <div class="info-item"><strong></strong> ${marketInfo.hours || ''}</div>
                 </div>
                 
                 <div class="footer">
                     <p>Νέες προσφορές κάθε εβδομάδα</p>
+                    <p></p>
                 </div>
             `;
 
@@ -794,17 +550,20 @@
         function showError(message) {
             document.getElementById('content').innerHTML = `
                 <div class="error">
-                    <h3>⚠️ Πρόβλημα</h3>
+                    <h3>⚠️ Configuration Needed</h3>
                     <p>${message}</p>
+                    <p style="margin-top: 15px; font-size: 0.9em;">Please check the setup instructions.</p>
                 </div>
             `;
             document.getElementById('loading').style.display = 'none';
             document.getElementById('content').style.display = 'block';
         }
 
+        // Initialize
         async function init() {
+            // Check if configured
             if (SHEET_ID === 'YOUR_SHEET_ID_HERE' || API_KEY === 'YOUR_API_KEY_HERE') {
-                showError('Παρακαλώ ρυθμίστε το Google Sheet ID και API Key.');
+                showError('Please configure your Google Sheet ID and API Key in the HTML file.');
                 return;
             }
 
@@ -812,7 +571,7 @@
                 const data = await fetchSheetData();
                 renderPage(data);
             } catch (error) {
-                showError('Σφάλμα φόρτωσης προσφορών. Ελέγξτε τη σύνδεση.');
+                showError('Error loading deals. Please check your Google Sheet configuration and make sure the sheet is publicly accessible.');
             }
         }
 
