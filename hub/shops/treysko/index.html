@@ -161,158 +161,158 @@
             50% { opacity: 0.6; }
         }
 
-        .hours-button {
-            display: inline-block;
-            background: transparent;
-            color: #56ab2f;
-            border: 2px solid #56ab2f;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-top: 8px;
-        }
+.hours-button {
+    display: inline-block;
+    background: transparent;
+    color: #56ab2f;
+    border: 2px solid #56ab2f;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
 
-        .hours-button:hover {
-            background: #56ab2f;
-            color: white;
-        }
+.hours-button:hover {
+    background: #56ab2f;
+    color: white;
+}
 
-        @media (max-width: 480px) {
-            .hours-button {
-                font-size: 0.8em;
-                padding: 6px 14px;
-            }
-        }
+@media (max-width: 480px) {
+    .hours-button {
+        font-size: 0.8em;
+        padding: 6px 14px;
+    }
+}
 
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            animation: fadeIn 0.2s;
-        }
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    animation: fadeIn 0.2s;
+}
 
-        .popup-overlay.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.popup-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
-        .popup-content {
-            background: white;
-            border-radius: 25px;
-            padding: 30px;
-            max-width: 400px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: slideUp 0.3s;
-            position: relative;
-        }
+.popup-content {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s;
+    position: relative;
+}
 
-        @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        @media (max-width: 480px) {
-            .popup-content {
-                padding: 24px 20px;
-            }
-        }
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 24px 20px;
+    }
+}
 
-        .popup-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
+.popup-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
 
-        .popup-header h3 {
-            color: #56ab2f;
-            font-size: 1.6em;
-            margin-bottom: 8px;
-        }
+.popup-header h3 {
+    color: #56ab2f;
+    font-size: 1.6em;
+    margin-bottom: 8px;
+}
 
-        .popup-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #f0f0f0;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 1.2em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f0f0f0;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
 
-        .popup-close:hover {
-            background: #e0e0e0;
-        }
+.popup-close:hover {
+    background: #e0e0e0;
+}
 
-        .hours-list {
-            list-style: none;
-        }
+.hours-list {
+    list-style: none;
+}
 
-        .hours-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 16px;
-            margin-bottom: 8px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            transition: background 0.2s;
-        }
+.hours-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
 
-        .hours-item.today {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-            border: 2px solid #56ab2f;
-            font-weight: bold;
-        }
+.hours-item.today {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 2px solid #56ab2f;
+    font-weight: bold;
+}
 
-        .hours-item:hover {
-            background: #e9ecef;
-        }
+.hours-item:hover {
+    background: #e9ecef;
+}
 
-        .hours-item.today:hover {
-            background: linear-gradient(135deg, #dcedc8 0%, #aed581 100%);
-        }
+.hours-item.today:hover {
+    background: linear-gradient(135deg, #dcedc8 0%, #aed581 100%);
+}
 
-        .day-name {
-            color: #333;
-            font-weight: 600;
-        }
+.day-name {
+    color: #333;
+    font-weight: 600;
+}
 
-        .day-hours {
-            color: #666;
-        }
+.day-hours {
+    color: #666;
+}
 
-        .hours-item.today .day-name,
-        .hours-item.today .day-hours {
-            color: #155724;
-        }
+.hours-item.today .day-name,
+.hours-item.today .day-hours {
+    color: #155724;
+}
 
         .info-grid {
             display: grid;
@@ -522,7 +522,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="loading" id="loading">Φόρτωση ... 🛒</div>
+        <div class="loading" id="loading">Φόρτωση ...</div>
         <div id="content" style="display: none;"></div>
     </div>
 
@@ -668,27 +668,59 @@
                 `;
             }
 
-            let html = `
-                <div class="header">
-                    <h1>TREYSKO <span class="brand-light">market</span></h1>
-                    
-                    ${statusBadgeHTML}
-                    
-                    <p>Ποιότητα & τιμές που αξίζουν!</p>
+       // Generate hours list HTML
+const daysMap = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
+const today = new Date().getDay();
 
-                    <div class="hero-divider"></div>
+let hoursListHTML = '';
+hours.forEach((row, index) => {
+    const [day, open1, close1, open2, close2] = row;
+    const isToday = index === (today === 0 ? 6 : today - 1);
+    
+    let timeRange = '';
+    if (open1 && open1.toLowerCase() !== 'κλειστά' && close1) {
+        timeRange = `${open1} - ${close1}`;
+        if (open2 && open2.toLowerCase() !== 'κλειστά' && close2) {
+            timeRange += ` / ${open2} - ${close2}`;
+        }
+    } else {
+        timeRange = 'Κλειστά';
+    }
+    
+    hoursListHTML += `
+        <li class="hours-item ${isToday ? 'today' : ''}">
+            <span class="day-name">${day}</span>
+            <span class="day-hours">${timeRange}</span>
+        </li>
+    `;
+});
 
-                    <div class="info-grid">
-                        <div class="info-item-small">
-                            <strong>📞 Τηλέφωνο</strong>
-                            <span>26220 23542</span>
-                        </div>
-                        <div class="info-item-small">
-                            <strong>📍 Διεύθυνση</strong>
-                            <span>Γ. Παπανδρέου 95</span>
-                        </div>
-                    </div>
-                </div>
+let html = `
+    <div class="header">
+        <h1>TREYSKO <span class="brand-light">market</span></h1>
+        
+        ${statusBadgeHTML}
+        
+        <p>Ποιότητα & τιμές που αξίζουν!</p>
+
+        <div class="hero-divider"></div>
+        
+        <button class="hours-button" onclick="openHoursPopup()">
+            🕐 Ωράριο Λειτουργίας
+        </button>
+    </div>
+    
+    <div class="popup-overlay" id="hoursPopup" onclick="closeHoursPopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="popup-close" onclick="closeHoursPopup()">✕</button>
+            <div class="popup-header">
+                <h3>🕐 Ωράριο Λειτουργίας</h3>
+            </div>
+            <ul class="hours-list">
+                ${hoursListHTML}
+            </ul>
+        </div>
+    </div>
 
                 <div class="card-section">
                     <h2>⭐ Αξιολογήστε μας</h2>
@@ -709,10 +741,11 @@
 
                 <div class="card-section">
                     <h2>🗺️ Πού βρισκόμαστε</h2>
+                    <p style="text-align: center; color: #666; margin-bottom: 16px; font-size: 1em;">
+        📍 Γ. Παπανδρέου 95, Αμαλιάδα
                     <div class="map-container">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.8!2d21.349!3d37.797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ3JzQ5LjIiTiAyMcKwMjAnNTguOCJF!5e0!3m2!1sel!2sgr!4v1234567890!5m2!1sel!2sgr&zoom=16"
-                            allowfullscreen="" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8396314022734!2d21.344295010955157!3d37.79379791094795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1360bbfa7fe3121b%3A0x1b7d2cff57b3b2e9!2sTreysko!5e0!3m2!1sel!2sgr!4v1766940114520!5m2!1sel!2sgr"                            allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
@@ -745,15 +778,15 @@
             }
         }
 
-        function openHoursPopup() {
-            document.getElementById('hoursPopup').classList.add('active');
-        }
+function openHoursPopup() {
+    document.getElementById('hoursPopup').classList.add('active');
+}
 
-        function closeHoursPopup(event) {
-            if (!event || event.target.id === 'hoursPopup' || event.target.classList.contains('popup-close')) {
-                document.getElementById('hoursPopup').classList.remove('active');
-            }
-        }
+function closeHoursPopup(event) {
+    if (!event || event.target.id === 'hoursPopup' || event.target.classList.contains('popup-close')) {
+        document.getElementById('hoursPopup').classList.remove('active');
+    }
+}
 
         init();
     </script>
