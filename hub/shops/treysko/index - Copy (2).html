@@ -69,70 +69,6 @@
               border-radius: 4px;
               background: linear-gradient(135deg, #56ab2f, #a8e063);
             }
-
-        .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 480px) {
-    .status-badge {
-        font-size: 0.8em;
-        padding: 6px 14px;
-    }
-}
-
-.status-open {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-closed {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.status-opens-soon {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.indicator-open {
-    background: #28a745;
-    animation: pulse-green 2s infinite;
-}
-
-.indicator-closed {
-    background: #dc3545;
-}
-
-.indicator-opens-soon {
-    background: #ffc107;
-    animation: pulse-yellow 2s infinite;
-}
-
-@keyframes pulse-green {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-@keyframes pulse-yellow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
         
         .header {
             background: white;
@@ -715,7 +651,6 @@
         
         const DEALS_RANGE = 'Deals!A2:F';
         const INFO_RANGE = 'Info!A1:B5';
-        const HOURS_RANGE = 'Hours!A2:E8'; 
 
         async function fetchSheetData() {
             try {
@@ -730,16 +665,11 @@
                 const infoResponse = await fetch(infoUrl);
                 const infoData = await infoResponse.json();
                 console.log('Info response:', infoData);
-
-                const hoursUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${HOURS_RANGE}?key=${API_KEY}`;
-const hoursResponse = await fetch(hoursUrl);
-const hoursData = await hoursResponse.json();
                 
                 return {
-    deals: dealsData.values || [],
-    info: infoData.values || [],
-    hours: hoursData.values || []
-};
+                    deals: dealsData.values || [],
+                    info: infoData.values || []
+                };
             } catch (error) {
                 console.error('Error fetching data:', error);
                 throw error;
@@ -765,110 +695,10 @@ const hoursData = await hoursResponse.json();
             return Math.round(((original - discount) / original) * 100);
         }
 
-
-        function parseTime(timeStr) {
-    if (!timeStr || timeStr.toLowerCase() === 'κλειστά' || timeStr.toLowerCase() === 'closed') {
-        return null;
-    }
-    const [hours, minutes] = timeStr.split(':').map(Number);
-    return hours * 60 + (minutes || 0);
-}
-
-function getStoreStatus(hoursData) {
-    const now = new Date();
-    const dayOfWeek = now.getDay();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-    const dayMapping = [6, 0, 1, 2, 3, 4, 5];
-    const dayIndex = dayMapping[dayOfWeek];
-
-    if (!hoursData[dayIndex]) {
-        return { status: 'unknown', text: 'Άγνωστο' };
-    }
-
-    const [day, open1, close1, open2, close2] = hoursData[dayIndex];
-    
-    const open1Min = parseTime(open1);
-    const close1Min = parseTime(close1);
-    const open2Min = parseTime(open2);
-    const close2Min = parseTime(close2);
-
-    // Κλειστά όλη μέρα
-    if (open1Min === null && open2Min === null) {
-        return { status: 'closed', text: 'Κλειστά σήμερα' };
-    }
-
-    // Έλεγχος πρωινό ωράριο
-    if (open1Min !== null && close1Min !== null) {
-        if (currentMinutes >= open1Min && currentMinutes < close1Min) {
-            return { status: 'open', text: 'Ανοιχτά τώρα' };
-        }
-        // Ανοίγει σύντομα (πρωί)
-        if (currentMinutes < open1Min && (open1Min - currentMinutes) <= 60) {
-            const mins = open1Min - currentMinutes;
-            return { status: 'opens-soon', text: `Ανοίγει σε ${mins} λεπτά` };
-        }
-    }
-
-    // Έλεγχος απογευματινό ωράριο
-    if (open2Min !== null && close2Min !== null) {
-        if (currentMinutes >= open2Min && currentMinutes < close2Min) {
-            return { status: 'open', text: 'Ανοιχτά τώρα' };
-        }
-        // Ανοίγει σύντομα (απόγευμα)
-        if (currentMinutes < open2Min && (open2Min - currentMinutes) <= 60) {
-            const mins = open2Min - currentMinutes;
-            return { status: 'opens-soon', text: `Ανοίγει σε ${mins} λεπτά` };
-        }
-    }
-
-    // Διάλειμμα μεσημέρι
-    if (close1Min !== null && open2Min !== null && currentMinutes >= close1Min && currentMinutes < open2Min) {
-        const openHour = Math.floor(open2Min / 60);
-        const openMin = open2Min % 60;
-        return { status: 'closed', text: `Διάλειμμα - Ανοίγει ${openHour}:${openMin.toString().padStart(2, '0')}` };
-    }
-
-    // Πριν ανοίξει το πρωί
-    if (open1Min !== null && currentMinutes < open1Min) {
-        const openHour = Math.floor(open1Min / 60);
-        const openMin = open1Min % 60;
-        return { status: 'closed', text: `Κλειστά - Ανοίγει ${openHour}:${openMin.toString().padStart(2, '0')}` };
-    }
-
-    return { status: 'closed', text: 'Κλειστά' };
-}
-
-
-       function renderPage(data) {
-    const { deals, info, hours } = data;
+        function renderPage(data) {
+            const { deals, info } = data;
             
             const marketInfo = {};
-            const storeStatus = getStoreStatus(hours);
-
-let statusBadgeHTML = '';
-if (storeStatus.status === 'open') {
-    statusBadgeHTML = `
-        <div class="status-badge status-open">
-            <span class="status-indicator indicator-open"></span>
-            ${storeStatus.text}
-        </div>
-    `;
-} else if (storeStatus.status === 'opens-soon') {
-    statusBadgeHTML = `
-        <div class="status-badge status-opens-soon">
-            <span class="status-indicator indicator-opens-soon"></span>
-            ${storeStatus.text}
-        </div>
-    `;
-} else {
-    statusBadgeHTML = `
-        <div class="status-badge status-closed">
-            <span class="status-indicator indicator-closed"></span>
-            ${storeStatus.text}
-        </div>
-    `;
-}
             info.forEach(row => {
                 if (row[0] && row[1]) {
                     marketInfo[row[0].toLowerCase()] = row[1];
@@ -888,8 +718,7 @@ if (storeStatus.status === 'open') {
 
                     <div class="hero-divider"></div>
 
-${statusBadgeHTML}
-${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
+                    ${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
                 </div>
                 
                 <div class="deals-section">
