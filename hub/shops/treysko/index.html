@@ -161,204 +161,165 @@
             50% { opacity: 0.6; }
         }
 
-.hours-button {
-    display: inline-block;
-    background: transparent;
-    color: #56ab2f;
-    border: 2px solid #56ab2f;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 8px;
-}
-
-.hours-button:hover {
-    background: #56ab2f;
-    color: white;
-}
-
-@media (max-width: 480px) {
-    .hours-button {
-        font-size: 0.8em;
-        padding: 6px 14px;
-    }
-}
-
-.popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    animation: fadeIn 0.2s;
-}
-
-.popup-overlay.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.popup-content {
-    background: white;
-    border-radius: 25px;
-    padding: 30px;
-    max-width: 400px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    animation: slideUp 0.3s;
-    position: relative;
-}
-
-@keyframes slideUp {
-    from { 
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 480px) {
-    .popup-content {
-        padding: 24px 20px;
-    }
-}
-
-.popup-header {
-    text-align: center;
-    margin-bottom: 24px;
-}
-
-.popup-header h3 {
-    color: #56ab2f;
-    font-size: 1.6em;
-    margin-bottom: 8px;
-}
-
-.popup-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #f0f0f0;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 1.2em;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-}
-
-.popup-close:hover {
-    background: #e0e0e0;
-}
-
-.hours-list {
-    list-style: none;
-}
-
-.hours-item {
-    padding: 14px 16px;
-    margin-bottom: 10px;
-    background: #f8f9fa;
-    border-radius: 12px;
-    transition: background 0.2s;
-}
-
-.hours-item.today {
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-    border: 2px solid #56ab2f;
-    font-weight: bold;
-}
-
-.hours-item:hover {
-    background: #e9ecef;
-}
-
-.hours-item.today:hover {
-    background: linear-gradient(135deg, #dcedc8 0%, #aed581 100%);
-}
-
-.day-name {
-    color: #333;
-    font-weight: 700;
-    font-size: 0.95em;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.day-hours {
-    color: #666;
-    font-size: 0.9em;
-    display: block;
-    line-height: 1.6;
-}
-
-.hours-item.today .day-name,
-.hours-item.today .day-hours {
-    color: #155724;
-}
-
-.time-slot {
-    display: block;
-}
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 480px) {
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-        }
-
-        .info-item-small {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 0.85em;
-        }
-
-        @media (max-width: 480px) {
-            .info-item-small {
-                font-size: 0.8em;
-            }
-        }
-
-        .info-item-small strong {
-            display: block;
+        .hours-button {
+            display: inline-block;
+            background: transparent;
             color: #56ab2f;
-            margin-bottom: 4px;
-            font-size: 0.9em;
+            border: 2px solid #56ab2f;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
         }
 
-        .info-item-small span {
-            color: #555;
+        .hours-button:hover {
+            background: #56ab2f;
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .hours-button {
+                font-size: 0.8em;
+                padding: 6px 14px;
+            }
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            animation: fadeIn 0.2s;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .popup-content {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popup-content {
+                padding: 24px 20px;
+            }
+        }
+
+        .popup-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .popup-header h3 {
+            color: #56ab2f;
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f0f0f0;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .popup-close:hover {
+            background: #e0e0e0;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-item {
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: background 0.2s;
+        }
+
+        .hours-item.today {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #56ab2f;
+            font-weight: bold;
+        }
+
+        .hours-item:hover {
+            background: #e9ecef;
+        }
+
+        .hours-item.today:hover {
+            background: linear-gradient(135deg, #dcedc8 0%, #aed581 100%);
+        }
+
+        .day-name {
+            color: #333;
+            font-weight: 700;
+            font-size: 0.95em;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .day-hours {
+            color: #666;
+            font-size: 0.9em;
+            display: block;
+            line-height: 1.6;
+        }
+
+        .hours-item.today .day-name,
+        .hours-item.today .day-hours {
+            color: #155724;
+        }
+
+        .time-slot {
+            display: block;
         }
         
         .card-section {
@@ -510,12 +471,106 @@
                 padding: 12px;
             }
         }
-        
-        .loading {
+
+        /* Loading Skeleton Styles */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-header {
+            background: white;
+            border-radius: 25px;
+            padding: 24px;
             text-align: center;
-            padding: 40px;
-            color: white;
-            font-size: 1.2em;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 16px;
+        }
+
+        .skeleton-title {
+            height: 40px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skeleton-badge {
+            height: 30px;
+            width: 150px;
+            border-radius: 20px;
+            margin: 0 auto 15px;
+        }
+
+        .skeleton-text {
+            height: 20px;
+            width: 200px;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        .skeleton-card {
+            background: white;
+            border-radius: 25px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 16px;
+        }
+
+        .skeleton-card-title {
+            height: 30px;
+            width: 60%;
+            border-radius: 10px;
+            margin: 0 auto 20px;
+        }
+
+        .skeleton-stars {
+            height: 40px;
+            width: 200px;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+        }
+
+        .skeleton-button {
+            height: 50px;
+            width: 180px;
+            border-radius: 25px;
+            margin: 20px auto 0;
+        }
+
+        .skeleton-map {
+            height: 350px;
+            border-radius: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .skeleton-map {
+                height: 300px;
+            }
+        }
+
+        /* Confetti Styles */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            animation: confetti-fall 3s linear;
+            pointer-events: none;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
         }
         
         .error {
@@ -530,7 +585,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="loading" id="loading">Φόρτωση ...</div>
+        <div id="loading-skeleton">
+            <div class="skeleton-header">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-badge"></div>
+                <div class="skeleton skeleton-text"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton skeleton-card-title"></div>
+                <div class="skeleton skeleton-stars"></div>
+                <div class="skeleton skeleton-text" style="width: 70%; margin: 15px auto;"></div>
+                <div class="skeleton skeleton-button"></div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton skeleton-card-title"></div>
+                <div class="skeleton skeleton-map"></div>
+            </div>
+        </div>
         <div id="content" style="display: none;"></div>
     </div>
 
@@ -553,6 +624,26 @@
         
         const INFO_RANGE = 'Info!A1:B10';
         const HOURS_RANGE = 'Hours!A2:E8';
+
+        // Confetti Function
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#ff1493'];
+            const confettiCount = 50;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
 
         async function fetchSheetData() {
             try {
@@ -676,65 +767,57 @@
                 `;
             }
 
-       // Generate hours list HTML
-// Generate hours list HTML
-const daysMap = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
-const today = new Date().getDay();
+            const today = new Date().getDay();
+            
+            let hoursListHTML = '';
+            hours.forEach((row, index) => {
+                const [day, open1, close1, open2, close2] = row;
+                const isToday = index === (today === 0 ? 6 : today - 1);
+                
+                let timeHTML = '';
+                if (open1 && open1.toLowerCase() !== 'κλειστά' && close1) {
+                    timeHTML = `<span class="time-slot">${open1} - ${close1}</span>`;
+                    if (open2 && open2.toLowerCase() !== 'κλειστά' && close2) {
+                        timeHTML += `<span class="time-slot">${open2} - ${close2}</span>`;
+                    }
+                } else {
+                    timeHTML = '<span class="time-slot">Κλειστά</span>';
+                }
+                
+                hoursListHTML += `
+                    <li class="hours-item ${isToday ? 'today' : ''}">
+                        <span class="day-name">${day.toUpperCase()}</span>
+                        <div class="day-hours">${timeHTML}</div>
+                    </li>
+                `;
+            });
 
-let hoursListHTML = '';
-hours.forEach((row, index) => {
-    const [day, open1, close1, open2, close2] = row;
-    const isToday = index === (today === 0 ? 6 : today - 1);
-    
-    let timeHTML = '';
-    if (open1 && open1.toLowerCase() !== 'κλειστά' && close1) {
-        timeHTML = `<span class="time-slot">${open1} - ${close1}</span>`;
-        if (open2 && open2.toLowerCase() !== 'κλειστά' && close2) {
-            timeHTML += `<span class="time-slot">${open2} - ${close2}</span>`;
-        }
-    } else {
-        timeHTML = '<span class="time-slot">Κλειστά</span>';
-    }
-    
-    hoursListHTML += `
-        <li class="hours-item ${isToday ? 'today' : ''}">
-            <span class="day-name">${day.toUpperCase()}</span>
-            <div class="day-hours">${timeHTML}</div>
-        </li>
-    `;
-});
+            let html = `
+                <div class="header">
+                    <h1>TREYSKO <span class="brand-light">market</span></h1>
+                    <div class="hero-divider"></div>
+                    <p>Ποιότητα & τιμές που αξίζουν!</p>
+                    ${statusBadgeHTML}
+                    <div></div>
+                    <button class="hours-button" onclick="openHoursPopup()">
+                        🕐 Ωράριο Λειτουργίας
+                    </button>
+                </div>
+                
+                <div class="popup-overlay" id="hoursPopup" onclick="closeHoursPopup(event)">
+                    <div class="popup-content" onclick="event.stopPropagation()">
+                        <button class="popup-close" onclick="closeHoursPopup()">✕</button>
+                        <div class="popup-header">
+                            <br>
+                            <h3>Ωράριο Λειτουργίας</h3>
+                        </div>
+                        <ul class="hours-list">
+                            ${hoursListHTML}
+                        </ul>
+                    </div>
+                </div>
 
-let html = `
-    <div class="header">
-        <h1>TREYSKO <span class="brand-light">market</span></h1>
-         <div class="hero-divider"></div>
-        <p>Ποιότητα & τιμές που αξίζουν!</p>
-
-        ${statusBadgeHTML}
-        
-        
-       <div></div>
-        
-        <button class="hours-button" onclick="openHoursPopup()">
-            🕐 Ωράριο Λειτουργίας
-        </button>
-    </div>
-    
-    <div class="popup-overlay" id="hoursPopup" onclick="closeHoursPopup(event)">
-        <div class="popup-content" onclick="event.stopPropagation()">
-            <button class="popup-close" onclick="closeHoursPopup()">✕</button>
-            <div class="popup-header">
-                <br>
-                <h3>Ωράριο Λειτουργίας</h3>
-            </div>
-            <ul class="hours-list">
-                ${hoursListHTML}
-            </ul>
-        </div>
-    </div>
-
-               
-<div class="card-section">
+                <div class="card-section">
                     <h2>⭐ Αξιολογήστε μας</h2>
                     <div class="review-card">
                         <div class="stars">★★★★★</div>
@@ -745,67 +828,18 @@ let html = `
                         <a href="${marketInfo.review_link || '#'}" 
                            target="_blank" 
                            rel="noopener" 
-                           class="review-button">
+                           class="review-button"
+                           onclick="createConfetti(); return true;">
                             Αξιολογήστε μας
                         </a>
                     </div>
                 </div>
 
-
                 <div class="card-section">
                     <h2>🗺️ Πού βρισκόμαστε</h2>
                     <p style="text-align: center; color: #666; margin-bottom: 16px; font-size: 1em;">
-        📍 Γ. Παπανδρέου 95, Αμαλιάδα
+                        📍 Γ. Παπανδρέου 95, Αμαλιάδα
+                    </p>
                     <div class="map-container">
                         <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8396314022734!2d21.344295010955157!3d37.79379791094795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1360bbfa7fe3121b%3A0x1b7d2cff57b3b2e9!2sTreysko!5e0!3m2!1sel!2sgr!4v1766940114520!5m2!1sel!2sgr"                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-
-                 
-
-
-            `;
-
-            document.getElementById('content').innerHTML = html;
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }
-
-        function showError(message) {
-            document.getElementById('content').innerHTML = `
-                <div class="error">
-                    <h3>⚠️ Πρόβλημα</h3>
-                    <p>${message}</p>
-                </div>
-            `;
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }
-
-        async function init() {
-            try {
-                const data = await fetchSheetData();
-                renderPage(data);
-            } catch (error) {
-                showError('Σφάλμα φόρτωσης. Ελέγξτε τη σύνδεση.');
-            }
-        }
-
-function openHoursPopup() {
-    document.getElementById('hoursPopup').classList.add('active');
-}
-
-function closeHoursPopup(event) {
-    if (!event || event.target.id === 'hoursPopup' || event.target.classList.contains('popup-close')) {
-        document.getElementById('hoursPopup').classList.remove('active');
-    }
-}
-
-        init();
-    </script>
-</body>
-</html>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8396314022734!2d21.344295010955157!3d37.79379791094795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1360bbfa7fe3121b%3A0x1b7d2cff57b3b2e9!2sTreysko!5e0!3m2!1
