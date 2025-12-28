@@ -18,21 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // LOAD CARD STATUS
   // =========================
   async function loadCard() {
-    const ts = Date.now();
-    renderSkeleton(6);
+  const ts = Date.now();
+
+  renderSkeleton(6);
+
   const res = await fetch(
-  `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}&t=${Date.now()}`,
-  { cache: "no-store" }
-);
+    `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}&t=${ts}`,
+    { cache: "no-store" }
+  );
 
-    if (!res.ok) {
-      counter.textContent = "Σφάλμα φόρτωσης κάρτας";
-      return;
-    }
-
-    const data = await res.json();
-    render(data.coffees, data.max);
+  if (!res.ok) {
+    counter.textContent = "Σφάλμα φόρτωσης κάρτας";
+    return;
   }
+
+  const data = await res.json();
+  render(data.coffees, data.max);
+}
+
 
   // =========================
   // RENDER UI
