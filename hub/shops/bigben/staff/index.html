@@ -12,10 +12,20 @@
 <button id="btn">Είσοδος</button>
 
 <script>
-document.getElementById("btn").addEventListener("click", () => {
-  alert("BUTTON WORKS");
+document.getElementById("btn").addEventListener("click", async () => {
+  console.log("CLICK");
+
+  try {
+    const res = await fetch("https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=ABCD1234");
+    console.log("STATUS", res.status);
+    const data = await res.json();
+    console.log(data);
+  } catch (e) {
+    console.error("FETCH ERROR", e);
+  }
 });
 </script>
+
 
 </body>
 </html>
