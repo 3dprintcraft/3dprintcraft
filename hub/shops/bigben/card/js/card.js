@@ -6,7 +6,7 @@ const counter = document.getElementById("counter");
 
 async function loadCard() {
   const res = await fetch(
-    `https://bigben-loyalty-api.XXXX.workers.dev/api/card?card=${cardId}`
+    `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}`
   );
   const data = await res.json();
 
