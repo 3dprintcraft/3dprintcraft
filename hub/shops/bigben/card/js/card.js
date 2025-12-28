@@ -12,24 +12,22 @@ async function loadCard() {
     `https://YOUR-WORKER.workers.dev/api/card?card=${cardId}`
   );
   const data = await res.json();
-
   render(data.coffees, data.max);
 }
 
 function render(coffees, max) {
   progress.innerHTML = "";
   for (let i = 1; i <= max; i++) {
-    const span = document.createElement("span");
-    span.textContent = "☕";
-    if (i <= coffees) span.classList.add("active");
-    progress.appendChild(span);
+    const s = document.createElement("span");
+    s.textContent = "☕";
+    if (i <= coffees) s.classList.add("active");
+    progress.appendChild(s);
   }
   counter.textContent = `Έχεις ${coffees} / ${max} καφέδες`;
 }
 
 if (STAFF_TOKEN) {
   addBtn.hidden = false;
-
   addBtn.onclick = async () => {
     const res = await fetch(
       "https://YOUR-WORKER.workers.dev/api/add-coffee",

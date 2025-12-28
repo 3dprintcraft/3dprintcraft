@@ -2,30 +2,41 @@
 <html lang="el">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Staff Login</title>
+  <style>
+    body{background:#111;color:#fff;font-family:system-ui;display:flex;justify-content:center;align-items:center;height:100vh}
+    .box{background:#1c1c1c;padding:24px;border-radius:16px;width:100%;max-width:320px;text-align:center}
+    input,button{width:100%;padding:12px;margin-top:12px;border-radius:10px;border:none;font-size:16px}
+    .err{color:#ff6b6b;margin-top:8px}
+  </style>
 </head>
 <body>
-
-<h2>Staff Login</h2>
-
-<input id="pin" placeholder="PIN">
-<button id="btn">Είσοδος</button>
+  <div class="box">
+    <h2>Staff Login</h2>
+    <input id="pin" type="password" placeholder="PIN">
+    <button id="btn">Είσοδος</button>
+    <div id="msg" class="err"></div>
+  </div>
 
 <script>
 document.getElementById("btn").addEventListener("click", async () => {
-  console.log("CLICK");
+  const pin = document.getElementById("pin").value.trim();
+  const msg = document.getElementById("msg");
+  msg.textContent = "";
 
-  try {
-    const res = await fetch("https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=ABCD1234");
-    console.log("STATUS", res.status);
-    const data = await res.json();
-    console.log(data);
-  } catch (e) {
-    console.error("FETCH ERROR", e);
-  }
+  if (!pin) { msg.textContent = "Βάλε PIN"; return; }
+
+  // κάνουμε ένα ασφαλές verify call
+  const res = await fetch("https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=ABCD1234", {
+    headers: { "Authorization": "Bearer " + pin }
+  });
+
+  // Αν το secret είναι λάθος, ο Worker στο add-coffee θα κόψει αργότερα.
+  // Εδώ απλώς αποθηκεύουμε το token.
+  localStorage.setItem("STAFF_TOKEN", pin);
+  window.location.href = "/hub/shops/bigben/card/?card=ABCD1234";
 });
 </script>
-
-
 </body>
 </html>
