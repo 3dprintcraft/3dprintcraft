@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+renderSkeleton(6);
 
   const params = new URLSearchParams(window.location.search);
   const cardId = params.get("card");
@@ -25,30 +26,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   counter.textContent = "Φόρτωση...";
+  
 }
 
-
+loadCard();
   // =========================
   // LOAD CARD STATUS
   // =========================
   async function loadCard() {
   const ts = Date.now();
 
-  renderSkeleton(6);
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(), 4000);
 
-  const res = await fetch(
-    `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}&t=${ts}`,
-    { cache: "no-store" }
-  );
+  try {
+    const res = await fetch(
+      `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}&t=${ts}`,
+      {
+        cache: "no-store",
+        signal: controller.signal
+      }
+    );
 
-  if (!res.ok) {
-    counter.textContent = "Σφάλμα φόρτωσης κάρτας";
-    return;
+    if (!res.ok) {
+      counter.textContent = "Σφάλμα φόρτωσης";
+      return;
+    }
+
+    const data = await res.json();
+    render(data.coffees, data.max);
+  } catch {
+    counter.textContent = "Δοκίμασε ξανά";
   }
-
-  const data = await res.json();
-  render(data.coffees, data.max);
 }
+
 
 
   // =========================
