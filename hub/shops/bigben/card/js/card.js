@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-renderSkeleton(6);
-
   const params = new URLSearchParams(window.location.search);
   const cardId = params.get("card");
 
@@ -15,21 +13,30 @@ renderSkeleton(6);
 
   const STAFF_TOKEN = localStorage.getItem("STAFF_TOKEN");
 
-  function renderSkeleton(max = 6) {
-  progress.innerHTML = "";
-
-  for (let i = 1; i <= max; i++) {
-    const span = document.createElement("span");
-    span.textContent = "☕";
-    span.style.opacity = "0.15";
-    progress.appendChild(span);
+   function renderSkeleton(max = 6) {
+    progress.innerHTML = "";
+    for (let i = 1; i <= max; i++) {
+      const span = document.createElement("span");
+      span.textContent = "☕";
+      span.style.opacity = "0.15";
+      progress.appendChild(span);
+    }
+    counter.textContent = "Φόρτωση...";
   }
 
-  counter.textContent = "Φόρτωση...";
-  
-}
+  function render(coffees, max) {
+    progress.innerHTML = "";
+    for (let i = 1; i <= max; i++) {
+      const span = document.createElement("span");
+      span.textContent = "☕";
+      if (i <= coffees) span.classList.add("active");
+      progress.appendChild(span);
+    }
+    counter.textContent = `Έχεις ${coffees} / ${max} καφέδες`;
+  }
 
-loadCard();
+
+
   // =========================
   // LOAD CARD STATUS
   // =========================
@@ -61,56 +68,45 @@ loadCard();
 }
 
 
+  renderSkeleton(6);
+  loadCard();
 
   // =========================
   // RENDER UI
   // =========================
-  function render(coffees, max) {
-    progress.innerHTML = "";
-
-    for (let i = 1; i <= max; i++) {
-      const span = document.createElement("span");
-      span.textContent = "☕";
-      if (i <= coffees) span.classList.add("active");
-      progress.appendChild(span);
-    }
-
-    counter.textContent = `Έχεις ${coffees} / ${max} καφέδες`;
-  }
 
   // =========================
   // STAFF ONLY (+1 COFFEE)
   // =========================
+ // STAFF
   if (STAFF_TOKEN && addBtn) {
     addBtn.hidden = false;
 
-    addBtn.addEventListener("click", async () => {
+    addBtn.onclick = async () => {
+      addBtn.disabled = true;
 
-      
       const res = await fetch(
         "https://bigbenloyalty.contactprintcraft3d.workers.dev/api/add-coffee",
-        {  
+        {
           method: "POST",
-          
           headers: {
             "Authorization": "Bearer " + STAFF_TOKEN,
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ card: cardId })
+          body: JSON.stringify({ card: cardId }),
+          cache: "no-store"
         }
       );
 
-      if (res.status === 403) {
-        alert("Έληξε το staff login");
-        localStorage.removeItem("STAFF_TOKEN");
-        location.reload();
+      addBtn.disabled = false;
+
+      if (!res.ok) {
+        alert("Σφάλμα προσθήκης καφέ");
         return;
       }
 
       const data = await res.json();
       render(data.coffees, 6);
-    });
+    };
   }
-
-  loadCard();
 });
