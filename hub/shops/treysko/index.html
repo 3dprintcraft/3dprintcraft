@@ -2,8 +2,6 @@
 <html lang="el">
 
 <head>
-
-
     <!-- HTML Meta Tags -->
 <title>TREYSKO - MARKET</title>
 <meta name="description" content="Mini market στην Αμαλιάδα με τίμιες τιμές και εβδομαδιαίες προσφορές.">
@@ -23,8 +21,6 @@
 <meta name="twitter:description" content="Προσφορές που συμφέρουν!">
 <meta name="twitter:image" content="https://www.3dprintcraft.gr/hub/shops/treysko/treysko.png">
 
-
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TREYSKO - MARKET</title>
@@ -34,8 +30,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
-
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -59,80 +53,16 @@
 
         .brand-light {
             font-weight: 500;
-             opacity: 0.7;
-                    }
+            opacity: 0.7;
+        }
 
         .hero-divider {
-             width: 60px;
-              height: 4px;
-               margin: 10px auto 14px;
-              border-radius: 4px;
-              background: linear-gradient(135deg, #56ab2f, #a8e063);
-            }
-
-        .status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 480px) {
-    .status-badge {
-        font-size: 0.8em;
-        padding: 6px 14px;
-    }
-}
-
-.status-open {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-closed {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-.status-opens-soon {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.status-indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.indicator-open {
-    background: #28a745;
-    animation: pulse-green 2s infinite;
-}
-
-.indicator-closed {
-    background: #dc3545;
-}
-
-.indicator-opens-soon {
-    background: #ffc107;
-    animation: pulse-yellow 2s infinite;
-}
-
-@keyframes pulse-green {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-@keyframes pulse-yellow {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
+            width: 60px;
+            height: 4px;
+            margin: 10px auto 14px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+        }
         
         .header {
             background: white;
@@ -166,438 +96,205 @@
             color: #666;
             margin-bottom: 15px;
         }
-        
-        .week-badge {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 8px 20px;
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 0.9em;
-            animation: none;
-            opacity: 0.95
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
         @media (max-width: 480px) {
-            .week-badge {
-                font-size: 0.75em;
+            .status-badge {
+                font-size: 0.8em;
                 padding: 6px 14px;
             }
         }
-        
-        .deals-section {
-            background: white;
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 16px;
+
+        .status-open {
+            background: #d4edda;
+            color: #155724;
         }
 
-        @media (max-width: 480px) {
-            .deals-section {
-                padding: 12px;
-                border-radius: 20px;
-            }
-        }
-        
-        .deals-section h2 {
-            color: #56ab2f;
-            margin-bottom: 16px;
-            font-size: 1.6em;
+        .status-closed {
+            background: #f8d7da;
+            color: #721c24;
         }
 
-        @media (max-width: 480px) {
-            .deals-section h2 {
-                font-size: 1.3em;
-                margin-bottom: 12px;
-            }
+        .status-opens-soon {
+            background: #fff3cd;
+            color: #856404;
         }
 
-        .top-choice-badge {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
         }
 
-        .featured-deal {
-            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
-            border: 3px solid #ff9933;
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 25px rgba(255, 153, 51, 0.3);
-            position: relative;
-            overflow: hidden;
+        .indicator-open {
+            background: #28a745;
+            animation: pulse-green 2s infinite;
         }
 
-        .featured-deal::before {
-            content: '⭐';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 4em;
-            opacity: 0.2;
+        .indicator-closed {
+            background: #dc3545;
         }
 
-        @media (max-width: 480px) {
-            .featured-deal {
-                padding: 12px;
-            }
+        .indicator-opens-soon {
+            background: #ffc107;
+            animation: pulse-yellow 2s infinite;
         }
 
-        .featured-content {
-            display: flex;
-            gap: 16px;
-            align-items: center;
+        @keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
-        @media (max-width: 480px) {
-            .featured-content {
-                gap: 12px;
-            }
+        @keyframes pulse-yellow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
-        .featured-image {
-            width: 130px;
-            height: 130px;
-            border-radius: 15px;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .featured-image {
-                width: 110px;
-                height: 110px;
-            }
-        }
-
-        .featured-image-placeholder {
-            width: 130px;
-            height: 130px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #ff9933 0%, #ffbb33 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5em;
-            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .featured-image-placeholder {
-                width: 110px;
-                height: 110px;
-                font-size: 3em;
-            }
-        }
-
-        .featured-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .featured-info h3 {
-            color: #1a1a1a;
-            font-size: 1.4em;
-            margin-bottom: 6px;
-            font-weight: 800;
-        }
-
-        @media (max-width: 480px) {
-            .featured-info h3 {
-                font-size: 1.1em;
-            }
-        }
-
-        .featured-info p {
-            color: #555;
-            font-size: 0.9em;
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 480px) {
-            .featured-info p {
-                font-size: 0.8em;
-            }
-        }
-
-        .featured-price {
-            display: flex;
-            align-items: center;
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .featured-original {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.9em;
-        }
-
-        .featured-discount-price {
-            color: #ff3333;
-            font-size: 2.2em;
-            font-weight: 900;
+            margin-top: 15px;
         }
 
         @media (max-width: 480px) {
-            .featured-discount-price {
-                font-size: 1.8em;
-            }
-        }
-
-        .featured-badge {
-            background: #ff3333;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: bold;
-            box-shadow: 0 3px 10px rgba(255, 51, 51, 0.4);
-        }
-        
-        .deal-item {
-            background: white;
-            border-radius: 18px;
-            padding: 6px;
-            margin-bottom: 14px;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        @media (max-width: 480px) {
-            .deal-item {
-                padding: 10px;
-                gap: 10px;
-                border-radius: 15px;
-            }
-        }
-        
-        .deal-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-        }
-
-        .deal-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .deal-image {
-                width: 95px;
-                height: 95px;
-                border-radius: 10px;
-            }
-        }
-        
-        .deal-image-placeholder {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            box-shadow: 0 2px 8px rgba(86, 171, 47, 0.3);
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 480px) {
-            .deal-image-placeholder {
-                width: 95px;
-                height: 95px;
-                font-size: 2.2em;
-            }
-        }
-
-        .deal-content {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .deal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        @media (max-width: 480px) {
-            .deal-header {
+            .info-grid {
+                grid-template-columns: 1fr;
                 gap: 8px;
             }
         }
 
-        .deal-title-section {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .deal-title-section h3 {
-            color: #1a1a1a;
-            font-size: 1.1em;
-            margin-bottom: 4px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        @media (max-width: 480px) {
-            .deal-title-section h3 {
-                font-size: 1em;
-                margin-bottom: 3px;
-            }
-        }
-
-        .deal-title-section p {
-            color: #666;
+        .info-item-small {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
             font-size: 0.85em;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         @media (max-width: 480px) {
-            .deal-title-section p {
+            .info-item-small {
                 font-size: 0.8em;
-                -webkit-line-clamp: 1;
             }
         }
 
-        .deal-price-section {
-            text-align: right;
-            flex-shrink: 0;
-        }
-        
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.8em;
-            font-weight: 500;
+        .info-item-small strong {
+            display: block;
+            color: #56ab2f;
+            margin-bottom: 4px;
+            font-size: 0.9em;
         }
 
-        @media (max-width: 480px) {
-            .original-price {
-                font-size: 0.75em;
-            }
+        .info-item-small span {
+            color: #555;
         }
         
-        .discount-price {
-            color: #e74c3c;
-            font-size: 1.8em;
-            font-weight: 800;
-            line-height: 1.1;
-        }
-
-        @media (max-width: 480px) {
-            .discount-price {
-                font-size: 1.6em;
-            }
-        }
-        
-        .discount-badge {
-            background: #e74c3c;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.7em;
-            display: inline-block;
-            font-weight: 700;
-            box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3);
-            margin-top: 4px;
-        }
-
-        @media (max-width: 480px) {
-            .discount-badge {
-                font-size: 0.68em;
-                padding: 3px 9px;
-                margin-top: 3px;
-            }
-        }
-        
-        .info-section {
+        .card-section {
             background: white;
             border-radius: 25px;
-            padding: 20px;
+            padding: 24px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             margin-bottom: 16px;
         }
 
         @media (max-width: 480px) {
-            .info-section {
-                padding: 16px;
+            .card-section {
+                padding: 20px;
                 border-radius: 20px;
             }
         }
-        
-        .info-section h3 {
+
+        .card-section h2 {
             color: #56ab2f;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+            margin-bottom: 16px;
+            font-size: 1.5em;
+            text-align: center;
         }
 
         @media (max-width: 480px) {
-            .info-section h3 {
-                font-size: 1.1em;
+            .card-section h2 {
+                font-size: 1.2em;
                 margin-bottom: 12px;
             }
         }
-        
-        .info-item {
-            margin-bottom: 10px;
-            color: #555;
+
+        .review-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stars {
+            font-size: 2em;
+            color: #ffc107;
+            margin-bottom: 12px;
+        }
+
+        .review-text {
+            color: #666;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
-        .info-item a {
-            color: #56ab2f;
+        .review-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 25px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: bold;
+            font-size: 1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(86, 171, 47, 0.4);
         }
 
-        .info-item a:hover {
-            text-decoration: underline;
+        .review-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(86, 171, 47, 0.6);
+        }
+
+        .review-button:active {
+            transform: translateY(0);
         }
 
         @media (max-width: 480px) {
-            .info-item {
-                margin-bottom: 8px;
-                font-size: 0.9em;
+            .review-button {
+                padding: 12px 24px;
+                font-size: 0.95em;
             }
         }
-        
-        .info-item strong {
-            color: #333;
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 480px) {
+            .map-container {
+                height: 300px;
+                border-radius: 15px;
+            }
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .sticky-footer {
@@ -653,20 +350,6 @@
             }
         }
         
-        .footer {
-            text-align: center;
-            color: white;
-            padding: 16px;
-            font-size: 0.95em;
-        }
-
-        @media (max-width: 480px) {
-            .footer {
-                padding: 12px;
-                font-size: 0.85em;
-            }
-        }
-        
         .loading {
             text-align: center;
             padding: 40px;
@@ -682,17 +365,11 @@
             margin: 20px 0;
             color: #c33;
         }
-
-        .no-deals {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="loading" id="loading">Εύρεση Προσφορών ... 🛒</div>
+        <div class="loading" id="loading">Φόρτωση ... 🛒</div>
         <div id="content" style="display: none;"></div>
     </div>
 
@@ -713,273 +390,179 @@
         const SHEET_ID = '1xvJEZxp4SjFV-BoeDP6Sgv8T1hslORv643GYNOXzboA';
         const API_KEY = 'AIzaSyDBbVMAlBdT4-mF815c7Yu2LabBD1Ri8KM';
         
-        const DEALS_RANGE = 'Deals!A2:F';
-        const INFO_RANGE = 'Info!A1:B5';
-        const HOURS_RANGE = 'Hours!A2:E8'; 
+        const INFO_RANGE = 'Info!A1:B10';
+        const HOURS_RANGE = 'Hours!A2:E8';
 
         async function fetchSheetData() {
             try {
-                const dealsUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${DEALS_RANGE}?key=${API_KEY}`;
-                console.log('Fetching deals from:', dealsUrl);
-                const dealsResponse = await fetch(dealsUrl);
-                const dealsData = await dealsResponse.json();
-                console.log('Deals response:', dealsData);
-                
                 const infoUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${INFO_RANGE}?key=${API_KEY}`;
-                console.log('Fetching info from:', infoUrl);
                 const infoResponse = await fetch(infoUrl);
                 const infoData = await infoResponse.json();
-                console.log('Info response:', infoData);
-
+                
                 const hoursUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${HOURS_RANGE}?key=${API_KEY}`;
-const hoursResponse = await fetch(hoursUrl);
-const hoursData = await hoursResponse.json();
+                const hoursResponse = await fetch(hoursUrl);
+                const hoursData = await hoursResponse.json();
                 
                 return {
-    deals: dealsData.values || [],
-    info: infoData.values || [],
-    hours: hoursData.values || []
-};
+                    info: infoData.values || [],
+                    hours: hoursData.values || []
+                };
             } catch (error) {
                 console.error('Error fetching data:', error);
                 throw error;
             }
         }
 
-        function getWeekRange() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const monday = new Date(today);
-            monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
-            const sunday = new Date(monday);
-            sunday.setDate(monday.getDate() + 6);
-            
-            const options = { month: 'short', day: 'numeric' };
-            const mondayStr = monday.toLocaleDateString('el-GR', options);
-            const sundayStr = sunday.toLocaleDateString('el-GR', options);
-            
-            return `${mondayStr} - ${sundayStr}`;
-        }
-
-        function calculateDiscount(original, discount) {
-            return Math.round(((original - discount) / original) * 100);
-        }
-
-
         function parseTime(timeStr) {
-    if (!timeStr || timeStr.toLowerCase() === 'κλειστά' || timeStr.toLowerCase() === 'closed') {
-        return null;
-    }
-    const [hours, minutes] = timeStr.split(':').map(Number);
-    return hours * 60 + (minutes || 0);
-}
-
-function getStoreStatus(hoursData) {
-    const now = new Date();
-    const dayOfWeek = now.getDay();
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-    const dayMapping = [6, 0, 1, 2, 3, 4, 5];
-    const dayIndex = dayMapping[dayOfWeek];
-
-    if (!hoursData[dayIndex]) {
-        return { status: 'unknown', text: 'Άγνωστο' };
-    }
-
-    const [day, open1, close1, open2, close2] = hoursData[dayIndex];
-    
-    const open1Min = parseTime(open1);
-    const close1Min = parseTime(close1);
-    const open2Min = parseTime(open2);
-    const close2Min = parseTime(close2);
-
-    // Κλειστά όλη μέρα
-    if (open1Min === null && open2Min === null) {
-        return { status: 'closed', text: 'Κλειστά σήμερα' };
-    }
-
-    // Έλεγχος πρωινό ωράριο
-    if (open1Min !== null && close1Min !== null) {
-        if (currentMinutes >= open1Min && currentMinutes < close1Min) {
-            return { status: 'open', text: 'Ανοιχτά τώρα' };
+            if (!timeStr || timeStr.toLowerCase() === 'κλειστά' || timeStr.toLowerCase() === 'closed') {
+                return null;
+            }
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            return hours * 60 + (minutes || 0);
         }
-        // Ανοίγει σύντομα (πρωί)
-        if (currentMinutes < open1Min && (open1Min - currentMinutes) <= 60) {
-            const mins = open1Min - currentMinutes;
-            return { status: 'opens-soon', text: `Ανοίγει σε ${mins} λεπτά` };
+
+        function getStoreStatus(hoursData) {
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+            const dayMapping = [6, 0, 1, 2, 3, 4, 5];
+            const dayIndex = dayMapping[dayOfWeek];
+
+            if (!hoursData[dayIndex]) {
+                return { status: 'unknown', text: 'Άγνωστο' };
+            }
+
+            const [day, open1, close1, open2, close2] = hoursData[dayIndex];
+            
+            const open1Min = parseTime(open1);
+            const close1Min = parseTime(close1);
+            const open2Min = parseTime(open2);
+            const close2Min = parseTime(close2);
+
+            if (open1Min === null && open2Min === null) {
+                return { status: 'closed', text: 'Κλειστά σήμερα' };
+            }
+
+            if (open1Min !== null && close1Min !== null) {
+                if (currentMinutes >= open1Min && currentMinutes < close1Min) {
+                    return { status: 'open', text: 'Ανοιχτά τώρα' };
+                }
+                if (currentMinutes < open1Min && (open1Min - currentMinutes) <= 60) {
+                    const mins = open1Min - currentMinutes;
+                    return { status: 'opens-soon', text: `Ανοίγει σε ${mins} λεπτά` };
+                }
+            }
+
+            if (open2Min !== null && close2Min !== null) {
+                if (currentMinutes >= open2Min && currentMinutes < close2Min) {
+                    return { status: 'open', text: 'Ανοιχτά τώρα' };
+                }
+                if (currentMinutes < open2Min && (open2Min - currentMinutes) <= 60) {
+                    const mins = open2Min - currentMinutes;
+                    return { status: 'opens-soon', text: `Ανοίγει σε ${mins} λεπτά` };
+                }
+            }
+
+            if (close1Min !== null && open2Min !== null && currentMinutes >= close1Min && currentMinutes < open2Min) {
+                const openHour = Math.floor(open2Min / 60);
+                const openMin = open2Min % 60;
+                return { status: 'closed', text: `Διάλειμμα - Ανοίγει ${openHour}:${openMin.toString().padStart(2, '0')}` };
+            }
+
+            if (open1Min !== null && currentMinutes < open1Min) {
+                const openHour = Math.floor(open1Min / 60);
+                const openMin = open1Min % 60;
+                return { status: 'closed', text: `Κλειστά - Ανοίγει ${openHour}:${openMin.toString().padStart(2, '0')}` };
+            }
+
+            return { status: 'closed', text: 'Κλειστά' };
         }
-    }
 
-    // Έλεγχος απογευματινό ωράριο
-    if (open2Min !== null && close2Min !== null) {
-        if (currentMinutes >= open2Min && currentMinutes < close2Min) {
-            return { status: 'open', text: 'Ανοιχτά τώρα' };
-        }
-        // Ανοίγει σύντομα (απόγευμα)
-        if (currentMinutes < open2Min && (open2Min - currentMinutes) <= 60) {
-            const mins = open2Min - currentMinutes;
-            return { status: 'opens-soon', text: `Ανοίγει σε ${mins} λεπτά` };
-        }
-    }
-
-    // Διάλειμμα μεσημέρι
-    if (close1Min !== null && open2Min !== null && currentMinutes >= close1Min && currentMinutes < open2Min) {
-        const openHour = Math.floor(open2Min / 60);
-        const openMin = open2Min % 60;
-        return { status: 'closed', text: `Διάλειμμα - Ανοίγει ${openHour}:${openMin.toString().padStart(2, '0')}` };
-    }
-
-    // Πριν ανοίξει το πρωί
-    if (open1Min !== null && currentMinutes < open1Min) {
-        const openHour = Math.floor(open1Min / 60);
-        const openMin = open1Min % 60;
-        return { status: 'closed', text: `Κλειστά - Ανοίγει ${openHour}:${openMin.toString().padStart(2, '0')}` };
-    }
-
-    return { status: 'closed', text: 'Κλειστά' };
-}
-
-
-       function renderPage(data) {
-    const { deals, info, hours } = data;
+        function renderPage(data) {
+            const { info, hours } = data;
             
             const marketInfo = {};
-            const storeStatus = getStoreStatus(hours);
-
-let statusBadgeHTML = '';
-if (storeStatus.status === 'open') {
-    statusBadgeHTML = `
-        <div class="status-badge status-open">
-            <span class="status-indicator indicator-open"></span>
-            ${storeStatus.text}
-        </div>
-    `;
-} else if (storeStatus.status === 'opens-soon') {
-    statusBadgeHTML = `
-        <div class="status-badge status-opens-soon">
-            <span class="status-indicator indicator-opens-soon"></span>
-            ${storeStatus.text}
-        </div>
-    `;
-} else {
-    statusBadgeHTML = `
-        <div class="status-badge status-closed">
-            <span class="status-indicator indicator-closed"></span>
-            ${storeStatus.text}
-        </div>
-    `;
-}
             info.forEach(row => {
                 if (row[0] && row[1]) {
                     marketInfo[row[0].toLowerCase()] = row[1];
                 }
             });
 
-            const activeDeals = deals.filter(deal => {
-                const hasRequiredFields = deal[0] && deal[2] && deal[3];
-                const isActive = !deal[5] || deal[5].toLowerCase() === 'yes' || deal[5].toLowerCase() === 'y';
-                return hasRequiredFields && isActive;
-            });
+            const storeStatus = getStoreStatus(hours);
+
+            let statusBadgeHTML = '';
+            if (storeStatus.status === 'open') {
+                statusBadgeHTML = `
+                    <div class="status-badge status-open">
+                        <span class="status-indicator indicator-open"></span>
+                        ${storeStatus.text}
+                    </div>
+                `;
+            } else if (storeStatus.status === 'opens-soon') {
+                statusBadgeHTML = `
+                    <div class="status-badge status-opens-soon">
+                        <span class="status-indicator indicator-opens-soon"></span>
+                        ${storeStatus.text}
+                    </div>
+                `;
+            } else {
+                statusBadgeHTML = `
+                    <div class="status-badge status-closed">
+                        <span class="status-indicator indicator-closed"></span>
+                        ${storeStatus.text}
+                    </div>
+                `;
+            }
 
             let html = `
                 <div class="header">
                     <h1>TREYSKO <span class="brand-light">market</span></h1>
+                    
                     ${statusBadgeHTML}
+                    
                     <p>Ποιότητα & τιμές που αξίζουν!</p>
 
                     <div class="hero-divider"></div>
 
-
-${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
-                </div>
-                
-                <div class="deals-section">
-                    <h2>🔥 Τρέχουσες Προσφορές</h2>
-            `;
-
-            if (activeDeals.length === 0) {
-                html += '<div class="no-deals">Δεν υπάρχουν προσφορές αυτή την εβδομάδα 😊</div>';
-            } else {
-                // Featured deal (first one)
-                const featured = activeDeals[0];
-                const featName = featured[0];
-                const featDesc = featured[1] || '';
-                const featOriginal = parseFloat(featured[2]);
-                const featDiscount = parseFloat(featured[3]);
-                const featImage = featured[4] || '';
-                const featDiscountPercent = calculateDiscount(featOriginal, featDiscount);
-
-                html += `
-                    <div class="featured-deal">
-                        <div class="top-choice-badge">⭐ Κορυφαία Επιλογή</div>
-                        <div class="featured-content">
-                            ${featImage ? 
-                                `<img src="${featImage}" alt="${featName}" class="featured-image">` :
-                                `<div class="featured-image-placeholder">🏷️</div>`
-                            }
-                            <div class="featured-info">
-                                <h3>${featName}</h3>
-                                ${featDesc ? `<p>${featDesc}</p>` : ''}
-                                <div class="featured-price">
-                                    <span class="featured-original">€${featOriginal.toFixed(2)}</span>
-                                    <span class="featured-discount-price">€${featDiscount.toFixed(2)}</span>
-                                    <span class="featured-badge">-${featDiscountPercent}%</span>
-                                </div>
-                            </div>
+                    <div class="info-grid">
+                        <div class="info-item-small">
+                            <strong>📞 Τηλέφωνο</strong>
+                            <span>26220 23542</span>
+                        </div>
+                        <div class="info-item-small">
+                            <strong>📍 Διεύθυνση</strong>
+                            <span>Γ. Παπανδρέου 95</span>
                         </div>
                     </div>
-                `;
-
-                // Rest of the deals
-                activeDeals.slice(1).forEach(deal => {
-                    const name = deal[0];
-                    const description = deal[1] || '';
-                    const originalPrice = parseFloat(deal[2]);
-                    const discountPrice = parseFloat(deal[3]);
-                    const imageUrl = deal[4] || '';
-                    const discount = calculateDiscount(originalPrice, discountPrice);
-
-                    html += `
-                        <div class="deal-item">
-                            ${imageUrl ? 
-                                `<img src="${imageUrl}" alt="${name}" class="deal-image">` :
-                                `<div class="deal-image-placeholder">🏷️</div>`
-                            }
-                            <div class="deal-content">
-                                <div class="deal-header">
-                                    <div class="deal-title-section">
-                                        <h3>${name}</h3>
-                                        ${description ? `<p>${description}</p>` : ''}
-                                    </div>
-                                    <div class="deal-price-section">
-                                        <div class="original-price">€${originalPrice.toFixed(2)}</div>
-                                        <div class="discount-price">€${discountPrice.toFixed(2)}</div>
-                                        <div class="discount-badge">-${discount}%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-
-            html += `
                 </div>
-                
-                <div class="info-section">
-                    <h3>☎️ Επικοινωνία</h3>
-                    <div class="info-item"><strong>Τηλέφωνο:</strong> <a href="tel:2622023542">26220 23542</a></div>
-                    <div class="info-item">
-                        <strong>Διεύθυνση:</strong>
-                        <a href="https://www.google.com/maps?client=firefox-b-d&um=1&ie=UTF-8&fb=1&gl=gr&sa=X&geocode=KRsS43_6u2ATMemys1f_LH0b&daddr=%CE%93%CE%B5%CF%89%CF%81.+%CE%A0%CE%B1%CF%80%CE%B1%CE%BD%CE%B4%CF%81%CE%AD%CE%BF%CF%85+95,+%CE%91%CE%BC%CE%B1%CE%BB%CE%B9%CE%AC%CE%B4%CE%B1+272+00" target="_blank" rel="noopener">
-                            Γ. Παπανδρέου 95, Αμαλιάδα
+
+                <div class="card-section">
+                    <h2>⭐ Αξιολογήστε μας</h2>
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p class="review-text">
+                            Η γνώμη σας είναι σημαντική για εμάς!<br>
+                            Μοιραστείτε την εμπειρία σας.
+                        </p>
+                        <a href="${marketInfo.review_link || '#'}" 
+                           target="_blank" 
+                           rel="noopener" 
+                           class="review-button">
+                            Αξιολογήστε μας
                         </a>
                     </div>
-                    <div class="info-item">${marketInfo.hours || ''}</div>
                 </div>
-                
-                <div class="footer">
-                    <p>Νέες προσφορές κάθε εβδομάδα</p>
+
+                <div class="card-section">
+                    <h2>🗺️ Πού βρισκόμαστε</h2>
+                    <div class="map-container">
+                        <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.8396314022734!2d21.344295010955157!3d37.79379791094795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1360bbfa7fe3121b%3A0x1b7d2cff57b3b2e9!2sTreysko!5e0!3m2!1sel!2sgr!4v1766940114520!5m2!1sel!2sgr"                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             `;
 
@@ -1000,16 +583,11 @@ ${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
         }
 
         async function init() {
-            if (SHEET_ID === 'YOUR_SHEET_ID_HERE' || API_KEY === 'YOUR_API_KEY_HERE') {
-                showError('Παρακαλώ ρυθμίστε το Google Sheet ID και API Key.');
-                return;
-            }
-
             try {
                 const data = await fetchSheetData();
                 renderPage(data);
             } catch (error) {
-                showError('Σφάλμα φόρτωσης προσφορών. Ελέγξτε τη σύνδεση.');
+                showError('Σφάλμα φόρτωσης. Ελέγξτε τη σύνδεση.');
             }
         }
 
