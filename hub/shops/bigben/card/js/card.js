@@ -1,4 +1,12 @@
 // MOCK DATA (αργότερα έρχεται από backend)
+const params = new URLSearchParams(window.location.search);
+const cardId = params.get("card");
+
+if (!cardId) {
+  alert("Δεν βρέθηκε κάρτα");
+}
+
+
 const coffees = 3;
 const maxCoffees = 6;
 const isStaff = false; // αργότερα από token
