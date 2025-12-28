@@ -17,14 +17,17 @@ async function loadCard() {
 
 function render(coffees, max) {
   progress.innerHTML = "";
+
   for (let i = 1; i <= max; i++) {
-    const s = document.createElement("span");
-    s.textContent = "☕";
-    if (i <= coffees) s.classList.add("active");
-    progress.appendChild(s);
+    const span = document.createElement("span");
+    span.textContent = "☕";
+    if (i <= coffees) span.classList.add("active");
+    progress.appendChild(span);
   }
+
   counter.textContent = `Έχεις ${coffees} / ${max} καφέδες`;
 }
+
 
 if (STAFF_TOKEN) {
   addBtn.hidden = false;
