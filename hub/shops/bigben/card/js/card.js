@@ -1,59 +1,82 @@
-const params = new URLSearchParams(window.location.search);
-const cardId = params.get("card");
+document.addEventListener("DOMContentLoaded", () => {
 
-const progress = document.getElementById("progress");
-const counter = document.getElementById("counter");
-const addBtn = document.getElementById("addCoffeeBtn");
+  const params = new URLSearchParams(window.location.search);
+  const cardId = params.get("card");
 
-const STAFF_TOKEN = localStorage.getItem("STAFF_TOKEN");
-
-async function loadCard() {
-  const res = await fetch(
-    `https://YOUR-WORKER.workers.dev/api/card?card=${cardId}`
-  );
-  const data = await res.json();
-  render(data.coffees, data.max);
-}
-
-function render(coffees, max) {
-  progress.innerHTML = "";
-
-  for (let i = 1; i <= max; i++) {
-    const span = document.createElement("span");
-    span.textContent = "☕";
-    if (i <= coffees) span.classList.add("active");
-    progress.appendChild(span);
+  if (!cardId) {
+    alert("Δεν βρέθηκε κάρτα");
+    return;
   }
 
-  counter.textContent = `Έχεις ${coffees} / ${max} καφέδες`;
-}
+  const progress = document.getElementById("progress");
+  const counter = document.getElementById("counter");
+  const addBtn = document.getElementById("addCoffeeBtn");
 
+  const STAFF_TOKEN = localStorage.getItem("STAFF_TOKEN");
 
-if (STAFF_TOKEN) {
-  addBtn.hidden = false;
-  addBtn.onclick = async () => {
+  // =========================
+  // LOAD CARD STATUS
+  // =========================
+  async function loadCard() {
     const res = await fetch(
-      "https://YOUR-WORKER.workers.dev/api/add-coffee",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": "Bearer " + STAFF_TOKEN,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ card: cardId })
-      }
+      `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}`
     );
 
-    if (res.status === 403) {
-      alert("Λήξη login");
-      localStorage.removeItem("STAFF_TOKEN");
-      location.reload();
+    if (!res.ok) {
+      counter.textContent = "Σφάλμα φόρτωσης κάρτας";
       return;
     }
 
     const data = await res.json();
-    render(data.coffees, 6);
-  };
-}
+    render(data.coffees, data.max);
+  }
 
-loadCard();
+  // =========================
+  // RENDER UI
+  // =========================
+  function render(coffees, max) {
+    progress.innerHTML = "";
+
+    for (let i = 1; i <= max; i++) {
+      const span = document.createElement("span");
+      span.textContent = "☕";
+      if (i <= coffees) span.classList.add("active");
+      progress.appendChild(span);
+    }
+
+    counter.textContent = `Έχεις ${coffees} / ${max} καφέδες`;
+  }
+
+  // =========================
+  // STAFF ONLY (+1 COFFEE)
+  // =========================
+  if (STAFF_TOKEN && addBtn) {
+    addBtn.hidden = false;
+
+    addBtn.addEventListener("click", async () => {
+      const res = await fetch(
+        "https://bigbenloyalty.contactprintcraft3d.workers.dev/api/add-coffee",
+        {
+          method: "POST",
+          headers: {
+            "Authorization": "Bearer " + STAFF_TOKEN,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ card: cardId })
+        }
+      );
+
+      if (res.status === 403) {
+        alert("Έληξε το staff login");
+        localStorage.removeItem("STAFF_TOKEN");
+        location.reload();
+        return;
+      }
+
+      const data = await res.json();
+      render(data.coffees, 6);
+    });
+  }
+
+  loadCard();
+});
