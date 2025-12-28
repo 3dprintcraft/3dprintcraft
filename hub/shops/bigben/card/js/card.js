@@ -43,15 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadCard() {
   const ts = Date.now();
 
-  const controller = new AbortController();
-  setTimeout(() => controller.abort(), 4000);
+
 
   try {
     const res = await fetch(
       `https://bigbenloyalty.contactprintcraft3d.workers.dev/api/card?card=${cardId}&t=${ts}`,
       {
         cache: "no-store",
-        signal: controller.signal
+        
       }
     );
 
