@@ -884,11 +884,12 @@ if (storeStatus.status === 'open') {
             let html = `
                 <div class="header">
                     <h1>TREYSKO <span class="brand-light">market</span></h1>
+                    ${statusBadgeHTML}
                     <p>Ποιότητα & τιμές που αξίζουν!</p>
 
                     <div class="hero-divider"></div>
 
-${statusBadgeHTML}
+
 ${marketInfo.week ? `<div class="week-badge">${marketInfo.week}</div>` : ''}
                 </div>
                 
