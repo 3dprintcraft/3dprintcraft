@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerBeauty - Ομορφιά & Ευεξία</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        :root {
+            --bronze: #B8935E;
+            --bronze-dark: #8B6F47;
+            --bronze-light: #D4B896;
+            --pink: #E4C5D8;
+            --dark: #1a1a1a;
+            --light: #FAFAFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #f5e6f0 0%, #E4C5D8 50%, #d4b5c8 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 100px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(184, 147, 94, 0.25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(228, 197, 216, 0.3) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Floating particles */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(3px 3px at 20% 30%, rgba(184, 147, 94, 0.5), transparent),
+                radial-gradient(2px 2px at 60% 70%, rgba(184, 147, 94, 0.4), transparent),
+                radial-gradient(2px 2px at 50% 50%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(2px 2px at 80% 10%, rgba(184, 147, 94, 0.5), transparent);
+            background-size: 200% 200%;
+            animation: sparkle 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            animation: fadeInDown 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .logo-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        /* Glowing backdrop effect */
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(184, 147, 94, 0.3) 0%, transparent 70%);
+            filter: blur(40px);
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .logo {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 30px rgba(184, 147, 94, 0.6));
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* SVG fill color */
+        .logo path,
+        .logo polygon,
+        .logo rect,
+        .logo circle,
+        .logo ellipse,
+        .logo text {
+            fill: var(--bronze);
+            transition: all 0.4s ease;
+        }
+
+        .logo-container:hover .logo path,
+        .logo-container:hover .logo polygon,
+        .logo-container:hover .logo rect,
+        .logo-container:hover .logo circle,
+        .logo-container:hover .logo ellipse,
+        .logo-container:hover .logo text {
+            fill: var(--bronze-light);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--bronze-dark);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.6s forwards;
+            text-shadow: 0 2px 10px rgba(184, 147, 94, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Social Links - Modern Card Design */
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 60px 0;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 25px 35px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(184, 147, 94, 0.4);
+            border-radius: 16px;
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(184, 147, 94, 0.15);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(184, 147, 94, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            background: rgba(184, 147, 94, 0.9);
+            border-color: var(--bronze-dark);
+            color: white;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(184, 147, 94, 0.4);
+        }
+
+        .social-icon {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover .social-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Location Section */
+        .location-section {
+            padding: 60px 0 40px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .location-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--bronze-dark);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 20px rgba(184, 147, 94, 0.3);
+        }
+
+        .address {
+            font-size: 1.2rem;
+            color: rgba(26, 26, 26, 0.75);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .map-container {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 0 1px rgba(184, 147, 94, 0.3),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(184, 147, 94, 0.2);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .map-container:hover {
+            transform: scale(1.01);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            filter: grayscale(0.3) contrast(1.1);
+        }
+
+        /* Sticky Footer - Ultra Modern */
+        .sticky-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-top: 2px solid rgba(184, 147, 94, 0.3);
+            box-shadow: 0 -10px 40px rgba(184, 147, 94, 0.2);
+            z-index: 1000;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: block;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--bronze-dark) 0%, var(--bronze) 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 60px;
+            border: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            box-shadow: 
+                0 10px 40px rgba(184, 147, 94, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(184, 147, 94, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px) scale(1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-container {
+                max-width: 350px;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+                letter-spacing: 0.3em;
+            }
+
+            .social-links {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 40px 0;
+            }
+
+            .location-title {
+                font-size: 2rem;
+            }
+
+            .map-container iframe {
+                height: 350px;
+            }
+
+            .cta-button {
+                font-size: 1.1rem;
+                padding: 18px 40px;
+            }
+
+            header {
+                padding: 60px 20px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-container {
+                max-width: 280px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .location-title {
+                font-size: 1.6rem;
+            }
+
+            .map-container iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <!-- Replace this entire SVG with your own SVG code -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488.38725 261.72373">
+  <defs>
+    <style>
+      .a {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <path class="a" d="M347.08147,97.02q-18.615-.03-37.22-.01l-46.82-.03c-8.91-.01-17.82-.05-26.73.03-1.54.01-2.3-.3-2.37-1.96a2.10208,2.10208,0,0,1,.01-.36h-.01V89.11h100.92c-.73-19.07-4.36-37.38-15.73-53.27-10.34-14.45-22.96-21.19-40.88-24.07-10.77-1.74-22-2.21-32.67.56-8.62,2.24-13,3-22,9.11a67.34,67.34,0,0,0-14.07,12.59,62.26486,62.26486,0,0,0-9.52,16.85,123.0741,123.0741,0,0,0-5.7,20.16,92.00211,92.00211,0,0,0-1.74,10.24c-.31994,4.25-.1,8.54-.14,12.82a124.12193,124.12193,0,0,0,3.76,31.84c3.73,14.53,10.24,29.56,23.41,37.17,40.98,23.66,87.52,5.24,96.19-5.3a73.90671,73.90671,0,0,0,12.7-22.59,3.09541,3.09541,0,0,1,3.49-2.37006c3.39.1,6.79,0,10.18-.00995,2.97,0,3.04.15,2.05,2.95a73.651,73.651,0,0,1-10.17,19.47,69.08538,69.08538,0,0,1-26.5,21.36c-13.63,6.46-28.06,8.33-42.88,8.5a114.56672,114.56672,0,0,1-30.75-3.44c-14.31-3.79-26.85-10.63-36.76-21.83a72.731,72.731,0,0,1-15.4-28.62c-5.1-17.83-5.85-36.03-3.78-54.36,1.44-12.76,4.42-25.2,11.1-36.32,22.75-37.89,59.75-40.55,74.73-40.55,31.8-.01,48.58,14.29,54.46,18.29a66.27387,66.27387,0,0,1,20.4,22.29,80.19679,80.19679,0,0,1,10.12,30.91c.85,7.3,1.42,14.63,1.87,21.97C350.85149,96.99,350.54149,97.02,347.08147,97.02Z"/>
+      <path class="a" d="M488.3615,38.6c-.05,1.1-.44,1.67-1.62,1.67-3.89,0-7.78.05-11.67.08-1.51.02-1.31-1.11-1.46-2.08-.52-3.51-2.7-21.16-22.03-23.83-33.55-4.35-52.61,44.79-52.74,51.33-.19,9.84-.04,18.24-.06,28.08-.01,5.37006,0,10.74,0,16.11005h.09c0,18.69995.13,37.4-.08,56.1-.07,5.8,2.48,9.34,7.4,11.72a5.11484,5.11484,0,0,1,2.31,1.67c.75,1.39-.41,2.88-2.07,2.88q-13.41.045-26.82.04a16.34425,16.34425,0,0,1-2.97-.03c-.76-.14-2.05-.69-2.05-1.02a4.31319,4.31319,0,0,1,.99-2.93c1.51-1.25,3.43-1.98,5.01-3.15a8.35319,8.35319,0,0,0,3.46-7.08q-.045-21.22494-.05-42.46c.02-20.61.1-41.22.13-61.84q.045-18.735,0-37.48c-.01-5.28-3.25-8.35-7.72-10.22-1.61005-.68-2.26-1.5-2-3.11.28-1.67,1.66-1.37,2.76-1.38,6.45-.05,12.91-.02,19.37-.09,1.87-.02,2.55.52,2.5,2.59-.21,7.61-.2,15.22-.19,22.83a1.20272,1.20272,0,0,0,2.19.53c5.32-11.64,13.09-21.03,24.75-26.78a46.16249,46.16249,0,0,1,14.24-3.96c6.21-.86,12.47-1.03,18.47.62,11.45,3.14,21.29,8.87,27.25,19.72A21.4509,21.4509,0,0,1,488.3615,38.6Z"/>
+      <path class="a" d="M249.64147,259.01c-1.81-1.14-1.94-2.89-1.93-4.79.03-12,.06-24.01-.02-36.01-.01-2.02-.02-3.81,2.14-4.77.25-.12.4-.47.6-.71-.26-.18-.5-.52-.76-.53a34.60418,34.60418,0,0,0-5.19-.04c-.47.05-1.1,1.11-1.18006,1.77-.18994,1.55-.06994,3.14-.11,4.71a3.18075,3.18075,0,0,1-.24.89,4.95059,4.95059,0,0,1-.75-.51c-.87-.88-1.67-1.85-2.6-2.66-4.77-4.15-10.53-5.29-16.63-5.35-1.49.07-2.99.06-4.47.24-8.76,1.08-15.29,5.28-18.28,13.85a35.6291,35.6291,0,0,0-.4,21.29,19.0863,19.0863,0,0,0,11.72,13.25,31.45673,31.45673,0,0,0,16.1,1.7c5.87-.75,10.88-3.22,14.47-8.14a3.68636,3.68636,0,0,1,.98-.67,8.81021,8.81021,0,0,1,.37,1.28,4.92327,4.92327,0,0,1-.14.98c-.58,5.66-.26,6,5.43,5.72a.6458.6458,0,0,0,.24,0c.42-.16.84-.33,1.26-.5C250.05144,259.67,249.94146,259.2,249.64147,259.01Zm-11.63-8.6a17.64111,17.64111,0,0,1-17.15,7.86c-7.18-.7-12.26-4.45-14.85-10.71-3.57-8.63-3.57-17.33,1.42-25.53,3-4.92,7.97-7.18005,13.93-7.54,12.12995-.75,18.68,7.66,20.02,17.05.23,1.65.24,3.32.31,4.36C241.58147,241.42,240.97149,246.22,238.01146,250.41Z"/>
+      <path class="a" d="M125.32146,230.4a10.08977,10.08977,0,0,1-1.48-.65,5.826,5.826,0,0,1,1.35-.91c4.03-1.26,5.9-4.37,6.55-8.17.83-4.76-2.2-8.97-7.41-9.71a140.10586,140.10586,0,0,0-15.08-.78c-3.47-.12-6.95-.11-10.42-.07-.48,0-.96.45-1.44.69.29.36.5.87.87,1.06,1.5.79,1.67,2.12,1.67,3.59q-.01493,19.74.02,39.48a4.8554,4.8554,0,0,1-1.83,4.36c-.32.23-.41.77-.61,1.17005a4.36318,4.36318,0,0,0,1.13.32c3.72.02,7.43.01,11.15.01v-.16c3.56,0,7.13.2,10.67-.05,6.02-.42,11.34-2.47,14.32-8.16C138.95147,244.44,136.38146,233.19,125.32146,230.4Zm-19.1-16.02c.03-.51.59-1.41.9-1.41,5.01.12,10.13-.98,15.02.8,5.11,1.85,6.53,9.16,2.23,12.35-1.93,1.42-4.7,2-7.17,2.32-3.1.39-6.28.09-9.43.16-1.15.03-1.58-.43-1.56-1.53.02-2.26,0-4.52,0-6.79h-.03C106.18145,218.31,106.12145,216.34,106.22149,214.38Zm21.81,39.44c-2.17,3.06-5.38,3.96-8.74,4.14-3.73.19-7.47-.01-11.2.09-1.56.03-1.94-.72-1.93-2.14.04-3.68994.02-7.37995.02-11.08h.04c0-3.69.04-7.39-.02-11.07-.01-1.4.39-2.01,1.83-1.92,3.93.23,7.91-.02,11.78.58C129.05144,233.85,133.60149,245.92,128.03148,253.82Z"/>
+      <path class="a" d="M187.47149,233.88l-.41.04a.07549.07549,0,0,0-.01-.04Z"/>
+      <path class="a" d="M395.13146,212.92c-.59.63-1.22,1.21-1.74,1.89-.86,1.1-1.65,2.26-2.46,3.41-4.68,6.62-9.38,13.23-13.98,19.9a6.58707,6.58707,0,0,0-1.12,3.4c-.12,4.39-.01,8.78-.03,13.16-.01,1.8.08,3.49,1.85,4.57.29.17.4.64.6.97a4.05535,4.05535,0,0,1-1.25.56q-3.58494.135-7.19.14c-1.13,0-1.45-.78-.57995-1.37,2.25-1.54,2.06994-3.76,2.06-6-.02-3.4.11-6.8-.06-10.18a8.58415,8.58415,0,0,0-1.26-4.13c-5.1-7.54-10.31-15.01-15.55-22.44a18.85765,18.85765,0,0,0-2.68-2.51c-.43-.4-.81-.86-1.22-1.3a6.26129,6.26129,0,0,1,1.72-.69c1.23-.11,2.48-.04,3.72-.04.74.01,1.49-.06,2.23.02.87.1,1.73.31995,2.59.49a6.72334,6.72334,0,0,0-1.22,1.83,2.92083,2.92083,0,0,0,.2,2.19c4.83,6.51,7.53,9.94,12.36,16.45,1.12,1.51,2.44,3.01,3.39,1.64,4.28-6.18,8.98-11.93,13.33-18.07.93-1.31.83-1.15.3-2.96-.41-1.38995.04-1.37994,1.25-1.54a7.73977,7.73977,0,0,1,1.98-.04C393.30144,212.41,394.21148,212.7,395.13146,212.92Z"/>
+      <path class="a" d="M297.59148,212.54a10.33171,10.33171,0,0,0-1.53,1.65,5.204,5.204,0,0,0-.94,2.38c-.04,9.11-.2,18.22.07,27.31.32,10.76-6.21,19.39-20.17,17.61-5.18-.66-10.03-2.19-12.78-6.99a18.12036,18.12036,0,0,1-2.24-7.46c-.34-4.94-.1-9.92-.1-14.88h-.13c0-5.05.09-10.1-.07-15.14-.03-1.06-.93-2.11-1.48-3.15a11.87629,11.87629,0,0,0-.9-1.28c.43-.2.85-.58,1.28-.59,2.31-.02,4.63.03,6.94.13.42.01.82.39,1.22.6-.24.3-.43.71-.74.87-1.75.9-1.98,2.4-1.96,4.18005.09,9.27.06,18.54.13,27.81.07,8.52,5.98,11.8,13.83,11.9,8.71.12,12.21-3.2,13.62-11.72.14-9.52.23-19.09.27-28.61.01-1.5.21-2.95-1.27-3.72-.31-.16,1.52-1.32,1.92-1.39a10.766,10.766,0,0,1,2.72-.09A13.70979,13.70979,0,0,1,297.59148,212.54Z"/>
+      <path class="a" d="M345.65148,216.22a20.2635,20.2635,0,0,0-4.88-1.22c-4.22-.14-9.26,0-13.49-.04-1.53-.01-1.83.57-1.82,2.04.08,6.69.02,12.21.02,18.9h-.05c0,6.45.04,12.9-.04,19.35a4.336,4.336,0,0,0,1.75,3.86,4.30113,4.30113,0,0,1,.75,1.12c-.35.19-.69.52-1.04.53-2.48.09-4.95.2-7.43.13-1.11005-.03-1.25-.89-.37006-1.46,1.99-1.29,2.05-3.19,2.05-5.24-.04-12.67-.08-24.19-.01-36.86.01-1.85-.5-2.42-2.32-2.41-3.98.04-8.18-.06-12.15.04a6.79039,6.79039,0,0,0-2.97.52,13.3742,13.3742,0,0,0-1.91,1.33,11.08218,11.08218,0,0,1,.05-3.05c.15-.55.82-1.04,1.36-1.39.3-.2.81-.06,1.22-.06q19.00506-.03,38.01-.05a2.89173,2.89173,0,0,1,1.46.14c.47.29,1.25.96,1.3,1.45C345.20147,214.53,345.84148,215.51,345.65148,216.22Z"/>
+    </g>
+    <path class="a" d="M149.20147,178.14a27.72737,27.72737,0,0,1-2.64-1.39c-3.21-1.82-5.3-4.27-5.79-7.77V21.43c.06-1.67.1-3.87,1.1-4.86a23.52379,23.52379,0,0,1,7-4.57,2.13756,2.13756,0,0,0,1.54-2.58c-.1-.5-1.47-1.06-2.26-1.06-10.08-.09-20.16-.09-30.24-.06-.65,0-1.69.36-1.85.79a3.53029,3.53029,0,0,0,.1,2.62c.32.57,1.37.75,2.12,1.05a10.95434,10.95434,0,0,1,7.31,10.7q.015,14.865,0,29.73h.08q0,14.67.01,29.36h-100.88q.03-14.685.01-29.36h.08q0-14.865,0-29.73a10.95428,10.95428,0,0,1,7.31-10.7c.75-.3,1.8-.48,2.12-1.05a3.53029,3.53029,0,0,0,.1-2.62c-.16-.43005-1.2-.79-1.85-.79-10.08-.03-20.16-.03-30.24.06-.79,0-2.16.56-2.26,1.06A2.13756,2.13756,0,0,0,1.6115,12a23.52379,23.52379,0,0,1,7,4.57c1,.99,1.04,3.19,1.1,4.86V168.98c-.49,3.5-2.58,5.95-5.79,7.77a27.73459,27.73459,0,0,1-2.64,1.39c-1.19.51-1.46,1.17-1.18,2.5.29,1.37,1,1.52,2.07,1.52q14.26493-.02994,28.53-.05a11.0669,11.0669,0,0,0,1.73-.03c.71-.12,1.94-.25,2.01-.57.22-1.12.65-2.41-.88-3.24a40.43734,40.43734,0,0,1-5.22-3.32,8.57721,8.57721,0,0,1-3.44-7.33q.06-27.015-.01-54.03c-.01-7.27-.03-14.54-.13-21.81h100.96c-.1,7.27-.12,14.54-.13,21.81q-.03,27.01492-.01,54.03a8.57721,8.57721,0,0,1-3.44,7.33,40.44008,40.44008,0,0,1-5.22,3.32c-1.53.83-1.1,2.12-.88,3.24.07.32,1.3.45,2.01.57a11.0678,11.0678,0,0,0,1.73.03q14.265.015,28.53.05c1.07,0,1.78-.15,2.07-1.52C150.66149,179.31,150.39147,178.65,149.20147,178.14Z"/>
+    <path class="a" d="M159.49145,233.88h27.56a.07549.07549,0,0,1,.01.04l.41-.04h-.42c0-.41-.05-.93-.11-1.55-.49-5.13-1.53-8.8-4.77-12.92-6.89-8.77-23.91-8.41-30.03,2.7a26.53919,26.53919,0,0,0-3.45,17.11005c.55,5.2,1.41,8.72,4.78,12.88995,10.01,8.75,23.62,5.54,29.33-1.45.57-1,1.36-2.17,2-3.11.42-.61,1.41-.52,2.08-.63a9.6858,9.6858,0,0,1,2.83.38,10.17873,10.17873,0,0,1-.66,2.51c-4.09,7.27-10.28,11.23-18.67,11.7-6.05.33-11.87-.27-17.18-3.58-5.29-3.29-8.05-8.14-9.11-14.12a37.55864,37.55864,0,0,1,.79-18.15c2.58-8.17,10.07-15.56,18.4-16.69995a32.41193,32.41193,0,0,1,11.49.44c10.55,2.18,14.74,10.6,16.44,20.05a34.7258,34.7258,0,0,1,.41,4.44c.14,2.86-.15,3.18-2.97,3.2-4.54.03-9.08.00995-13.62.00995v.08c-4.71,0-9.43.02-14.14-.02a4.20206,4.20206,0,0,1-1.4-.59Z"/>
+    <path class="a" d="M187.47149,233.88l-.41.04a.07549.07549,0,0,0-.01-.04Z"/>
+    <path d="M187.47149,233.88l-.41.04a.07549.07549,0,0,0-.01-.04Z"/>
+  </g>
+</svg>
+
+            </div>
+            <p class="tagline">Ομορφιά & Ευεξία</p>
+        </header>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/herbeauty_2" target="_blank" class="social-link">
+                <span class="social-icon">📷</span>
+                Instagram
+            </a>
+            <a href="https://lessence.gr/" target="_blank" class="social-link">
+                <span class="social-icon">🌐</span>
+                Website
+            </a>
+        </div>
+
+        <section class="location-section">
+            <h2 class="location-title">Επισκεφθείτε μας</h2>
+            <p class="address">
+                Αλωπεκής 6<br>
+                Αθήνα 10675
+            </p>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.8848947890286!2d23.740445!3d37.976894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd414e5d3c4f%3A0x1!2sAlopekis%206%2C%20Athina%20106%2075!5e0!3m2!1sen!2sgr!4v1234567890"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+    </div>
+
+    <footer class="sticky-footer">
+        <a href="tel:+302168092606" class="cta-button">
+            📞 Κλείσε Ραντεβού
+        </a>
+    </footer>
+</body>
+</html>
