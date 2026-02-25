@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "mcp__Claude_Preview__preview_start",
-      "Bash(where npm)"
+      "Bash(where npm)",
+      "Bash(cmd //c \"where npm 2>nul\")",
+      "Bash(cmd //c \"where node 2>nul\")"
     ]
   }
 }
