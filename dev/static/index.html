@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ΗΛΕΚΤΡΟΚΑΛΥΨΗ | Ηλεκτρολογικές Εγκαταστάσεις & Υπηρεσίες</title>
+  <meta name="description" content="ΗΛΕΚΤΡΟΚΑΛΥΨΗ - Επαγγελματικές ηλεκτρολογικές εγκαταστάσεις, συντήρηση και αυτοματισμοί. Αξιόπιστος ηλεκτρολόγος με πολυετή εμπειρία." />
+  <meta name="keywords" content="ηλεκτρολόγος, ηλεκτρολογικές εγκαταστάσεις, αυτοματισμοί, φωτισμός, Πάτρα" />
+  <meta property="og:title" content="ΗΛΕΚΤΡΟΚΑΛΥΨΗ | Ηλεκτρολογικές Εγκαταστάσεις" />
+  <meta property="og:description" content="Επαγγελματικές ηλεκτρολογικές υπηρεσίες με πολυετή εμπειρία." />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "name": "ΗΛΕΚΤΡΟΚΑΛΥΨΗ",
+    "telephone": ["+302610338350", "+306907761446", "+306932773017"],
+    "email": "ilektrokalypsi@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Πάτρα", "addressCountry": "GR" },
+    "description": "Επαγγελματικές ηλεκτρολογικές εγκαταστάσεις & υπηρεσίες"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ──────────────────────────────── */
+    :root {
+      --bg:          hsl(0, 0%, 100%);
+      --fg:          hsl(220, 20%, 15%);
+      --card:        hsl(220, 20%, 97%);
+      --primary:     hsl(14, 80%, 52%);
+      --primary-fg:  hsl(0, 0%, 100%);
+      --secondary:   hsl(215, 70%, 45%);
+      --muted:       hsl(220, 15%, 94%);
+      --muted-fg:    hsl(220, 10%, 45%);
+      --border:      hsl(220, 15%, 88%);
+      --radius:      0.5rem;
+      --font-body:   'Inter', sans-serif;
+      --font-head:   'Space Grotesk', sans-serif;
+    }
+
+    /* ─── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ─── Utilities ──────────────────────────────────── */
+    .text-gradient {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow-sm  { box-shadow: 0 0 20px hsl(14 80% 52% / 0.2); }
+    .glow-md  { box-shadow: 0 0 40px hsl(14 80% 52% / 0.25); }
+    .section-padding { padding: 4rem 1rem; }
+    @media (min-width: 640px)  { .section-padding { padding: 5rem 1.5rem; } }
+    @media (min-width: 1024px) { .section-padding { padding: 7rem 2rem; } }
+    .container { max-width: 80rem; margin: 0 auto; }
+    .section-label {
+      color: var(--primary);
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--muted-fg);
+      font-size: 1.1rem;
+      max-width: 38rem;
+      margin: 0 auto;
+    }
+
+    /* ─── Scroll Reveal ──────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ─── Header ─────────────────────────────────────── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+    }
+    #header.scrolled {
+      background: hsl(220 20% 97% / 0.85);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 20px hsl(0 0% 0% / 0.08);
+    }
+    .header-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4rem;
+    }
+    @media (min-width: 640px) { .header-inner { height: 5rem; padding: 0 1.5rem; } }
+    .logo img { height: 2.5rem; width: auto; }
+    @media (min-width: 640px) { .logo img { height: 3rem; } }
+    .nav-desktop {
+      display: none;
+      gap: 2rem;
+    }
+    @media (min-width: 1024px) { .nav-desktop { display: flex; align-items: center; } }
+    .nav-desktop a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted-fg);
+      transition: color 0.3s;
+    }
+    .nav-desktop a:hover { color: var(--primary); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-call {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: filter 0.2s;
+    }
+    .btn-call:hover { filter: brightness(1.1); }
+    @media (min-width: 640px) { .btn-call { display: flex; } }
+    .btn-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+    }
+    @media (min-width: 1024px) { .btn-menu { display: none; } }
+    .btn-menu span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--fg);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .btn-menu.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .btn-menu.open span:nth-child(2) { opacity: 0; }
+    .btn-menu.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Menu */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: hsl(0 0% 100% / 0.98);
+      backdrop-filter: blur(20px);
+      padding-top: 5rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--fg);
+      transition: color 0.3s;
+    }
+    #mobile-menu a:hover { color: var(--primary); }
+    .mobile-call {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: var(--primary-fg) !important;
+      font-family: var(--font-head);
+      font-weight: 600;
+    }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, hsl(0 0% 100% / 0.88), hsl(0 0% 100% / 0.72), var(--bg));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 56rem;
+      padding: 0 1rem;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid hsl(14 80% 52% / 0.3);
+      background: hsl(14 80% 52% / 0.1);
+      color: var(--primary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted-fg);
+      max-width: 38rem;
+      margin: 0 auto 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+    @media (min-width: 640px) { .hero-buttons { flex-direction: row; justify-content: center; } }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: filter 0.2s;
+      box-shadow: 0 0 20px hsl(14 80% 52% / 0.2);
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .btn-outline:hover { border-color: hsl(14 80% 52% / 0.5); background: var(--muted); }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 1s 1.5s forwards;
+    }
+    .scroll-arrow {
+      width: 24px; height: 24px;
+      color: var(--muted-fg);
+      animation: bounce 2s infinite;
+    }
+
+    /* ─── Services ───────────────────────────────────── */
+    #services { background: var(--bg); }
+    .services-header { text-align: center; margin-bottom: 4rem; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px)  { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+    .service-card {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .service-card:hover {
+      border-color: hsl(14 80% 52% / 0.3);
+      box-shadow: 0 0 20px hsl(14 80% 52% / 0.1);
+    }
+    .service-icon {
+      width: 3rem; height: 3rem;
+      border-radius: var(--radius);
+      background: hsl(14 80% 52% / 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: background 0.3s;
+    }
+    .service-card:hover .service-icon { background: hsl(14 80% 52% / 0.2); }
+    .service-icon svg { width: 1.5rem; height: 1.5rem; color: var(--primary); stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .service-title { font-family: var(--font-head); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .service-desc  { color: var(--muted-fg); font-size: 0.875rem; line-height: 1.6; }
+
+    /* ─── Projects ───────────────────────────────────── */
+    #projects { background: var(--card); }
+    .projects-header { text-align: center; margin-bottom: 4rem; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75rem;
+      aspect-ratio: 4/3;
+    }
+    .project-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .project-card:hover img { transform: scale(1.1); }
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, hsl(220 20% 10% / 0.85), hsl(220 20% 10% / 0.15), transparent);
+      opacity: 0.65;
+      transition: opacity 0.5s;
+    }
+    .project-card:hover .project-overlay { opacity: 0.85; }
+    .project-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      color: white;
+    }
+    .project-cat  { font-family: var(--font-head); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.8; }
+    .project-name { font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; margin-top: 0.25rem; }
+
+    /* ─── About ──────────────────────────────────────── */
+    #about { background: var(--bg); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      display: none;
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      background: var(--primary);
+      color: var(--primary-fg);
+      box-shadow: 0 0 40px hsl(14 80% 52% / 0.25);
+    }
+    @media (min-width: 640px) { .about-badge { display: block; } }
+    .about-badge-num  { font-family: var(--font-head); font-size: 1.875rem; font-weight: 700; line-height: 1; }
+    .about-badge-text { font-size: 0.875rem; font-weight: 500; margin-top: 0.25rem; }
+    .about-content h2 { font-family: var(--font-head); font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; margin-bottom: 1.5rem; }
+    .about-content p  { color: var(--muted-fg); line-height: 1.8; margin-bottom: 1.5rem; }
+    .about-list { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .about-list li { display: flex; align-items: center; gap: 0.75rem; }
+    .about-list svg { width: 1.25rem; height: 1.25rem; color: var(--primary); flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .stat-box {
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .stat-box svg { width: 1.25rem; height: 1.25rem; color: var(--primary); margin: 0 auto 0.5rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .stat-num  { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; display: block; margin-bottom: 0.25rem; }
+    .stat-label{ font-size: 0.75rem; color: var(--muted-fg); }
+
+    /* ─── Contact ────────────────────────────────────── */
+    #contact { background: var(--card); }
+    .contact-header { text-align: center; margin-bottom: 4rem; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+    .contact-icon {
+      width: 3rem; height: 3rem;
+      border-radius: var(--radius);
+      background: hsl(14 80% 52% / 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 1.25rem; height: 1.25rem; color: var(--primary); stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-card h3 { font-family: var(--font-head); font-weight: 600; margin-bottom: 0.5rem; }
+    .contact-card a  { display: block; color: var(--muted-fg); font-size: 0.9rem; transition: color 0.3s; }
+    .contact-card a:hover { color: var(--primary); }
+    .contact-card p  { color: var(--muted-fg); font-size: 0.9rem; }
+
+    /* Form */
+    .contact-form {
+      padding: 2rem;
+      border-radius: 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 640px) { .form-row { grid-template-columns: 1fr 1fr; } }
+    .form-group label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      background: var(--muted);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { box-shadow: 0 0 0 2px hsl(14 80% 52% / 0.3); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted-fg); }
+    .form-group textarea { resize: none; }
+    .btn-submit {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-radius: var(--radius);
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: filter 0.2s;
+      box-shadow: 0 0 20px hsl(14 80% 52% / 0.2);
+    }
+    .btn-submit:hover { filter: brightness(1.1); }
+    .btn-submit svg { width: 1.25rem; height: 1.25rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1rem;
+    }
+    .footer-inner {
+      max-width: 80rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .footer-inner { flex-direction: row; justify-content: space-between; }
+    }
+    .footer-brand { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-head); font-weight: 700; font-size: 1rem; }
+    .footer-brand svg { width: 1.25rem; height: 1.25rem; color: var(--primary); stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .footer-links { display: flex; align-items: center; gap: 1.5rem; }
+    .footer-links a { color: var(--muted-fg); transition: color 0.3s; font-size: 0.875rem; }
+    .footer-links a:hover { color: var(--primary); }
+    .footer-links svg { width: 1.25rem; height: 1.25rem; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .footer-copy { color: var(--muted-fg); font-size: 0.875rem; }
+
+    /* ─── WhatsApp Floating Button ───────────────────── */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 99;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 9999px;
+      background: #25d366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px hsl(145 63% 49% / 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .whatsapp-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px hsl(145 63% 49% / 0.5); }
+    .whatsapp-btn svg { width: 1.75rem; height: 1.75rem; fill: white; }
+
+    /* ─── Keyframes ──────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(8px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══ HEADER ═══════════════════════════════════════ -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="#hero" class="logo" onclick="smoothScroll(event,'#hero')">
+        <img src="../src/assets/logo.png" alt="ΗΛΕΚΤΡΟΚΑΛΥΨΗ" />
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="#hero"     onclick="smoothScroll(event,'#hero')">Αρχική</a>
+        <a href="#services" onclick="smoothScroll(event,'#services')">Υπηρεσίες</a>
+        <a href="#projects" onclick="smoothScroll(event,'#projects')">Έργα</a>
+        <a href="#about"    onclick="smoothScroll(event,'#about')">Εταιρεία</a>
+        <a href="#contact"  onclick="smoothScroll(event,'#contact')">Επικοινωνία</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+302610338350" class="btn-call glow-sm">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+          Καλέστε μας
+        </a>
+        <button class="btn-menu" id="menuToggle" aria-label="Toggle menu" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu">
+    <a href="#hero"     onclick="smoothScroll(event,'#hero');toggleMenu()">Αρχική</a>
+    <a href="#services" onclick="smoothScroll(event,'#services');toggleMenu()">Υπηρεσίες</a>
+    <a href="#projects" onclick="smoothScroll(event,'#projects');toggleMenu()">Έργα</a>
+    <a href="#about"    onclick="smoothScroll(event,'#about');toggleMenu()">Εταιρεία</a>
+    <a href="#contact"  onclick="smoothScroll(event,'#contact');toggleMenu()">Επικοινωνία</a>
+    <a href="tel:+302610338350" class="mobile-call">
+      <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+      2610 33 83 50
+    </a>
+  </div>
+
+  <main>
+
+    <!-- ═══ HERO ═════════════════════════════════════════ -->
+    <section id="hero">
+      <div class="hero-bg">
+        <img src="../src/assets/hero-bg.jpg" alt="Ηλεκτρολογικές εγκαταστάσεις" loading="eager" />
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge">
+          <!-- ⚡ icon -->
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Πολυετής εμπειρία &amp; αξιοπιστία
+        </div>
+
+        <h1 class="hero-title">
+          Ηλεκτρολογικές<br />
+          <span class="text-gradient">Λύσεις</span> Υψηλής<br />
+          Ποιότητας
+        </h1>
+
+        <p class="hero-subtitle">
+          Εγκαταστάσεις, συντήρηση και αυτοματισμοί για κατοικίες και επαγγελματικούς χώρους.
+          Άμεση εξυπηρέτηση, σύγχρονες λύσεις.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary glow-sm" onclick="smoothScroll(event,'#contact')">Ζητήστε Προσφορά</a>
+          <a href="#services" class="btn-outline" onclick="smoothScroll(event,'#services')">Οι Υπηρεσίες μας</a>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <svg class="scroll-arrow" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ═══ SERVICES ══════════════════════════════════════ -->
+    <section id="services" class="section-padding">
+      <div class="container">
+        <div class="services-header reveal">
+          <span class="section-label">Υπηρεσίες</span>
+          <h2 class="section-title">Τι <span class="text-gradient">Προσφέρουμε</span></h2>
+          <p class="section-subtitle">Πλήρες φάσμα ηλεκτρολογικών υπηρεσιών με εγγύηση ποιότητας και ασφάλειας.</p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3 class="service-title">Ηλεκτρολογικές Εγκαταστάσεις</h3>
+            <p class="service-desc">Ολοκληρωμένες ηλεκτρολογικές εγκαταστάσεις για νέες κατασκευές και ανακαινίσεις.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="service-title">Οικιακές Υπηρεσίες</h3>
+            <p class="service-desc">Επισκευές, αντικαταστάσεις πινάκων, νέες γραμμές και αναβαθμίσεις.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="service-title">Επαγγελματικοί Χώροι</h3>
+            <p class="service-desc">Ηλεκτρολογικές λύσεις για καταστήματα, γραφεία και βιομηχανικούς χώρους.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <h3 class="service-title">Φωτισμός &amp; LED</h3>
+            <p class="service-desc">Σχεδιασμός φωτισμού, εγκατάσταση LED και ενεργειακά αποδοτικές λύσεις.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+            </div>
+            <h3 class="service-title">Αυτοματισμοί &amp; Smart Home</h3>
+            <p class="service-desc">Έξυπνα συστήματα σπιτιού, αυτοματισμοί φωτισμού και ελέγχου.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="service-title">Συστήματα Ασφαλείας</h3>
+            <p class="service-desc">Εγκατάσταση συναγερμών, καμερών και συστημάτων θυροτηλεόρασης.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M2 12H4M20 12h2M19.07 19.07l-1.41-1.41M5.34 5.34 3.93 3.93M12 2v2M12 20v2"/></svg>
+            </div>
+            <h3 class="service-title">Συντήρηση &amp; Επισκευές</h3>
+            <p class="service-desc">Τακτική συντήρηση και άμεσες επισκευές βλαβών 24/7.</p>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <h3 class="service-title">Φωτοβολταϊκά</h3>
+            <p class="service-desc">Εγκατάσταση και συντήρηση φωτοβολταϊκών συστημάτων.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PROJECTS ══════════════════════════════════════ -->
+    <section id="projects" class="section-padding">
+      <div class="container">
+        <div class="projects-header reveal">
+          <span class="section-label">Portfolio</span>
+          <h2 class="section-title">Τα <span class="text-gradient">Έργα</span> μας</h2>
+          <p class="section-subtitle">Δείγματα από τις εγκαταστάσεις και τα έργα που έχουμε ολοκληρώσει.</p>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card reveal">
+            <img src="../src/assets/project-1.jpg" alt="Smart Home Αυτοματισμοί" loading="lazy" />
+            <div class="project-overlay"></div>
+            <div class="project-info">
+              <p class="project-cat">Οικιακό</p>
+              <h3 class="project-name">Smart Home Αυτοματισμοί</h3>
+            </div>
+          </div>
+          <div class="project-card reveal">
+            <img src="../src/assets/project-2.jpg" alt="Βιομηχανικός Πίνακας" loading="lazy" />
+            <div class="project-overlay"></div>
+            <div class="project-info">
+              <p class="project-cat">Επαγγελματικό</p>
+              <h3 class="project-name">Βιομηχανικός Πίνακας</h3>
+            </div>
+          </div>
+          <div class="project-card reveal">
+            <img src="../src/assets/project-3.jpg" alt="Σχεδιασμός Φωτισμού" loading="lazy" />
+            <div class="project-overlay"></div>
+            <div class="project-info">
+              <p class="project-cat">Οικιακό</p>
+              <h3 class="project-name">Σχεδιασμός Φωτισμού</h3>
+            </div>
+          </div>
+          <div class="project-card reveal">
+            <img src="../src/assets/project-4.jpg" alt="Φωτοβολταϊκά Συστήματα" loading="lazy" />
+            <div class="project-overlay"></div>
+            <div class="project-info">
+              <p class="project-cat">Ανανεώσιμες Πηγές</p>
+              <h3 class="project-name">Φωτοβολταϊκά Συστήματα</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ABOUT ══════════════════════════════════════════ -->
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="about-grid">
+
+          <div class="reveal-left">
+            <div class="about-img-wrap">
+              <img src="../src/assets/about-bg.jpg" alt="Η ομάδα μας" loading="lazy" />
+            </div>
+            <div class="about-badge">
+              <div class="about-badge-num"><span class="counter" data-target="25">0</span>+</div>
+              <div class="about-badge-text">Χρόνια Εμπειρίας</div>
+            </div>
+          </div>
+
+          <div class="about-content reveal-right">
+            <span class="section-label">Η Εταιρεία μας</span>
+            <h2>Αξιοπιστία που <span class="text-gradient">Χτίζεται</span> με Χρόνια</h2>
+            <p>
+              Η <strong>ΗΛΕΚΤΡΟΚΑΛΥΨΗ</strong> δραστηριοποιείται στον χώρο
+              των ηλεκτρολογικών εγκαταστάσεων εδώ και πάνω από 25 χρόνια. Με γνώμονα την ποιότητα,
+              την ασφάλεια και την τεχνολογική εξέλιξη, προσφέρουμε ολοκληρωμένες λύσεις
+              για κατοικίες και επαγγελματικούς χώρους.
+            </p>
+            <p>
+              Η οικογένεια Δημόπουλου — Γιάννης &amp; Βασίλης — με πάθος για την αριστεία
+              και τη σύγχρονη τεχνολογία, εγγυάται κάθε εγκατάσταση.
+            </p>
+
+            <ul class="about-list">
+              <li>
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Άμεση ανταπόκριση &amp; εξυπηρέτηση
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Πιστοποιημένα υλικά &amp; εξοπλισμός
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Τήρηση προθεσμιών &amp; προϋπολογισμού
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Εξειδικευμένο &amp; έμπειρο προσωπικό
+              </li>
+            </ul>
+
+            <div class="stats-grid">
+              <div class="stat-box">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span class="stat-num text-gradient"><span class="counter" data-target="25">0</span>+</span>
+                <span class="stat-label">Χρόνια Εμπειρίας</span>
+              </div>
+              <div class="stat-box">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span class="stat-num text-gradient"><span class="counter" data-target="1000">0</span>+</span>
+                <span class="stat-label">Ικανοποιημένοι Πελάτες</span>
+              </div>
+              <div class="stat-box">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                <span class="stat-num text-gradient"><span class="counter" data-target="100">0</span>%</span>
+                <span class="stat-label">Εγγύηση Ποιότητας</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONTACT ════════════════════════════════════════ -->
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="contact-header reveal">
+          <span class="section-label">Επικοινωνία</span>
+          <h2 class="section-title">Επικοινωνήστε <span class="text-gradient">Μαζί μας</span></h2>
+          <p class="section-subtitle">Είμαστε στη διάθεσή σας για κάθε ηλεκτρολογική ανάγκη.</p>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Info -->
+          <div class="contact-info reveal-left">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+              </div>
+              <div>
+                <h3>Τηλέφωνα</h3>
+                <a href="tel:+302610338350">📞 Fax: 2610 33 83 50</a>
+                <a href="tel:+306907761446">📱 Γιάννης Δημόπουλος: 690 776 1446</a>
+                <a href="tel:+306932773017">📱 Βασίλης Δημόπουλος: 693 277 3017</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <h3>Email</h3>
+                <a href="mailto:ilektrokalypsi@gmail.com">ilektrokalypsi@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </div>
+              <div>
+                <h3>Social Media</h3>
+                <a href="https://instagram.com/ilektrokalypsi" target="_blank" rel="noopener">@ilektrokalypsi</a>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h3>Κατάστημα</h3>
+                <p>Πάτρα, Ελλάδα</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form class="contact-form reveal-right" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Ονοματεπώνυμο</label>
+              <input type="text" id="name" name="name" required placeholder="Το όνομά σας" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="email@example.com" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Τηλέφωνο</label>
+                <input type="tel" id="phone" name="phone" placeholder="69x xxx xxxx" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Μήνυμα</label>
+              <textarea id="message" name="message" rows="5" required placeholder="Περιγράψτε τι χρειάζεστε..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Αποστολή Μηνύματος
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="text-gradient">ΗΛΕΚΤΡΟΚΑΛΥΨΗ</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://instagram.com/ilektrokalypsi" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="mailto:ilektrokalypsi@gmail.com">ilektrokalypsi@gmail.com</a>
+      </div>
+      <p class="footer-copy">© <span id="year"></span> ΗΛΕΚΤΡΟΚΑΛΥΨΗ. Με επιφύλαξη παντός δικαιώματος.</p>
+    </div>
+  </footer>
+
+  <!-- ═══ WHATSAPP BUTTON ═══════════════════════════════ -->
+  <a
+    href="https://wa.me/306907761446?text=%CE%93%CE%B5%CE%B9%CE%B1%20%CF%83%CE%B1%CF%82%2C%20%CE%B8%CE%B1%20%CE%AE%CE%B8%CE%B5%CE%BB%CE%B1%20%CE%BD%CE%B1%20%CF%81%CF%89%CF%84%CE%AE%CF%83%CF%89%20%CE%B3%CE%B9%CE%B1%20%CE%BC%CE%B9%CE%B1%20%CF%80%CF%81%CE%BF%CF%83%CF%86%CE%BF%CF%81%CE%AC."
+    class="whatsapp-btn"
+    target="_blank"
+    rel="noopener"
+    aria-label="Επικοινωνία μέσω WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ═══ JAVASCRIPT ════════════════════════════════════ -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll
+    function smoothScroll(e, selector) {
+      e.preventDefault();
+      document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      const menu   = document.getElementById('mobile-menu');
+      const toggle = document.getElementById('menuToggle');
+      menu.classList.toggle('open');
+      toggle.classList.toggle('open');
+    }
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll reveal via IntersectionObserver
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '-50px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+      .forEach(el => revealObserver.observe(el));
+
+    // Animated counters
+    function animateCounter(el) {
+      const target   = parseInt(el.dataset.target);
+      const duration = 1800;
+      const start    = Date.now();
+      const tick = () => {
+        const elapsed  = Date.now() - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased    = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Contact form → mailto
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name    = document.getElementById('name').value;
+      const email   = document.getElementById('email').value;
+      const phone   = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      const subject = encodeURIComponent(`Νέο μήνυμα από ${name}`);
+      const body    = encodeURIComponent(`Όνομα: ${name}\nEmail: ${email}\nΤηλέφωνο: ${phone}\n\nΜήνυμα:\n${message}`);
+      window.location.href = `mailto:ilektrokalypsi@gmail.com?subject=${subject}&body=${body}`;
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Ευχαριστούμε! ✓';
+      setTimeout(() => btn.innerHTML = `<svg viewBox="0 0 24 24" style="width:1.25rem;height:1.25rem;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Αποστολή Μηνύματος`, 3000);
+    }
+  </script>
+
+</body>
+</html>

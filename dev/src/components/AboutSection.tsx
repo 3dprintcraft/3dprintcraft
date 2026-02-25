@@ -1,6 +1,32 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { Award, Clock, Users, CheckCircle } from "lucide-react";
 import aboutBg from "@/assets/about-bg.jpg";
+
+const AnimatedCounter = ({ value }: { value: string }) => {
+  const match = value.match(/^(\d+)(.*)$/);
+  const target = match ? parseInt(match[1]) : 0;
+  const suffix = match ? match[2] : "";
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const duration = 1800;
+    const start = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+  }, [isInView, target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
 
 const stats = [
   { icon: Clock, value: "25+", label: "Χρόνια Εμπειρίας" },
@@ -37,7 +63,7 @@ const AboutSection = () => {
               />
             </div>
             <div className="absolute -bottom-6 -right-6 hidden sm:block px-6 py-4 rounded-xl bg-primary text-primary-foreground glow-md">
-              <span className="text-3xl font-heading font-bold">25+</span>
+              <span className="text-3xl font-heading font-bold"><AnimatedCounter value="25+" /></span>
               <p className="text-sm font-medium">Χρόνια Εμπειρίας</p>
             </div>
           </motion.div>
@@ -81,7 +107,7 @@ const AboutSection = () => {
                 <div key={stat.label} className="text-center p-4 rounded-xl bg-card border border-border">
                   <stat.icon className="w-5 h-5 text-primary mx-auto mb-2" />
                   <span className="text-2xl font-heading font-bold text-gradient block">
-                    {stat.value}
+                    <AnimatedCounter value={stat.value} />
                   </span>
                   <span className="text-xs text-muted-foreground">{stat.label}</span>
                 </div>
