@@ -95,10 +95,9 @@ const Header = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-xl pt-20 lg:hidden"
-            style={{ touchAction: "none" }}
+            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-xl pt-20 lg:hidden overflow-y-auto"
           >
-            <nav className="flex flex-col items-center gap-6 p-8">
+            <nav className="flex flex-col items-center gap-6 landscape:gap-2 p-8 landscape:p-4 landscape:pt-2 pb-6">
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.href}
@@ -106,14 +105,14 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-2xl font-heading font-semibold text-foreground hover:text-primary transition-colors"
+                  className="text-2xl landscape:text-lg font-heading font-semibold text-foreground hover:text-primary transition-colors"
                 >
                   {item.label}
                 </motion.button>
               ))}
               <a
                 href="tel:+302610338350"
-                className="mt-4 flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-heading font-semibold hover:brightness-110 transition-all glow-sm"
+                className="mt-4 landscape:mt-1 flex items-center gap-2 px-6 py-3 landscape:py-2 rounded-lg bg-primary text-primary-foreground font-heading font-semibold hover:brightness-110 transition-all glow-sm"
               >
                 <Phone className="w-5 h-5" />
                 2610 33 83 50
