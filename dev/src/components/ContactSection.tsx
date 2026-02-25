@@ -2,6 +2,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send, Instagram } from "lucide-react";
 
+const ViberIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+    <path d="M11.4 0C5.5 0 .6 4.4.6 9.8c0 2.8 1.2 5.3 3.2 7.1v3.8l3.6-2c1.2.3 2.5.5 3.9.5 5.9 0 10.8-4.4 10.8-9.8C22.1 4.4 17.3 0 11.4 0zm.1 17.6c-1.3 0-2.5-.2-3.6-.6l-.4-.1-2.5 1.3.7-2.5-.3-.3C3.9 14.2 2.8 12.1 2.8 9.8c0-4.7 3.9-8.5 8.7-8.5s8.7 3.8 8.7 8.5-3.9 8.5-8.7 8.5v.1zm4.8-6.2c-.3-.1-1.6-.8-1.8-.9-.3-.1-.5-.1-.7.1-.2.2-.8.9-1 1.1-.2.2-.4.2-.6.1-.8-.4-1.6-.9-2.3-1.5-.6-.6-1.2-1.3-1.6-2.1-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.2-.5 0-.2-.6-1.5-.8-2-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.5.1-.8.4-.8.8-1.2 1.7-1.2 2.7 0 1.6.9 3.2 2.3 4.7 1.8 2.1 4 3.3 6.4 3.8.5.1 1.1.1 1.6-.1.6-.3 1-.7 1.3-1.3.1-.3.1-.7 0-.9z"/>
+  </svg>
+);
+
 const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -13,7 +19,6 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For static site, open mailto
     const subject = encodeURIComponent(`Νέο μήνυμα από ${formData.name}`);
     const body = encodeURIComponent(
       `Όνομα: ${formData.name}\nEmail: ${formData.email}\nΤηλέφωνο: ${formData.phone}\n\nΜήνυμα:\n${formData.message}`
@@ -57,7 +62,7 @@ const ContactSection = () => {
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Phone className="w-5 h-5 text-primary" />
               </div>
-              <div>
+              <div className="flex-1 min-w-0">
                 <h3 className="font-heading font-semibold mb-2">Τηλέφωνα</h3>
                 <a href="tel:+302610338350" className="block text-muted-foreground hover:text-primary transition-colors">
                   📞 Fax: 2610 33 83 50
@@ -68,6 +73,16 @@ const ContactSection = () => {
                 <a href="tel:+306932773017" className="block text-muted-foreground hover:text-primary transition-colors">
                   📱 Βασίλης Δημόπουλος: 693 277 3017
                 </a>
+
+                {/* Viber button — visible only on mobile */}
+                <a
+                  href="viber://call?number=+306907761446"
+                  className="sm:hidden mt-4 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-heading font-semibold text-sm text-white transition-all hover:brightness-110"
+                  style={{ backgroundColor: "#7360F2" }}
+                >
+                  <ViberIcon />
+                  Viber
+                </a>
               </div>
             </div>
 
@@ -77,7 +92,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <h3 className="font-heading font-semibold mb-2">Email</h3>
-                <a href="mailto:ilektrokalypsi@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="mailto:ilektrokalypsi@gmail.com" className="text-muted-foreground hover:text-primary transition-colors break-all">
                   ilektrokalypsi@gmail.com
                 </a>
               </div>

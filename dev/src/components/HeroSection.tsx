@@ -74,7 +74,7 @@ const HeroSection = () => {
               e.preventDefault();
               document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="px-8 py-4 rounded-lg border border-border text-foreground font-heading font-semibold text-lg hover:border-primary/50 hover:bg-secondary transition-all"
+            className="px-8 py-4 rounded-lg border-2 border-primary text-foreground font-heading font-semibold text-lg hover:bg-primary/10 transition-all"
           >
             Οι Υπηρεσίες μας
           </a>

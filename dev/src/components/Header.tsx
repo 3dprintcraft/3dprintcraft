@@ -37,15 +37,24 @@ const Header = () => {
           isScrolled ? "glass shadow-lg" : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="w-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+          {/* Mobile header: left spacer | centered logo | hamburger */}
+          {/* Desktop header: logo | nav | cta */}
+          <div className="flex items-center h-16 sm:h-20">
+
+            {/* Left spacer on mobile only (for centering logo) */}
+            <div className="flex-1 lg:hidden" />
+
             {/* Logo */}
-            <button onClick={() => handleNavClick("#hero")} className="flex items-center gap-2">
+            <button
+              onClick={() => handleNavClick("#hero")}
+              className="flex items-center gap-2 lg:flex-none"
+            >
               <img src={logo} alt="ΗΛΕΚΤΡΟΚΑΛΥΨΗ" className="h-10 sm:h-12 w-auto" />
             </button>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-8">
+            {/* Desktop Nav (middle) */}
+            <nav className="hidden lg:flex flex-1 items-center justify-center gap-8">
               {navItems.map((item) => (
                 <button
                   key={item.href}
@@ -57,8 +66,8 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* CTA + Mobile Toggle */}
-            <div className="flex items-center gap-3">
+            {/* Right side: CTA + hamburger */}
+            <div className="flex-1 flex items-center justify-end gap-3">
               <a
                 href="tel:+302610338350"
                 className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-heading font-semibold text-sm hover:brightness-110 transition-all glow-sm"
@@ -68,12 +77,13 @@ const Header = () => {
               </a>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 text-foreground"
+                className="lg:hidden flex items-center justify-center p-2 text-foreground"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
+
           </div>
         </div>
       </motion.header>
@@ -86,6 +96,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 bg-background/98 backdrop-blur-xl pt-20 lg:hidden"
+            style={{ touchAction: "none" }}
           >
             <nav className="flex flex-col items-center gap-6 p-8">
               {navItems.map((item, i) => (
