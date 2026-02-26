@@ -796,7 +796,7 @@
       </nav>
 
       <div class="header-actions">
-        <a href="tel:+302610338350" class="btn-call glow-sm">
+        <a href="#contact" onclick="smoothScroll(event,'#contact')" class="btn-call glow-sm">
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
           Καλέστε μας
         </a>
@@ -814,9 +814,9 @@
     <a href="#projects" onclick="smoothScroll(event,'#projects');toggleMenu()">Έργα</a>
     <a href="#about"    onclick="smoothScroll(event,'#about');toggleMenu()">Εταιρεία</a>
     <a href="#contact"  onclick="smoothScroll(event,'#contact');toggleMenu()">Επικοινωνία</a>
-    <a href="tel:+302610338350" class="mobile-call">
+    <a href="#contact" onclick="smoothScroll(event,'#contact');toggleMenu()" class="mobile-call">
       <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
-      2610 33 83 50
+      Καλέστε μας
     </a>
   </div>
 
@@ -900,7 +900,7 @@
               <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
             </div>
             <h3 class="service-title">Διακόσμηση &amp; Φωτισμός</h3>
-            <p class="service-desc">Σχεδιασμός και εγκατάσταση φωτισμού για κατοικίες και επαγγελματικούς χώρους — από κλασικό έως architectural lighting.</p>
+            <p class="service-desc">Σχεδιασμός και εγκατάσταση φωτισμού για κατοικίες και επαγγελματικούς χώρους.</p>
           </div>
 
           <div class="service-card reveal">
@@ -936,6 +936,42 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ═══ STUDENTS ══════════════════════════════════════ -->
+    <section id="students">
+      <div class="student-inner">
+        <span class="student-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Ειδικά για Φοιτητές
+        </span>
+        <h2 class="student-title">Είμαστε κοντά στους <span class="text-gradient">Φοιτητές</span></h2>
+        <p class="student-desc">
+          Με ειδικές τιμές, σας δίνουμε την ευκαιρία να μην αμελείτε την ηλεκτρική εγκατάσταση του χώρου σας.
+          Η ασφάλεια δεν είναι πολυτέλεια — είναι ανάγκη.
+        </p>
+        <div class="student-pills">
+          <span class="student-pill">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Ρελέ Προστασίας
+          </span>
+          <span class="student-pill">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Αντικεραυνική Προστασία
+          </span>
+          <span class="student-pill">
+            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Επιθεώρηση Εγκατάστασης
+          </span>
+          <span class="student-pill">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/></svg>
+            Ειδικές Τιμές €
+          </span>
+        </div>
+        <a href="#contact" onclick="smoothScroll(event,'#contact')" class="btn-primary glow-sm" style="margin-top:0.5rem;">
+          Ζητήστε Προσφορά
+        </a>
       </div>
     </section>
 
@@ -985,58 +1021,12 @@
       </div>
     </section>
 
-    <!-- ═══ STUDENTS ══════════════════════════════════════ -->
-    <section id="students">
-      <div class="student-inner">
-        <span class="student-badge">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          Ειδικά για Φοιτητές
-        </span>
-        <h2 class="student-title">Είμαστε κοντά στους <span class="text-gradient">Φοιτητές</span></h2>
-        <p class="student-desc">
-          Με ειδικές τιμές, σας δίνουμε την ευκαιρία να μην αμελείτε την ηλεκτρική εγκατάσταση του χώρου σας.
-          Η ασφάλεια δεν είναι πολυτέλεια — είναι ανάγκη.
-        </p>
-        <div class="student-pills">
-          <span class="student-pill">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Ρελέ Προστασίας
-          </span>
-          <span class="student-pill">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Αντικεραυνική Προστασία
-          </span>
-          <span class="student-pill">
-            <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-            Επιθεώρηση Εγκατάστασης
-          </span>
-          <span class="student-pill">
-            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Ειδικές Τιμές
-          </span>
-        </div>
-        <a href="#contact" onclick="smoothScroll(event,'#contact')" class="btn-primary glow-sm" style="margin-top:0.5rem;">
-          Ζητήστε Προσφορά
-        </a>
-      </div>
-    </section>
-
     <!-- ═══ ABOUT ══════════════════════════════════════════ -->
     <section id="about" class="section-padding">
       <div class="container">
-        <div class="about-grid">
+        <div class="about-grid" style="grid-template-columns:1fr;">
 
-          <div class="reveal-left">
-            <div class="about-img-wrap">
-              <img src="../src/assets/about-bg.jpg" alt="Η ομάδα μας" loading="lazy" />
-            </div>
-            <div class="about-badge">
-              <div class="about-badge-num"><span class="counter" data-target="23">0</span>+</div>
-              <div class="about-badge-text">Χρόνια Εμπειρίας</div>
-            </div>
-          </div>
-
-          <div class="about-content reveal-right">
+          <div class="about-content reveal-right" style="max-width:52rem;margin:0 auto;">
             <span class="section-label">Η Εταιρεία μας</span>
             <h2>Από το <span class="text-gradient">2002</span> Δίπλα σας</h2>
             <p>
@@ -1045,7 +1035,7 @@
               ολοκληρώνοντας κάθε έργο που αναλαμβάνει στο <strong>100%</strong>.
             </p>
             <p>
-              Με πάθος για την αριστεία και σεβασμό στην ασφάλεια, η οικογένεια Δημόπουλου
+              Με πάθος για την αριστεία και σεβασμό στην ασφάλεια, η εταιρεία μας
               εγγυάται κάθε εγκατάσταση — από την πρώτη επαφή έως την παράδοση του έργου.
             </p>
 
@@ -1053,10 +1043,6 @@
               <li>
                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                 Άμεση ανταπόκριση &amp; εξυπηρέτηση
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-                Πιστοποιητικά ΔΕΗ &amp; νόμιμη εγκατάσταση
               </li>
               <li>
                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1071,12 +1057,12 @@
             <div class="stats-grid">
               <div class="stat-box">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span class="stat-num text-gradient"><span class="counter" data-target="23">0</span>+</span>
+                <span class="stat-num text-gradient"><span class="counter" data-target="23" data-year-since="2002">0</span>+</span>
                 <span class="stat-label">Χρόνια Εμπειρίας</span>
               </div>
               <div class="stat-box">
                 <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <span class="stat-num text-gradient"><span class="counter" data-target="500">0</span>+</span>
+                <span class="stat-num text-gradient"><span class="counter" data-target="1000">0</span>+</span>
                 <span class="stat-label">Ικανοποιημένοι Πελάτες</span>
               </div>
               <div class="stat-box">
@@ -1108,11 +1094,21 @@
               <div class="contact-icon">
                 <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
               </div>
-              <div>
+              <div style="min-width:0;flex:1;">
                 <h3>Τηλέφωνα</h3>
-                <a href="tel:+302610338350">📞 2610 33 83 50</a>
-                <a href="tel:+306907761446">📱 Γιάννης: 690 776 1446</a>
-                <a href="tel:+306932773017">📱 Βασίλης: 693 277 3017</a>
+                <p style="font-size:0.75rem;color:var(--muted-fg);margin-bottom:0.4rem;">Πατήστε για άμεση κλήση</p>
+                <a href="tel:+302610338350" style="display:flex;align-items:center;gap:0.4rem;padding:0.45rem 0.75rem;background:var(--muted);border-radius:var(--radius);margin-bottom:0.4rem;font-size:0.875rem;font-weight:500;transition:background 0.2s;" onmouseover="this.style.background='hsl(14 80% 52% / 0.12)'" onmouseout="this.style.background='var(--muted)'">
+                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--muted-fg)" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+                  2610 33 83 50
+                </a>
+                <a href="tel:+306907761446" style="display:flex;align-items:center;gap:0.4rem;padding:0.45rem 0.75rem;background:var(--muted);border-radius:var(--radius);margin-bottom:0.4rem;font-size:0.875rem;font-weight:500;transition:background 0.2s;" onmouseover="this.style.background='hsl(14 80% 52% / 0.12)'" onmouseout="this.style.background='var(--muted)'">
+                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--primary)" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                  Γιάννης: 690 776 1446
+                </a>
+                <a href="tel:+306932773017" style="display:flex;align-items:center;gap:0.4rem;padding:0.45rem 0.75rem;background:var(--muted);border-radius:var(--radius);font-size:0.875rem;font-weight:500;transition:background 0.2s;" onmouseover="this.style.background='hsl(14 80% 52% / 0.12)'" onmouseout="this.style.background='var(--muted)'">
+                  <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--primary)" fill="none" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                  Βασίλης: 693 277 3017
+                </a>
               </div>
             </div>
 
@@ -1127,12 +1123,12 @@
             </div>
 
             <div class="contact-card">
-              <div class="contact-icon">
-                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <div class="contact-icon" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:0.5rem;">
+                <svg viewBox="0 0 24 24" style="fill:white;width:1.25rem;height:1.25rem;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </div>
               <div>
-                <h3>Social Media</h3>
-                <a href="https://instagram.com/ilektrokalypsi" target="_blank" rel="noopener">@ilektrokalypsi</a>
+                <h3>Instagram</h3>
+                <a href="https://instagram.com/ilektrokalypsi" target="_blank" rel="noopener" class="footer-ig-btn" style="margin-top:0.4rem;display:inline-flex;">@ilektrokalypsi</a>
               </div>
             </div>
 
@@ -1140,9 +1136,18 @@
               <div class="contact-icon">
                 <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </div>
-              <div>
+              <div style="min-width:0;flex:1;">
                 <h3>Κατάστημα</h3>
-                <p>Πάτρα, Ελλάδα</p>
+                <p style="font-size:0.875rem;color:var(--muted-fg);margin-bottom:0.75rem;">Α. ΕΜΠΕΙΡΙΚΟΥ 37Β, ΠΑΤΡΑ, 263 35</p>
+                <div style="border-radius:0.75rem;overflow:hidden;border:1px solid var(--border);">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Α.+Εμπειρίκου+37β,+Πάτρα&output=embed&z=16"
+                    width="100%" height="200"
+                    style="border:0;display:block;"
+                    allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
               </div>
             </div>
           </div>
@@ -1189,9 +1194,9 @@
       </div>
 
       <div class="footer-contacts">
-        <a href="tel:+302610338350" class="footer-phone-btn">
+        <a href="#contact" onclick="smoothScroll(event,'#contact')" class="footer-phone-btn">
           <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
-          2610 33 83 50
+          Καλέστε μας
         </a>
         <a href="https://instagram.com/ilektrokalypsi" target="_blank" rel="noopener" class="footer-ig-btn">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1203,7 +1208,7 @@
         </a>
       </div>
 
-      <p class="footer-copy">© <span id="year"></span> ΗΛΕΚΤΡΟΚΑΛΥΨΗ. Με επιφύλαξη παντός δικαιώματος.</p>
+      <p class="footer-copy" style="text-align:center;">© <span id="year"></span> ΗΛΕΚΤΡΟΚΑΛΥΨΗ</p>
 
     </div>
   </footer>
@@ -1221,8 +1226,12 @@
       }
     })();
 
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Year & dynamic experience counter
+    var currentYear = new Date().getFullYear();
+    document.getElementById('year').textContent = currentYear;
+    document.querySelectorAll('.counter[data-year-since]').forEach(function(el) {
+      el.dataset.target = currentYear - parseInt(el.dataset.yearSince);
+    });
 
     // Smooth scroll
     function smoothScroll(e, selector) {
