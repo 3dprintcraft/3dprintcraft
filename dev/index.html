@@ -66,6 +66,9 @@
     [data-theme="dark"] #mobile-menu {
       background: hsl(220 15% 10% / 0.98);
     }
+    [data-theme="dark"] footer {
+      background: var(--bg);
+    }
 
     /* ─── Scroll Progress Bar ────────────────────────── */
     #scroll-progress {
@@ -1413,11 +1416,13 @@
     (function() {
       var progressBar = document.getElementById('scroll-progress');
       var fab = document.getElementById('fab');
+      var footer = document.querySelector('footer');
       window.addEventListener('scroll', function() {
         var scrollTop = window.scrollY;
         var docHeight = document.documentElement.scrollHeight - window.innerHeight;
         progressBar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-        fab.classList.toggle('visible', scrollTop > 400);
+        var footerVisible = footer ? footer.getBoundingClientRect().top < window.innerHeight : false;
+        fab.classList.toggle('visible', scrollTop > 400 && !footerVisible);
       }, { passive: true });
     })();
 
