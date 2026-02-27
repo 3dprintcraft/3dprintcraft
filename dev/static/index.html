@@ -241,6 +241,7 @@
         left: 50%;
         transform: translateX(-50%);
         z-index: 1;
+        will-change: transform;
       }
     }
     .nav-desktop {
@@ -1364,6 +1365,28 @@
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
+
+    // ── Hero Logo: large on load → shrinks into navbar on scroll (mobile only) ──
+    (function() {
+      var logo = document.querySelector('.logo');
+
+      function updateLogo() {
+        if (window.innerWidth >= 1024) {
+          logo.style.transform = '';
+          return;
+        }
+        var p    = Math.min(window.scrollY / 120, 1);
+        var ease = 1 - Math.pow(1 - p, 2);       // ease-out
+        var scale = 1.75 - 0.75 * ease;           // 1.75 → 1
+        var ty    = (1 - ease) * 18;             // 18px → 0
+        logo.style.transform =
+          'translateX(-50%) translateY(' + ty + 'px) scale(' + scale + ')';
+      }
+
+      window.addEventListener('scroll', updateLogo, { passive: true });
+      window.addEventListener('resize', updateLogo, { passive: true });
+      updateLogo(); // set initial state immediately
+    })();
 
     // Scroll reveal via IntersectionObserver
     const revealObserver = new IntersectionObserver((entries) => {
