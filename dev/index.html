@@ -25,6 +25,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Restore dark mode before paint to prevent flash -->
+  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');</script>
 
   <style>
     /* ─── CSS Variables ──────────────────────────────── */
@@ -42,6 +44,97 @@
       --font-body:   'Inter', sans-serif;
       --font-head:   'Space Grotesk', sans-serif;
     }
+
+    /* ─── Dark Mode Variables ────────────────────────── */
+    [data-theme="dark"] {
+      --bg:         hsl(220, 15%, 10%);
+      --fg:         hsl(220, 10%, 92%);
+      --card:       hsl(220, 15%, 14%);
+      --primary:    hsl(14, 80%, 60%);
+      --primary-fg: hsl(0, 0%, 100%);
+      --secondary:  hsl(215, 70%, 62%);
+      --muted:      hsl(220, 15%, 18%);
+      --muted-fg:   hsl(220, 10%, 60%);
+      --border:     hsl(220, 15%, 24%);
+    }
+    [data-theme="dark"] .hero-overlay {
+      background: linear-gradient(to bottom, hsl(220 15% 10% / 0.88), hsl(220 15% 10% / 0.7), var(--bg));
+    }
+    [data-theme="dark"] #header.scrolled {
+      background: hsl(220 15% 12% / 0.88);
+    }
+    [data-theme="dark"] #mobile-menu {
+      background: hsl(220 15% 10% / 0.98);
+    }
+
+    /* ─── Scroll Progress Bar ────────────────────────── */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      z-index: 9999;
+      border-radius: 0 2px 2px 0;
+      transition: width 0.08s linear;
+      pointer-events: none;
+    }
+
+    /* ─── Floating CTA Button ────────────────────────── */
+    #fab {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.5rem;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: 9999px;
+      background: var(--primary);
+      color: var(--primary-fg);
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 24px hsl(14 80% 52% / 0.45);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px) scale(0.95);
+      transition: opacity 0.35s, visibility 0.35s, transform 0.35s, filter 0.2s;
+    }
+    #fab.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+    #fab:hover { filter: brightness(1.12); }
+    #fab svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    @media (max-width: 480px) {
+      #fab { bottom: 1.1rem; right: 1rem; padding: 0.65rem 1.1rem; font-size: 0.85rem; }
+    }
+
+    /* ─── Dark Mode Toggle Button ────────────────────── */
+    .btn-theme {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem; height: 2.25rem;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--fg);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+    .btn-theme:hover { background: var(--muted); }
+    .btn-theme svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; }
+    .icon-sun  { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun  { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
 
     /* ─── Reset & Base ───────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -773,6 +866,9 @@
 
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
   <!-- ═══ LOADER ══════════════════════════════════════ -->
   <div id="loader">
     <img src="src/assets/logo.png" alt="ΗΛΕΚΤΡΟΚΑΛΥΨΗ" class="loader-logo" />
@@ -796,6 +892,10 @@
       </nav>
 
       <div class="header-actions">
+        <button class="btn-theme" id="themeToggle" aria-label="Εναλλαγή σκοτεινής λειτουργίας" onclick="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <a href="#contact" onclick="smoothScroll(event,'#contact')" class="btn-call glow-sm">
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
           Καλέστε μας
@@ -1213,6 +1313,12 @@
     </div>
   </footer>
 
+  <!-- ═══ FLOATING CTA ══════════════════════════════════ -->
+  <button id="fab" aria-label="Καλέστε μας" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+    Καλέστε μας
+  </button>
+
   <!-- ═══ JAVASCRIPT ════════════════════════════════════ -->
   <script>
     // ── Loader ──────────────────────────────────────────
@@ -1290,6 +1396,30 @@
     }, { threshold: 0.5 });
 
     document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // ── Dark Mode Toggle ─────────────────────────────────
+    function toggleTheme() {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    // ── Scroll Progress Bar + FAB visibility ─────────────
+    (function() {
+      var progressBar = document.getElementById('scroll-progress');
+      var fab = document.getElementById('fab');
+      window.addEventListener('scroll', function() {
+        var scrollTop = window.scrollY;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+        fab.classList.toggle('visible', scrollTop > 400);
+      }, { passive: true });
+    })();
 
     // Contact form → mailto
     function handleSubmit(e) {
