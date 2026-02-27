@@ -133,11 +133,15 @@
       transition: background 0.25s, border-color 0.25s, color 0.25s;
     }
     .btn-theme:hover { background: var(--muted); }
-    .btn-theme svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: block; }
-    .icon-sun  { display: none; }
-    .icon-moon { display: block; }
-    [data-theme="dark"] .icon-sun  { display: block; }
-    [data-theme="dark"] .icon-moon { display: none; }
+    .btn-theme svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-theme .icon-sun  { display: none; }
+    .btn-theme .icon-moon { display: block; }
+    [data-theme="dark"] .btn-theme .icon-sun  { display: block; }
+    [data-theme="dark"] .btn-theme .icon-moon { display: none; }
+    /* Mobile: move toggle to left to balance the hamburger on the right */
+    @media (max-width: 1023px) {
+      .btn-theme { position: absolute; left: 1rem; z-index: 2; }
+    }
 
     /* ─── Reset & Base ───────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
