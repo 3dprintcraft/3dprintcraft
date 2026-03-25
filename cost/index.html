@@ -543,8 +543,6 @@
 <body>
 
 <!-- ── TOAST ── -->
-<div class="toast" id="toast">✓ Αντιγράφηκε!</div>
-
 <!-- ── SETTINGS OVERLAY ── -->
 <div class="overlay" id="overlay" onclick="closeSettings()"></div>
 <aside class="settings-panel" id="settingsPanel">
@@ -808,11 +806,7 @@ const FILAMENT_NAMES = {
 
 const COLORS = ['#ff6b2b','#4f8ef7','#34d399','#fbbf24','#a78bfa','#f87171'];
 
-// ── STATE ──
-let cfg = loadCfg();
-let printer = 'a1';
-
-const CFG_VERSION = 3; // bump to force reset on breaking changes
+const CFG_VERSION = 3;
 
 function loadCfg() {
   try {
@@ -830,6 +824,10 @@ function saveCfg() {
   cfg._v = CFG_VERSION;
   localStorage.setItem('printcalc_cfg', JSON.stringify(cfg));
 }
+
+// ── STATE ──
+let cfg = loadCfg();
+let printer = 'a1';
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
