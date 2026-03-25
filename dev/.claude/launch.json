@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "3dprintcraft-dev",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "5173"],
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "http.server", "5173", "--directory", ".."],
       "port": 5173
     }
   ]

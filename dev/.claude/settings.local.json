@@ -6,7 +6,22 @@
       "Bash(cmd //c \"where npm 2>nul\")",
       "Bash(cmd //c \"where node 2>nul\")",
       "Bash(powershell -Command \"\\(Get-Content ''static/index.html''\\) -replace ''\\\\.\\\\./src/assets/'', ''src/assets/'' | Set-Content ''index.html'' -Encoding UTF8\")",
-      "Bash(python -c \":*)"
+      "Bash(python -c \":*)",
+      "Bash(grep -v \"^$\")",
+      "Bash(python3.11 --version)",
+      "Bash(py --version)",
+      "Bash(py -3 --version)",
+      "Bash(py -3 -c \":*)",
+      "Bash(py -3 -m pip install pdfplumber -q)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(cmd.exe /c \"npx tsc --noEmit 2>&1\")",
+      "Bash(cmd.exe /c \"npm run build 2>&1\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\Nomikos\\\\Documents\\\\GitHub\\\\3dprintcraft\\\\dev''; npm run build 2>&1\")",
+      "Bash(powershell.exe -Command \"Get-Command node,npm -ErrorAction SilentlyContinue | Select-Object Name,Source\")",
+      "Bash(grep -E \"^tsc$|^vite$\")",
+      "Bash(mkdir -p /c/Users/Nomikos/Documents/GitHub/3dprintcraft/cost)",
+      "Bash(mv /c/Users/Nomikos/Documents/GitHub/3dprintcraft/dev/cost/index.html /c/Users/Nomikos/Documents/GitHub/3dprintcraft/cost/index.html)"
     ]
   }
 }

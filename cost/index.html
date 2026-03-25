@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Κοστολόγηση 3D Εκτύπωσης | 3D PrintCraft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --surface2: #f1f3f7;
+      --border: #e2e6ed;
+      --primary: #e05a2b;
+      --primary-light: rgba(224,90,43,0.10);
+      --primary-border: rgba(224,90,43,0.30);
+      --text: #1a1f2e;
+      --muted: #6b7280;
+      --muted2: #9ca3af;
+      --success: #16a34a;
+      --radius: 10px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
+    h1,h2,h3 { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .header-left { display: flex; align-items: center; gap: 10px; }
+    .header-logo { height: 32px; width: auto; }
+    .header-title { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px; color: var(--text); }
+    .header-subtitle { font-size: 11px; color: var(--muted); margin-top: 1px; }
+    .header-right { display: flex; gap: 8px; }
+    .btn-sm {
+      display: flex; align-items: center; gap: 5px;
+      padding: 6px 12px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface); color: var(--muted); font-size: 12px; font-weight: 500;
+      cursor: pointer; transition: all .15s;
+    }
+    .btn-sm:hover { background: var(--surface2); color: var(--text); }
+
+    /* Settings panel */
+    #settings-panel {
+      display: none; background: var(--surface2); border-bottom: 1px solid var(--border);
+    }
+    #settings-panel.open { display: block; }
+    .settings-inner {
+      max-width: 1100px; margin: 0 auto; padding: 16px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;
+    }
+
+    /* Layout */
+    main { max-width: 1100px; margin: 0 auto; padding: 20px 16px; display: grid; grid-template-columns: 1fr 320px; gap: 16px; }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+    .left-col { display: flex; flex-direction: column; gap: 14px; }
+
+    /* Card */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+    }
+    .card-title {
+      display: flex; align-items: center; gap: 7px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .card-title svg { color: var(--primary); }
+
+    /* Grid helpers */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 600px) { .grid-4 { grid-template-columns: 1fr 1fr; } .grid-3 { grid-template-columns: 1fr 1fr; } }
+
+    /* Field */
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label { font-size: 11px; font-weight: 500; color: var(--muted); }
+    .field .hint { font-size: 10px; color: var(--muted2); }
+    input[type="number"], select {
+      width: 100%; padding: 8px 10px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text); font-size: 13px; font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color .15s, box-shadow .15s; appearance: none;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: var(--primary); box-shadow: 0 0 0 3px rgba(224,90,43,.12);
+    }
+    .input-readonly {
+      padding: 8px 10px; border-radius: 7px; border: 1px solid var(--border);
+      background: var(--surface2); color: var(--muted); font-size: 13px;
+    }
+    .info-chip {
+      padding: 8px 12px; border-radius: 7px; background: var(--surface2);
+      font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Toggle */
+    .toggle-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .toggle {
+      width: 40px; height: 22px; border-radius: 11px; background: var(--border);
+      position: relative; cursor: pointer; border: none; transition: background .2s; flex-shrink: 0;
+    }
+    .toggle.on { background: var(--primary); }
+    .toggle::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 16px; height: 16px; border-radius: 50%; background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: left .2s;
+    }
+    .toggle.on::after { left: 21px; }
+    .toggle-label { font-size: 13px; color: var(--muted); }
+
+    /* Slider */
+    .slider-wrap { margin-top: 12px; }
+    input[type="range"] {
+      width: 100%; accent-color: var(--primary); height: 4px; cursor: pointer;
+    }
+    .slider-labels { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted2); margin-top: 4px; }
+
+    /* Results */
+    .results-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+      position: sticky; top: 72px;
+    }
+    .cost-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; }
+    .cost-row.sub { font-size: 13px; color: var(--muted); }
+    .cost-row.total { font-size: 14px; font-weight: 600; color: var(--text); }
+    .cost-row .val { font-variant-numeric: tabular-nums; }
+    .divider { height: 1px; background: var(--border); margin: 10px 0; }
+
+    .price-box {
+      margin-top: 14px; padding: 16px; border-radius: 10px;
+      background: var(--primary-light); border: 1px solid var(--primary-border);
+      text-align: center;
+    }
+    .price-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--primary); margin-bottom: 4px; }
+    .price-value { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: var(--primary); line-height: 1; }
+    .price-vat { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .price-vat-val { font-size: 13px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+
+    .info-rows { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+    .info-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); }
+    .info-row span:last-child { font-weight: 500; color: var(--text); }
+
+    .per-gram { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); text-align: center; font-size: 11px; color: var(--muted2); }
+
+    .tips-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px; margin-top: 14px; font-size: 11px; color: var(--muted);
+    }
+    .tips-card p { margin-bottom: 3px; }
+    .tips-title { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text); margin-bottom: 8px; }
+
+    /* SVG icons inline */
+    .icon { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <img src="../dev/src/assets/logo.png" alt="3D PrintCraft" class="header-logo" onerror="this.style.display='none'" />
+      <div>
+        <div class="header-title">Κοστολόγηση Εκτύπωσης</div>
+        <div class="header-subtitle">3D PrintCraft — Bambu Lab</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn-sm" onclick="resetAll()">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
+        Επαναφορά
+      </button>
+      <button class="btn-sm" onclick="toggleSettings()">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Ρυθμίσεις
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="settings-panel">
+  <div class="settings-inner">
+    <div class="field">
+      <label>Κόστος ρεύματος (€/kWh)</label>
+      <input type="number" id="s-elec" step="0.001" min="0" value="0.197" oninput="calc()" />
+      <span class="hint">Protergia Secure — Λογ/σμός Ιαν 2026</span>
+    </div>
+    <div class="field">
+      <label>Συντήρηση A1 Combo (€/h)</label>
+      <input type="number" id="s-maint-a1" step="0.01" min="0" value="0.15" oninput="calc()" />
+    </div>
+    <div class="field">
+      <label>Συντήρηση P1S (€/h)</label>
+      <input type="number" id="s-maint-p1s" step="0.01" min="0" value="0.18" oninput="calc()" />
+    </div>
+    <div class="field">
+      <label>Χρέωση σχεδιασμού (€/h)</label>
+      <input type="number" id="s-design-rate" step="1" min="0" value="15" oninput="calc()" />
+    </div>
+    <div class="field">
+      <label>ΦΠΑ (%)</label>
+      <input type="number" id="s-vat" step="1" min="0" value="24" oninput="calc()" />
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="left-col">
+
+    <!-- Printer & Material -->
+    <div class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Εκτυπωτής & Υλικό
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Εκτυπωτής</label>
+          <select id="printer" onchange="calc()">
+            <option value="a1">A1 Combo — 200W avg</option>
+            <option value="p1s" selected>P1S — 280W avg</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Υλικό (Bambu Store EU)</label>
+          <select id="filament" onchange="onFilamentChange()">
+            <optgroup label="PLA">
+              <option value="19.99">PLA Basic — €19.99/kg</option>
+              <option value="22.99">PLA Matte — €22.99/kg</option>
+              <option value="24.99">PLA Silk — €24.99/kg</option>
+              <option value="27.99">PLA Silk+ — €27.99/kg</option>
+              <option value="27.99">PLA Luminous — €27.99/kg</option>
+              <option value="34.99">PLA-CF — €34.99/kg</option>
+            </optgroup>
+            <optgroup label="PETG">
+              <option value="22.99">PETG Basic — €22.99/kg</option>
+              <option value="24.99">PETG-HF — €24.99/kg</option>
+              <option value="39.99">PETG-CF — €39.99/kg</option>
+            </optgroup>
+            <optgroup label="Engineering">
+              <option value="22.99">ABS — €22.99/kg</option>
+              <option value="24.99">ASA — €24.99/kg</option>
+              <option value="29.99">TPU 95A — €29.99/kg</option>
+              <option value="49.99">PA-CF — €49.99/kg</option>
+            </optgroup>
+            <optgroup label="Custom">
+              <option value="custom">Custom τιμή...</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field" id="custom-price-field" style="display:none">
+          <label>Custom τιμή (€/kg)</label>
+          <input type="number" id="custom-price" step="0.01" min="0" value="0" oninput="calc()" />
+        </div>
+        <div class="info-chip" id="material-chip" style="grid-column: span 2;">
+          <span class="dot" id="mat-dot" style="background:#4CAF50"></span>
+          <span id="mat-info">PLA Basic — <strong>€19.99/kg</strong> (Bambu Store EU)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Print details -->
+    <div class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Στοιχεία Εκτύπωσης
+      </div>
+      <div class="grid-4">
+        <div class="field">
+          <label>Ώρες εκτύπωσης</label>
+          <input type="number" id="print-h" min="0" value="0" oninput="calc()" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Λεπτά εκτύπωσης</label>
+          <input type="number" id="print-m" min="0" max="59" value="0" oninput="calc()" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Βάρος filament (g)</label>
+          <input type="number" id="fil-g" min="0" step="0.1" value="0" oninput="calc()" placeholder="0" />
+          <span class="hint">Χωρίς purge waste</span>
+        </div>
+        <div class="field">
+          <label>Συνολικός χρόνος</label>
+          <div class="input-readonly" id="total-time">0h 0min</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-color -->
+    <div class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="13" r="2.5"/><circle cx="6" cy="14" r="2.5"/><path d="M13.5 9v1.5a2.5 2.5 0 0 1-2.5 2.5H9a2.5 2.5 0 0 0-2.5 2.5"/><path d="M11 11.5L13.5 9"/></svg>
+        Πολύχρωμη Εκτύπωση (AMS 2 Pro)
+      </div>
+      <div class="toggle-row">
+        <button class="toggle" id="mc-toggle" onclick="toggleMultiColor()"></button>
+        <span class="toggle-label" id="mc-label">Μονόχρωμη εκτύπωση</span>
+      </div>
+      <div id="mc-options" style="display:none">
+        <div class="grid-3">
+          <div class="field">
+            <label>Αριθμός χρωμάτων</label>
+            <input type="number" id="num-colors" min="2" max="16" value="2" oninput="calc()" />
+            <span class="hint">Αλλαγές: χρώματα − 1</span>
+          </div>
+          <div class="field">
+            <label>Purge waste / αλλαγή (g)</label>
+            <input type="number" id="purge-g" min="0" step="1" value="30" oninput="calc()" />
+            <span class="hint">Εξαρτάται από AMS profile</span>
+          </div>
+          <div class="field">
+            <label>Σύνολο purge waste</label>
+            <div class="input-readonly" id="total-purge">0g</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Design time -->
+    <div class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Χρόνος Σχεδιασμού
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Ώρες σχεδιασμού</label>
+          <input type="number" id="design-h" min="0" step="0.5" value="0" oninput="calc()" placeholder="0" />
+        </div>
+        <div class="field">
+          <label>Χρέωση / ώρα (€)</label>
+          <div class="input-readonly" id="design-rate-display">€15.00/h</div>
+          <span class="hint">Ορίζεται στις Ρυθμίσεις</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Markup -->
+    <div class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Κέρδος
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Ποσοστό κέρδους (%)</label>
+          <input type="number" id="markup" min="0" step="5" value="30" oninput="onMarkupInput()" />
+          <span class="hint">Επί του συνολικού κόστους</span>
+        </div>
+        <div class="field">
+          <label>Κέρδος σε €</label>
+          <div class="input-readonly" id="profit-display">€0.00</div>
+        </div>
+      </div>
+      <div class="slider-wrap">
+        <input type="range" id="markup-slider" min="0" max="200" step="5" value="30" oninput="onSliderInput()" />
+        <div class="slider-labels"><span>0%</span><span>50%</span><span>100%</span><span>150%</span><span>200%</span></div>
+      </div>
+    </div>
+
+  </div><!-- /left-col -->
+
+  <!-- Results -->
+  <div>
+    <div class="results-card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Ανάλυση Κόστους
+      </div>
+
+      <div id="breakdown">
+        <div class="cost-row sub"><span>🧵 Filament</span><span class="val" id="r-fil">€0.00</span></div>
+        <div class="cost-row sub" id="r-purge-row" style="display:none"><span>♻️ Purge waste</span><span class="val" id="r-purge">€0.00</span></div>
+        <div class="cost-row sub"><span>⚡ Ρεύμα</span><span class="val" id="r-elec">€0.00</span></div>
+        <div class="cost-row sub"><span>🔧 Συντήρηση</span><span class="val" id="r-maint">€0.00</span></div>
+        <div class="cost-row sub" id="r-design-row" style="display:none"><span>🎨 Σχεδιασμός</span><span class="val" id="r-design">€0.00</span></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="cost-row total"><span>Συνολικό κόστος</span><span class="val" id="r-subtotal">€0.00</span></div>
+      <div class="cost-row sub"><span id="r-markup-label">Κέρδος (30%)</span><span class="val" id="r-profit">+€0.00</span></div>
+
+      <div class="price-box">
+        <div class="price-label">Τιμή Πώλησης</div>
+        <div class="price-value" id="r-total">€0.00</div>
+        <div class="price-vat">χωρίς ΦΠΑ</div>
+        <div class="price-vat-val" id="r-total-vat">με ΦΠΑ 24%: €0.00</div>
+      </div>
+
+      <div class="info-rows">
+        <div class="info-row"><span>Εκτυπωτής</span><span id="i-printer">P1S</span></div>
+        <div class="info-row"><span>Κατανάλωση</span><span id="i-kwh">0.000 kWh</span></div>
+        <div class="info-row"><span>Ρεύμα (€/kWh)</span><span id="i-rate">€0.197</span></div>
+        <div class="info-row"><span>Υλικό (€/kg)</span><span id="i-matprice">€19.99</span></div>
+        <div class="info-row" id="i-purge-row" style="display:none"><span id="i-purge-label">Purge (2 χρώματα)</span><span id="i-purge-g">0g</span></div>
+      </div>
+
+      <div class="per-gram" id="r-per-gram" style="display:none"></div>
+    </div>
+
+    <div class="tips-card">
+      <div class="tips-title">Πληροφορίες</div>
+      <p>• Ρεύμα: €0.197/kWh (Protergia Secure, Ιαν 2026)</p>
+      <p>• A1 Combo: ~200W μέσος όρος κατά την εκτύπωση</p>
+      <p>• P1S: ~280W μέσος όρος (enclosed + AMS)</p>
+      <p>• Purge default: 30g ανά αλλαγή χρώματος</p>
+      <p>• Τιμές Bambu Store EU (ενδεικτικές, χωρίς ΦΠΑ)</p>
+      <p>• Συντήρηση: nozzles, plates, λιπαντικά</p>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // ── Data ──────────────────────────────────────────────────────────────
+  const PRINTERS = { a1: { name: 'A1 Combo', watts: 200 }, p1s: { name: 'P1S', watts: 280 } };
+  const MAT_COLORS = {
+    '19.99': '#4CAF50', '22.99': '#2196F3', '24.99': '#FFD700',
+    '27.99': '#FFA500', '34.99': '#333333', '39.99': '#0D47A1',
+    '29.99': '#E91E63', '49.99': '#212121', 'custom': '#9C27B0'
+  };
+
+  let multiColor = false;
+
+  // ── Helpers ───────────────────────────────────────────────────────────
+  const $ = id => document.getElementById(id);
+  const v = id => parseFloat($(id).value) || 0;
+  const fmt = n => '€' + n.toFixed(2);
+
+  // ── Toggle settings ───────────────────────────────────────────────────
+  function toggleSettings() {
+    $('settings-panel').classList.toggle('open');
+  }
+
+  // ── Toggle multi-color ────────────────────────────────────────────────
+  function toggleMultiColor() {
+    multiColor = !multiColor;
+    $('mc-toggle').classList.toggle('on', multiColor);
+    $('mc-label').textContent = multiColor ? 'Ενεργή πολύχρωμη εκτύπωση' : 'Μονόχρωμη εκτύπωση';
+    $('mc-options').style.display = multiColor ? '' : 'none';
+    calc();
+  }
+
+  // ── Filament change ───────────────────────────────────────────────────
+  function onFilamentChange() {
+    const val = $('filament').value;
+    $('custom-price-field').style.display = val === 'custom' ? '' : 'none';
+    if (val === 'custom') {
+      $('material-chip').style.display = 'none';
+    } else {
+      $('material-chip').style.display = '';
+      $('mat-dot').style.background = MAT_COLORS[val] || '#999';
+      const text = $('filament').options[$('filament').selectedIndex].text;
+      const name = text.split(' — ')[0];
+      $('mat-info').innerHTML = `${name} — <strong>${fmt(parseFloat(val))}/kg</strong> (Bambu Store EU)`;
+    }
+    calc();
+  }
+
+  // ── Markup sync ───────────────────────────────────────────────────────
+  function onMarkupInput() {
+    $('markup-slider').value = $('markup').value;
+    calc();
+  }
+  function onSliderInput() {
+    $('markup').value = $('markup-slider').value;
+    calc();
+  }
+
+  // ── Reset ─────────────────────────────────────────────────────────────
+  function resetAll() {
+    $('print-h').value = 0; $('print-m').value = 0; $('fil-g').value = 0;
+    $('design-h').value = 0; $('num-colors').value = 2; $('purge-g').value = 30;
+    if (multiColor) toggleMultiColor();
+    calc();
+  }
+
+  // ── Main calculation ──────────────────────────────────────────────────
+  function calc() {
+    // Inputs
+    const printerId = $('printer').value;
+    const printer = PRINTERS[printerId];
+    const filVal = $('filament').value;
+    const pricePerKg = filVal === 'custom' ? v('custom-price') : parseFloat(filVal) || 0;
+    const printH = v('print-h') + v('print-m') / 60;
+    const filG = v('fil-g');
+    const numColors = Math.max(2, Math.round(v('num-colors')));
+    const purgePerChange = v('purge-g');
+    const purgeWasteG = multiColor && numColors > 1 ? (numColors - 1) * purgePerChange : 0;
+    const designH = v('design-h');
+    const markup = v('markup');
+
+    // Settings
+    const elecRate = v('s-elec');
+    const maintA1 = v('s-maint-a1');
+    const maintP1s = v('s-maint-p1s');
+    const designRate = v('s-design-rate');
+    const vat = v('s-vat');
+    const maintRate = printerId === 'a1' ? maintA1 : maintP1s;
+
+    // Costs
+    const filCost   = (filG / 1000) * pricePerKg;
+    const purgeCost = (purgeWasteG / 1000) * pricePerKg;
+    const kwh       = (printH * printer.watts) / 1000;
+    const elecCost  = kwh * elecRate;
+    const maintCost = printH * maintRate;
+    const designCost= designH * designRate;
+    const subtotal  = filCost + purgeCost + elecCost + maintCost + designCost;
+    const profit    = subtotal * (markup / 100);
+    const total     = subtotal + profit;
+    const totalVat  = total * (1 + vat / 100);
+
+    // Update display
+    $('total-time').textContent = `${Math.floor(printH)}h ${Math.round((printH % 1) * 60)}min`;
+    $('total-purge').textContent = purgeWasteG.toFixed(1) + 'g';
+    $('design-rate-display').textContent = `€${designRate.toFixed(2)}/h`;
+    $('profit-display').textContent = fmt(profit);
+
+    $('r-fil').textContent = fmt(filCost);
+    $('r-purge').textContent = fmt(purgeCost);
+    $('r-purge-row').style.display = (multiColor && numColors > 1) ? '' : 'none';
+    $('r-elec').textContent = fmt(elecCost);
+    $('r-maint').textContent = fmt(maintCost);
+    $('r-design').textContent = fmt(designCost);
+    $('r-design-row').style.display = designH > 0 ? '' : 'none';
+    $('r-subtotal').textContent = fmt(subtotal);
+    $('r-markup-label').textContent = `Κέρδος (${markup}%)`;
+    $('r-profit').textContent = `+${fmt(profit)}`;
+    $('r-total').textContent = fmt(total);
+    $('r-total-vat').textContent = `με ΦΠΑ ${vat}%: ${fmt(totalVat)}`;
+
+    $('i-printer').textContent = printer.name;
+    $('i-kwh').textContent = kwh.toFixed(3) + ' kWh';
+    $('i-rate').textContent = `€${elecRate.toFixed(3)}`;
+    $('i-matprice').textContent = fmt(pricePerKg);
+    $('i-purge-row').style.display = (multiColor && numColors > 1) ? '' : 'none';
+    $('i-purge-label').textContent = `Purge (${numColors} χρώματα)`;
+    $('i-purge-g').textContent = purgeWasteG.toFixed(1) + 'g';
+
+    const totalG = filG + purgeWasteG;
+    if (total > 0 && totalG > 0) {
+      $('r-per-gram').style.display = '';
+      $('r-per-gram').textContent = `${fmt(total / totalG)}/g · ${fmt(total / (totalG / 1000))}/kg πωλούμενο`;
+    } else {
+      $('r-per-gram').style.display = 'none';
+    }
+  }
+
+  // Init
+  onFilamentChange();
+  calc();
+</script>
+</body>
+</html>
