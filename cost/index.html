@@ -571,8 +571,8 @@
           <div class="s-input-wrap"><input type="number" id="s-watt" step="10" min="0" /><span class="s-unit">W</span></div>
         </div>
         <div class="s-field">
-          <label>Συντήρηση εκτυπωτή</label>
-          <div class="s-input-wrap"><input type="number" id="s-maint" step="0.1" min="0" /><span class="s-unit">€/ώρα</span></div>
+          <label>Συντήρηση</label>
+          <div class="s-input-wrap"><input type="number" id="s-maint-mins" step="1" min="0" max="60" /><span class="s-unit">λεπτά/ώρα</span></div>
         </div>
       </div>
     </div>
@@ -591,16 +591,6 @@
         <div class="s-field">
           <label>Ποσοστό αποτυχιών</label>
           <div class="s-input-wrap"><input type="number" id="s-failure" step="0.5" min="0" max="50" /><span class="s-unit">%</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div class="s-section-title">AMS Purge Waste</div>
-      <div class="s-grid">
-        <div class="s-field">
-          <label>Waste ανά αλλαγή χρώματος</label>
-          <div class="s-input-wrap"><input type="number" id="s-purge" step="0.5" min="0" /><span class="s-unit">g</span></div>
         </div>
       </div>
     </div>
@@ -673,28 +663,17 @@
           </div>
           <div class="field">
             <label>Χρόνος εκτύπωσης</label>
-            <div class="input-unit">
-              <input type="number" id="minutes" min="0" step="1" placeholder="0" oninput="calc()" />
-              <span class="unit-badge">min</span>
+            <div class="grid-2" style="gap:0.4rem;">
+              <div class="input-unit">
+                <input type="number" id="printHours" min="0" step="1" placeholder="0" oninput="calc()" />
+                <span class="unit-badge">h</span>
+              </div>
+              <div class="input-unit">
+                <input type="number" id="printMins" min="0" max="59" step="1" placeholder="0" oninput="calc()" />
+                <span class="unit-badge">m</span>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- AMS -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon blue">🎨</div>
-        <div>
-          <div class="card-title">AMS — Αλλαγές Χρώματος</div>
-          <div class="card-sub" id="purgeInfo">Χωρίς αλλαγές χρώματος</div>
-        </div>
-      </div>
-      <div class="slider-wrap">
-        <div class="slider-row">
-          <input type="range" id="colorChanges" min="0" max="50" value="0" oninput="updateColorChanges()" />
-          <div class="slider-val" id="colorChangesVal">0</div>
         </div>
       </div>
     </div>
@@ -787,8 +766,7 @@
 const DEFAULTS = {
   kwh: 0.20,
   watt: 350,
-  maint: 0.80,
-  purgePerChange: 4.5,
+  maintMins: 20,
   designRate: 10,
   marginDefault: 60,
   failure: 5,
@@ -821,7 +799,7 @@ const FILAMENT_NAMES = {
 
 const COLORS = ['#ff6b2b','#5b9cf7','#3ee0a5','#f7c948','#a78bfa','#f87171'];
 
-const CFG_VERSION = 5;
+const CFG_VERSION = 6;
 
 function loadCfg() {
   try {
@@ -852,16 +830,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ── UI UPDATES ──
-function updateColorChanges() {
-  const v = parseInt(document.getElementById('colorChanges').value) || 0;
-  document.getElementById('colorChangesVal').textContent = v;
-  const waste = (v * cfg.purgePerChange).toFixed(1);
-  document.getElementById('purgeInfo').textContent = v === 0
-    ? 'Χωρίς αλλαγές χρώματος'
-    : `${v} αλλαγές · ~${waste}g purge waste`;
-  calc();
-}
-
 function updateMargin() {
   const v = parseInt(document.getElementById('margin').value) || 0;
   document.getElementById('marginVal').textContent = v + '%';
@@ -872,25 +840,23 @@ function updateMargin() {
 // ── MAIN CALCULATION ──
 function calc() {
   const gramsRaw  = parseFloat(document.getElementById('grams').value) || 0;
-  const minutes   = parseFloat(document.getElementById('minutes').value) || 0;
-  const colorChg  = parseInt(document.getElementById('colorChanges').value) || 0;
+  const printH    = parseFloat(document.getElementById('printHours').value) || 0;
+  const printM    = parseFloat(document.getElementById('printMins').value) || 0;
   const designH   = parseFloat(document.getElementById('designHours').value) || 0;
   const sales     = Math.max(1, parseInt(document.getElementById('expectedSales').value) || 1);
   const marginPct = parseInt(document.getElementById('margin').value) || 0;
   const filType   = document.getElementById('filamentType').value;
 
-  const hours      = minutes / 60;
-  const pricePerKg = cfg.filamentPrices[filType] || 0;
-  const watt       = cfg.watt;
-
-  // purge waste
-  const purgeGrams = colorChg * cfg.purgePerChange;
-  const totalGrams = gramsRaw + purgeGrams;
+  const totalMinutes = printH * 60 + printM;
+  const hours        = totalMinutes / 60;
+  const pricePerKg   = cfg.filamentPrices[filType] || 0;
+  const watt         = cfg.watt;
+  const totalGrams   = gramsRaw;
 
   // individual costs
   const matCost     = (totalGrams / 1000) * pricePerKg;
   const elecCost    = hours * (watt / 1000) * cfg.kwh;
-  const maintCost   = hours * cfg.maint;
+  const maintCost   = hours * (cfg.maintMins / 60) * cfg.designRate;
   const designCost  = designH > 0 ? (designH * cfg.designRate) / sales : 0;
 
   const subtotal    = matCost + elecCost + maintCost + designCost;
@@ -900,7 +866,7 @@ function calc() {
   const finalPrice  = baseCost + marginAmt;
 
   // nothing to show?
-  if (gramsRaw === 0 && minutes === 0 && designH === 0) {
+  if (gramsRaw === 0 && totalMinutes === 0 && designH === 0) {
     showZero();
     return;
   }
@@ -929,9 +895,9 @@ function calc() {
   };
 
   const items = [
-    { name: 'Υλικό',        val: matCost,     sub: `${fmt(totalGrams)}g × ${fmt(pricePerKg)}€/kg${purgeGrams > 0 ? ` (+${fmt(purgeGrams)}g purge)` : ''}` },
-    { name: 'Ρεύμα',        val: elecCost,    sub: `${fmtMin(minutes)} × ${watt}W × ${cfg.kwh}€/kWh` },
-    { name: 'Συντήρηση',    val: maintCost,   sub: `${fmtMin(minutes)} × ${fmt(cfg.maint)}€/h` },
+    { name: 'Υλικό',        val: matCost,     sub: `${fmt(totalGrams)}g × ${fmt(pricePerKg)}€/kg` },
+    { name: 'Ρεύμα',        val: elecCost,    sub: `${fmtMin(totalMinutes)} × ${watt}W × ${cfg.kwh}€/kWh` },
+    { name: 'Συντήρηση',    val: maintCost,   sub: `${cfg.maintMins}λ/ώρα × ${fmtMin(totalMinutes)} εκτύπωσης` },
     { name: 'Σχεδιασμός',   val: designCost,  sub: designH > 0 ? `${fmt(designH)}h × ${cfg.designRate}€ ÷ ${sales} τεμ` : '' },
     { name: 'Αποτυχίες',    val: failureCost, sub: `${cfg.failure}% buffer` },
   ].filter(i => i.val > 0.001);
@@ -962,7 +928,7 @@ function calc() {
   document.getElementById('breakdownContainer').innerHTML = html;
   document.getElementById('copyBtn').style.display = 'flex';
 
-  window._lastResult = { finalPrice, baseCost, marginAmt, matCost, elecCost, maintCost, designCost, failureCost, marginPct, filType, totalGrams, minutes, designH, sales };
+  window._lastResult = { finalPrice, baseCost, marginAmt, matCost, elecCost, maintCost, designCost, failureCost, marginPct, filType, totalGrams, totalMinutes, designH, sales };
 }
 
 function showZero() {
@@ -1000,7 +966,7 @@ function copyResult() {
     ``,
     `Ανάλυση:`,
     `  • Filament (${FILAMENT_NAMES[r.filType]}): €${fmt(r.matCost)} — ${fmt(r.totalGrams)}g`,
-    `  • Ρεύμα: €${fmt(r.elecCost)} — ${fmtMin(r.minutes)}`,
+    `  • Ρεύμα: €${fmt(r.elecCost)} — ${fmtMin(r.totalMinutes)}`,
     `  • Συντήρηση: €${fmt(r.maintCost)}`,
     r.designCost > 0 ? `  • Σχεδιασμός: €${fmt(r.designCost)} (${r.designH}h ÷ ${r.sales} τεμ)` : null,
     `  • Αποτυχίες (${cfg.failure}%): €${fmt(r.failureCost)}`,
@@ -1041,7 +1007,6 @@ function initSettings() {
       if (!isNaN(v)) {
         cfg[cfgKey] = v;
         saveCfg();
-        if (cfgKey === 'purgePerChange') updateColorChanges();
         if (cfgKey === 'marginDefault') {
           document.getElementById('margin').value = v;
           updateMargin();
@@ -1053,8 +1018,7 @@ function initSettings() {
 
   wireup('s-kwh',            'kwh');
   wireup('s-watt',           'watt');
-  wireup('s-maint',          'maint');
-  wireup('s-purge',          'purgePerChange');
+  wireup('s-maint-mins',     'maintMins');
   wireup('s-design-rate',    'designRate');
   wireup('s-margin-default', 'marginDefault');
   wireup('s-failure',        'failure');
@@ -1068,8 +1032,7 @@ function updateFilamentPrice(key, val) {
 function populateSettings() {
   document.getElementById('s-kwh').value            = cfg.kwh;
   document.getElementById('s-watt').value           = cfg.watt;
-  document.getElementById('s-maint').value          = cfg.maint;
-  document.getElementById('s-purge').value          = cfg.purgePerChange;
+  document.getElementById('s-maint-mins').value     = cfg.maintMins;
   document.getElementById('s-design-rate').value    = cfg.designRate;
   document.getElementById('s-margin-default').value = cfg.marginDefault;
   document.getElementById('s-failure').value        = cfg.failure;
