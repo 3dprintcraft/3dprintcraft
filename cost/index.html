@@ -774,11 +774,11 @@ const DEFAULTS = {
   kwh: 0.20,
   wattA1: 300,
   wattP1s: 350,
-  maint: 1.00,        // αναλώσιμα + μερική απόσβεση εξοπλισμού
-  purgePerChange: 4.5, // επαγγελματικές ρυθμίσεις flush AMS
-  designRate: 35,      // αμοιβή CAD designer Ελλάδα/ΕΕ
-  marginDefault: 80,   // επαγγελματική παραγωγή custom εξαρτημάτων
-  failure: 8,          // Bambu + AMS multi-color, ρεαλιστικό ποσοστό
+  maint: 1.00,
+  purgePerChange: 4.5,
+  designRate: 10,
+  marginDefault: 40,
+  failure: 5,
   filamentPrices: {
     pla_basic: 14.99,
     pla_matte: 18.99,
@@ -812,7 +812,7 @@ const COLORS = ['#ff6b2b','#4f8ef7','#34d399','#fbbf24','#a78bfa','#f87171'];
 let cfg = loadCfg();
 let printer = 'a1';
 
-const CFG_VERSION = 2; // bump to force reset on breaking changes
+const CFG_VERSION = 3; // bump to force reset on breaking changes
 
 function loadCfg() {
   try {
