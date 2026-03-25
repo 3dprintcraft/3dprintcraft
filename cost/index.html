@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3DPrintCraft | Κοστολόγηση Εκτύπωσης</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0b0d14;
+      --surface:     #13161f;
+      --surface2:    #1a1e2a;
+      --border:      rgba(255,255,255,0.07);
+      --border2:     rgba(255,255,255,0.12);
+      --accent:      #ff6b2b;
+      --accent2:     #ff8f5a;
+      --accent-glow: rgba(255,107,43,0.25);
+      --blue:        #4f8ef7;
+      --green:       #34d399;
+      --yellow:      #fbbf24;
+      --red:         #f87171;
+      --text:        #e8eaf0;
+      --text-muted:  #6b7280;
+      --text-dim:    #9ca3af;
+      --radius:      14px;
+      --radius-sm:   8px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.4);
+      --transition:  0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      padding: 2rem 1.5rem 1.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,107,43,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent), #ff4500);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .logo-text { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo-text span { color: var(--accent); }
+    header h1 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #fff 30%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+    .settings-btn {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .settings-btn:hover { background: var(--surface); color: var(--accent); border-color: var(--accent); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      main { grid-template-columns: 1fr 1fr; padding: 0 1.5rem 4rem; }
+    }
+    @media (min-width: 1024px) {
+      main { grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; }
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: var(--transition);
+    }
+    .card:hover { border-color: var(--border2); }
+    .card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card-title .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .input-col { display: flex; flex-direction: column; gap: 1rem; }
+
+    /* ── FORM ELEMENTS ── */
+    .field { display: flex; flex-direction: column; gap: 0.4rem; }
+    label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+    .label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .label-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    input[type="number"], select {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: inherit;
+      padding: 0.65rem 0.85rem;
+      transition: var(--transition);
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input[type="number"]:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    input[type="number"]::-webkit-inner-spin-button { opacity: 0.4; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    select option { background: #1a1e2a; }
+
+    /* ── PRINTER TOGGLE ── */
+    .printer-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .printer-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      color: var(--text-dim);
+      padding: 0.75rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+      text-align: center;
+      line-height: 1.3;
+    }
+    .printer-btn small { display: block; font-size: 0.72rem; font-weight: 400; color: var(--text-muted); margin-top: 0.15rem; }
+    .printer-btn.active {
+      background: rgba(255,107,43,0.12);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .printer-btn.active small { color: var(--accent2); }
+
+    /* ── INPUT WITH UNIT ── */
+    .input-unit {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-unit input {
+      padding-right: 3rem;
+    }
+    .unit-badge {
+      position: absolute;
+      right: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      pointer-events: none;
+    }
+
+    /* ── SLIDER ── */
+    .slider-field { display: flex; flex-direction: column; gap: 0.5rem; }
+    .slider-row { display: flex; align-items: center; gap: 0.75rem; }
+    input[type="range"] {
+      flex: 1;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--surface2);
+      border-radius: 99px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .slider-value {
+      min-width: 44px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(255,107,43,0.1);
+      border-radius: 6px;
+      padding: 0.2rem 0.4rem;
+    }
+
+    /* ── RESULTS ── */
+    .results-col { display: flex; flex-direction: column; gap: 1rem; }
+
+    .price-hero {
+      background: linear-gradient(135deg, rgba(255,107,43,0.15) 0%, rgba(255,107,43,0.05) 100%);
+      border: 1px solid rgba(255,107,43,0.3);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255,107,43,0.12), transparent 70%);
+    }
+    .price-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.5rem;
+    }
+    .price-amount {
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #fff;
+      line-height: 1;
+    }
+    .price-amount .currency { font-size: 0.55em; vertical-align: top; margin-top: 0.3em; color: var(--accent2); }
+    .price-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .price-sub strong { color: var(--text-dim); }
+
+    /* ── BREAKDOWN ── */
+    .breakdown { display: flex; flex-direction: column; gap: 0.6rem; }
+    .breakdown-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .breakdown-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .breakdown-name {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--text-dim);
+    }
+    .breakdown-dot {
+      width: 8px; height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .breakdown-val {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .bar-track {
+      height: 4px;
+      background: var(--surface2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0.4rem 0;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .total-row .lbl { color: var(--text-muted); }
+    .total-row .val { font-weight: 700; color: var(--text); }
+    .total-row.highlight .lbl { color: var(--accent2); font-weight: 600; }
+    .total-row.highlight .val { color: var(--accent); font-size: 1.05rem; }
+
+    /* ── ZERO STATE ── */
+    .zero-state {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-muted);
+    }
+    .zero-state .icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.4; }
+    .zero-state p { font-size: 0.85rem; }
+
+    /* ── COPY BTN ── */
+    .copy-btn {
+      width: 100%;
+      background: rgba(255,107,43,0.1);
+      border: 1px solid rgba(255,107,43,0.3);
+      border-radius: var(--radius-sm);
+      color: var(--accent2);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.7rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .copy-btn:hover { background: rgba(255,107,43,0.18); border-color: var(--accent); color: var(--accent); }
+    .copy-btn:active { transform: scale(0.98); }
+
+    /* ── SETTINGS OVERLAY ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .overlay.open { opacity: 1; pointer-events: all; }
+    .settings-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(420px, 100vw);
+      height: 100vh;
+      background: var(--surface);
+      border-left: 1px solid var(--border2);
+      z-index: 101;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .settings-panel.open { transform: translateX(0); }
+    .settings-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .settings-header h2 { font-size: 1rem; font-weight: 700; }
+    .close-btn {
+      width: 32px; height: 32px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .close-btn:hover { color: var(--text); border-color: var(--border2); }
+    .settings-body {
+      overflow-y: auto;
+      flex: 1;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .settings-body::-webkit-scrollbar { width: 4px; }
+    .settings-body::-webkit-scrollbar-track { background: transparent; }
+    .settings-body::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+    .settings-section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .settings-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .s-field {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .s-field label {
+      font-size: 0.83rem;
+      color: var(--text-dim);
+      flex: 1;
+    }
+    .s-field .s-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .s-field input {
+      width: 90px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 0.45rem 0.6rem;
+      outline: none;
+      text-align: right;
+      transition: var(--transition);
+    }
+    .s-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); }
+    .s-unit { font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }
+    .reset-btn {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.82rem;
+      padding: 0.6rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 0.5rem;
+    }
+    .reset-btn:hover { color: var(--red); border-color: var(--red); background: rgba(248,113,113,0.06); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(calc(100% + 2rem));
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 99px;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      z-index: 200;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 767px) {
+      header { padding: 1.5rem 1rem 1.25rem; }
+      main { padding-bottom: 8rem; }
+      .price-hero { padding: 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">✓ Αντιγράφηκε!</div>
+
+<!-- ── SETTINGS OVERLAY ── -->
+<div class="overlay" id="overlay" onclick="closeSettings()"></div>
+<aside class="settings-panel" id="settingsPanel">
+  <div class="settings-header">
+    <h2>⚙️ Ρυθμίσεις</h2>
+    <button class="close-btn" onclick="closeSettings()">✕</button>
+  </div>
+  <div class="settings-body">
+
+    <div>
+      <div class="settings-section-title">💡 Ενέργεια & Λειτουργία</div>
+      <div class="settings-grid">
+        <div class="s-field">
+          <label>Κόστος ρεύματος</label>
+          <div class="s-input-wrap"><input type="number" id="s-kwh" step="0.01" min="0" /><span class="s-unit">€/kWh</span></div>
+        </div>
+        <div class="s-field">
+          <label>Ισχύς A1 Combo</label>
+          <div class="s-input-wrap"><input type="number" id="s-watt-a1" step="10" min="0" /><span class="s-unit">W</span></div>
+        </div>
+        <div class="s-field">
+          <label>Ισχύς P1S</label>
+          <div class="s-input-wrap"><input type="number" id="s-watt-p1s" step="10" min="0" /><span class="s-unit">W</span></div>
+        </div>
+        <div class="s-field">
+          <label>Κόστος συντήρησης</label>
+          <div class="s-input-wrap"><input type="number" id="s-maint" step="0.1" min="0" /><span class="s-unit">€/ώρα</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="settings-section-title">🧵 Τιμές Filament (€/kg)</div>
+      <div class="settings-grid" id="filamentPriceSettings"></div>
+    </div>
+
+    <div>
+      <div class="settings-section-title">📊 Αποβλήματα AMS</div>
+      <div class="settings-grid">
+        <div class="s-field">
+          <label>Waste ανά αλλαγή χρώματος</label>
+          <div class="s-input-wrap"><input type="number" id="s-purge" step="0.5" min="0" /><span class="s-unit">g</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="settings-section-title">🎯 Κόστος & Τιμολόγηση</div>
+      <div class="settings-grid">
+        <div class="s-field">
+          <label>Ωριαία αμοιβή σχεδιασμού</label>
+          <div class="s-input-wrap"><input type="number" id="s-design-rate" step="1" min="0" /><span class="s-unit">€/ώρα</span></div>
+        </div>
+        <div class="s-field">
+          <label>Προεπιλεγμένο margin</label>
+          <div class="s-input-wrap"><input type="number" id="s-margin-default" step="1" min="0" max="200" /><span class="s-unit">%</span></div>
+        </div>
+        <div class="s-field">
+          <label>Ποσοστό αποτυχιών</label>
+          <div class="s-input-wrap"><input type="number" id="s-failure" step="0.5" min="0" max="50" /><span class="s-unit">%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="resetSettings()">↺ Επαναφορά προεπιλογών</button>
+  </div>
+</aside>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">🖨️</div>
+    <div class="logo-text">3D<span>Print</span>Craft</div>
+  </div>
+  <h1>Κοστολόγηση Εκτύπωσης</h1>
+  <p>Υπολόγισε την τιμή πώλησης με ακρίβεια</p>
+  <button class="settings-btn" onclick="openSettings()" title="Ρυθμίσεις">⚙️</button>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+  <!-- LEFT: INPUTS -->
+  <div class="input-col">
+
+    <!-- PRINTER -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Εκτυπωτής</div>
+      <div class="printer-toggle">
+        <button class="printer-btn active" data-printer="a1" onclick="selectPrinter('a1')">
+          Bambu A1 Combo
+          <small>300W · FDM · AMS</small>
+        </button>
+        <button class="printer-btn" data-printer="p1s" onclick="selectPrinter('p1s')">
+          Bambu P1S
+          <small>350W · FDM · AMS 2 Pro</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- FILAMENT -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Filament</div>
+      <div style="display:flex;flex-direction:column;gap:0.85rem;">
+        <div class="field">
+          <label>Τύπος</label>
+          <select id="filamentType" onchange="calc()">
+            <option value="pla_basic">Bambu PLA Basic</option>
+            <option value="pla_matte">Bambu PLA Matte</option>
+            <option value="pla_silk">Bambu PLA Silk</option>
+            <option value="petg_basic">Bambu PETG Basic</option>
+            <option value="petg_hf">Bambu PETG HF</option>
+            <option value="abs">Bambu ABS</option>
+            <option value="asa">Bambu ASA</option>
+            <option value="pa6_cf">Bambu PA6-CF</option>
+            <option value="pa6_gf">Bambu PA6-GF</option>
+            <option value="tpu">Bambu TPU 95A</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+          <div class="field">
+            <div class="label-row">
+              <label>Κατανάλωση</label>
+              <span class="label-hint">από slicer</span>
+            </div>
+            <div class="input-unit">
+              <input type="number" id="grams" min="0" step="0.1" placeholder="0" oninput="calc()" />
+              <span class="unit-badge">g</span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="label-row">
+              <label>Διάρκεια</label>
+              <span class="label-hint">από slicer</span>
+            </div>
+            <div class="input-unit">
+              <input type="number" id="hours" min="0" step="0.25" placeholder="0" oninput="calc()" />
+              <span class="unit-badge">h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMS -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>AMS — Αλλαγές Χρώματος</div>
+      <div class="field">
+        <div class="label-row">
+          <label>Αριθμός αλλαγών χρώματος</label>
+          <span class="label-hint" id="purgeWasteLabel">≈ 0g waste</span>
+        </div>
+        <div class="slider-row">
+          <input type="range" id="colorChanges" min="0" max="50" value="0" oninput="updateColorChanges(this)" />
+          <div class="slider-value" id="colorChangesVal">0</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Σχεδιασμός</div>
+      <div class="field">
+        <div class="label-row">
+          <label>Ώρες σχεδιασμού</label>
+          <span class="label-hint" id="designRateLabel"></span>
+        </div>
+        <div class="input-unit">
+          <input type="number" id="designHours" min="0" step="0.25" placeholder="0" oninput="calc()" />
+          <span class="unit-badge">h</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARGIN -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Margin Κέρδους</div>
+      <div class="slider-field">
+        <div class="label-row">
+          <label>Ποσοστό κέρδους επί του κόστους</label>
+        </div>
+        <div class="slider-row">
+          <input type="range" id="margin" min="0" max="200" step="5" value="40" oninput="updateMargin(this)" />
+          <div class="slider-value" id="marginVal">40%</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: RESULTS -->
+  <div class="results-col">
+
+    <!-- HERO PRICE -->
+    <div class="price-hero">
+      <div class="price-label">Τιμή Πώλησης</div>
+      <div class="price-amount" id="finalPrice">
+        <span class="currency">€</span><span id="finalPriceVal">—</span>
+      </div>
+      <div class="price-sub" id="priceSub"></div>
+    </div>
+
+    <!-- BREAKDOWN -->
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Ανάλυση Κόστους</div>
+      <div id="breakdownContainer">
+        <div class="zero-state">
+          <div class="icon">🖨️</div>
+          <p>Συμπλήρωσε γραμμάρια & ώρες<br/>για να δεις την κοστολόγηση</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COPY -->
+    <button class="copy-btn" id="copyBtn" onclick="copyResult()" style="display:none;">
+      📋 Αντιγραφή Αποτελέσματος
+    </button>
+
+  </div>
+</main>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DEFAULTS ──
+const DEFAULTS = {
+  kwh: 0.20,
+  wattA1: 300,
+  wattP1s: 350,
+  maint: 1.00,        // αναλώσιμα + μερική απόσβεση εξοπλισμού
+  purgePerChange: 4.5, // επαγγελματικές ρυθμίσεις flush AMS
+  designRate: 35,      // αμοιβή CAD designer Ελλάδα/ΕΕ
+  marginDefault: 80,   // επαγγελματική παραγωγή custom εξαρτημάτων
+  failure: 8,          // Bambu + AMS multi-color, ρεαλιστικό ποσοστό
+  filamentPrices: {
+    pla_basic: 14.99,
+    pla_matte: 18.99,
+    pla_silk:  19.99,
+    petg_basic:17.99,
+    petg_hf:   21.99,
+    abs:       19.99,
+    asa:       22.99,
+    pa6_cf:    69.98,  // 34.99€ / 500g spool
+    pa6_gf:    59.98,  // 29.99€ / 500g spool
+    tpu:       24.99,
+  }
+};
+
+const FILAMENT_NAMES = {
+  pla_basic: 'PLA Basic',
+  pla_matte: 'PLA Matte',
+  pla_silk:  'PLA Silk',
+  petg_basic:'PETG Basic',
+  petg_hf:   'PETG HF',
+  abs:       'ABS',
+  asa:       'ASA',
+  pa6_cf:    'PA6-CF',
+  pa6_gf:    'PA6-GF',
+  tpu:       'TPU 95A',
+};
+
+const COLORS = ['#ff6b2b','#4f8ef7','#34d399','#fbbf24','#a78bfa','#f87171'];
+
+// ── STATE ──
+let cfg = loadCfg();
+let printer = 'a1';
+
+function loadCfg() {
+  try {
+    const s = localStorage.getItem('printcalc_cfg');
+    if (s) return JSON.parse(s);
+  } catch(e) {}
+  return JSON.parse(JSON.stringify(DEFAULTS));
+}
+function saveCfg() {
+  localStorage.setItem('printcalc_cfg', JSON.stringify(cfg));
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  initSettingsPanel();
+  populateSettingsValues();
+  // Apply saved margin default
+  const marginEl = document.getElementById('margin');
+  marginEl.value = cfg.marginDefault;
+  updateMargin(marginEl);
+  updateDesignLabel();
+  calc();
+});
+
+// ── PRINTER TOGGLE ──
+function selectPrinter(p) {
+  printer = p;
+  document.querySelectorAll('.printer-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.printer === p);
+  });
+  calc();
+}
+
+// ── COLOR CHANGES ──
+function updateColorChanges(el) {
+  const v = parseInt(el.value);
+  document.getElementById('colorChangesVal').textContent = v;
+  const waste = (v * cfg.purgePerChange).toFixed(1);
+  document.getElementById('purgeWasteLabel').textContent = `≈ ${waste}g waste`;
+  calc();
+}
+
+// ── MARGIN ──
+function updateMargin(el) {
+  const v = parseInt(el.value);
+  document.getElementById('marginVal').textContent = v + '%';
+  calc();
+}
+
+// ── DESIGN LABEL ──
+function updateDesignLabel() {
+  document.getElementById('designRateLabel').textContent = `${cfg.designRate}€/ώρα`;
+}
+
+// ── MAIN CALC ──
+function calc() {
+  const gramsRaw = parseFloat(document.getElementById('grams').value) || 0;
+  const hours    = parseFloat(document.getElementById('hours').value) || 0;
+  const colorChg = parseInt(document.getElementById('colorChanges').value) || 0;
+  const designH  = parseFloat(document.getElementById('designHours').value) || 0;
+  const margin   = parseInt(document.getElementById('margin').value) || 0;
+  const filType  = document.getElementById('filamentType').value;
+
+  const pricePerKg = cfg.filamentPrices[filType] || 0;
+  const watt = printer === 'a1' ? cfg.wattA1 : cfg.wattP1s;
+
+  // purge waste
+  const purgeGrams = colorChg * cfg.purgePerChange;
+  const totalGrams = gramsRaw + purgeGrams;
+
+  // costs
+  const matCost     = (totalGrams / 1000) * pricePerKg;
+  const elecCost    = (hours * (watt / 1000)) * cfg.kwh;
+  const maintCost   = hours * cfg.maint;
+  const designCost  = designH * cfg.designRate;
+  const subtotal    = matCost + elecCost + maintCost + designCost;
+  const failureCost = subtotal * (cfg.failure / 100);
+  const baseTotal   = subtotal + failureCost;
+  const marginAmt   = baseTotal * (margin / 100);
+  const finalPrice  = baseTotal + marginAmt;
+
+  if (gramsRaw === 0 && hours === 0 && designH === 0) {
+    showZero();
+    return;
+  }
+
+  // update hero
+  document.getElementById('finalPriceVal').textContent = fmt(finalPrice);
+  document.getElementById('priceSub').innerHTML =
+    `Κόστος βάσης <strong>€${fmt(baseTotal)}</strong> · Margin <strong>+${fmt(marginAmt)}€</strong>`;
+
+  // breakdown
+  const items = [
+    { name: 'Υλικό Filament',   val: matCost,    sub: `${fmt(totalGrams)}g × ${fmt(pricePerKg)}€/kg${purgeGrams>0?' (incl. purge)':''}` },
+    { name: 'Ηλεκτρικό ρεύμα',  val: elecCost,   sub: `${fmt(hours)}h × ${watt}W × ${cfg.kwh}€` },
+    { name: 'Συντήρηση',         val: maintCost,  sub: `${fmt(hours)}h × ${fmt(cfg.maint)}€/h` },
+    { name: 'Σχεδιασμός',        val: designCost, sub: `${fmt(designH)}h × ${cfg.designRate}€/h` },
+    { name: 'Αποθεματικό αποτυχιών', val: failureCost, sub: `${cfg.failure}% επί κόστους` },
+  ].filter(i => i.val > 0);
+
+  const maxVal = Math.max(...items.map(i => i.val), 0.01);
+
+  let html = '<div class="breakdown">';
+  items.forEach((item, i) => {
+    const pct = Math.round((item.val / baseTotal) * 100);
+    const barW = Math.max(2, (item.val / maxVal) * 100);
+    html += `
+      <div class="breakdown-row">
+        <div class="breakdown-info">
+          <div class="breakdown-name">
+            <div class="breakdown-dot" style="background:${COLORS[i % COLORS.length]}"></div>
+            <span>${item.name}</span>
+          </div>
+          <div class="breakdown-val">€${fmt(item.val)} <span style="color:var(--text-muted);font-weight:400;font-size:0.78rem">${pct}%</span></div>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${barW}%;background:${COLORS[i % COLORS.length]}"></div>
+        </div>
+      </div>`;
+  });
+
+  html += '<div class="divider"></div>';
+  html += `
+    <div class="total-row">
+      <span class="lbl">Κόστος βάσης</span>
+      <span class="val">€${fmt(baseTotal)}</span>
+    </div>
+    <div class="total-row highlight">
+      <span class="lbl">+ Margin ${margin}%</span>
+      <span class="val">+€${fmt(marginAmt)}</span>
+    </div>`;
+  html += '</div>';
+
+  document.getElementById('breakdownContainer').innerHTML = html;
+  document.getElementById('copyBtn').style.display = 'flex';
+
+  // store for copy
+  window._lastResult = { finalPrice, baseTotal, marginAmt, matCost, elecCost, maintCost, designCost, failureCost, margin, filType, totalGrams, hours };
+}
+
+function showZero() {
+  document.getElementById('finalPriceVal').textContent = '—';
+  document.getElementById('priceSub').innerHTML = '';
+  document.getElementById('breakdownContainer').innerHTML = `
+    <div class="zero-state">
+      <div class="icon">🖨️</div>
+      <p>Συμπλήρωσε γραμμάρια & ώρες<br/>για να δεις την κοστολόγηση</p>
+    </div>`;
+  document.getElementById('copyBtn').style.display = 'none';
+}
+
+function fmt(n) {
+  if (n === undefined || n === null || isNaN(n)) return '0.00';
+  return n.toFixed(2);
+}
+
+// ── COPY ──
+function copyResult() {
+  if (!window._lastResult) return;
+  const r = window._lastResult;
+  const txt = [
+    `🖨️ 3DPrintCraft — Κοστολόγηση`,
+    ``,
+    `Τιμή Πώλησης: €${fmt(r.finalPrice)}`,
+    ``,
+    `Ανάλυση:`,
+    `  • Filament (${FILAMENT_NAMES[r.filType]}): €${fmt(r.matCost)}`,
+    `  • Ρεύμα: €${fmt(r.elecCost)}`,
+    `  • Συντήρηση: €${fmt(r.maintCost)}`,
+    `  • Σχεδιασμός: €${fmt(r.designCost)}`,
+    `  • Αποτυχίες: €${fmt(r.failureCost)}`,
+    `  • Κόστος βάσης: €${fmt(r.baseTotal)}`,
+    `  • Margin (${r.margin}%): +€${fmt(r.marginAmt)}`,
+  ].join('\n');
+  navigator.clipboard.writeText(txt).then(() => showToast('✓ Αντιγράφηκε!'));
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── SETTINGS ──
+function initSettingsPanel() {
+  // filament price inputs
+  const container = document.getElementById('filamentPriceSettings');
+  Object.entries(FILAMENT_NAMES).forEach(([key, name]) => {
+    const div = document.createElement('div');
+    div.className = 's-field';
+    div.innerHTML = `
+      <label>${name}</label>
+      <div class="s-input-wrap">
+        <input type="number" id="s-fil-${key}" step="0.01" min="0" onchange="updateFilamentPrice('${key}', this.value)" />
+        <span class="s-unit">€/kg</span>
+      </div>`;
+    container.appendChild(div);
+  });
+
+  // wire up scalar settings
+  const wireup = (id, cfgKey, nested) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.onchange = () => {
+      const v = parseFloat(el.value);
+      if (!isNaN(v)) {
+        if (nested) cfg.filamentPrices[cfgKey] = v;
+        else cfg[cfgKey] = v;
+        saveCfg();
+        if (cfgKey === 'purgePerChange') {
+          const cc = document.getElementById('colorChanges');
+          updateColorChanges(cc);
+        }
+        if (cfgKey === 'designRate') updateDesignLabel();
+        if (cfgKey === 'marginDefault') {
+          const m = document.getElementById('margin');
+          m.value = v;
+          updateMargin(m);
+        }
+        calc();
+      }
+    };
+  };
+
+  wireup('s-kwh',          'kwh');
+  wireup('s-watt-a1',      'wattA1');
+  wireup('s-watt-p1s',     'wattP1s');
+  wireup('s-maint',        'maint');
+  wireup('s-purge',        'purgePerChange');
+  wireup('s-design-rate',  'designRate');
+  wireup('s-margin-default','marginDefault');
+  wireup('s-failure',      'failure');
+}
+
+function updateFilamentPrice(key, val) {
+  const v = parseFloat(val);
+  if (!isNaN(v)) { cfg.filamentPrices[key] = v; saveCfg(); calc(); }
+}
+
+function populateSettingsValues() {
+  document.getElementById('s-kwh').value           = cfg.kwh;
+  document.getElementById('s-watt-a1').value       = cfg.wattA1;
+  document.getElementById('s-watt-p1s').value      = cfg.wattP1s;
+  document.getElementById('s-maint').value         = cfg.maint;
+  document.getElementById('s-purge').value         = cfg.purgePerChange;
+  document.getElementById('s-design-rate').value   = cfg.designRate;
+  document.getElementById('s-margin-default').value= cfg.marginDefault;
+  document.getElementById('s-failure').value       = cfg.failure;
+  Object.keys(FILAMENT_NAMES).forEach(key => {
+    const el = document.getElementById(`s-fil-${key}`);
+    if (el) el.value = cfg.filamentPrices[key];
+  });
+}
+
+function resetSettings() {
+  cfg = JSON.parse(JSON.stringify(DEFAULTS));
+  saveCfg();
+  populateSettingsValues();
+  updateDesignLabel();
+  const m = document.getElementById('margin');
+  m.value = cfg.marginDefault;
+  updateMargin(m);
+  calc();
+  showToast('↺ Επαναφορά ολοκληρώθηκε');
+}
+
+function openSettings()  {
+  document.getElementById('settingsPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSettings() {
+  document.getElementById('settingsPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
