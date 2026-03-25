@@ -812,14 +812,22 @@ const COLORS = ['#ff6b2b','#4f8ef7','#34d399','#fbbf24','#a78bfa','#f87171'];
 let cfg = loadCfg();
 let printer = 'a1';
 
+const CFG_VERSION = 2; // bump to force reset on breaking changes
+
 function loadCfg() {
   try {
     const s = localStorage.getItem('printcalc_cfg');
-    if (s) return JSON.parse(s);
+    if (s) {
+      const saved = JSON.parse(s);
+      if (saved._v === CFG_VERSION) return saved;
+    }
   } catch(e) {}
-  return JSON.parse(JSON.stringify(DEFAULTS));
+  const d = JSON.parse(JSON.stringify(DEFAULTS));
+  d._v = CFG_VERSION;
+  return d;
 }
 function saveCfg() {
+  cfg._v = CFG_VERSION;
   localStorage.setItem('printcalc_cfg', JSON.stringify(cfg));
 }
 
