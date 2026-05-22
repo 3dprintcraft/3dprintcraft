@@ -141,7 +141,7 @@
   /* ---------- QUICK ACTIONS ---------- */
   .quick{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:10px;
   }
   .quick a{
@@ -267,10 +267,6 @@
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
         <span>Χάρτης</span>
       </a>
-      <a id="saveQuick" href="#" aria-label="Αποθήκευση επαφής">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span>
-        <span>Επαφή</span>
-      </a>
     </nav>
 
     <!-- CONTACT DETAILS -->
@@ -307,13 +303,8 @@
       </a>
     </div>
 
-    <!-- CTAs -->
-    <a id="saveContact" class="cta cta-primary" href="#">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
-      Αποθήκευση Επαφής
-    </a>
-
-    <a class="cta cta-ghost" href="https://www.dps-logistics.com/" target="_blank" rel="noopener">
+    <!-- CTA -->
+    <a class="cta cta-primary" href="https://www.dps-logistics.com/" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
       Επισκεφθείτε το dps-logistics.com
     </a>
@@ -323,35 +314,5 @@
       1 Democracy Square, GR-54629 Θεσσαλονίκη
     </p>
   </main>
-
-<script>
-  // Build a vCard so the contact can be saved straight to the phone.
-  const vcard = [
-    'BEGIN:VCARD',
-    'VERSION:3.0',
-    'N:;DPS Logistics SA;;;',
-    'FN:DPS Logistics SA',
-    'ORG:DPS Logistics SA',
-    'TITLE:International Transport',
-    'TEL;TYPE=WORK,VOICE:+302310546722',
-    'TEL;TYPE=WORK,VOICE:+302310520781',
-    'EMAIL;TYPE=WORK:dispo@dps-logistics.com',
-    'EMAIL;TYPE=WORK:moragli@dps-logistics.com',
-    'ADR;TYPE=WORK:;;1 Democracy Square;Thessaloniki;;54629;Greece',
-    'URL:https://www.dps-logistics.com/',
-    'END:VCARD'
-  ].join('\r\n');
-
-  const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-
-  function wireSave(el){
-    if(!el) return;
-    el.setAttribute('href', url);
-    el.setAttribute('download', 'DPS-Logistics.vcf');
-  }
-  wireSave(document.getElementById('saveContact'));
-  wireSave(document.getElementById('saveQuick'));
-</script>
 </body>
 </html>
