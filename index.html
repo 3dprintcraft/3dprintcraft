@@ -1,8 +1,231 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="el" class="no-js">
 <head>
-<title>3DPrintCraft</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3DPrintCraft — Από την ιδέα, στο αντικείμενο</title>
+  <meta name="description" content="3D printing, NFC μπρελόκ & stands, ιστοσελίδες και ψηφιακά μενού για την επιχείρησή σου. Από την ιδέα, στο αντικείμενο." />
+
+  <!-- no-js → js as early as possible to avoid reveal flash -->
+  <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/landing.css" />
 </head>
 <body>
+  <a class="skip-link" href="#services">Παράκαμψη στο περιεχόμενο</a>
+
+  <header class="site-header" id="top">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="3DPrintCraft — αρχή"><span class="brand__mark">3D</span>PrintCraft</a>
+      <nav class="nav" id="nav" aria-label="Κύρια πλοήγηση">
+        <a href="#services">Υπηρεσίες</a>
+        <a href="#work">Έργα</a>
+        <a href="#how">Πώς δουλεύει</a>
+        <a href="#contact">Επικοινωνία</a>
+        <a class="btn btn--primary nav__cta" href="#contact">Ζήτα προσφορά</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-controls="nav" aria-expanded="false" aria-label="Άνοιγμα μενού">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__canvas" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <p class="eyebrow">3D Printing · NFC · Ψηφιακά</p>
+        <h1>Από την ιδέα, <em>στο αντικείμενο.</em></h1>
+        <p class="lead">Σχεδιάζουμε και τυπώνουμε σε 3D ό,τι φαντάζεσαι — και το πάμε ένα βήμα παραπέρα με έξυπνα NFC και ψηφιακή παρουσία που ξεχωρίζει για την επιχείρησή σου.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">Ζήτα προσφορά <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#services">Δες τι φτιάχνουμε</a>
+        </div>
+        <p class="hero__meta">
+          <span>Παράδοση σε όλη την Ελλάδα</span>
+          <span>Δωρεάν εκτίμηση</span>
+          <span>Από το σχέδιο στο χέρι σου</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Τι κάνουμε</p>
+          <h2>Φτιάχνουμε — με προτεραιότητα στο <em>3D printing.</em></h2>
+          <p>Από φυσικά αντικείμενα που κρατάς στα χέρια σου, μέχρι την ψηφιακή σου παρουσία — όλα από ένα στούντιο.</p>
+        </div>
+        <div class="services-grid">
+          <article class="card service service--feature reveal">
+            <span class="service__num">01</span>
+            <div class="service__icon" aria-hidden="true">🖨️</div>
+            <h3>3D Printing</h3>
+            <p>Custom εκτυπώσεις, πρωτότυπα, ανταλλακτικά και δώρα — από το σχέδιο στο χέρι σου, με μεράκι στη λεπτομέρεια.</p>
+            <a class="service__link" href="#contact">Ζήτα προσφορά <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card service service--feature reveal">
+            <span class="service__num">02</span>
+            <div class="service__icon" aria-hidden="true">📲</div>
+            <h3>NFC μπρελόκ &amp; stands</h3>
+            <p>Έξυπνα μπρελόκ και επιτραπέζια stands που με ένα tap ανοίγουν μενού, Google review ή το προφίλ σου.</p>
+            <a class="service__link" href="#contact">Ζήτα προσφορά <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card service reveal">
+            <span class="service__num">03</span>
+            <div class="service__icon" aria-hidden="true">🌐</div>
+            <h3>Ιστοσελίδες</h3>
+            <p>Γρήγορες, όμορφες σελίδες που παρουσιάζουν την επιχείρησή σου όπως της αξίζει.</p>
+            <a class="service__link" href="#contact">Ζήτα προσφορά <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card service reveal">
+            <span class="service__num">04</span>
+            <div class="service__icon" aria-hidden="true">🍽️</div>
+            <h3>Mini ψηφιακά μενού</h3>
+            <p>Μενού με QR που ενημερώνεις όποτε θες — χωρίς ανατυπώσεις, πάντα ενημερωμένο.</p>
+            <a class="service__link" href="#contact">Ζήτα προσφορά <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card service reveal">
+            <span class="service__num">05</span>
+            <div class="service__icon" aria-hidden="true">🔗</div>
+            <h3>Mini hub sites</h3>
+            <p>Μία σελίδα-κόμβος για όλα σου τα link, ώρες και τρόπους παραγγελίας.</p>
+            <a class="service__link" href="#contact">Ζήτα προσφορά <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED HIGHLIGHTS ===== -->
+    <section class="section section--surface" id="featured">
+      <div class="container feature">
+        <div class="feature__media ph reveal" data-label="Φωτογραφία: κοντινό σε φρεσκο-τυπωμένο custom αντικείμενο"></div>
+        <div class="feature__text reveal">
+          <p class="eyebrow">Η καρδιά μας</p>
+          <h2>3D printing που μετατρέπει ιδέες σε <em>πράγματα.</em></h2>
+          <p class="lead">Στείλε μας ένα σκίτσο, μια φωτογραφία ή απλώς την ιδέα. Σχεδιάζουμε, τυπώνουμε και φινίρουμε — πρωτότυπα, ανταλλακτικά, διακοσμητικά, εταιρικά δώρα.</p>
+          <a class="btn btn--primary" href="#contact">Ξεκίνα την ιδέα σου <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="container feature feature--reverse">
+        <div class="feature__media ph reveal" data-label="Φωτογραφία: χέρι κάνει tap σε NFC μπρελόκ / stand"></div>
+        <div class="feature__text reveal">
+          <p class="eyebrow">Phygital</p>
+          <h2>Ένα tap. <em>Χίλιες</em> δυνατότητες.</h2>
+          <p class="lead">Φυσικό αντικείμενο, ψηφιακή δύναμη. Ένα tap ανοίγει το μενού, το Google review, το Instagram ή την κάρτα σου — ιδανικό για καταστήματα και επαγγελματίες.</p>
+          <a class="btn btn--primary" href="#contact">Θέλω NFC <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Έργα</p>
+          <h2>Λίγα από αυτά που έχουμε <em>φτιάξει.</em></h2>
+        </div>
+        <div class="work-grid">
+          <figure class="work reveal"><div class="ph" data-label="Custom 3D print"></div><figcaption><strong>Custom διακοσμητικό</strong> · 3D print</figcaption></figure>
+          <figure class="work reveal"><div class="ph" data-label="NFC μπρελόκ"></div><figcaption><strong>NFC μπρελόκ</strong> για café</figcaption></figure>
+          <figure class="work reveal"><div class="ph" data-label="NFC stand"></div><figcaption><strong>Επιτραπέζιο NFC stand</strong></figcaption></figure>
+          <figure class="work reveal"><div class="ph" data-label="Λειτουργικό πρωτότυπο"></div><figcaption><strong>Λειτουργικό πρωτότυπο</strong></figcaption></figure>
+          <figure class="work reveal"><div class="ph" data-label="Ιστοσελίδα"></div><figcaption><strong>Ιστοσελίδα</strong> επιχείρησης</figcaption></figure>
+          <figure class="work reveal"><div class="ph" data-label="Ψηφιακό μενού QR"></div><figcaption><strong>Ψηφιακό μενού</strong> QR</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section section--surface" id="how">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Πώς δουλεύει</p>
+          <h2>Τέσσερα απλά <em>βήματα.</em></h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal"><span class="step__num">1</span><h3>Επικοινωνία</h3><p>Μας λες την ιδέα σου και τι χρειάζεσαι.</p></li>
+          <li class="step reveal"><span class="step__num">2</span><h3>Σχεδιασμός</h3><p>Σχεδιάζουμε και συμφωνούμε στο αποτέλεσμα.</p></li>
+          <li class="step reveal"><span class="step__num">3</span><h3>Υλοποίηση</h3><p>Τυπώνουμε και στήνουμε με μεράκι και ποιότητα.</p></li>
+          <li class="step reveal"><span class="step__num">4</span><h3>Παράδοση</h3><p>Το παραλαμβάνεις έτοιμο — έγκαιρα.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="about__text reveal">
+          <p class="eyebrow">Σχετικά</p>
+          <h2>Ένα μικρό στούντιο με μεγάλη αγάπη στο <em>φτιάξιμο.</em></h2>
+          <p class="lead">Ξεκινήσαμε από το πάθος για το 3D printing και μεγαλώσαμε μαζί με τις ανάγκες των τοπικών επιχειρήσεων — φτιάχνοντας πράγματα που κρατάς στα χέρια σου και εργαλεία που σε φέρνουν online.</p>
+        </div>
+        <ul class="stats">
+          <li class="stat reveal"><span class="stat__num" data-count-to="1200" data-suffix="+">1.200+</span><span class="stat__label">αντικείμενα τυπωμένα</span></li>
+          <li class="stat reveal"><span class="stat__num" data-count-to="150" data-suffix="+">150+</span><span class="stat__label">ευχαριστημένοι πελάτες</span></li>
+          <li class="stat reveal"><span class="stat__num" data-count-to="40" data-suffix="+">40+</span><span class="stat__label">NFC projects</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="section section--surface" id="testimonials">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Μαρτυρίες</p>
+          <h2>Τι λένε όσοι μας <em>εμπιστεύτηκαν.</em></h2>
+        </div>
+        <div class="quotes">
+          <blockquote class="quote card reveal">
+            <p>Έφεραν την ιδέα μου στη ζωή ακριβώς όπως την ήθελα. Ταχύτητα και ποιότητα.</p>
+            <footer><span class="quote__avatar ph" data-label=""></span><span><strong>Μαρία Κ.</strong><br>Ιδιοκτήτρια καταστήματος</span></footer>
+          </blockquote>
+          <blockquote class="quote card reveal">
+            <p>Τα NFC stands στο μαγαζί μας εκτόξευσαν τα Google reviews. Άψογη συνεργασία.</p>
+            <footer><span class="quote__avatar ph" data-label=""></span><span><strong>Γιώργος Π.</strong><br>Καφετέρια</span></footer>
+          </blockquote>
+          <blockquote class="quote card reveal">
+            <p>Από το λογότυπο μέχρι τη σελίδα και τα μπρελόκ — όλα από ένα μέρος.</p>
+            <footer><span class="quote__avatar ph" data-label=""></span><span><strong>Ελένη Δ.</strong><br>Startup</span></footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== CONTACT FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="container footer__inner">
+      <div class="footer__cta reveal">
+        <p class="eyebrow">Επικοινωνία</p>
+        <h2>Έχεις μια ιδέα; <em>Ας τη φτιάξουμε.</em></h2>
+        <p class="lead">Στείλε μας μήνυμα — απαντάμε γρήγορα και η εκτίμηση είναι δωρεάν.</p>
+        <div class="footer__links">
+          <a class="btn btn--primary" href="mailto:hello@3dprintcraft.gr">✉️ Email</a>
+          <a class="btn btn--ghost" href="tel:+302100000000">📞 Τηλέφωνο</a>
+          <a class="btn btn--ghost" href="https://instagram.com/3dprintcraft" target="_blank" rel="noopener">📷 Instagram</a>
+          <a class="btn btn--ghost" href="https://maps.google.com/?q=3DPrintCraft" target="_blank" rel="noopener">📍 Χάρτης</a>
+        </div>
+      </div>
+      <nav class="footer__nav" aria-label="Πλοήγηση υποσέλιδου">
+        <a href="#services">Υπηρεσίες</a>
+        <a href="#work">Έργα</a>
+        <a href="#how">Πώς δουλεύει</a>
+        <a href="#about">Σχετικά</a>
+      </nav>
+    </div>
+    <div class="container footer__base">
+      <span class="brand"><span class="brand__mark">3D</span>PrintCraft</span>
+      <small>© <span id="year">2026</span> 3DPrintCraft. Με μεράκι.</small>
+    </div>
+  </footer>
+
+  <script src="assets/js/landing.js" defer></script>
 </body>
 </html>
