@@ -67,7 +67,7 @@
     /* ── Materials ticker ── */
     const tt = $('#tickerTrack');
     if (tt) {
-      const items = ['PLA','PETG','ABS','NYLON CF','PC','TPU 95A','RESIN TOUGH','PLA SILK','ASA','WOOD-FILL'];
+      const items = ['PLA','ABS','ABS-GF','ASA','TPU','PA6-CF'];
       const half = items.map((m, i) =>
         '<span class="pc-ticker-item"><span class="' + (i % 3 === 0 ? 'hot' : '') + '">' + m + '</span><span class="sep">●</span></span>'
       ).join('');
@@ -85,7 +85,7 @@
     const status = document.getElementById('bootStatus');
     if (!body) return;
     const lines = [
-      { code: ';',          rest: ' 3dprintcraft.gcode · slicer v4.2.1 · marlin · patras hotend' },
+      { code: ';',          rest: ' slicer v4.2.1 · marlin · hotend' },
       { code: 'M115',       rest: '      ; firmware ok · ext T0 · bed 220×220 · 0 errors' },
       { code: 'G28',        rest: '       ; home all axes ───────────────────── ✓' },
       { code: 'M140 S60',   rest: '  ; bed → 60°C ─────────────────────── ✓' },
