@@ -72,9 +72,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   padding: 12px 28px; font-size: 11px; letter-spacing: 1.5px;
 }
 .pc-gantry-brand { display: flex; align-items: center; gap: 14px; }
-.pc-gantry-logo { height: 30px; width: auto; display: block; }
+.pc-gantry-logo { width: 30px; height: auto; display: block; }
 .pc-gantry-logo path { fill: var(--c-accent); }
-.pc-gantry-logo path:last-child { fill: color-mix(in srgb, var(--c-accent) 60%, #000); }
 .pc-gantry-name { font-family: var(--font-display); font-size: 14px; letter-spacing: -0.3px; line-height: 1; }
 .pc-gantry-brand-sub { font-size: 9px; letter-spacing: 2px; color: var(--c-ink-3); margin-top: 2px; }
 .pc-gantry-nav { display: flex; gap: 28px; }
