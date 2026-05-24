@@ -138,8 +138,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .pc-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-accent); box-shadow: 0 0 6px var(--c-accent); animation: pcPulse 1.2s infinite; }
 .pc-hero-h1 {
-  font-family: var(--font-display); font-weight: 900; font-size: clamp(64px, 7.5vw, 132px);
-  line-height: 0.9; letter-spacing: -4px; margin: 0; text-transform: uppercase; color: var(--c-ink);
+  font-family: var(--font-display); font-weight: 900; font-size: clamp(54px, 6.6vw, 110px);
+  line-height: 0.98; letter-spacing: -2px; margin: 0; color: var(--c-ink);
 }
 .pc-hero-h1 .accent { color: var(--c-accent); }
 .pc-hero-lead { font-family: var(--font-body); font-size: 17px; line-height: 1.55; max-width: 480px; color: var(--c-ink-2); margin-top: 28px; }
@@ -384,7 +384,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .pc-gantry-brand-sub { display: none !important; }
   .pc-hero-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .pc-hero { padding: 28px 20px 40px !important; }
-  .pc-hero-h1 { font-size: clamp(48px, 11vw, 80px) !important; letter-spacing: -2px !important; }
+  .pc-hero-h1 { font-size: clamp(40px, 9vw, 60px) !important; letter-spacing: -1px !important; }
   .pc-hero-stats { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
   .pc-boot { max-width: 100% !important; }
   .pc-services { padding: 60px 20px !important; }
@@ -420,7 +420,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 
 @media (max-width: 540px) {
-  .pc-hero-h1 { font-size: clamp(40px, 13vw, 64px) !important; }
+  .pc-hero-h1 { font-size: clamp(34px, 10vw, 52px) !important; }
   .pc-life { height: 460px !important; }
 }
 
