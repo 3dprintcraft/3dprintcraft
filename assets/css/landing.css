@@ -396,12 +396,17 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .pc-work-tile { grid-column: span 1 !important; grid-row: span 1 !important; }
   .pc-work-tile.pc-work-big { grid-column: span 2 !important; grid-row: span 2 !important; }
   .pc-process { padding: 60px 20px !important; }
-  .pc-process-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .pc-process-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
   .pc-process-rail-line, .pc-process-rail-dot { display: none !important; }
-  .pc-process-step { padding-top: 0 !important; }
-  .pc-process-node { position: static !important; margin-bottom: 12px !important; }
-  .pc-process-body { text-align: left !important; padding: 0 !important; }
-  .pc-process-d { margin: 0 !important; }
+  /* vertical timeline: numbered nodes left + connecting line, text on the right */
+  .pc-process-step { padding-top: 0 !important; padding-bottom: 34px !important; display: flex !important; gap: 16px !important; align-items: flex-start !important; }
+  .pc-process-step:last-child { padding-bottom: 0 !important; }
+  .pc-process-step::before { content: ""; position: absolute; left: 14px; top: 38px; bottom: 0; width: 2px; background: var(--c-ink); }
+  .pc-process-step:last-child::before { display: none !important; }
+  .pc-process-node { position: static !important; flex: 0 0 30px !important; width: 30px !important; height: 30px !important; font-size: 11px !important; margin: 0 !important; }
+  .pc-process-body { text-align: left !important; padding: 0 !important; flex: 1 1 auto !important; }
+  .pc-process-t { margin: 2px 0 6px !important; }
+  .pc-process-d { max-width: none !important; margin: 0 !important; }
   .pc-cta { padding: 60px 20px !important; }
   .pc-cta-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .pc-cta-h2 { font-size: clamp(36px, 9vw, 56px) !important; }
