@@ -67,11 +67,10 @@
     /* ── Materials ticker ── */
     const tt = $('#tickerTrack');
     if (tt) {
-      const items = ['PLA','ABS','ABS-GF','ASA','TPU','PA6-CF'];
-      const half = items.map((m, i) =>
-        '<span class="pc-ticker-item"><span class="' + (i % 3 === 0 ? 'hot' : '') + '">' + m + '</span><span class="sep">●</span></span>'
-      ).join('');
-      tt.innerHTML = half + half;
+      const items = ['PLA','ABS','ABS-GF','ASA','TPU','PA6-CF','PC'];
+      tt.innerHTML = items.map((m, i) =>
+        '<span class="' + (i % 3 === 0 ? 'hot' : '') + '">' + m + '</span>'
+      ).join('<span class="sep">●</span>');
     }
 
     bootConsole();
@@ -85,8 +84,7 @@
     const status = document.getElementById('bootStatus');
     if (!body) return;
     const lines = [
-      { code: ';',          rest: ' slicer v4.2.1 · marlin · hotend' },
-      { code: 'M115',       rest: '      ; firmware ok · ext T0 · bed 220×220 · 0 errors' },
+      { code: 'M115',       rest: '      ; firmware ok · bed 220×220 · 0 errors' },
       { code: 'G28',        rest: '       ; home all axes ───────────────────── ✓' },
       { code: 'M140 S60',   rest: '  ; bed → 60°C ─────────────────────── ✓' },
       { code: 'M104 S215',  rest: ' ; nozzle → 215°C ──────────────────── ✓' },

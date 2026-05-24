@@ -143,6 +143,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 }
 .pc-hero-h1 .accent { color: var(--c-accent); }
 .pc-hero-lead { font-family: var(--font-body); font-size: 17px; line-height: 1.55; max-width: 480px; color: var(--c-ink-2); margin-top: 28px; }
+.pc-hero-lead .accent { color: var(--c-accent); font-weight: 700; }
 .pc-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; align-items: center; }
 .pc-btn-primary {
   display: inline-flex; align-items: center; gap: 10px; padding: 15px 22px;
@@ -231,10 +232,9 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
 /* ── Materials ticker ─────────────────────────────────────────── */
 .pc-ticker { margin-top: 60px; position: relative; border-top: 1.5px solid var(--c-ink); border-bottom: 1.5px solid var(--c-ink); background: var(--c-ink); color: var(--c-paper); overflow: hidden; }
-.pc-ticker-track { display: flex; gap: 56px; padding: 16px 0; white-space: nowrap; width: max-content; animation: pcTicker 30s linear infinite; font-family: var(--font-mono); font-size: 13px; letter-spacing: 3px; }
-.pc-ticker-item { display: inline-flex; align-items: center; gap: 56px; }
-.pc-ticker-item .sep { color: var(--c-ink-3); }
-.pc-ticker-item .hot { color: var(--c-accent); }
+.pc-ticker-track { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 18px; padding: 16px 44px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 3px; }
+.pc-ticker-track .sep { color: var(--c-ink-3); }
+.pc-ticker-track .hot { color: var(--c-accent); }
 
 /* ── Services ─────────────────────────────────────────────────── */
 .pc-services { padding: 100px 60px; background: var(--c-paper); position: relative; }
@@ -293,17 +293,19 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
 /* ── Process ──────────────────────────────────────────────────── */
 .pc-process { padding: 100px 60px; background: var(--c-paper); position: relative; }
-.pc-process-wrap { margin-top: 48px; position: relative; }
-.pc-process-rail-line { position: absolute; left: 5%; right: 5%; top: 36px; height: 4px; background: var(--c-ink); }
-.pc-process-rail-dot { position: absolute; left: 5%; top: 30px; width: 16px; height: 16px; background: var(--c-accent); border-radius: 50%; border: 2px solid var(--c-ink); }
-.pc-process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.pc-process-step { position: relative; padding-top: 70px; }
-.pc-process-node { position: absolute; top: 28px; left: calc(50% - 10px); width: 20px; height: 20px; background: var(--c-paper); border: 2px solid var(--c-ink); border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 9px; font-weight: 700; }
+.pc-process-wrap { margin-top: 48px; position: relative; max-width: 780px; }
+.pc-process-rail-line, .pc-process-rail-dot { display: none; }
+.pc-process-grid { display: flex; flex-direction: column; gap: 0; }
+.pc-process-step { position: relative; display: flex; gap: 22px; align-items: flex-start; padding-bottom: 38px; }
+.pc-process-step:last-child { padding-bottom: 0; }
+.pc-process-step::before { content: ""; position: absolute; left: 17px; top: 42px; bottom: 0; width: 2px; background: var(--c-ink); }
+.pc-process-step:last-child::before { display: none; }
+.pc-process-node { flex: 0 0 36px; width: 36px; height: 36px; background: var(--c-paper); border: 2px solid var(--c-ink); border-radius: 50%; display: grid; place-items: center; font-family: var(--font-mono); font-size: 13px; font-weight: 700; }
 .pc-process-step:first-child .pc-process-node { background: var(--c-accent); color: var(--c-accent-ink); }
-.pc-process-body { text-align: center; padding: 0 12px; }
+.pc-process-body { text-align: left; padding: 0; flex: 1 1 auto; }
 .pc-process-time { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: var(--c-ink-3); }
-.pc-process-t { font-family: var(--font-display); font-size: 26px; letter-spacing: -0.5px; margin: 8px 0; }
-.pc-process-d { font-family: var(--font-body); font-size: 13px; line-height: 1.5; color: var(--c-ink-2); max-width: 220px; margin: 0 auto; }
+.pc-process-t { font-family: var(--font-display); font-size: 26px; letter-spacing: -0.5px; margin: 4px 0 8px; }
+.pc-process-d { font-family: var(--font-body); font-size: 14px; line-height: 1.55; color: var(--c-ink-2); max-width: none; margin: 0; }
 
 /* ── CTA / footer ─────────────────────────────────────────────── */
 .pc-cta { background: var(--c-ink); color: var(--c-paper); padding: 100px 60px; position: relative; overflow: hidden; }
@@ -335,6 +337,11 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .pc-odo-u { color: rgba(240,235,224,0.5); margin-left: 6px; font-size: 11px; }
 .pc-odo-mid { color: rgba(240,235,224,0.25); font-size: 14px; }
 .pc-odo-foot { margin-top: 8px; color: rgba(240,235,224,0.35); }
+.pc-odo-stat { margin-top: 8px; }
+.pc-odo-stat + .pc-odo-stat { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.12); }
+.pc-odo-num { display: flex; align-items: baseline; gap: 6px; }
+.pc-odo-lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: var(--c-accent); margin-top: 4px; }
+.pc-odo-desc { font-family: var(--font-body); font-size: 12px; line-height: 1.5; color: rgba(240,235,224,0.6); margin-top: 6px; }
 
 /* end-of-print stamp */
 .pc-endprint { margin-top: 64px; font-family: var(--font-mono); font-size: 12px; line-height: 1.75; color: rgba(240,235,224,0.55); border-top: 1px dashed rgba(255,255,255,0.18); padding-top: 22px; max-width: 760px; position: relative; }
@@ -396,17 +403,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .pc-work-tile { grid-column: span 1 !important; grid-row: span 1 !important; }
   .pc-work-tile.pc-work-big { grid-column: span 2 !important; grid-row: span 2 !important; }
   .pc-process { padding: 60px 20px !important; }
-  .pc-process-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
-  .pc-process-rail-line, .pc-process-rail-dot { display: none !important; }
-  /* vertical timeline: numbered nodes left + connecting line, text on the right */
-  .pc-process-step { padding-top: 0 !important; padding-bottom: 34px !important; display: flex !important; gap: 16px !important; align-items: flex-start !important; }
-  .pc-process-step:last-child { padding-bottom: 0 !important; }
-  .pc-process-step::before { content: ""; position: absolute; left: 14px; top: 38px; bottom: 0; width: 2px; background: var(--c-ink); }
-  .pc-process-step:last-child::before { display: none !important; }
-  .pc-process-node { position: static !important; flex: 0 0 30px !important; width: 30px !important; height: 30px !important; font-size: 11px !important; margin: 0 !important; }
-  .pc-process-body { text-align: left !important; padding: 0 !important; flex: 1 1 auto !important; }
-  .pc-process-t { margin: 2px 0 6px !important; }
-  .pc-process-d { max-width: none !important; margin: 0 !important; }
+  .pc-process-t { font-size: 22px !important; }
   .pc-cta { padding: 60px 20px !important; }
   .pc-cta-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .pc-cta-h2 { font-size: clamp(36px, 9vw, 56px) !important; }
@@ -417,8 +414,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .pc-hud-mobile.show { display: block !important; animation: pcSlideIn 0.4s ease-out; }
   .pc-hero-meta { flex-wrap: wrap; gap: 12px; font-size: 9px !important; }
   .pc-hero-meta span:nth-child(1), .pc-hero-meta span:nth-child(2) { display: none !important; }
-  .pc-ticker-track { gap: 30px !important; font-size: 11px !important; }
-  .pc-ticker-item { gap: 30px !important; }
+  .pc-ticker-track { gap: 8px 14px !important; font-size: 11px !important; padding: 14px 18px !important; }
   .pc-service-tile { min-height: auto !important; }
   .pc-service-foot { position: static !important; left: auto !important; right: auto !important; bottom: auto !important; margin-top: 20px !important; }
   .pc-life { box-shadow: 5px 5px 0 0 var(--c-ink) !important; }
