@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <title>3DPrintCraft — Δίνουμε μορφή στην ιδέα σου.</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="description" content="Εργαστήριο στην Πάτρα: custom 3D εκτυπώσεις, NFC μπρελόκ & βάσεις, και websites / mini hubs που τα συνδέουν online." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&family=Space+Mono:wght@400;700&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="assets/css/landing.css?v=4" />
+<link rel="stylesheet" href="assets/css/landing.css?v=8" />
 </head>
 <body>
 <a class="pc-skip" href="#services">ΠΑΡΑΚΑΜΨΗ ΣΤΟ ΠΕΡΙΕΧΟΜΕΝΟ</a>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <nav class="pc-gantry-nav" id="nav" aria-label="Κύρια πλοήγηση">
-      <a href="#hero" class="is-active">ΑΡΧΗ</a>
+      <a href="#hero" class="is-active">ΑΡΧΙΚΗ</a>
       <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
       <a href="#work">ΔΟΥΛΕΙΕΣ</a>
       <a href="#process">ΔΙΑΔΙΚΑΣΙΑ</a>
@@ -105,15 +105,15 @@
       <!-- Stage 0 · ΕΠΑΦΗ -->
       <div class="pc-ovl pc-ovl-email">
         <div class="pc-email-wrap"><div class="pc-email">
-          <div class="pc-email-top"><span>📧 INBOX · 1 NEW</span><span class="unread">● UNREAD</span></div>
+          <div class="pc-email-top"><span>📧 INBOX · 5 NEW</span><span class="unread">● UNREAD</span></div>
           <div class="pc-email-meta">
-            <div class="pc-email-row"><span class="k">ΑΠΟ</span><span class="v">maria@plexus-robotics.gr</span></div>
-            <div class="pc-email-row"><span class="k">ΘΕΜΑ</span><span class="v"><b>Προσφορά · gripper × 5</b></span></div>
-            <div class="pc-email-row"><span class="k">ΗΜΕΡ</span><span class="v">Δευ 14:32</span></div>
+            <div class="pc-email-row"><span class="k">ΑΠΟ</span><span class="v">info@plexus-brand.gr</span></div>
+            <div class="pc-email-row"><span class="k">ΘΕΜΑ</span><span class="v"><b>Προσφορά · NFC Μπρελόκ </b></span></div>
+            <div class="pc-email-row"><span class="k">ΗΜΕΡ</span><span class="v">Μόλις τώρα</span></div>
           </div>
           <div class="pc-email-body"><span id="emailTyped"></span><span class="pc-email-cursor" id="emailCursor"></span></div>
           <div class="pc-email-foot">
-            <span class="pc-email-att"><span class="clip">📎</span> gripper_v3.stl <span class="sz">2.4 MB</span></span>
+            <span class="pc-email-att"><span class="clip">📎</span> logo.pdf <span class="sz">2.4 MB</span></span>
             <span class="pc-email-reply">ΑΠΑΝΤΗΣΗ →</span>
           </div>
         </div></div>
@@ -145,8 +145,8 @@
       </div>
 
       <div class="pc-readout">
-        <div><span class="arrow">▸</span> <span class="lbl" id="roLbl">ΑΠΟ</span> <span id="roVal">Μαρία @ Plexus Robotics</span></div>
-        <div class="file">gripper_v3.stl</div>
+        <div><span class="arrow">▸</span> <span class="lbl" id="roLbl">ΑΠΟ</span> <span id="roVal">Μαρία @ Plexus-Brand</span></div>
+        <div class="file">logo.pdf</div>
       </div>
     </div>
   </div>
@@ -154,15 +154,21 @@
   <!-- Materials ticker -->
   <div class="pc-ticker" aria-hidden="true">
     <div class="pc-ticker-track" id="tickerTrack"></div>
+    <div class="pc-swatches">
+      <span class="pc-swatches-label">ΔΙΑΘΕΣΙΜΑ ΧΡΩΜΑΤΑ — ΕΝΔΕΙΚΤΙΚΑ</span>
+      <div class="pc-swatch-row" id="swatchTrack"></div>
+    </div>
   </div>
 </section>
 
 <!-- ═══ SERVICES ═══ -->
 <section class="pc-services" id="services">
-  <div class="pc-section-head">
+  <div class="pc-section-head pc-services-head">
     <div>
       <div class="eyebrow">02 / ΤΙ ΦΤΙΑΧΝΟΥΜΕ</div>
-      <h2>Τρισδιάστατη σχεδίαση. Έξυπνη διασύνδεση.Ψηφιακή εμπειρία.</h2>
+      <h2 class="pc-services-title">
+        <span class="svc">3D Design</span><span class="sep" aria-hidden="true">▪</span><span class="svc">NFC Integration</span><span class="sep" aria-hidden="true">▪</span><span class="svc">Web Development</span>
+      </h2>
     </div>
   </div>
 
@@ -176,7 +182,7 @@
           <div class="pc-service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="11"/><rect x="6" y="15" width="12" height="6" fill="var(--c-accent)" stroke="var(--c-ink)"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
         </div>
       </div>
-      <h3>CUSTOM 3D ΕΚΤΥΠΩΣΕΙΣ</h3>
+      <h3>CUSTOM 3D PRINTS</h3>
       <p>Λειτουργικά κομμάτια, prototypes, μοντέλα. Από ένα μοναδικό bracket μέχρι μικρή παραγωγή.</p>
       <div class="pc-service-foot">
         <div class="pc-chips"><span class="pc-chip">ΧΡΟΝΟΣ 2–5 ημ.</span><span class="pc-chip">ΣΥΝΘΕΤΑ ΥΛΙΚΑ</span><span class="pc-chip">ΑΡΙΣΤΗ ΠΟΙΟΤΗΤΑ</span></div>
@@ -194,7 +200,7 @@
         </div>
         <span class="pc-service-badge">★ ΝΕΟ</span>
       </div>
-      <h3>NFC ΜΠΡΕΛΟΚ &amp; STANDS</h3>
+      <h3>NFC KEYCHAINS &amp; STANDS</h3>
       <p>Branded NFC προϊόντα — άγγιξε με το κινητό για να ανοίξει link, κάρτα, μενού ή playlist. Σχεδιασμένα και εκτυπωμένα εδώ.</p>
       <div class="pc-service-foot">
         <div class="pc-chips"><span class="pc-chip">NTAG215 · NTAG216</span><span class="pc-chip">ΜΠΡΕΛΟΚ · STAND · CARD</span><span class="pc-chip">CUSTOM LOGO</span></div>
@@ -211,7 +217,7 @@
           <div class="pc-service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="6" cy="6.5" r="0.6" fill="currentColor"/><circle cx="8.5" cy="6.5" r="0.6" fill="currentColor"/><circle cx="11" cy="6.5" r="0.6" fill="currentColor"/><rect x="6" y="12" width="5" height="5" fill="var(--c-accent)" stroke="var(--c-ink)"/></svg></div>
         </div>
       </div>
-      <h3>ΣΕΛΙΔΕΣ &amp; MINI HUBS</h3>
+      <h3>WEBSITES &amp; MINI HUBS</h3>
       <p>Landing pages και link-hubs που συνεργάζονται με τα NFC προϊόντα σου. Ένα ολόκληρο small-business site. Γρήγορα, δικά σου, χωρίς platform lock-in.</p>
       <div class="pc-service-foot">
         <div class="pc-chips"><span class="pc-chip">ΧΡΟΝΟΣ 5–14ημ.</span><span class="pc-chip">SITE · MINI-HUB · MENU</span><span class="pc-chip">MOBILE FRIENDLY</span></div>
@@ -232,65 +238,57 @@
   </div>
 
   <div class="pc-work-grid">
-    <!-- big drone chassis -->
-    <div class="pc-work-tile pc-work-big dark" style="grid-column:span 3;grid-row:span 2">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-print ws-big"></div></div>
-      <div class="pc-work-kind">PRINT</div><div class="pc-work-idx">#001</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">FILE</span><span class="sliced">● SLICED</span></div><div class="pc-stl-file">drone_chassis_v4.stl</div><div class="pc-stl-grid"><span class="dim">VOL</span><span class="val">124 cm³</span><span class="dim">WEIGHT</span><span class="val">148 g</span><span class="dim">TIME</span><span class="val">14:02:41</span><span class="dim">INFILL</span><span class="val">GYROID 35%</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">Drone chassis</div><div class="pc-work-spec">3D · Nylon CF · 14h</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
-    <!-- nfc keyring -->
-    <div class="pc-work-tile" style="grid-column:span 2;grid-row:span 1">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-nfc"></div></div>
-      <div class="pc-work-kind">NFC</div><div class="pc-work-idx">#002</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">FILE</span><span class="sliced">● SLICED</span></div><div class="pc-stl-file">keyring_cafe.stl</div><div class="pc-stl-grid"><span class="dim">VOL</span><span class="val">6 cm³</span><span class="dim">CHIP</span><span class="val">NTAG215</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">NFC keyring · Café</div><div class="pc-work-spec">NFC · NTAG215</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
-    <!-- mini hub accent -->
-    <div class="pc-work-tile accent" style="grid-column:span 1;grid-row:span 2">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-web"></div></div>
-      <div class="pc-work-kind">WEB</div><div class="pc-work-idx">#003</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">URL</span><span class="sliced">● LIVE</span></div><div class="pc-stl-file">djkara.link</div><div class="pc-stl-grid"><span class="dim">TYPE</span><span class="val">mini-hub</span><span class="dim">PAGES</span><span class="val">1</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">Mini-hub · DJ Kara</div><div class="pc-work-spec">WEB · 1 page</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
-    <!-- robotics gripper -->
-    <div class="pc-work-tile" style="grid-column:span 2;grid-row:span 1">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-print"></div></div>
-      <div class="pc-work-kind">PRINT</div><div class="pc-work-idx">#004</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">FILE</span><span class="sliced">● SLICED</span></div><div class="pc-stl-file">gripper_v3.stl</div><div class="pc-stl-grid"><span class="dim">VOL</span><span class="val">38 cm³</span><span class="dim">TIME</span><span class="val">06:11:00</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">Robotics gripper</div><div class="pc-work-spec">3D · ABS · 6h</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
-    <!-- tap stand -->
-    <div class="pc-work-tile" style="grid-column:span 2;grid-row:span 1">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-nfc"></div></div>
-      <div class="pc-work-kind">NFC</div><div class="pc-work-idx">#005</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">FILE</span><span class="sliced">● SLICED</span></div><div class="pc-stl-file">tap_stand_menu.stl</div><div class="pc-stl-grid"><span class="dim">COMBO</span><span class="val">NFC + WEB</span><span class="dim">CHIP</span><span class="val">NTAG216</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">Tap stand · menu</div><div class="pc-work-spec">NFC + WEB combo</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
-    <!-- custom nfc disc dark -->
-    <div class="pc-work-tile dark" style="grid-column:span 2;grid-row:span 1">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-nfc dark"></div></div>
-      <div class="pc-work-kind">NFC</div><div class="pc-work-idx">#006</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">FILE</span><span class="sliced">● SLICED</span></div><div class="pc-stl-file">nfc_disc_38.stl</div><div class="pc-stl-grid"><span class="dim">Ø</span><span class="val">38 mm</span><span class="dim">CHIP</span><span class="val">NTAG215</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">Custom NFC disc</div><div class="pc-work-spec">NFC · 38mm</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
-    <!-- sensor housing -->
-    <div class="pc-work-tile" style="grid-column:span 2;grid-row:span 1">
-      <div class="pc-work-stripes" aria-hidden="true"></div>
-      <div class="pc-work-shape" aria-hidden="true"><div class="ws-print"></div></div>
-      <div class="pc-work-kind">PRINT</div><div class="pc-work-idx">#007</div>
-      <div class="pc-stl"><div class="pc-stl-top"><span class="dim">FILE</span><span class="sliced">● SLICED</span></div><div class="pc-stl-file">sensor_housing.stl</div><div class="pc-stl-grid"><span class="dim">VOL</span><span class="val">22 cm³</span><span class="dim">TIME</span><span class="val">04:03:20</span></div></div>
-      <div class="pc-work-foot"><div><div class="pc-work-name">Sensor housing</div><div class="pc-work-spec">3D · PETG · 4h</div></div><span class="pc-work-view">VIEW →</span></div>
-    </div>
+    <!-- 01 · Hopscotch keychain -->
+    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
+      <img src="assets/img/work/01-hopscotch-keychain.jpg" alt="Custom μπρελόκ «Hopscotch» σε δίχρωμη 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">KEYCHAIN</span><span class="pc-work-idx">#001</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Hopscotch</div><div class="pc-work-spec">3D · δίχρωμο μπρελόκ</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 02 · DR8 keychains -->
+    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
+      <img src="assets/img/work/02-dr8-keychains.jpg" alt="Σετ μπρελόκ «DR8» σε μπλε και κόκκινο, 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">KEYCHAIN</span><span class="pc-work-idx">#002</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">DR8</div><div class="pc-work-spec">3D · σετ μπρελόκ</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 03 · Scalino keychain -->
+    <figure class="pc-work-tile pc-has-img is-wide" style="grid-column:span 2;grid-row:span 2">
+      <img src="assets/img/work/06-scalino-keychain.jpg" alt="Μπρελόκ «Scalino» σε λευκή 3D εκτύπωση" loading="lazy" decoding="async" style="object-position:38% center">
+      <span class="pc-work-kind">KEYCHAIN</span><span class="pc-work-idx">#003</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Scalino</div><div class="pc-work-spec">3D · μπρελόκ</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 04 · warm pendant lamp -->
+    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
+      <img src="assets/img/work/04-pendant-lamp-warm.jpg" alt="Κρεμαστό φωτιστικό οροφής με ραβδώσεις, 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">LIGHTING</span><span class="pc-work-idx">#004</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Φωτιστικό · θερμό</div><div class="pc-work-spec">3D · ραβδωτό shade</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 05 · Mannequin coasters -->
+    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
+      <img src="assets/img/work/03-mannequin-coasters.jpg" alt="Σετ σουβέρ «Mannequin» με βάση, ασπρόμαυρη 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">COASTERS</span><span class="pc-work-idx">#005</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Mannequin</div><div class="pc-work-spec">3D · σετ + βάση</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 06 · white pendant lamp -->
+    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
+      <img src="assets/img/work/05-pendant-lamp-white.jpg" alt="Λευκό κρεμαστό φωτιστικό με σπιράλ υφή, 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">LIGHTING</span><span class="pc-work-idx">#006</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Φωτιστικό · λευκό</div><div class="pc-work-spec">3D · spiral vase</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 07 · NFC stand Milu -->
+    <figure class="pc-work-tile pc-has-img is-wide" style="grid-column:span 3;grid-row:span 2">
+      <img src="assets/img/work/07-nfc-stand-milu.jpg" alt="NFC stand «Milu» με social icons και TAP, 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">NFC STAND</span><span class="pc-work-idx">#007</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Milu</div><div class="pc-work-spec">NFC · review stand</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
+    <!-- 08 · NFC stand Elia -->
+    <figure class="pc-work-tile pc-has-img is-wide" style="grid-column:span 3;grid-row:span 2">
+      <img src="assets/img/work/08-nfc-stand-elia.jpg" alt="NFC stand «Elia Mageireio» με social icons και TAP, 3D εκτύπωση" loading="lazy" decoding="async">
+      <span class="pc-work-kind">NFC STAND</span><span class="pc-work-idx">#008</span>
+      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Elia</div><div class="pc-work-spec">NFC · review stand</div></div><span class="pc-work-view">VIEW →</span></figcaption>
+    </figure>
   </div>
 
-  <div class="pc-work-foot-row"><span>7 ΑΠΟ 340 ΕΡΓΑ</span><span class="strong">ΔΕΣ ΟΛΟ ΤΟ ΑΡΧΕΙΟ →</span></div>
+  <div class="pc-work-foot-row"><span>8 ΑΠΟ 340 ΕΡΓΑ</span><span class="strong">ΔΕΣ ΟΛΟ ΤΟ ΑΡΧΕΙΟ →</span></div>
 </section>
 
 <!-- ═══ PROCESS ═══ -->
@@ -308,7 +306,7 @@
     <div class="pc-process-grid">
       <div class="pc-process-step"><div class="pc-process-node">1</div><div class="pc-process-body"><div class="pc-process-time">00:00</div><div class="pc-process-t">ΙΔΕΑ</div><div class="pc-process-d">Στείλε μας ένα σκίτσο, ένα αρχείο ή απλώς μια ιδέα. Σχεδιάζουμε μαζί αυτό που έχει νόημα για το brand σου.</div></div></div>
       <div class="pc-process-step"><div class="pc-process-node">2</div><div class="pc-process-body"><div class="pc-process-time">+ 02:00 h</div><div class="pc-process-t">ΠΡΟΣΦΟΡΑ</div><div class="pc-process-d">Λαμβάνεις αναλυτική προσφορά και timeline σε λιγότερο από 2 ώρες. Καθαρά κόστη, χωρίς κρυφά platform fees.</div></div></div>
-      <div class="pc-process-step"><div class="pc-process-node">3</div><div class="pc-process-body"><div class="pc-process-time">3–14 ημέρες</div><div class="pc-process-t">ΠΑΡΑΓΩΓΗ</div><div class="pc-process-d">Εκτυπώνουμε το έργο σου και σου στέλνουμε live updates για την πρόοδο των εργασιών σε κάθε στάδιο.</div></div></div>
+      <div class="pc-process-step"><div class="pc-process-node">3</div><div class="pc-process-body"><div class="pc-process-time">+ 3–14 ημέρες</div><div class="pc-process-t">ΠΑΡΑΓΩΓΗ</div><div class="pc-process-d">Εκτυπώνουμε το έργο σου και σου στέλνουμε live updates για την πρόοδο των εργασιών σε κάθε στάδιο.</div></div></div>
       <div class="pc-process-step"><div class="pc-process-node">4</div><div class="pc-process-body"><div class="pc-process-time">+ 1–2 ημέρες</div><div class="pc-process-t">ΠΑΡΑΔΟΣΗ</div><div class="pc-process-d">Άμεση αποστολή σε όλη την Ελλάδα ή local pickup από το εργαστήριό μας στην Πάτρα.</div></div></div>
     </div>
   </div>
@@ -374,7 +372,7 @@
 
 <!-- ═══ HUD ═══ -->
 <div class="pc-hud-desktop" id="hudDesktop" aria-hidden="true">
-  <div class="pc-hud-title"><span class="l"><span class="dot"></span>ΕΚΤΥΠΩΣΗ</span><span class="file">3dprintcraft.gcode</span></div>
+  <div class="pc-hud-title"><span class="l"><span class="dot"></span>ΕΚΤΥΠΩΣΗ<span class="minpct" id="hudPctMini">0%</span></span><span class="r"><span class="file">3dprintcraft.gcode</span><button class="pc-hud-min" id="hudMin" type="button" tabindex="-1" aria-label="Ελαχιστοποίηση" title="Ελαχιστοποίηση">─</button></span></div>
   <div class="pc-hud-pct"><span class="big" id="hudPct">0</span><span class="sym">%</span><span class="eta">ETA <span id="hudEta">2:12</span></span></div>
   <div class="pc-hud-bar-wrap"><div class="pc-hud-bar"><div class="pc-hud-bar-fill" id="hudBar"></div></div></div>
   <div class="pc-hud-stats">
@@ -394,6 +392,6 @@
   <div class="pc-hud-mobile-bar"><div class="pc-hud-mobile-bar-fill" id="hudBarM"></div></div>
 </div>
 
-<script src="assets/js/landing.js?v=4" defer></script>
+<script src="assets/js/landing.js?v=8" defer></script>
 </body>
 </html>

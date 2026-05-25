@@ -22,6 +22,7 @@
     const hudD = $('#hudDesktop'), hudM = $('#hudMobile');
     const hudPct = $('#hudPct'), hudEta = $('#hudEta'), hudBar = $('#hudBar'), hudLayer = $('#hudLayer'), hudName = $('#hudName');
     const hudPctM = $('#hudPctM'), hudLayerM = $('#hudLayerM'), hudBarM = $('#hudBarM');
+    const hudMin = $('#hudMin'), hudPctMini = $('#hudPctMini');
     let active = -1;
 
     const onScroll = () => {
@@ -53,6 +54,7 @@
       const eta = Math.max(0, Math.round((1 - p) * 132));
       const mm = Math.floor(eta / 60), ss = String(eta % 60).padStart(2, '0');
       if (hudPct)   hudPct.textContent = pct;
+      if (hudPctMini) hudPctMini.textContent = pct + '%';
       if (hudEta)   hudEta.textContent = mm + ':' + ss;
       if (hudBar)   hudBar.style.right = (100 - pct) + '%';
       if (hudLayer) hudLayer.textContent = layer + '/' + TOTAL_LAYERS;
@@ -64,13 +66,36 @@
     addEventListener('scroll', onScroll, { passive: true });
     addEventListener('resize', onScroll, { passive: true });
 
+    /* ── HUD minimize toggle ── */
+    if (hudMin && hudD) {
+      hudMin.addEventListener('click', () => {
+        const min = hudD.classList.toggle('is-min');
+        hudMin.textContent = min ? '+' : '─';
+        const lbl = min ? 'Επαναφορά' : 'Ελαχιστοποίηση';
+        hudMin.setAttribute('aria-label', lbl);
+        hudMin.setAttribute('title', lbl);
+      });
+    }
+
     /* ── Materials ticker ── */
     const tt = $('#tickerTrack');
     if (tt) {
-      const items = ['PLA','ABS','ABS-GF','ASA','TPU','PA6-CF','PC'];
-      tt.innerHTML = items.map((m) =>
-        '<span class="hot">' + m + '</span>'
-      ).join('<span class="sep">●</span>');
+      const items = ['PLA','PETG','ABS','ABS-GF','ASA','TPU','PA6-CF','PC'];
+      tt.innerHTML = items.map((m) => '<span class="hot">' + m + '</span>').join('');
+    }
+
+    /* ── Filament colour swatches ── */
+    const sw = $('#swatchTrack');
+    if (sw) {
+      const colors = [
+        ['Μαύρο', '#0e0f12'],    ['Λευκό', '#f4f2ec'],     ['Γκρι', '#9a9da3'],      ['Ασημί', '#c7ccd2'],
+        ['Cobalt', '#2e54ff'],   ['Γαλάζιο', '#27a9e1'],   ['Μέντα', '#00b377'],     ['Πράσινο', '#46c34a'],
+        ['Κίτρινο', '#ffd23f'],  ['Πορτοκαλί', '#ff7a1a'], ['Κόκκινο', '#e6332a'],   ['Ροζ', '#ff5b9a'],
+        ['Μωβ', '#7b3ff2'],      ['Καφέ', '#7a4a2b'],      ['Χρυσό', '#c9a227'],     ['Φυσικό', '#e7dcc2'],
+      ];
+      sw.innerHTML = colors.map((c) =>
+        '<span class="pc-swatch" title="' + c[0] + '" style="background:' + c[1] + '"></span>'
+      ).join('');
     }
 
     bootConsole();
@@ -127,7 +152,7 @@
     const cursor = document.getElementById('emailCursor');
     const printLayer = document.getElementById('printLayer');
     const roLbl = document.getElementById('roLbl'), roVal = document.getElementById('roVal');
-    const emailBody = 'Γεια! Μπορείτε να τυπώσετε 5 grippers μέχρι Παρασκευή; Προσφορά παρακαλώ.';
+    const emailBody = 'Γεια σας! Σας στέλνω το λογότυπό μας για να σχεδιάσουμε 100 custom NFC μπρελόκ.Ανυπομονούμε να δούμε την ιδέα μας να παίρνει μορφή, σημαίνει πολλά για εμάς!Παρακαλώ για μια προσφορά.';
     const readouts = [
       ['ΑΠΟ', 'Μαρία @ Plexus Robotics'],
       ['ΓΕΩΜΕΤΡΙΑ', '12.403 polygons · PETG'],
