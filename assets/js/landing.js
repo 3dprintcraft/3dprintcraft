@@ -142,30 +142,21 @@
         if (roVal) roVal.textContent = readouts[stage][1];
       }
       tabs.forEach((t, i) => { t.classList.toggle('is-active', i === stage); t.classList.toggle('is-done', i < stage); });
-      fills.forEach((f, i) => { if (f) f.style.width = (i < stage ? 100 : i === stage ? stageT * 100 : 0) + '%'; });
+      fills.forEach((f, i) => { if (f) f.style.width = (i < stage ? 100 : i === stage ? (reduce ? 100 : stageT * 100) : 0) + '%'; });
       if (stage === 0 && typed) {
-        const tp = Math.max(0, Math.min(1, (stageT - 0.12) * 1.6));
-        typed.textContent = emailBody.slice(0, Math.floor(tp * emailBody.length));
-        if (cursor) cursor.style.display = tp < 1 ? 'inline-block' : 'none';
+        if (reduce) {
+          typed.textContent = emailBody;
+          if (cursor) cursor.style.display = 'none';
+        } else {
+          const tp = Math.max(0, Math.min(1, (stageT - 0.12) * 1.6));
+          typed.textContent = emailBody.slice(0, Math.floor(tp * emailBody.length));
+          if (cursor) cursor.style.display = tp < 1 ? 'inline-block' : 'none';
+        }
       }
-      if (stage === 2 && printLayer) printLayer.textContent = String(Math.round(stageT * 412)).padStart(3, '0');
+      if (stage === 2 && printLayer) printLayer.textContent = reduce ? '412' : String(Math.round(stageT * 412)).padStart(3, '0');
     };
 
-    if (reduce) {
-      setStage(1, 1);
-      if (typed) typed.textContent = emailBody;
-      if (cursor) cursor.style.display = 'none';
-      return;
-    }
-    const start = performance.now();
-    const tick = (t) => {
-      const pos = (t - start) % (STAGE * N);
-      const stage = Math.min(N - 1, Math.floor(pos / STAGE));
-      const stageT = Math.max(0, Math.min(1, (pos - stage * STAGE) / STAGE));
-      setStage(stage, stageT);
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+    setStage(0, 1); // stable: show only stage 01 (ΕΠΑΦΗ)
   }
 
   /* ── Filament odometer ── */
