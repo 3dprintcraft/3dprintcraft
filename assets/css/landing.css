@@ -452,6 +452,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .pc-work-grid { grid-template-columns: repeat(6, 1fr) !important; grid-auto-rows: auto !important; gap: 10px !important; }
   .pc-work-tile { grid-row: auto !important; }
   .pc-work-tile.pc-has-img { grid-column: span 6 !important; aspect-ratio: 4 / 5; }
+  .pc-work-tile.pc-has-img.is-wide { aspect-ratio: 3 / 2; }
+  .pc-work-tile.pc-has-img.is-square { aspect-ratio: 1 / 1; }
   .pc-work-soon { grid-column: span 2 !important; aspect-ratio: 1 / 1; }
   .pc-work-tile.pc-has-img .pc-work-name { font-size: 19px; }
   .pc-process { padding: 60px 20px !important; }
