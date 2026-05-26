@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&family=Space+Mono:wght@400;700&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="assets/css/landing.css?v=9" />
+<link rel="stylesheet" href="assets/css/landing.css?v=10" />
 </head>
 <body>
 <a class="pc-skip" href="#services">ΠΑΡΑΚΑΜΨΗ ΣΤΟ ΠΕΡΙΕΧΟΜΕΝΟ</a>
@@ -36,7 +36,10 @@
       <a href="#process">ΔΙΑΔΙΚΑΣΙΑ</a>
       <a href="#cta">ΠΡΟΣΦΟΡΑ</a>
     </nav>
-    <a class="pc-gantry-cta" href="#cta">ΞΕΚΙΝΑ →</a>
+    <div class="pc-gantry-right">
+      <a class="pc-gantry-cta" href="#cta">ΞΕΚΙΝΑ →</a>
+      <button class="pc-gantry-burger" id="navBurger" type="button" aria-label="Μενού" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+    </div>
   </div>
   <div class="pc-gantry-prog">
     <div class="pc-gantry-prog-fill" id="gantryFill"></div>
@@ -46,6 +49,13 @@
     <span class="pc-gantry-tick" style="left:75%"></span>
     <span class="pc-gantry-tick" style="left:100%"></span>
   </div>
+  <nav class="pc-gantry-menu" id="navMenu" aria-label="Μενού πλοήγησης">
+    <a href="#hero">ΑΡΧΙΚΗ</a>
+    <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
+    <a href="#work">ΔΟΥΛΕΙΕΣ</a>
+    <a href="#process">ΔΙΑΔΙΚΑΣΙΑ</a>
+    <a href="#cta">ΠΡΟΣΦΟΡΑ</a>
+  </nav>
 </header>
 
 <main>
@@ -76,8 +86,8 @@
       <p class="pc-hero-lead"><span class="accent">Custom 3D</span> Εκτυπώσεις, <span class="accent">NFC</span> μπρελόκ και <span class="accent">Websites</span> που ξεχωρίζουν.</p>
 
       <div class="pc-hero-actions">
-        <a class="pc-btn-primary" href="#cta"><span aria-hidden="true">→</span> ΞΕΚΙΝΗΣΕ ΕΔΩ</a>
-        <a class="pc-link-arrow" href="#work">ΔΕΣ ΤΑ ΕΡΓΑ ΜΑΣ →</a>
+        <a class="pc-btn-primary" href="#cta">ΞΕΚΙΝΗΣΕ ΕΔΩ <span aria-hidden="true">→</span> </a>
+        <a class="pc-btn-warm" href="#work">ΔΕΣ ΤΑ ΕΡΓΑ ΜΑΣ <span class="arr" aria-hidden="true">→</span></a>
       </div>
 
       <div class="pc-hero-stats">
@@ -238,7 +248,6 @@
       <div class="eyebrow">03 / ΕΠΙΛΕΓΜΕΝΕΣ ΔΟΥΛΕΙΕΣ</div>
       <h2>Πρόσφατα <i>έργα.</i></h2>
     </div>
-    <div class="right"><b>86</b> έργα φέτος</div>
   </div>
 
   <div class="pc-work-grid">
@@ -292,7 +301,7 @@
     </figure>
   </div>
 
-  <div class="pc-work-foot-row"><span>8 ΑΠΟ 340 ΕΡΓΑ</span><span class="strong">ΔΕΣ ΟΛΟ ΤΟ ΑΡΧΕΙΟ →</span></div>
+  <div class="pc-work-foot-row"><span>         </span><a class="pc-btn-warm" href="archive.html">ΔΕΣ ΟΛΟ ΤΟ ΑΡΧΕΙΟ <span class="arr" aria-hidden="true">→</span></a></div>
 </section>
 
 <!-- ═══ PROCESS ═══ -->
@@ -326,7 +335,7 @@
       <h2 class="pc-cta-h2">Έχεις ιδέα;<br/><span class="accent">Ας τη φτιάξουμε.</span></h2>
       <p>Ένα 3D-printed κομμάτι. Ένα NFC μπρελόκ για το μαγαζί σου. Ένα επαγγελματικό site για το brand σου. Στείλε ό,τι έχεις — σκίτσο, αρχείο, link ή απλά λέξεις.</p>
       <div class="pc-cta-actions">
-        <a class="pc-cta-btn" href="mailto:contactprintcraft3d@gmail.com">ΞΕΚΙΝΑ ΕΡΓΟ →</a>
+        <a class="pc-cta-btn" href="mailto:contactprintcraft3d@gmail.com">ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ →</a>
         <a class="pc-cta-email" href="mailto:contactprintcraft3d@gmail.com">contactprintcraft3d@gmail.com</a>
       </div>
     </div>
@@ -396,6 +405,6 @@
   <div class="pc-hud-mobile-bar"><div class="pc-hud-mobile-bar-fill" id="hudBarM"></div></div>
 </div>
 
-<script src="assets/js/landing.js?v=9" defer></script>
+<script src="assets/js/landing.js?v=10" defer></script>
 </body>
 </html>

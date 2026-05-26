@@ -77,6 +77,19 @@
       });
     }
 
+    /* ── Mobile menu (hamburger → slide-down) ── */
+    const burger = $('#navBurger'), menu = $('#navMenu');
+    if (burger && menu) {
+      const setMenu = (open) => {
+        burger.classList.toggle('is-open', open);
+        menu.classList.toggle('is-open', open);
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+      burger.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+      addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+    }
+
     /* ── Materials ticker ── */
     const tt = $('#tickerTrack');
     if (tt) {
