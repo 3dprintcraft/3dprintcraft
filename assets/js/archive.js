@@ -23,7 +23,6 @@
   const empty   = document.getElementById('archiveEmpty');
   const count   = document.getElementById('archiveCount');
   const catsBar = document.getElementById('archiveCats');
-  const topBtn  = document.getElementById('archiveTop');
 
   const BASE = 'assets/img/archive/';
   const IMG_RE = /\.(jpe?g|png|webp|avif|gif)$/i;
@@ -136,14 +135,6 @@
   const useDrive = DRIVE.apiKey && DRIVE.folderId;
   const loader = useDrive ? fromDrive().catch(local) : local();
   loader.catch(() => []).then(render);
-
-  /* scroll-to-top */
-  if (topBtn) {
-    const onScroll = () => topBtn.classList.toggle('show', scrollY > 300);
-    onScroll();
-    addEventListener('scroll', onScroll, { passive: true });
-    topBtn.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
-  }
 })();
 
 /* ═══════════════════════════════════════════════════════════════════════

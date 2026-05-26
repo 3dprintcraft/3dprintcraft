@@ -90,6 +90,15 @@
       addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
     }
 
+    /* ── Scroll-to-top button (index + archive) ── */
+    const toTop = $('#archiveTop');
+    if (toTop) {
+      const onTop = () => toTop.classList.toggle('show', scrollY > 300);
+      onTop();
+      addEventListener('scroll', onTop, { passive: true });
+      toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
     /* ── Materials ticker ── */
     const tt = $('#tickerTrack');
     if (tt) {
