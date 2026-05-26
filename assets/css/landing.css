@@ -523,9 +523,11 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .pc-arch-cat { flex: 0 0 auto; padding: 5px 13px; border: 1.5px solid var(--c-ink); background: var(--c-paper); color: var(--c-ink); font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; cursor: pointer; white-space: nowrap; transition: background .15s, color .15s; }
 .pc-arch-cat:hover { background: var(--c-paper-alt); }
 .pc-arch-cat.is-active { background: var(--c-ink); color: var(--c-paper); }
-.pc-arch-top { position: fixed; right: calc(20px + env(safe-area-inset-right)); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 45; width: 46px; height: 46px; display: grid; place-items: center; background: var(--c-warm); color: var(--c-warm-ink); border: 1.5px solid var(--c-ink); box-shadow: 3px 3px 0 0 var(--c-ink); font-size: 18px; line-height: 1; cursor: pointer; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s, transform .25s, box-shadow .15s; }
+.pc-arch-top { position: fixed; right: calc(20px + env(safe-area-inset-right)); bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 45; width: 46px; height: 46px; display: grid; place-items: center; background: var(--c-warm); color: var(--c-warm-ink); border: 1.5px solid var(--c-ink); box-shadow: 3px 3px 0 0 var(--c-ink); font-size: 18px; line-height: 1; cursor: pointer; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s, transform .25s, box-shadow .15s, bottom .25s ease; }
 .pc-arch-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .pc-arch-top.show:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 0 var(--c-ink); }
+.pc-arch-top.has-hud { bottom: 226px; }                                                   /* πάνω από το print HUD (index) */
+@media (max-width: 900px) { .pc-arch-top.has-hud { bottom: calc(66px + env(safe-area-inset-bottom)); } }  /* πάνω από το mobile bar */
 .pc-arch-footer { background: var(--c-ink); color: var(--c-paper); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; }
 @media (max-width: 1100px) { .pc-arch-grid { column-count: 3; } }
 @media (max-width: 760px) { .pc-arch { padding: 56px 20px; } .pc-arch-grid { column-count: 2; } .pc-arch-footer { padding: 24px 20px; } }

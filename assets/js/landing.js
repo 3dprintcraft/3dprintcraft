@@ -74,6 +74,7 @@
         const lbl = min ? 'Επαναφορά' : 'Ελαχιστοποίηση';
         hudMin.setAttribute('aria-label', lbl);
         hudMin.setAttribute('title', lbl);
+        dispatchEvent(new Event('resize'));
       });
     }
 
@@ -90,12 +91,20 @@
       addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
     }
 
-    /* ── Scroll-to-top button (index + archive) ── */
+    /* ── Scroll-to-top button (index + archive) — κουμπώνει δυναμικά πάνω από το HUD ── */
     const toTop = $('#archiveTop');
     if (toTop) {
-      const onTop = () => toTop.classList.toggle('show', scrollY > 300);
+      const GAP = 12;
+      const placeToTop = () => {
+        let hud = null;
+        if (hudD && hudD.getBoundingClientRect().height > 0) hud = hudD;
+        else if (hudM && hudM.getBoundingClientRect().height > 0) hud = hudM;
+        toTop.style.bottom = hud ? (Math.round(innerHeight - hud.getBoundingClientRect().top + GAP) + 'px') : '';
+      };
+      const onTop = () => { toTop.classList.toggle('show', scrollY > 300); placeToTop(); };
       onTop();
       addEventListener('scroll', onTop, { passive: true });
+      addEventListener('resize', placeToTop);
       toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
