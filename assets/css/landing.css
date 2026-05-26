@@ -228,7 +228,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .pc-email-att .sz { white-space: nowrap; }
 .pc-email-att .clip { color: var(--c-accent); }
 .pc-email-att .sz { color: var(--c-ink-3); font-size: 9px; }
-.pc-email-reply { margin-left: auto; padding: 6px 12px; background: var(--c-accent); color: var(--c-accent-ink); border: 1.5px solid var(--c-ink); font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 700; white-space: nowrap; animation: pcPulse 1s infinite; }
+.pc-email-reply { margin-left: auto; padding: 6px 12px; background: var(--c-accent); color: var(--c-accent-ink); border: 1.5px solid var(--c-ink); font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; font-weight: 700; white-space: nowrap; }
 
 /* design overlay (dimension callouts) */
 .pc-design-tool { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); padding: 4px 10px; background: var(--c-ink); color: var(--c-paper); font-size: 9px; letter-spacing: 2px; }
