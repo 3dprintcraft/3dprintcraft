@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ΔΙΟΝΥΣΗΣ · Φωτιστικό — Επιλογή Χρώματος</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#0e0f12;
+    --panel:#15171c;
+    --inset:#0f1115;
+    --line:rgba(255,255,255,.09);
+    --line-2:rgba(255,255,255,.05);
+    --ink:#eef0f3;
+    --mut:#9aa0aa;
+    --accent:#2AA7E0;
+    --filament:#2AA7E0;
+    --sans:"IBM Plex Sans",sans-serif;
+    --cond:"IBM Plex Sans Condensed",sans-serif;
+    --mono:"IBM Plex Mono",monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:
+      radial-gradient(140% 120% at 85% -10%, rgba(42,167,224,.06), transparent 50%),
+      var(--page);
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* faint engineering grid + grain over whole page */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(var(--line-2) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line-2) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(120% 100% at 50% 0%, #000 30%, transparent 85%);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--accent);color:#000}
+
+  .app{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:26px clamp(16px,4vw,40px) 40px}
+
+  /* ---- header ---- */
+  .top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:11px}
+  .mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;
+    background:linear-gradient(150deg,#2f7be0,#1655b6);box-shadow:0 6px 18px -6px rgba(40,120,230,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+  .mark svg{width:18px;height:18px;fill:#fff;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+  .brand b{display:block;font:700 14px/1 var(--cond);letter-spacing:.14em}
+  .brand span{display:block;font:500 9.5px/1.4 var(--mono);letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
+
+  .spec{display:flex;align-items:center;gap:11px;padding:8px 12px 8px 9px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+  .spec-chip{width:30px;height:30px;border-radius:8px;background:var(--filament);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),inset 0 8px 10px -8px rgba(255,255,255,.5);transition:background .4s ease}
+  .spec-name{display:block;font:600 12px/1.1 var(--mono);letter-spacing:.05em}
+  .spec-hex{display:block;font:500 10px/1.3 var(--mono);color:var(--mut)}
+
+  /* ---- title ---- */
+  .titlebar{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:26px 2px 18px}
+  .titlebar h1{margin:0;font:700 clamp(34px,6vw,58px)/0.92 var(--cond);letter-spacing:.04em}
+  .titlebar p{margin:0;font:500 12px/1 var(--mono);letter-spacing:.16em;color:var(--mut);text-transform:uppercase}
+  .order{margin-left:auto;font:500 10px/1 var(--mono);letter-spacing:.12em;color:var(--mut);
+    border:1px solid var(--line);border-radius:999px;padding:7px 13px;text-transform:uppercase}
+
+  /* ---- workspace ---- */
+  .work{display:grid;grid-template-columns:1fr 348px;gap:18px}
+  @media (max-width:880px){.work{grid-template-columns:1fr}}
+
+  /* ---- stage ---- */
+  .stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;
+    min-height:clamp(360px,52vh,560px);display:grid;place-items:center;
+    background:var(--stage-bg);box-shadow:inset 0 0 140px rgba(0,0,0,.55);transition:background .5s ease}
+  body[data-bg="studio"]{--stage-bg:radial-gradient(120% 95% at 50% 125%,#2b2e35 0%,#15171b 46%,#0b0c0f 100%)}
+  body[data-bg="night"]{--stage-bg:radial-gradient(120% 95% at 50% 115%,#161616 0%,#040404 100%)}
+  body[data-bg="wall"]{--stage-bg:radial-gradient(120% 110% at 50% -10%,#f4f1ea 0%,#dcd7ce 70%,#ccc6bb 100%)}
+  /* ambient room-glow when lit — κρατημένο πολύ διακριτικό */
+  .stage::before{content:"";position:absolute;inset:-10%;z-index:0;
+    background:radial-gradient(closest-side at 50% 47%,var(--accent),transparent 72%);
+    opacity:0;transition:opacity .6s ease, background .4s ease;filter:blur(10px)}
+  .stage.lit::before{opacity:.16}
+  /* grid only reads on dark backdrops (white lines vanish on the light wall) */
+  .stage::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:38px 38px;mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent 78%)}
+
+  .art-svg{position:relative;z-index:2;width:min(86%,720px);height:auto;max-height:46vh;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  #body{fill:var(--filament);transition:fill .45s ease}   /* το σώμα — αλλάζει χρώμα */
+  .art-svg .a{fill:#fff}                                   /* το όνομα — πάντα λευκό */
+  .art-svg .b{fill:none}
+  /* λάμψη: ίσα που — μόνο μια απαλή άλως στο χρώμα του σώματος */
+  .stage.lit .art-svg{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--filament) 45%,transparent))}
+  .art-svg.pop{animation:pop .55s cubic-bezier(.2,.8,.2,1)}
+  @keyframes pop{0%{transform:scale(1)}38%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+  /* stage caption + tools */
+  .cap{position:absolute;top:14px;left:16px;z-index:3;font:500 9.5px/1.5 var(--mono);letter-spacing:.18em;color:var(--mut);text-transform:uppercase}
+  body[data-bg="wall"] .cap{color:#7a7468}
+  .tools{position:absolute;top:12px;right:12px;z-index:3;display:flex;gap:8px;align-items:center}
+  .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:rgba(15,17,21,.7);backdrop-filter:blur(8px)}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--mut);cursor:pointer;
+    font:600 10px/1 var(--mono);letter-spacing:.08em;padding:9px 11px;text-transform:uppercase;transition:.2s}
+  .seg button+button{border-left:1px solid var(--line)}
+  .seg button:hover{color:var(--ink)}
+  .seg button.on{background:rgba(255,255,255,.1);color:#fff}
+  .light{display:flex;align-items:center;gap:7px;appearance:none;cursor:pointer;
+    border:1px solid var(--line);border-radius:10px;background:rgba(15,17,21,.7);backdrop-filter:blur(8px);
+    color:var(--mut);font:600 10px/1 var(--mono);letter-spacing:.1em;padding:9px 12px;text-transform:uppercase;transition:.2s}
+  .light .dot{width:9px;height:9px;border-radius:50%;background:#3a3f47;transition:.25s}
+  .light:hover{color:var(--ink)}
+  .light.on{color:#fff;border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+  .light.on .dot{background:var(--accent);box-shadow:0 0 8px var(--accent)}
+
+  /* ---- palette panel ---- */
+  .panel{border:1px solid var(--line);border-radius:18px;background:var(--panel);display:flex;flex-direction:column;overflow:hidden}
+  .panel-h{padding:16px 16px 13px;border-bottom:1px solid var(--line)}
+  .panel-h .k{font:500 9.5px/1 var(--mono);letter-spacing:.22em;color:var(--mut);text-transform:uppercase}
+  .panel-h .t{margin-top:7px;display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .panel-h .t b{font:600 15px/1 var(--sans);letter-spacing:.01em}
+  .panel-h .t span{font:500 10px/1 var(--mono);color:var(--mut)}
+  .panel-h .note{margin-top:9px;font:500 9.5px/1.5 var(--mono);letter-spacing:.02em;color:var(--mut)}
+  .panel-h .note b{color:#fff;font-weight:600}
+  .palette{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:14px;overflow:auto;max-height:560px}
+  @media (max-width:880px){.palette{grid-template-columns:repeat(auto-fill,minmax(108px,1fr));max-height:none}}
+  .palette::-webkit-scrollbar{width:9px}
+  .palette::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:9px;border:2px solid var(--panel)}
+
+  .chip{appearance:none;text-align:left;padding:0;cursor:pointer;display:flex;flex-direction:column;
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--inset);
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .chip .sw{position:relative;height:60px;display:grid;place-items:center;background:var(--c)}
+  .chip .sw::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.24),rgba(255,255,255,0) 44%,rgba(0,0,0,.14))}
+  .chip .wm{position:relative;font:500 9px/1 var(--mono);letter-spacing:.05em;color:var(--cink);opacity:.42}
+  .chip .tick{position:absolute;top:6px;right:7px;font-size:12px;line-height:1;color:var(--cink);opacity:0;transition:opacity .15s}
+  .chip .lab{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px;background:rgba(0,0,0,.18)}
+  .chip .nm{font:600 9.5px/1.15 var(--mono);letter-spacing:.03em;color:var(--ink);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chip .hx{font:500 8.5px/1 var(--mono);color:var(--mut);flex:none}
+  .chip:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .chip.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 12px 26px -12px var(--accent)}
+  .chip.active .tick{opacity:1}
+
+  /* ---- footer ---- */
+  .foot{margin-top:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font:500 10px/1.5 var(--mono);letter-spacing:.06em;color:var(--mut)}
+  .foot a{color:inherit}
+
+  /* entrance */
+  .brand,.spec,.titlebar,.stage,.panel{opacity:0;transform:translateY(10px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .spec{animation-delay:.06s}.titlebar{animation-delay:.1s}.stage{animation-delay:.16s}.panel{animation-delay:.22s}
+  .chip{opacity:0;animation:rise .5s ease forwards;animation-delay:calc(.3s + var(--d,0)*.018s)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.brand,.spec,.titlebar,.stage,.panel,.chip{opacity:1;transform:none}}
+</style>
+</head>
+<body data-bg="studio">
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <span class="mark"><svg viewBox="0 0 24 24"><path d="M13.5 2 4 13.4h6.1L9 22l9.6-11.7h-6.3z"/></svg></span>
+        <div>
+          <b>3D PRINT CRAFT</b>
+          <span>Filament Studio</span>
+        </div>
+      </div>
+      <div class="spec">
+        <span class="spec-chip" id="specChip"></span>
+        <div>
+          <span class="spec-name" id="specName">—</span>
+          <span class="spec-hex" id="specHex">—</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="titlebar">
+      <h1>ΔΙΟΝΥΣΗΣ</h1>
+      <p>Φωτιστικό · Custom Light</p>
+      <span class="order">Παραγγελία</span>
+    </div>
+
+    <div class="work">
+      <section class="stage lit" id="stage">
+        <span class="cap">Preview · ζωντανή προεπισκόπηση</span>
+        <div class="tools">
+          <div class="seg" role="group" aria-label="Φόντο">
+            <button data-bg="studio" class="on" type="button">Studio</button>
+            <button data-bg="wall" type="button">Τοίχος</button>
+            <button data-bg="night" type="button">Νύχτα</button>
+          </div>
+          <button class="light on" id="lightBtn" type="button" aria-pressed="true"><span class="dot"></span>Φως</button>
+        </div>
+
+        <svg class="art-svg" id="artSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670.75213 178.12413" role="img" aria-label="Φωτιστικό Διονύσης">
+          <g>
+            <path id="body" d="M415.53,501.76c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm414.23,25.1c19.6-25.06,7.19-62.75-23.67-74.75-20.2-7.84-39.77-5.84-59,3.37-2.07.99-4.94,1.9-6.9,1.25-12.95-4.34-25.82-4.12-38.87-.62-1.91.51-4.16.09-6.19-.27-5.85-1.02-11.68-2.23-17.51-3.37-1.77-.35-3.71-.33-5.28-1.09-10.75-5.21-22.28-7.04-33.96-6.93-10.4.09-20.8,1.56-31.64,2.46-.1-.3-.47-1.37-.85-2.44-6.54-18.24-19.29-29.53-38.49-32.07-20.18005-2.67-36.36,4.87-47.07,22.43-3.75,6.15-6.14,13.12-9.26,19.95-15.42-5.96-30.5-5.24-45.17,2.77-1.04.57-2.88.22-4.13-.27a49.5917,49.5917,0,0,0-31.37-1.8,9.48588,9.48588,0,0,1-5.2-.24c-18.77-6.72-36.69-4.82-53.65,5.42-2.99,1.81-4.82,1.43-7.46-.4-8.02-5.54-17-8.66-26.79-8-6.53.44-12.99,1.92-19.7,2.97-1.64-2.8-3.44-6.18-5.54-9.36-21.1-32.05-67.07-31.51-85.8.56-8.37,14.32-18.22,27.77-27.47,41.58-8.04,12.01-17.33,23.35-24.02,36.06C163.04,546.35,168.09,575.73,186,590H825c12-9,7.16-29.71,2-43.97C824.17,538.2,824.37,533.75,829.76,526.86ZM300.47,546.37c-10.95-.1-21.93-.41-32.86.2-10.11.56-20.15,2.28-30.24,3.31a23.97847,23.97847,0,0,1-8.29-.24c-4.65-1.21-5.55-5.49-1.82-8.47a12.39611,12.39611,0,0,1,6.3-2.47c12.24-1.1,24.49-2.09,36.76-2.76,7.08-.38,14.19-.07,21.12-.07-7-22.89-13.71-44.81-20.35-66.52C256.92,489.32,243.17,508.46,229.74,527.82A64.02593,64.02593,0,0,0,222.98,541.65c-1.35,3.55005-3.78,4.73-6.88,4.22-3.7-.62-4.87-3.98-3.83-6.95a53.83037,53.83037,0,0,1,6.48-13.31c9.47-13.47,19.61-26.47,29.02-39.98,6.02-8.63,11.25-17.82,16.74-26.8,1.91-3.12,7.68-3.83,10.45-.55a32.67286,32.67286,0,0,1,6.11,10.15c4.61,13.49,8.5,27.24,13.14,40.72,2.51,7.31,5.91,14.32,9.05,21.4,1,2.27,2.64,4.25,3.64,6.52C309.42,542.78,306.69,546.43,300.47,546.37Zm55.77-8.58a31.94261,31.94261,0,0,1-6.89,5.69c-10.94,6.77-22.15,1.56-24.12-11.18-.53-3.44-.51-6.96-.74-10.44-.17-.06-.33-.12-.5-.19,1.78-8.43,3.42-16.89,5.42-25.27a33.82754,33.82754,0,0,1,3.46-8.25c1.53-2.8,3.99-4.95,7.36-3.46,3.47,1.55,2.47,4.63,1.44,7.36a92.46358,92.46358,0,0,0-6.38,32.6c-.01,4.31-.33,9.38,4.25,11.46s8.52-.83,12.15-3.8c2.22-1.82,4.69-6.31,7.64-3.31C362.45,532.17,358.44,535.34,356.24,537.79Zm27.86,7.62c-6.53-1.13-10.79-6.09-11.09-13.41-.52-12.92,4.83-23.92,11.93-34.19a45.096,45.096,0,0,1,7.27-8.16c6.23-5.5,13.28-8.23,21.52-4.61,7.82,3.44,9.85,10.66,11.48,18.06a32.67346,32.67346,0,0,1,.36,4.97C426.65,526.42,402.08,548.52,384.1,545.41Zm173.13-100.6c1.15-3.15,4.36005-3.51,6.62-2.1,1.23.76,1.96,4.14,1.35,5.75-3.02,8.06-6.47,15.96-10,23.81-.53,1.16-2.91,2.71-3.4,2.41-1.34-.83-2.12-2.55-3.43-4.33C551.37,461.65,554.15,453.18,557.23,444.81Zm-60.78,59.36c-4.07,13.06-12.61,23.26-22.74,32.2-2.99,2.63-5.79,5.56-9.07,7.78-2.53,1.71-5.78,3.75-8.49,3.48-4.1-.41-4.39-4.72-4.94-8.24-1.65-10.49-2.96-21.06-5.3-31.39-.97-4.32-3.75-8.47-6.53-12.06-2.44-3.16-1.98-5.47.34-7.84,2.51-2.57,5.8-3.33,8.4-.59a20.37815,20.37815,0,0,1,5.12,8.33c2.67,10.41,4.75,20.98,7.01,31.49.41,1.92.56,3.89.89,6.27,15.77-7.29,27-27.51,24.27-42.88-.72-4.06.81-6.45,4.66-7.42,4.05-1.02,7.87.99,8.02,5.18A47.73769,47.73769,0,0,1,496.45,504.17Zm58.65,39.12c-7.42,4.24-15.35,6.19-23.29,1.7-7.7-4.35-8.65-12.08-8.67-22.3.57-4.52,1.58-11.27,2.23-18.06.61-6.33-1.59-8.21-7.9-6.95-2.93.58-5.75,1.73-8.67,2.31-1.09.21-2.35-.49-3.54-.78.3-1.21.25-2.69.95-3.58,3.74-4.68,18.05-8.75,23.67-6.91,4.79,1.57,6.61,5.2,5.89,11.71-.86005,7.6-1.94,15.18-2.46,22.81-.33,4.87.15,9.92,5.34,12.49,5.48,2.72,10.49.92,14.81-2.63,7.9-6.47,12.3-14.83,12.03-25.21-.17-6.39-2.7-11.52-8.54-14.84-4.32-2.45-4.99-5.83-2.35-9.55,2.8-3.93,6.08-4.14,10.11-.62a30.89586,30.89586,0,0,1,10.3,19.46C577.19,517.4,568.34,535.71,555.1,543.29Zm96.87-55.96c-9.03-2.14-18.06-2.96-27.19995-.92-18.05005,4.04-29.43,21.69-24.37,37.78,2.59,8.23,9.79,12.47,17.81995,10.48,8.53-2.12,12.73-8.64,11.09-17.23-1.4-7.3-7.73-11.21-16.32-10.44-2.13.19-5.95-.16-6.23-1.08-1.16-3.88,2.38-5.02,5.15-5.91,7.99-2.58,15.73-1.92,21.81,4.27,6.15,6.25,7.15,14.21,4.65,22.34-3.47,11.32-15.75,18.97-27.24,17.48-12.56-1.64-21.05-11.23-21.83-24.68-1.2-20.76,13.73-38.46,35.56-42.04,3.77-.62,7.6-.88,12.22-1.4,4.2.64,9.15,1.23,14.03,2.21a7.58023,7.58023,0,0,1,4.54,2.65,7.03694,7.03694,0,0,1,.81,5.35C656.22,486.99,653.38,487.66,651.97,487.33ZM732.21,497.56c-1.51,11.27-4.98,22.28-7.48,33.42-2.88,12.78-5.49,25.63-8.57,38.36-.46,1.91-2.81994,4.66-4.31,4.67-1.78,0-5.03-2.47-5.09-3.97-.24-5.9-.32-12.05,1.1-17.72,3.79-15.13,8.6-30.01,12.51-45.11.81-3.17-.5-6.88995-.84-10.35-3.56006.87-8.13.65-10.5,2.83a188.28922,188.28922,0,0,0-18.51,20.08c-3.86005,4.75-6.7,10.32-10.04,15.48-1.17,1.81-2.18,3.96-3.83,5.14-1.51,1.07-4.11,1.83-5.65,1.24-1.21-.46-2.37-3.37-2.09-4.92.9-5.05,2.57-9.96,3.76-14.96,1.43-5.98,2.88-11.96,3.94-18.01,1.6-9.11-1.61-11.73-10.53-9.05-2.74.83-5.58,1.34-8.36005,2-.37-.51-.74-1.01-1.11-1.51.96-1.45,1.64-3.26,2.95-4.28a28.63987,28.63987,0,0,1,19.45-6.06,8.86714,8.86714,0,0,1,8.09,9.72c-.47,6.39-2.06995,12.7-3.19,19.05-.2,1.08-.44,2.15-.8,3.91,5.46-6.98,10.22-13.55,15.48-19.71,5.27-6.16,11.48-11.07,20.01-12.11C727.49,484.62,733.38,488.83,732.21,497.56Zm63.11-5.43c-.82.87-3.51,1.05-4.67.36-7.9-4.72-15.15-4.39-22.36,1.61-6.65,5.53-10.15,12.61-10.08,22.17-.49,6.22,3.55,10.75,8.7,14.51,4.02,2.93,8.37006,5.43,12.44,8.31,10.32,7.28,12.16,16.66,5.05,27.16a47.14476,47.14476,0,0,1-8.67,9.55c-1.32,1.12-4.1.49-6.22.66.45-1.88.56-3.95,1.45-5.6,1.17-2.16,3.11-3.89,4.45-5.99,4.72-7.36,3.6-13.41-3.53-18.58a111.75692,111.75692,0,0,0-10.49-6.72c-17.66-9.94-16.8-28.28-9.95-41.18,7.22-13.61,23.57-21.84,36.68-17.98,3.29.97,6.14,4.04,8.62,6.68C797.41,487.8,796.44,490.95,795.32,492.13Zm-398.01,5.99c-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73a49.684,49.684,0,0,0-1.62-6.84C412.29,492.72,403.69,490.94,397.31,498.12Zm18.22,3.64c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Zm0,0c-3.24-9.04-11.84-10.82-18.22-3.64-7.07,7.98-12.1,17.02-13.2,27.92-.71,7.08,1.61,9.67,8.7,9.29,10.23-.55,24.19-15.06,24.34-26.73A49.684,49.684,0,0,0,415.53,501.76Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M795.32,492.13c-.82.87-3.51,1.05-4.67.36-7.9-4.72-15.15-4.39-22.36,1.61-6.65,5.53-10.15,12.61-10.08,22.17-.49,6.22,3.55,10.75,8.7,14.51,4.02,2.93,8.37006,5.43,12.44,8.31,10.32,7.28,12.16,16.66,5.05,27.16a47.14476,47.14476,0,0,1-8.67,9.55c-1.32,1.12-4.1.49-6.22.66.45-1.88.56-3.95,1.45-5.6,1.17-2.16,3.11-3.89,4.45-5.99,4.72-7.36,3.6-13.41-3.53-18.58a111.75692,111.75692,0,0,0-10.49-6.72c-17.66-9.94-16.8-28.28-9.95-41.18,7.22-13.61,23.57-21.84,36.68-17.98,3.29.97,6.14,4.04,8.62,6.68C797.41,487.8,796.44,490.95,795.32,492.13Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M732.21,497.56c-1.51,11.27-4.98,22.28-7.48,33.42-2.88,12.78-5.49,25.63-8.57,38.36-.46,1.91-2.81994,4.66-4.31,4.67-1.78,0-5.03-2.47-5.09-3.97-.24-5.9-.32-12.05,1.1-17.72,3.79-15.13,8.6-30.01,12.51-45.11.81-3.17-.5-6.88995-.84-10.35-3.56006.87-8.13.65-10.5,2.83a188.28922,188.28922,0,0,0-18.51,20.08c-3.86005,4.75-6.7,10.32-10.04,15.48-1.17,1.81-2.18,3.96-3.83,5.14-1.51,1.07-4.11,1.83-5.65,1.24-1.21-.46-2.37-3.37-2.09-4.92.9-5.05,2.57-9.96,3.76-14.96,1.43-5.98,2.88-11.96,3.94-18.01,1.6-9.11-1.61-11.73-10.53-9.05-2.74.83-5.58,1.34-8.36005,2-.37-.51-.74-1.01-1.11-1.51.96-1.45,1.64-3.26,2.95-4.28a28.63987,28.63987,0,0,1,19.45-6.06,8.86714,8.86714,0,0,1,8.09,9.72c-.47,6.39-2.06995,12.7-3.19,19.05-.2,1.08-.44,2.15-.8,3.91,5.46-6.98,10.22-13.55,15.48-19.71,5.27-6.16,11.48-11.07,20.01-12.11C727.49,484.62,733.38,488.83,732.21,497.56Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M656.46,486.19c-.24.8-3.08,1.47-4.49,1.14-9.03-2.14-18.06-2.96-27.19995-.92-18.05005,4.04-29.43,21.69-24.37,37.78,2.59,8.23,9.79,12.47,17.81995,10.48,8.53-2.12,12.73-8.64,11.09-17.23-1.4-7.3-7.73-11.21-16.32-10.44-2.13.19-5.95-.16-6.23-1.08-1.16-3.88,2.38-5.02,5.15-5.91,7.99-2.58,15.73-1.92,21.81,4.27,6.15,6.25,7.15,14.21,4.65,22.34-3.47,11.32-15.75,18.97-27.24,17.48-12.56-1.64-21.05-11.23-21.83-24.68-1.2-20.76,13.73-38.46,35.56-42.04,3.77-.62,7.6-.88,12.22-1.4,4.2.64,9.15,1.23,14.03,2.21a7.58023,7.58023,0,0,1,4.54,2.65A7.03694,7.03694,0,0,1,656.46,486.19Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M555.1,543.29c-7.42,4.24-15.35,6.19-23.29,1.7-7.7-4.35-8.65-12.08-8.67-22.3.57-4.52,1.58-11.27,2.23-18.06.61-6.33-1.59-8.21-7.9-6.95-2.93.58-5.75,1.73-8.67,2.31-1.09.21-2.35-.49-3.54-.78.3-1.21.25-2.69.95-3.58,3.74-4.68,18.05-8.75,23.67-6.91,4.79,1.57,6.61,5.2,5.89,11.71-.86005,7.6-1.94,15.18-2.46,22.81-.33,4.87.15,9.92,5.34,12.49,5.48,2.72,10.49.92,14.81-2.63,7.9-6.47,12.3-14.83,12.03-25.21-.17-6.39-2.7-11.52-8.54-14.84-4.32-2.45-4.99-5.83-2.35-9.55,2.8-3.93,6.08-4.14,10.11-.62a30.89586,30.89586,0,0,1,10.3,19.46C577.19,517.4,568.34,535.71,555.1,543.29Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M565.2,448.46c-3.02,8.06-6.47,15.96-10,23.81-.53,1.16-2.91,2.71-3.4,2.41-1.34-.83-2.12-2.55-3.43-4.33,3-8.7,5.78-17.17,8.86-25.54,1.15-3.15,4.36005-3.51,6.62-2.1C565.08,443.47,565.81,446.85,565.2,448.46Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M496.45,504.17c-4.07,13.06-12.61,23.26-22.74,32.2-2.99,2.63-5.79,5.56-9.07,7.78-2.53,1.71-5.78,3.75-8.49,3.48-4.1-.41-4.39-4.72-4.94-8.24-1.65-10.49-2.96-21.06-5.3-31.39-.97-4.32-3.75-8.47-6.53-12.06-2.44-3.16-1.98-5.47.34-7.84,2.51-2.57,5.8-3.33,8.4-.59a20.37815,20.37815,0,0,1,5.12,8.33c2.67,10.41,4.75,20.98,7.01,31.49.41,1.92.56,3.89.89,6.27,15.77-7.29,27-27.51,24.27-42.88-.72-4.06.81-6.45,4.66-7.42,4.05-1.02,7.87.99,8.02,5.18A47.73769,47.73769,0,0,1,496.45,504.17Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M425.57,508.07a32.67346,32.67346,0,0,0-.36-4.97c-1.63-7.4-3.66-14.62-11.48-18.06-8.24-3.62-15.29-.89-21.52,4.61a45.096,45.096,0,0,0-7.27,8.16c-7.1,10.27-12.45,21.27-11.93,34.19.3,7.32,4.56,12.28,11.09,13.41C402.08,548.52,426.65,526.42,425.57,508.07Zm-32.76,27.26c-7.09.38-9.41-2.21-8.7-9.29,1.1-10.9,6.13-19.94,13.2-27.92,6.38-7.18,14.98-5.4,18.22,3.64a49.684,49.684,0,0,1,1.62,6.84C417,520.27,403.04,534.78,392.81,535.33Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M356.24,537.79a31.94261,31.94261,0,0,1-6.89,5.69c-10.94,6.77-22.15,1.56-24.12-11.18-.53-3.44-.51-6.96-.74-10.44-.17-.06-.33-.12-.5-.19,1.78-8.43,3.42-16.89,5.42-25.27a33.82754,33.82754,0,0,1,3.46-8.25c1.53-2.8,3.99-4.95,7.36-3.46,3.47,1.55,2.47,4.63,1.44,7.36a92.46358,92.46358,0,0,0-6.38,32.6c-.01,4.31-.33,9.38,4.25,11.46s8.52-.83,12.15-3.8c2.22-1.82,4.69-6.31,7.64-3.31C362.45,532.17,358.44,535.34,356.24,537.79Z" transform="translate(-168.44158 -411.87587)"/>
+            <path class="a" d="M300.47,546.37c-10.95-.1-21.93-.41-32.86.2-10.11.56-20.15,2.28-30.24,3.31a23.97847,23.97847,0,0,1-8.29-.24c-4.65-1.21-5.55-5.49-1.82-8.47a12.39611,12.39611,0,0,1,6.3-2.47c12.24-1.1,24.49-2.09,36.76-2.76,7.08-.38,14.19-.07,21.12-.07-7-22.89-13.71-44.81-20.35-66.52C256.92,489.32,243.17,508.46,229.74,527.82A64.02593,64.02593,0,0,0,222.98,541.65c-1.35,3.55005-3.78,4.73-6.88,4.22-3.7-.62-4.87-3.98-3.83-6.95a53.83037,53.83037,0,0,1,6.48-13.31c9.47-13.47,19.61-26.47,29.02-39.98,6.02-8.63,11.25-17.82,16.74-26.8,1.91-3.12,7.68-3.83,10.45-.55a32.67286,32.67286,0,0,1,6.11,10.15c4.61,13.49,8.5,27.24,13.14,40.72,2.51,7.31,5.91,14.32,9.05,21.4,1,2.27,2.64,4.25,3.64,6.52C309.42,542.78,306.69,546.43,300.47,546.37Z" transform="translate(-168.44158 -411.87587)"/>
+          </g>
+          <path class="b" d="M185.81,586" transform="translate(-168.44158 -411.87587)"/>
+        </svg>
+      </section>
+
+      <aside class="panel">
+        <div class="panel-h">
+          <div class="k">Χρώμα Νήματος</div>
+          <div class="t"><b>Bambu Lab · PLA</b><span id="count">—</span></div>
+          <div class="note">Αλλάζει το <b>σώμα</b> · το όνομα μένει <b>λευκό</b></div>
+        </div>
+        <div class="palette" id="palette" role="listbox" aria-label="Επιλογή χρώματος"></div>
+      </aside>
+    </div>
+
+    <footer class="foot">
+      <span>3DPrintCraft · Filament colour preview</span>
+      <span>Τα χρώματα στην οθόνη είναι ενδεικτικά · screen colours are approximate</span>
+    </footer>
+  </div>
+
+<script>
+  const COLORS = [
+    ["BLACK","#1A1A1A"],["GREY","#898989"],["SILVER","#C9CBCD"],["WHITE","#F2F2F0"],["CARAMEL","#AE7C4E"],
+    ["YELLOW","#FBDD00"],["GOLD","#E6B93C"],["ORANGE","#F26B1D"],["RED","#D52B27"],["TERRACOTTA","#BC6A3C"],
+    ["PURPLE","#7B3FAD"],["MARINE BLUE","#2585C3"],["PEACH","#F5A45F"],["PINK","#EF5779"],["DARK CHOCOLATE","#46301F"],
+    ["BLUE","#1A36A2"],["CYAN","#2AA7E0"],["MISTLETOE GREEN","#4F8C49"],["GREEN","#27A744"],["BRONZE","#9A8056"],
+    ["DARK BROWN","#5B4631"],["SAKURA PINK","#F4B7D2"],["DESERT TAN","#E9DAB4"]
+  ];
+
+  const root   = document.documentElement;
+  const stage  = document.getElementById('stage');
+  const artSvg = document.getElementById('artSvg');
+  const grid   = document.getElementById('palette');
+  const specChip = document.getElementById('specChip');
+  const specName = document.getElementById('specName');
+  const specHex  = document.getElementById('specHex');
+  document.getElementById('count').textContent = COLORS.length + ' αποχρώσεις';
+
+  const lum = hex => {
+    const h = hex.replace('#','');
+    const v = i => { const c = parseInt(h.substr(i,2),16)/255; return c<=.03928 ? c/12.92 : Math.pow((c+.055)/1.055,2.4); };
+    return .2126*v(0) + .7152*v(2) + .0722*v(4);
+  };
+
+  let active = null;
+  function select(i){
+    const [name,hex] = COLORS[i];
+    root.style.setProperty('--filament',hex);
+    root.style.setProperty('--accent',hex);
+    specChip.style.background = hex;
+    specName.textContent = name;
+    specHex.textContent = hex.toUpperCase();
+    if (active) { active.classList.remove('active'); active.setAttribute('aria-selected','false'); }
+    active = grid.children[i];
+    active.classList.add('active');
+    active.setAttribute('aria-selected','true');
+    artSvg.classList.remove('pop'); void artSvg.offsetWidth; artSvg.classList.add('pop');
+  }
+
+  COLORS.forEach(([name,hex],i)=>{
+    const dark = lum(hex) > 0.55;            // light swatch -> dark ink
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.type = 'button';
+    b.setAttribute('role','option');
+    b.style.setProperty('--d', i);
+    b.style.setProperty('--c', hex);
+    b.style.setProperty('--cink', dark ? '#000' : '#fff');
+    b.innerHTML =
+      '<span class="sw"><span class="wm">Bambu Lab</span><span class="tick">✓</span></span>' +
+      '<span class="lab"><span class="nm">'+name+'</span><span class="hx">'+hex.toUpperCase()+'</span></span>';
+    b.addEventListener('click',()=>select(i));
+    grid.appendChild(b);
+  });
+
+  // backgrounds
+  document.querySelectorAll('.seg button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.body.dataset.bg = btn.dataset.bg;
+      document.querySelectorAll('.seg button').forEach(x=>x.classList.toggle('on', x===btn));
+    });
+  });
+
+  // light toggle
+  const lightBtn = document.getElementById('lightBtn');
+  lightBtn.addEventListener('click',()=>{
+    const on = stage.classList.toggle('lit');
+    lightBtn.classList.toggle('on', on);
+    lightBtn.setAttribute('aria-pressed', on);
+  });
+
+  // default selection: CYAN
+  select(COLORS.findIndex(c=>c[0]==='CYAN'));
+</script>
+</body>
+</html>
