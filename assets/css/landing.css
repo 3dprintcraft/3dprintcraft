@@ -262,6 +262,9 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .pc-swatch-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; max-width: 720px; }
 .pc-swatch { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.22); box-shadow: 0 1px 3px rgba(0,0,0,0.4); transition: transform .18s ease, box-shadow .18s ease; }
 .pc-swatch:hover { transform: scale(1.22); box-shadow: 0 0 0 2px var(--c-accent), 0 2px 8px rgba(0,0,0,0.45); }
+/* CTA κάτω από τα swatches — σε σκούρο ticker: ανοιχτό border/σκιά για να ξεχωρίζει */
+.pc-swatches-btn { margin-top: 6px; border-color: var(--c-paper); box-shadow: 4px 4px 0 0 var(--c-paper); }
+.pc-swatches-btn:hover { box-shadow: 6px 6px 0 0 var(--c-paper); }
 
 /* ── Services ─────────────────────────────────────────────────── */
 .pc-services { padding: 100px 60px; background: var(--c-paper); position: relative; }
@@ -532,6 +535,30 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 @media (max-width: 1100px) { .pc-arch-grid { column-count: 3; } }
 @media (max-width: 760px) { .pc-arch { padding: 56px 20px; } .pc-arch-grid { column-count: 2; } .pc-arch-footer { padding: 24px 20px; } }
 @media (max-width: 460px) { .pc-arch-grid { column-count: 2; column-gap: 10px; } }
+
+/* ── Palette page ─────────────────────────────────────────────── */
+.pc-pal { padding: 90px 60px; background: var(--c-paper); position: relative; min-height: 70vh; }
+.pc-pal-intro { max-width: 620px; margin: 10px 0 0; font-family: var(--font-body); font-size: 15px; line-height: 1.7; color: var(--c-ink-2); }
+.pc-pal-root { margin-top: 44px; display: flex; flex-direction: column; gap: 52px; }
+.pc-pal-cat { }
+.pc-pal-cat-head { display: flex; align-items: baseline; gap: 12px; padding-bottom: 12px; margin-bottom: 22px; border-bottom: 1.5px solid var(--c-ink); }
+.pc-pal-cat-name { font-family: var(--font-display); font-size: clamp(20px, 3vw, 30px); line-height: 1; letter-spacing: 0.5px; }
+.pc-pal-cat-count { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; color: var(--c-ink-3); }
+.pc-pal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+.pc-pal-card { border: 1.5px solid var(--c-ink); background: var(--c-paper); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; }
+.pc-pal-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 0 var(--c-ink); }
+.pc-pal-chip { height: 108px; border-bottom: 1.5px solid var(--c-ink); position: relative; }
+.pc-pal-chip.is-clear { background-color: var(--c-paper); background-image: linear-gradient(45deg, var(--c-paper-dk) 25%, transparent 25%), linear-gradient(-45deg, var(--c-paper-dk) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--c-paper-dk) 75%), linear-gradient(-45deg, transparent 75%, var(--c-paper-dk) 75%); background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0; }
+.pc-pal-chip::after { content: "ΑΝΤΙΓΡΑΦΗ"; position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; color: #fff; background: rgba(0,0,0,0.42); opacity: 0; transition: opacity 0.15s; }
+.pc-pal-card:not(.no-copy):hover .pc-pal-chip::after { opacity: 1; }
+.pc-pal-card.is-copied .pc-pal-chip::after { content: "ΑΝΤΙΓΡΑΦΗΚΕ ✓"; opacity: 1; background: rgba(0,0,0,0.6); }
+.pc-pal-card.no-copy { cursor: default; }
+.pc-pal-meta { padding: 11px 13px 13px; }
+.pc-pal-name { font-family: var(--font-body); font-weight: 700; font-size: 14px; letter-spacing: 0.3px; }
+.pc-pal-hex { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; color: var(--c-ink-3); text-transform: uppercase; margin-top: 3px; }
+.pc-pal-empty { margin-top: 40px; padding: 48px 32px; border: 1.5px dashed var(--c-ink-3); text-align: center; font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; color: var(--c-ink-2); line-height: 1.9; }
+@media (max-width: 760px) { .pc-pal { padding: 56px 20px; } .pc-pal-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; } }
+@media (max-width: 460px) { .pc-pal-grid { grid-template-columns: 1fr 1fr; } .pc-pal-chip { height: 86px; } }
 
 /* ── Work kind chips (filled, inverted per tile type) ─────────── */
 .pc-work-kind { background: var(--c-ink); color: var(--c-paper); }

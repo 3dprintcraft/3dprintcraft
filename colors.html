@@ -2,9 +2,9 @@
 <html lang="el" data-palette="studio">
 <head>
 <meta charset="utf-8" />
-<title>Αρχείο έργων — 3DPrintCraft</title>
+<title>Παλέτα χρωμάτων — 3DPrintCraft</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="description" content="Όλο το αρχείο έργων του 3DPrintCraft — custom 3D εκτυπώσεις, NFC προϊόντα, φωτιστικά και περισσότερα." />
+<meta name="description" content="Πλήρης παλέτα διαθέσιμων χρωμάτων filament του 3DPrintCraft — δες όλα τα χρώματα ανά κατηγορία." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="favicon.png" />
 </head>
 <body>
-<a class="pc-skip" href="#archive">ΠΑΡΑΚΑΜΨΗ ΣΤΟ ΠΕΡΙΕΧΟΜΕΝΟ</a>
+<a class="pc-skip" href="#palette">ΠΑΡΑΚΑΜΨΗ ΣΤΟ ΠΕΡΙΕΧΟΜΕΝΟ</a>
 
 <!-- ═══ GANTRY ═══ -->
 <header class="pc-gantry" id="top">
@@ -58,33 +58,33 @@
 </header>
 
 <main>
-<section class="pc-arch" id="archive">
+<section class="pc-pal" id="palette">
   <div class="pc-section-head">
     <div>
-      <div class="eyebrow">ΑΡΧΕΙΟ / <span id="archiveCount">0</span> ΕΡΓΑ</div>
-      <h2>Όλο το <i>αρχείο.</i></h2>
+      <div class="eyebrow">ΠΑΛΕΤΑ / <span id="paletteCount">0</span> ΧΡΩΜΑΤΑ</div>
+      <h2>Όλη η <i>παλέτα.</i></h2>
       <a class="pc-arch-back" href="index.html"><span aria-hidden="true">←</span> ΠΙΣΩ ΣΤΗΝ ΑΡΧΙΚΗ</a>
+      <p class="pc-pal-intro">Όλα τα διαθέσιμα χρώματα filament, οργανωμένα ανά κατηγορία. Πάτησε ένα χρώμα για να αντιγράψεις τον κωδικό του. Τα χρώματα στην οθόνη είναι ενδεικτικά — η τελική απόχρωση εξαρτάται από το υλικό και το φινίρισμα.</p>
     </div>
   </div>
 
-  <div class="pc-arch-cats" id="archiveCats" hidden></div>
+  <div class="pc-pal-root" id="paletteRoot"></div>
 
-  <div class="pc-arch-grid" id="archiveGrid"></div>
-
-  <div class="pc-arch-empty" id="archiveEmpty" style="display:none">
-    Ρίξε φωτογραφίες στον φάκελο <code>assets/img/archive/</code><br>
-    και τρέξε <code>tools\build-archive.ps1</code> για να εμφανιστούν εδώ.
+  <div class="pc-pal-empty" id="paletteEmpty" style="display:none">
+    Δεν έχουν οριστεί χρώματα ακόμη.<br>
+    Συμπλήρωσε τη λίστα στο <code>assets/js/colors.js</code>.
   </div>
 </section>
 </main>
 
 <footer class="pc-arch-footer">
+  <span>3DPRINTCRAFT · ΠΑΛΕΤΑ ΧΡΩΜΑΤΩΝ</span>
   <a class="pc-btn-warm" href="index.html#cta">ΖΗΤΑ ΠΡΟΣΦΟΡΑ <span class="arr" aria-hidden="true">→</span></a>
 </footer>
 
 <button class="pc-arch-top" id="archiveTop" type="button" aria-label="Επιστροφή στην κορυφή"><span aria-hidden="true">↑</span></button>
 
 <script src="assets/js/landing.js?v=17" defer></script>
-<script src="assets/js/archive.js?v=17" defer></script>
+<script src="assets/js/colors.js?v=2" defer></script>
 </body>
 </html>
