@@ -76,7 +76,17 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
   ));
-  const isHex = (h) => /^#[0-9a-fA-F]{3,8}$/.test(h || '');
+  const isHex = (h) => /^#[0-9a-fA-F]{6}$/.test(h || '');
+
+  /* Επιλογή σκούρου/ανοιχτού κειμένου ανάλογα με τη φωτεινότητα του χρώματος */
+  const textOn = (hex) => {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substr(0, 2), 16);
+    const g = parseInt(h.substr(2, 2), 16);
+    const b = parseInt(h.substr(4, 2), 16);
+    const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+    return lum > 0.58 ? '#14161a' : '#f7f7f4';
+  };
 
   let total = 0;
   const frag = document.createDocumentFragment();
@@ -98,16 +108,14 @@
           const name = esc(c[0]);
           const clear = !isHex(c[1]);
           const hex = clear ? '' : esc(c[1].toUpperCase());
-          const chip = clear
-            ? '<span class="pc-pal-chip is-clear"></span>'
-            : '<span class="pc-pal-chip" style="background:' + hex + '"></span>';
+          const style = clear ? '' : ' style="background:' + hex + ';color:' + textOn(hex) + '"';
           const meta = clear ? 'ΔΙΑΦΑΝΟ' : hex;
-          return '<button type="button" class="pc-pal-card' + (clear ? ' no-copy' : '') + '"' +
+          return '<button type="button" class="pc-pal-card' + (clear ? ' is-clear no-copy' : '') + '"' + style +
             (clear ? '' : ' data-hex="' + hex + '" title="Αντιγραφή ' + hex + '"') + '>' +
-            chip +
-            '<span class="pc-pal-meta">' +
-              '<span class="pc-pal-name">' + name + '</span>' +
+            '<span class="pc-pal-name">' + name + '</span>' +
+            '<span class="pc-pal-foot">' +
               '<span class="pc-pal-hex">' + meta + '</span>' +
+              (clear ? '' : '<span class="pc-pal-copyhint" aria-hidden="true">⧉</span>') +
             '</span>' +
           '</button>';
         }).join('') +
@@ -119,14 +127,20 @@
   if (countEl) countEl.textContent = total;
   if (empty) empty.style.display = total ? 'none' : '';
 
-  /* Click-to-copy του hex */
+  /* Click-to-copy του hex — feedback μόνο στη γωνία, χωρίς overlay πάνω στο κείμενο */
   root.addEventListener('click', (e) => {
     const card = e.target.closest('.pc-pal-card');
     if (!card || card.classList.contains('no-copy')) return;
     const hex = card.getAttribute('data-hex') || '';
+    const hint = card.querySelector('.pc-pal-copyhint');
     const done = () => {
       card.classList.add('is-copied');
-      setTimeout(() => card.classList.remove('is-copied'), 1100);
+      if (hint) hint.textContent = '✓';
+      clearTimeout(card._t);
+      card._t = setTimeout(() => {
+        card.classList.remove('is-copied');
+        if (hint) hint.textContent = '⧉';
+      }, 1100);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(hex).then(done).catch(done);
