@@ -201,6 +201,37 @@
 .pc-shop-status .ordercode { font-family: var(--font-mono); font-weight: 700; background: var(--c-paper-alt); border: 1px solid var(--c-ink); padding: 2px 8px; }
 .pc-shop-status-actions { display: flex; gap: 14px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
 
+/* ── Free shipping nudge (checkout) ───────────────────────────── */
+.pc-shop-freeship {
+  margin: 4px 0 14px; padding: 12px 14px; border: 1.5px dashed var(--c-accent);
+  background: var(--c-paper-alt);
+}
+.pc-shop-freeship.is-won { border-style: solid; background: var(--c-accent); color: var(--c-accent-ink); }
+.pc-shop-freeship-txt { font-family: var(--font-body); font-size: 13.5px; font-weight: 600; }
+.pc-shop-freeship-bar { height: 6px; margin-top: 9px; background: var(--c-paper); border: 1px solid var(--c-ink); overflow: hidden; }
+.pc-shop-freeship-bar span { display: block; height: 100%; background: var(--c-accent); transition: width 0.3s ease; }
+
+/* ── USP / trust strip ────────────────────────────────────────── */
+.pc-shop-usp {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin: 0 0 34px; padding: 16px 0; border-top: 1.5px solid var(--c-ink); border-bottom: 1.5px solid var(--c-ink);
+}
+.pc-shop-usp-item { display: flex; align-items: center; gap: 10px; }
+.pc-shop-usp-item .ico { font-size: 20px; flex: none; }
+.pc-shop-usp-item .txt { font-family: var(--font-body); font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+.pc-shop-usp-item .txt small { display: block; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.5px; color: var(--c-ink-3); font-weight: 400; margin-top: 2px; }
+
+/* ── Sticky mobile buy bar (σελίδα προϊόντος) ─────────────────── */
+.pc-shop-buybar { display: none; }
+
+/* ── Related products ─────────────────────────────────────────── */
+.pc-shop-related { margin-top: 70px; }
+.pc-shop-related h2 {
+  font-family: var(--font-display); font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: -0.5px; margin: 0 0 20px;
+}
+.pc-shop-related h2 .accent { color: var(--c-accent); }
+
 /* ── Cart badge (και για το landing) ──────────────────────────── */
 .pc-cart-badge {
   display: inline-grid; place-items: center; min-width: 17px; height: 17px;
@@ -225,6 +256,19 @@
 }
 @media (max-width: 760px) {
   .pc-shop-main { padding: 24px 20px 60px; }
+  .pc-shop-usp { grid-template-columns: 1fr 1fr; gap: 12px 8px; padding: 14px 0; }
+  /* Sticky bar: τιμή + ΑΓΟΡΑ ΤΩΡΑ πάντα ορατά στο κινητό */
+  .pc-shop-buybar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--c-paper); border-top: 1.5px solid var(--c-ink);
+    box-shadow: 0 -4px 18px rgba(13,18,38,0.12);
+  }
+  .pc-shop-buybar .price { font-family: var(--font-display); font-size: 21px; letter-spacing: -0.5px; }
+  .pc-shop-buybar .vat { display: block; font-family: var(--font-mono); font-size: 8px; letter-spacing: 1px; color: var(--c-ink-3); }
+  .pc-shop-buybar .pc-btn-primary { padding: 13px 20px; font-size: 12.5px; }
+  body.has-buybar { padding-bottom: 84px; }
   .pc-shop-grid { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 14px; }
   .pc-shop-card { box-shadow: 4px 4px 0 0 var(--c-ink); }
   .pc-shop-card-body { padding: 11px 12px 13px; }

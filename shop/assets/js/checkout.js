@@ -36,9 +36,17 @@ function lineHtml(item, idx) {
   </div>`;
 }
 
+function freeShipThresholdCents() {
+  const t = Number(state.catalog.config.freeShippingOver);
+  return Number.isFinite(t) && t > 0 ? Math.round(t * 100) : 0;
+}
+
 function shipCost() {
   const ship = state.catalog.config.shipping.find(s => s.id === state.shippingMethod);
-  return ship ? Math.round(ship.cost * 100) : 0;
+  if (!ship) return 0;
+  const th = freeShipThresholdCents();
+  if (th && ship.cost > 0 && itemsTotal() >= th) return 0; /* ίδια λογική με τον server */
+  return Math.round(ship.cost * 100);
 }
 
 function itemsTotal() {
@@ -62,9 +70,28 @@ function render() {
   $('#sumCount').textContent = list.reduce((n, i) => n + i.qty, 0) + ' ΤΕΜ';
 
   const ship = state.catalog.config.shipping.find(s => s.id === state.shippingMethod);
+
+  /* Nudge δωρεάν μεταφορικών: πρόοδος προς το όριο */
+  const th = freeShipThresholdCents();
+  let shipNudge = '';
+  if (th && ship && ship.cost > 0) {
+    const missing = th - itemsTotal();
+    if (missing > 0) {
+      const pct = Math.min(100, Math.round((itemsTotal() / th) * 100));
+      shipNudge = `<div class="pc-shop-freeship">
+        <div class="pc-shop-freeship-txt">🚚 Βάλε άλλα <b>${fmtMoney(missing)}</b> για ΔΩΡΕΑΝ μεταφορικά!</div>
+        <div class="pc-shop-freeship-bar"><span style="width:${pct}%"></span></div>
+      </div>`;
+    } else {
+      shipNudge = `<div class="pc-shop-freeship is-won"><div class="pc-shop-freeship-txt">🎉 Κέρδισες ΔΩΡΕΑΝ μεταφορικά!</div></div>`;
+    }
+  }
+
+  const shipFree = ship && (ship.cost === 0 || shipCost() === 0);
   $('#totals').innerHTML = `
+    ${shipNudge}
     <div class="pc-shop-totals-row"><span>ΠΡΟΪΟΝΤΑ</span><span>${fmtMoney(itemsTotal())}</span></div>
-    <div class="pc-shop-totals-row"><span>ΜΕΤΑΦΟΡΙΚΑ${ship ? ' · ' + escapeHtml(ship.label).toUpperCase() : ''}</span><span>${ship && ship.cost === 0 ? 'ΔΩΡΕΑΝ' : fmtMoney(shipCost())}</span></div>
+    <div class="pc-shop-totals-row"><span>ΜΕΤΑΦΟΡΙΚΑ${ship ? ' · ' + escapeHtml(ship.label).toUpperCase() : ''}</span><span>${shipFree ? 'ΔΩΡΕΑΝ' : fmtMoney(shipCost())}</span></div>
     <div class="pc-shop-totals-row grand"><span>ΣΥΝΟΛΟ</span><span>${fmtMoney(itemsTotal() + shipCost())}</span></div>`;
 
   /* Διεύθυνση: κρύβεται όταν ο τρόπος δεν τη χρειάζεται (παραλαβή) */

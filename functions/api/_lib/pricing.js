@@ -96,13 +96,20 @@ export function validateAndPrice(catalog, payload) {
 
   if (errors.length) return fail();
 
-  const shippingCostCents = Math.round(shipping.cost * 100);
+  /* Δωρεάν μεταφορικά πάνω από το όριο του config (αν οριστεί) */
+  const threshold = Number(catalog.config.freeShippingOver);
+  const freeShippingApplied =
+    Number.isFinite(threshold) && threshold > 0 &&
+    shipping.cost > 0 && itemsTotalCents >= Math.round(threshold * 100);
+
+  const shippingCostCents = freeShippingApplied ? 0 : Math.round(shipping.cost * 100);
   return {
     ok: true,
     errors: [],
     items,
     itemsTotalCents,
     shippingCostCents,
+    freeShippingApplied,
     totalCents: itemsTotalCents + shippingCostCents,
     shipping: { id: shipping.id, label: shipping.label, needsAddress: !!shipping.needsAddress }
   };

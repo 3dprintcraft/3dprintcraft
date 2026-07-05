@@ -33,6 +33,8 @@ function optionHtml(opt) {
 function refreshPrice() {
   const cents = unitPriceCents(state.product, state.selections) * state.qty;
   $('#pPrice').textContent = fmtMoney(cents);
+  const bar = $('#barPrice');
+  if (bar) bar.textContent = fmtMoney(cents);
 }
 
 /* Επιστρέφει true αν όλα τα required text είναι συμπληρωμένα (και μαρκάρει errors) */
@@ -118,13 +120,49 @@ async function init() {
     msg.classList.add('is-on');
   });
 
-  $('#btnBuy').addEventListener('click', () => {
-    if (!collectTexts(true)) return;
+  const buyNow = () => {
+    if (!collectTexts(true)) {
+      /* αν λείπει required πεδίο, πήγαινε τον χρήστη εκεί */
+      document.querySelector('.pc-shop-input.is-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
     buyNowSet(currentItem());
     location.href = 'checkout.html?buynow=1';
-  });
+  };
+  $('#btnBuy').addEventListener('click', buyNow);
 
+  /* Sticky bar κινητού */
+  const buybar = $('#buybar');
+  if (buybar) {
+    buybar.hidden = false;
+    document.body.classList.add('has-buybar');
+    $('#barBuy').addEventListener('click', buyNow);
+  }
+
+  renderRelated(catalog, product);
   refreshPrice();
+}
+
+/* «Ταιριάζουν με αυτό»: ίδια κατηγορία πρώτα, μετά τα υπόλοιπα (έως 3) */
+function renderRelated(catalog, product) {
+  const others = catalog.products.filter(p => p.id !== product.id);
+  const picks = [
+    ...others.filter(p => p.category === product.category),
+    ...others.filter(p => p.category !== product.category)
+  ].slice(0, 3);
+  if (!picks.length) return;
+  $('#relatedGrid').innerHTML = picks.map(p => `
+    <a class="pc-shop-card" href="product.html?id=${encodeURIComponent(p.id)}">
+      <div class="pc-shop-card-img"><img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.name)}" loading="lazy" /></div>
+      <div class="pc-shop-card-body">
+        <h3 class="pc-shop-card-name">${escapeHtml(p.name)}</h3>
+        <div class="pc-shop-card-foot">
+          <div class="pc-shop-price">${fmtMoney(unitPriceCents(p, {}))}</div>
+          <span class="pc-shop-card-go">ΔΕΣ ΤΟ →</span>
+        </div>
+      </div>
+    </a>`).join('');
+  $('#related').hidden = false;
 }
 
 document.addEventListener('DOMContentLoaded', init);
