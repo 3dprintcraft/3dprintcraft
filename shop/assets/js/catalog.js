@@ -54,7 +54,6 @@ async function init() {
     const shown = products.filter(p => cat === 'all' || p.category === cat);
     grid.innerHTML = shown.map(cardHtml).join('');
     empty.hidden = shown.length > 0;
-    $('#metaCount').textContent = 'SKU · ' + String(shown.length).padStart(2, '0');
   }
 
   $$('#filters .pc-shop-chip').forEach(chip => {
