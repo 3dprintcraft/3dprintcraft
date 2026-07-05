@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#ecebe5"/>
+  <circle cx="170" cy="230" r="85" fill="#dedcd2" stroke="#14161a" stroke-width="3"/>
+  <circle cx="230" cy="170" r="85" fill="#f7f7f4" stroke="#14161a" stroke-width="3"/>
+  <path d="M218 170 a12 12 0 0 1 24 0 M211 170 a19 19 0 0 1 38 0 M204 170 a26 26 0 0 1 52 0" stroke="#2e54ff" stroke-width="3.5" fill="none"/>
+  <circle cx="230" cy="170" r="5" fill="#2e54ff"/>
+  <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#14161a">NFC ΣΟΥΒΕΡ · ΣΕΤ 4</text>
+  <text x="14" y="24" font-family="'Space Mono',monospace" font-size="10" letter-spacing="2" fill="#7a7d85">IMG · PLACEHOLDER</text>
+</svg>

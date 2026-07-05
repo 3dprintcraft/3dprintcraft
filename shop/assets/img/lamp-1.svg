@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#ecebe5"/>
+  <circle cx="200" cy="170" r="90" fill="#f7f7f4" stroke="#14161a" stroke-width="3"/>
+  <path d="M140 130 q30 25 60 0 t60 0 M132 175 q34 25 68 0 t68 0 M145 220 q28 22 55 0 t55 0" stroke="#2e54ff" stroke-width="2.5" fill="none" opacity="0.8"/>
+  <rect x="150" y="270" width="100" height="34" fill="#14161a"/>
+  <rect x="163" y="304" width="74" height="10" fill="#dedcd2" stroke="#14161a" stroke-width="2"/>
+  <g stroke="#2e54ff" stroke-width="2" opacity="0.55">
+    <path d="M200 62 v-22 M120 92 l-16 -16 M280 92 l16 -16 M100 170 h-24 M300 170 h24"/>
+  </g>
+  <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#14161a">ΦΩΤΙΣΤΙΚΟ 3D</text>
+  <text x="14" y="24" font-family="'Space Mono',monospace" font-size="10" letter-spacing="2" fill="#7a7d85">IMG · PLACEHOLDER</text>
+</svg>
