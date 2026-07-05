@@ -88,6 +88,15 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   border: 1.5px solid var(--c-ink); font-weight: 700; letter-spacing: 1.5px;
   box-shadow: 2px 2px 0 0 var(--c-ink);
 }
+.pc-gantry-nav a.pc-nav-eshop, .pc-gantry-menu a.pc-nav-eshop { color: var(--c-accent); font-weight: 700; }
+.pc-cart-badge {
+  display: inline-grid; place-items: center; min-width: 17px; height: 17px;
+  padding: 0 4px; margin-left: 5px; border-radius: 50%;
+  background: var(--c-accent); color: var(--c-accent-ink);
+  font-family: var(--font-mono); font-size: 9px; font-weight: 700; line-height: 1;
+  vertical-align: 1px;
+}
+.pc-cart-badge[hidden] { display: none; }
 .pc-gantry-burger { display: none; }
 .pc-gantry-menu { display: none; }
 .pc-gantry-right { display: flex; align-items: center; gap: 10px; }

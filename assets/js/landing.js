@@ -18,7 +18,7 @@
   ready(() => {
     /* ── Scroll → gantry progress, active section, HUD ── */
     const gantryFill = $('#gantryFill');
-    const navLinks = $$('#nav a');
+    const navLinks = $$('#nav a:not(.pc-nav-ext)');
     const hudD = $('#hudDesktop'), hudM = $('#hudMobile');
     const hudPct = $('#hudPct'), hudEta = $('#hudEta'), hudBar = $('#hudBar'), hudLayer = $('#hudLayer'), hudName = $('#hudName');
     const hudPctM = $('#hudPctM'), hudLayerM = $('#hudLayerM'), hudBarM = $('#hudBarM');
