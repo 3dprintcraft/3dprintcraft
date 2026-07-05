@@ -1,0 +1,11 @@
+# Cloudflare local dev
+.wrangler/
+.dev.vars
+
+# ΠΡΟΣΩΡΙΝΟ: το wrangler.toml μένει εκτός repo μέχρι να δημιουργηθούν
+# το KV namespace & το R2 bucket στο Cloudflare account (αλλιώς σπάει το deploy).
+# Όταν γίνουν, βάλε το πραγματικό KV id και αφαίρεσε τη γραμμή από εδώ.
+# Δες docs/SETUP-ESHOP.md.
+wrangler.toml
+
+node_modules/
