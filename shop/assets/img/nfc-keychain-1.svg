@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#ecebe5"/>
-  <circle cx="200" cy="105" r="28" fill="none" stroke="#14161a" stroke-width="8"/>
-  <rect x="140" y="140" width="120" height="170" rx="14" fill="#f7f7f4" stroke="#14161a" stroke-width="3"/>
-  <circle cx="200" cy="225" r="30" fill="none" stroke="#2e54ff" stroke-width="4"/>
-  <path d="M188 225 a12 12 0 0 1 24 0 M181 225 a19 19 0 0 1 38 0" stroke="#2e54ff" stroke-width="3" fill="none"/>
-  <circle cx="200" cy="225" r="5" fill="#2e54ff"/>
-  <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#14161a">NFC ΜΠΡΕΛΟΚ</text>
-  <text x="14" y="24" font-family="'Space Mono',monospace" font-size="10" letter-spacing="2" fill="#7a7d85">IMG · PLACEHOLDER</text>
+  <rect width="400" height="400" fill="#e6dfcf"/>
+  <circle cx="200" cy="105" r="28" fill="none" stroke="#0d0d0d" stroke-width="8"/>
+  <rect x="140" y="140" width="120" height="170" rx="14" fill="#f0ebe0" stroke="#0d0d0d" stroke-width="3"/>
+  <circle cx="200" cy="225" r="30" fill="none" stroke="#ff5b1f" stroke-width="4"/>
+  <path d="M188 225 a12 12 0 0 1 24 0 M181 225 a19 19 0 0 1 38 0" stroke="#ff5b1f" stroke-width="3" fill="none"/>
+  <circle cx="200" cy="225" r="5" fill="#ff5b1f"/>
+  <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#0d0d0d">NFC ΜΠΡΕΛΟΚ</text>
+  <text x="14" y="24" font-family="'Space Mono',monospace" font-size="10" letter-spacing="2" fill="#6b665b">IMG · PLACEHOLDER</text>
 </svg>

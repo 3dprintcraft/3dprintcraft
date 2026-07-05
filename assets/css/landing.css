@@ -77,17 +77,24 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .pc-gantry-logo path { fill: var(--c-ink); }
 .pc-gantry-name { font-family: var(--font-display); font-size: 14px; letter-spacing: -0.3px; line-height: 1; }
 .pc-gantry-brand-sub { display: none; }
-.pc-gantry-nav { display: flex; gap: 28px; }
+.pc-gantry-nav {
+  display: flex; gap: 26px; align-items: center;
+  font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0.4px;
+}
 .pc-gantry-nav a {
-  color: var(--c-ink-3); border-bottom: 2px solid transparent; padding-bottom: 2px;
+  color: var(--c-ink-2); border-bottom: 2px solid transparent; padding-bottom: 2px;
   transition: color 0.2s, border-color 0.2s;
 }
+.pc-gantry-nav a:hover { color: var(--c-ink); border-bottom-color: var(--c-ink-3); }
 .pc-gantry-nav a.is-active { color: var(--c-ink); border-bottom-color: var(--c-accent); }
 .pc-gantry-cta {
-  padding: 8px 16px; background: var(--c-accent); color: var(--c-accent-ink);
+  padding: 9px 16px; background: var(--c-accent); color: var(--c-accent-ink);
   border: 1.5px solid var(--c-ink); font-weight: 700; letter-spacing: 1.5px;
+  font-size: 12px;
   box-shadow: 2px 2px 0 0 var(--c-ink);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
+.pc-gantry-cta:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--c-ink); }
 .pc-gantry-nav a.pc-nav-eshop, .pc-gantry-menu a.pc-nav-eshop { color: var(--c-accent); font-weight: 700; }
 .pc-cart-badge {
   display: inline-grid; place-items: center; min-width: 17px; height: 17px;
@@ -181,6 +188,10 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .pc-btn-warm:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 var(--c-ink); }
 .pc-btn-warm .arr { transition: transform 0.15s; }
 .pc-btn-warm:hover .arr { transform: translateX(3px); }
+.pc-btn-ink { display: inline-flex; align-items: center; gap: 10px; padding: 15px 22px; background: var(--c-ink); color: var(--c-paper); border: 1.5px solid var(--c-ink); font-family: var(--font-mono); font-size: 13px; letter-spacing: 1.5px; font-weight: 700; box-shadow: 4px 4px 0 0 var(--c-accent); transition: transform 0.15s, box-shadow 0.15s; }
+.pc-btn-ink:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 0 var(--c-accent); }
+.pc-btn-ink .arr { transition: transform 0.15s; }
+.pc-btn-ink:hover .arr { transform: translateX(3px); }
 .pc-hero-stats { display: grid; grid-template-columns: repeat(4, auto); gap: 32px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--c-ink); max-width: 540px; }
 .pc-stat-n { font-family: var(--font-display); font-size: 28px; line-height: 1; letter-spacing: -0.5px; }
 .pc-stat-d { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1.5px; color: var(--c-ink-3); margin-top: 6px; text-transform: uppercase; max-width: 90px; line-height: 1.3; }
@@ -455,7 +466,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 @media (max-width: 900px) {
   body { padding-top: 64px; }
   .pc-gantry-nav { display: none !important; }
-  .pc-gantry-cta { padding: 6px 10px !important; font-size: 9px !important; }
+  .pc-gantry-cta { padding: 9px 13px !important; font-size: 11px !important; }
   .pc-gantry-burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 4px; width: 36px; height: 30px; padding: 7px 6px; border: 1.5px solid var(--c-ink); background: var(--c-paper); box-shadow: 2px 2px 0 0 var(--c-ink); cursor: pointer; }
   .pc-gantry-burger span { display: block; height: 2px; width: 100%; background: var(--c-ink); transition: transform 0.25s ease, opacity 0.2s ease; }
   .pc-gantry-burger.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -463,7 +474,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .pc-gantry-burger.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
   .pc-gantry-menu { display: block; max-height: 0; overflow: hidden; transition: max-height 0.32s ease; background: var(--c-paper); }
   .pc-gantry-menu.is-open { max-height: 80vh; border-top: 1px solid var(--c-ink); }
-  .pc-gantry-menu a { display: block; padding: 15px 28px; border-bottom: 1px solid var(--c-paper-dk); font-family: var(--font-mono); font-size: 13px; letter-spacing: 2px; color: var(--c-ink); }
+  .pc-gantry-menu a { display: block; padding: 17px 28px; border-bottom: 1px solid var(--c-paper-dk); font-family: var(--font-body); font-size: 16.5px; font-weight: 600; letter-spacing: 0.5px; color: var(--c-ink); }
   .pc-gantry-menu a:last-child { border-bottom: none; }
   .pc-gantry-menu a.is-active { color: var(--c-accent); }
   .pc-gantry-brand-sub { display: none !important; }

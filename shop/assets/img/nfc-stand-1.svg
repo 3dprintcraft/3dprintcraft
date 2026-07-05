@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#ecebe5"/>
-  <g stroke="#14161a" stroke-width="3" fill="none">
-    <path d="M120 300 L280 300 L260 330 L140 330 Z" fill="#dedcd2"/>
-    <rect x="150" y="120" width="100" height="180" fill="#f7f7f4" transform="skewX(-6)" transform-origin="200 300"/>
+  <rect width="400" height="400" fill="#e6dfcf"/>
+  <g stroke="#0d0d0d" stroke-width="3" fill="none">
+    <path d="M120 300 L280 300 L260 330 L140 330 Z" fill="#d6cdb8"/>
+    <rect x="150" y="120" width="100" height="180" fill="#f0ebe0" transform="skewX(-6)" transform-origin="200 300"/>
   </g>
-  <circle cx="193" cy="180" r="34" fill="none" stroke="#2e54ff" stroke-width="4"/>
-  <circle cx="193" cy="180" r="22" fill="none" stroke="#2e54ff" stroke-width="3" opacity="0.6"/>
-  <circle cx="193" cy="180" r="10" fill="#2e54ff"/>
-  <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#14161a">NFC STAND</text>
-  <text x="14" y="24" font-family="'Space Mono',monospace" font-size="10" letter-spacing="2" fill="#7a7d85">IMG · PLACEHOLDER</text>
+  <circle cx="193" cy="180" r="34" fill="none" stroke="#ff5b1f" stroke-width="4"/>
+  <circle cx="193" cy="180" r="22" fill="none" stroke="#ff5b1f" stroke-width="3" opacity="0.6"/>
+  <circle cx="193" cy="180" r="10" fill="#ff5b1f"/>
+  <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#0d0d0d">NFC STAND</text>
+  <text x="14" y="24" font-family="'Space Mono',monospace" font-size="10" letter-spacing="2" fill="#6b665b">IMG · PLACEHOLDER</text>
 </svg>
