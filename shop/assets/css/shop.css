@@ -65,9 +65,11 @@
 .pc-shop-card-name { font-family: var(--font-display); font-size: 17px; letter-spacing: -0.3px; line-height: 1.15; margin: 0; }
 .pc-shop-card-desc { font-family: var(--font-body); font-size: 13px; line-height: 1.45; color: var(--c-ink-3); margin: 0; flex: 1; }
 .pc-shop-card-foot {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
   margin-top: 6px; padding-top: 10px; border-top: 1px dashed var(--c-ink-3);
 }
+.pc-shop-card-foot .pc-shop-price { min-width: 0; }
+.pc-shop-card-go { white-space: nowrap; flex-shrink: 0; }
 .pc-shop-price { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.5px; }
 .pc-shop-price .from { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; color: var(--c-ink-3); display: block; }
 .pc-shop-card-go { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; font-weight: 700; color: var(--c-accent); }

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#eae5d8"/>
-  <circle cx="170" cy="230" r="85" fill="#d9d3c2" stroke="#0d1226" stroke-width="3"/>
-  <circle cx="230" cy="170" r="85" fill="#f4f1e9" stroke="#0d1226" stroke-width="3"/>
+  <rect width="400" height="400" fill="#efefec"/>
+  <circle cx="170" cy="230" r="85" fill="#e0e0da" stroke="#0d1226" stroke-width="3"/>
+  <circle cx="230" cy="170" r="85" fill="#f9f9f9" stroke="#0d1226" stroke-width="3"/>
   <path d="M218 170 a12 12 0 0 1 24 0 M211 170 a19 19 0 0 1 38 0 M204 170 a26 26 0 0 1 52 0" stroke="#1e5eff" stroke-width="3.5" fill="none"/>
   <circle cx="230" cy="170" r="5" fill="#1e5eff"/>
   <text x="200" y="368" text-anchor="middle" font-family="'Space Mono',monospace" font-size="13" letter-spacing="3" fill="#0d1226">NFC ΣΟΥΒΕΡ · ΣΕΤ 4</text>
