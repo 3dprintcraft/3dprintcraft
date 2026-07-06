@@ -3,6 +3,10 @@
    Prefix: pc-shop-* · mobile-first refinements στο τέλος
    ================================================================ */
 
+/* Το hidden attribute κερδίζει ΠΑΝΤΑ ό,τι display ορίζουν οι κλάσεις
+   (αλλιώς π.χ. το display:grid του checkout το ακύρωνε) */
+[hidden] { display: none !important; }
+
 /* ── Σκελετός σελίδας ─────────────────────────────────────────── */
 .pc-shop-main { position: relative; padding: 36px 60px 80px; max-width: 1440px; margin: 0 auto; }
 .pc-shop-bg {
@@ -188,7 +192,7 @@
 .pc-shop-error.is-on { display: block; animation: pcSlideIn 0.25s ease; }
 
 /* ── Thanks / status σελίδες ──────────────────────────────────── */
-.pc-shop-status { max-width: 640px; margin: 40px auto 0; text-align: center; }
+.pc-shop-status { max-width: 640px; margin: 40px auto 0; padding: 30px 0 50px; text-align: center; }
 .pc-shop-status-stamp {
   display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px;
   font-weight: 700; padding: 7px 14px; border: 1.5px solid var(--c-ink); margin-bottom: 26px;

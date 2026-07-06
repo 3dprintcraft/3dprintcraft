@@ -97,6 +97,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   padding: 9px 16px; background: var(--c-accent); color: var(--c-accent-ink);
   border: 1.5px solid var(--c-ink); font-weight: 700; letter-spacing: 1.5px;
   font-size: 12px;
+  white-space: nowrap; flex-shrink: 0;   /* ποτέ δεύτερη γραμμή */
   box-shadow: 2px 2px 0 0 var(--c-ink);
   transition: transform 0.15s, box-shadow 0.15s;
 }
@@ -472,7 +473,11 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 @media (max-width: 900px) {
   body { padding-top: 64px; }
   .pc-gantry-nav { display: none !important; }
-  .pc-gantry-cta { padding: 9px 13px !important; font-size: 11px !important; }
+  .pc-gantry-top { padding: 12px 16px; gap: 10px; }
+  .pc-gantry-brand { min-width: 0; overflow: hidden; }
+  .pc-gantry-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pc-gantry-right { flex-shrink: 0; }
+  .pc-gantry-cta { padding: 9px 12px !important; font-size: 10.5px !important; letter-spacing: 1px !important; }
   .pc-gantry-burger { display: inline-flex; flex-direction: column; justify-content: center; gap: 4px; width: 36px; height: 30px; padding: 7px 6px; border: 1.5px solid var(--c-ink); background: var(--c-paper); box-shadow: 2px 2px 0 0 var(--c-ink); cursor: pointer; }
   .pc-gantry-burger span { display: block; height: 2px; width: 100%; background: var(--c-ink); transition: transform 0.25s ease, opacity 0.2s ease; }
   .pc-gantry-burger.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
