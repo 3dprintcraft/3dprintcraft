@@ -54,7 +54,12 @@ function itemsTable(order) {
       </td>
       <td style="padding:8px;border-bottom:1px dashed #ccc;text-align:right;vertical-align:top">${money(it.lineCents)}</td>
     </tr>`).join('');
+  const discountRow = order.discountCents > 0
+    ? `<tr><td style="padding:8px;text-align:right;color:#1e5eff">Κουπόνι ${escapeHtml(order.couponCode || '')}</td>
+        <td style="padding:8px;text-align:right;color:#1e5eff">−${money(order.discountCents)}</td></tr>`
+    : '';
   return `<table style="width:100%;border-collapse:collapse;font-size:13px">${rows}
+    ${discountRow}
     <tr><td style="padding:8px;text-align:right">Μεταφορικά (${escapeHtml(order.shipping.label)})</td>
         <td style="padding:8px;text-align:right">${order.shippingCostCents === 0 ? 'ΔΩΡΕΑΝ' : money(order.shippingCostCents)}</td></tr>
     <tr><td style="padding:8px;text-align:right;font-weight:bold;border-top:2px solid #14161a">ΣΥΝΟΛΟ</td>

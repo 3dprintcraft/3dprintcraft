@@ -1,41 +1,33 @@
 /* ================================================================
-   3DPrintCraft Shop — κατάλογος: render + φίλτρα κατηγοριών
+   3DPrintCraft Shop — κατάλογος: render, φίλτρα, αναζήτηση,
+   «είδες πρόσφατα»
    ================================================================ */
 (() => {
 'use strict';
-const { $, $$, loadProducts, unitPriceCents, fmtMoney, escapeHtml } = window.PCShop;
+const { $, $$, loadProducts, getProduct, cardHtml } = window.PCShop;
 
-const CAT_TAGS = { nfc: 'NFC', prints: '3D PRINT' };
-
-/* Έχει priceDelta κάποια επιλογή; τότε η τιμή είναι «από» */
-function hasDeltas(p) {
-  return (p.options || []).some(o => o.type === 'select' && (o.choices || []).some(c => c.priceDelta));
-}
-
-function cardHtml(p, i) {
-  const tagCls = p.category === 'nfc' ? 'nfc' : '';
-  const from = hasDeltas(p) ? '<span class="from">ΑΠΟ</span>' : '';
-  return `
-  <a class="pc-shop-card" href="product.html?id=${encodeURIComponent(p.id)}" data-cat="${escapeHtml(p.category)}" style="animation-delay:${Math.min(i * 60, 420)}ms">
-    <div class="pc-shop-card-img">
-      <span class="pc-shop-card-tag ${tagCls}">${CAT_TAGS[p.category] || 'ITEM'}</span>
-      <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.name)}" loading="lazy" />
-    </div>
-    <div class="pc-shop-card-body">
-      <h2 class="pc-shop-card-name">${escapeHtml(p.name)}</h2>
-      <p class="pc-shop-card-desc">${escapeHtml(p.description)}</p>
-      <div class="pc-shop-card-foot">
-        <div class="pc-shop-price">${from}${fmtMoney(unitPriceCents(p, {}))}</div>
-        <span class="pc-shop-card-go">ΔΕΣ ΤΟ →</span>
-      </div>
-    </div>
-  </a>`;
-}
+const state = { cat: 'all', query: '' };
 
 /* NFC + featured πρώτα, μετά τα υπόλοιπα */
 function sortProducts(list) {
   const score = p => (p.featured ? 2 : 0) + (p.category === 'nfc' ? 1 : 0);
   return [...list].sort((a, b) => score(b) - score(a));
+}
+
+function matches(p) {
+  if (state.cat !== 'all' && p.category !== state.cat) return false;
+  if (!state.query) return true;
+  const hay = (p.name + ' ' + p.description).toLowerCase();
+  return state.query.toLowerCase().split(/\s+/).every(w => hay.includes(w));
+}
+
+function renderRecent(catalog) {
+  let ids = [];
+  try { ids = JSON.parse(localStorage.getItem('pc-recent') || '[]'); } catch { /* κενό */ }
+  const picks = ids.map(id => getProduct(catalog, id)).filter(Boolean).slice(0, 3);
+  if (!picks.length) return;
+  $('#recentGrid').innerHTML = picks.map(p => cardHtml(p, { showTag: true })).join('');
+  $('#recent').hidden = false;
 }
 
 async function init() {
@@ -50,9 +42,10 @@ async function init() {
   }
   const products = sortProducts(catalog.products);
 
-  function render(cat) {
-    const shown = products.filter(p => cat === 'all' || p.category === cat);
-    grid.innerHTML = shown.map(cardHtml).join('');
+  function render() {
+    const shown = products.filter(matches);
+    grid.innerHTML = shown.map((p, i) =>
+      cardHtml(p, { showTag: true, showDesc: true, showFrom: true, delay: Math.min(i * 60, 420) })).join('');
     empty.hidden = shown.length > 0;
   }
 
@@ -60,11 +53,18 @@ async function init() {
     chip.addEventListener('click', () => {
       $$('#filters .pc-shop-chip').forEach(c => c.classList.remove('is-active'));
       chip.classList.add('is-active');
-      render(chip.dataset.cat);
+      state.cat = chip.dataset.cat;
+      render();
     });
   });
 
-  render('all');
+  $('#searchBox').addEventListener('input', e => {
+    state.query = e.target.value.trim();
+    render();
+  });
+
+  render();
+  renderRecent(catalog);
 }
 
 document.addEventListener('DOMContentLoaded', init);

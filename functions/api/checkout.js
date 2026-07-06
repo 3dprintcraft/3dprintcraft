@@ -41,6 +41,8 @@ export async function onRequestPost({ request, env }) {
     } : null,
     items: priced.items,
     itemsTotalCents: priced.itemsTotalCents,
+    discountCents: priced.discountCents,
+    couponCode: priced.couponCode,
     shippingCostCents: priced.shippingCostCents,
     totalCents: priced.totalCents
   };

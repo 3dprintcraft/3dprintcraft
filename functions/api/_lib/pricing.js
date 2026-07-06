@@ -96,11 +96,26 @@ export function validateAndPrice(catalog, payload) {
 
   if (errors.length) return fail();
 
-  /* Δωρεάν μεταφορικά πάνω από το όριο του config (αν οριστεί) */
+  /* Κουπόνι έκπτωσης (case-insensitive, ορίζεται στο config.coupons) */
+  let discountCents = 0;
+  let couponCode = null;
+  if (payload.coupon !== undefined && payload.coupon !== null && String(payload.coupon).trim() !== '') {
+    const code = String(payload.coupon).trim().toUpperCase();
+    const coupon = (catalog.config.coupons || []).find(c => String(c.code).toUpperCase() === code);
+    if (!coupon) { errors.push('Το κουπόνι δεν ισχύει.'); return fail(); }
+    discountCents = coupon.type === 'percent'
+      ? Math.round(itemsTotalCents * Number(coupon.value) / 100)
+      : Math.round(Number(coupon.value) * 100);
+    discountCents = Math.max(0, Math.min(discountCents, itemsTotalCents));
+    couponCode = String(coupon.code).toUpperCase();
+  }
+  const discountedItemsCents = itemsTotalCents - discountCents;
+
+  /* Δωρεάν μεταφορικά πάνω από το όριο του config — μετά την έκπτωση */
   const threshold = Number(catalog.config.freeShippingOver);
   const freeShippingApplied =
     Number.isFinite(threshold) && threshold > 0 &&
-    shipping.cost > 0 && itemsTotalCents >= Math.round(threshold * 100);
+    shipping.cost > 0 && discountedItemsCents >= Math.round(threshold * 100);
 
   const shippingCostCents = freeShippingApplied ? 0 : Math.round(shipping.cost * 100);
   return {
@@ -108,9 +123,11 @@ export function validateAndPrice(catalog, payload) {
     errors: [],
     items,
     itemsTotalCents,
+    discountCents,
+    couponCode,
     shippingCostCents,
     freeShippingApplied,
-    totalCents: itemsTotalCents + shippingCostCents,
+    totalCents: discountedItemsCents + shippingCostCents,
     shipping: { id: shipping.id, label: shipping.label, needsAddress: !!shipping.needsAddress }
   };
 }

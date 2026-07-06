@@ -201,6 +201,71 @@
 .pc-shop-status .ordercode { font-family: var(--font-mono); font-weight: 700; background: var(--c-paper-alt); border: 1px solid var(--c-ink); padding: 2px 8px; }
 .pc-shop-status-actions { display: flex; gap: 14px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
 
+/* ── Κουπόνι (checkout) ───────────────────────────────────────── */
+.pc-shop-coupon { display: flex; gap: 8px; margin: 14px 0 4px; }
+.pc-shop-coupon .pc-shop-input { flex: 1; text-transform: uppercase; font-size: 12px; padding: 10px 12px; }
+.pc-shop-coupon-btn {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; font-weight: 700;
+  padding: 0 16px; border: 1.5px solid var(--c-ink); background: var(--c-paper-alt);
+  box-shadow: 2px 2px 0 0 var(--c-ink); cursor: pointer; white-space: nowrap;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.pc-shop-coupon-btn:hover:not([disabled]) { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--c-ink); }
+.pc-shop-coupon-btn[disabled] { background: var(--c-ink); color: var(--c-paper); cursor: default; }
+.pc-shop-coupon-msg { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.5px; margin: 6px 0 10px; min-height: 14px; }
+.pc-shop-coupon-msg.ok { color: #0f8a4f; }
+.pc-shop-coupon-msg.bad { color: #d02b1f; }
+.pc-shop-totals-row.discount { color: var(--c-accent); font-weight: 700; }
+
+/* ── Qty ± στις γραμμές καλαθιού ──────────────────────────────── */
+.pc-shop-line-qty { display: inline-flex; align-items: center; border: 1.5px solid var(--c-ink); background: var(--c-paper); }
+.pc-shop-line-qty button { width: 26px; height: 26px; font-family: var(--font-mono); font-size: 14px; font-weight: 700; line-height: 1; }
+.pc-shop-line-qty button:hover { background: var(--c-ink); color: var(--c-paper); }
+.pc-shop-line-qty span { min-width: 26px; text-align: center; font-family: var(--font-mono); font-size: 12px; font-weight: 700; border-left: 1.5px solid var(--c-ink); border-right: 1.5px solid var(--c-ink); align-self: stretch; display: grid; place-items: center; }
+
+/* ── Mini-cart drawer ─────────────────────────────────────────── */
+.pc-drawer-backdrop {
+  position: fixed; inset: 0; z-index: 90; background: rgba(13,18,38,0.45);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+}
+.pc-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 91;
+  width: min(420px, 92vw); display: flex; flex-direction: column;
+  background: var(--c-paper); border-left: 1.5px solid var(--c-ink);
+  box-shadow: -8px 0 0 0 var(--c-accent);
+  transform: translateX(calc(100% + 12px)); transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+body.pc-drawer-open .pc-drawer { transform: none; }
+body.pc-drawer-open .pc-drawer-backdrop { opacity: 1; pointer-events: auto; }
+body.pc-drawer-open { overflow: hidden; }
+.pc-drawer-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; background: var(--c-ink); color: var(--c-paper);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; font-weight: 700;
+}
+.pc-drawer-close { font-size: 18px; line-height: 1; color: var(--c-paper); padding: 2px 6px; }
+.pc-drawer-close:hover { color: var(--c-accent); }
+.pc-drawer-body { flex: 1; overflow-y: auto; padding: 6px 18px; }
+.pc-drawer-empty { font-family: var(--font-mono); font-size: 12px; letter-spacing: 1px; color: var(--c-ink-3); text-align: center; padding: 50px 0; }
+.pc-drawer-foot { padding: 14px 18px calc(14px + env(safe-area-inset-bottom)); border-top: 1.5px solid var(--c-ink); background: var(--c-paper-alt); }
+.pc-drawer-sub { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+.pc-drawer-sub .n { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.5px; }
+.pc-drawer-cta { width: 100%; justify-content: center; }
+.pc-drawer-continue {
+  display: block; text-align: center; margin-top: 10px; font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 1.5px; color: var(--c-ink-3); cursor: pointer; width: 100%;
+}
+.pc-drawer-continue:hover { color: var(--c-ink); text-decoration: underline; }
+.pc-drawer .pc-shop-freeship { margin: 10px 0 4px; }
+
+/* ── Αναζήτηση καταλόγου ──────────────────────────────────────── */
+.pc-shop-search { position: relative; margin-bottom: 16px; max-width: 460px; }
+.pc-shop-search .pc-shop-input { padding-left: 38px; }
+.pc-shop-search::before {
+  content: '⌕'; position: absolute; left: 12px; top: 50%; transform: translateY(-50%) scaleX(-1);
+  font-size: 19px; color: var(--c-ink-3); pointer-events: none;
+}
+
 /* ── Free shipping nudge (checkout) ───────────────────────────── */
 .pc-shop-freeship {
   margin: 4px 0 14px; padding: 12px 14px; border: 1.5px dashed var(--c-accent);

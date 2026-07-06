@@ -5,7 +5,38 @@
 (() => {
 'use strict';
 const { $, $$, loadProducts, getProduct, unitPriceCents, fmtMoney,
-        cartAdd, buyNowSet, escapeHtml } = window.PCShop;
+        cartAdd, buyNowSet, escapeHtml, cardHtml, openCart } = window.PCShop;
+
+/* «Είδες πρόσφατα»: unique ids, νεότερο πρώτα, max 6 */
+function recordRecent(id) {
+  try {
+    const list = JSON.parse(localStorage.getItem('pc-recent') || '[]').filter(x => x !== id);
+    list.unshift(id);
+    localStorage.setItem('pc-recent', JSON.stringify(list.slice(0, 6)));
+  } catch { /* αδιάφορο */ }
+}
+
+/* Δομημένα δεδομένα προϊόντος για Google rich results */
+function injectJsonLd(product) {
+  const s = document.createElement('script');
+  s.type = 'application/ld+json';
+  s.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: [new URL(product.images[0], location.href).href],
+    description: product.description,
+    brand: { '@type': 'Brand', name: '3DPrintCraft' },
+    offers: {
+      '@type': 'Offer',
+      url: location.origin + location.pathname + '?id=' + encodeURIComponent(product.id),
+      priceCurrency: 'EUR',
+      price: product.price.toFixed(2),
+      availability: 'https://schema.org/InStock'
+    }
+  });
+  document.head.appendChild(s);
+}
 
 const state = { product: null, selections: {}, qty: 1 };
 
@@ -114,10 +145,7 @@ async function init() {
     if (!collectTexts(true)) return;
     const item = currentItem();
     cartAdd(item.productId, item.qty, item.selections);
-    const msg = $('#addedMsg');
-    msg.classList.remove('is-on');
-    void msg.offsetWidth;             /* restart animation */
-    msg.classList.add('is-on');
+    openCart();
   });
 
   const buyNow = () => {
@@ -139,6 +167,8 @@ async function init() {
     $('#barBuy').addEventListener('click', buyNow);
   }
 
+  recordRecent(product.id);
+  injectJsonLd(product);
   renderRelated(catalog, product);
   refreshPrice();
 }
@@ -151,17 +181,7 @@ function renderRelated(catalog, product) {
     ...others.filter(p => p.category !== product.category)
   ].slice(0, 3);
   if (!picks.length) return;
-  $('#relatedGrid').innerHTML = picks.map(p => `
-    <a class="pc-shop-card" href="product.html?id=${encodeURIComponent(p.id)}">
-      <div class="pc-shop-card-img"><img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.name)}" loading="lazy" /></div>
-      <div class="pc-shop-card-body">
-        <h3 class="pc-shop-card-name">${escapeHtml(p.name)}</h3>
-        <div class="pc-shop-card-foot">
-          <div class="pc-shop-price">${fmtMoney(unitPriceCents(p, {}))}</div>
-          <span class="pc-shop-card-go">ΔΕΣ ΤΟ →</span>
-        </div>
-      </div>
-    </a>`).join('');
+  $('#relatedGrid').innerHTML = picks.map(p => cardHtml(p)).join('');
   $('#related').hidden = false;
 }
 

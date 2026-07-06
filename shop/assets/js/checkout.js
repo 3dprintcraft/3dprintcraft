@@ -10,8 +10,23 @@ const { $, $$, loadProducts, getProduct, unitPriceCents, fmtMoney, selectionLabe
 const state = {
   catalog: null,
   buyNow: null,        /* αν ήρθαμε με ΑΓΟΡΑ ΤΩΡΑ, αγοράζεται ΜΟΝΟ αυτό */
-  shippingMethod: null
+  shippingMethod: null,
+  coupon: null         /* εφαρμοσμένο κουπόνι { code, type, value } */
 };
+
+function findCoupon(code) {
+  const c = String(code || '').trim().toUpperCase();
+  if (!c) return null;
+  return (state.catalog.config.coupons || []).find(x => String(x.code).toUpperCase() === c) || null;
+}
+
+function discountCents() {
+  if (!state.coupon) return 0;
+  const d = state.coupon.type === 'percent'
+    ? Math.round(itemsTotal() * state.coupon.value / 100)
+    : Math.round(state.coupon.value * 100);
+  return Math.max(0, Math.min(d, itemsTotal()));
+}
 
 function items() { return state.buyNow ? [state.buyNow] : cartGet(); }
 
@@ -21,17 +36,22 @@ function lineHtml(item, idx) {
   const opts = selectionLabels(p, item.selections)
     .map(o => `${escapeHtml(o.label)}: <b>${escapeHtml(o.value)}</b>`).join(' · ');
   const cents = unitPriceCents(p, item.selections) * item.qty;
-  const rm = state.buyNow ? '' :
-    `<button class="pc-shop-line-rm" type="button" data-rm="${idx}">ΑΦΑΙΡΕΣΗ ✕</button>`;
+  const controls = state.buyNow ? '' : `
+      <div class="pc-shop-line-qty">
+        <button type="button" data-qty="${idx}" data-dir="-1" aria-label="Λιγότερα">−</button>
+        <span>${item.qty}</span>
+        <button type="button" data-qty="${idx}" data-dir="1" aria-label="Περισσότερα">+</button>
+      </div>
+      <button class="pc-shop-line-rm" type="button" data-rm="${idx}">ΑΦΑΙΡΕΣΗ ✕</button>`;
   return `<div class="pc-shop-line">
     <div class="pc-shop-line-img"><img src="${escapeHtml(p.images[0])}" alt="" /></div>
     <div class="pc-shop-line-main">
-      <h3 class="pc-shop-line-name">${escapeHtml(p.name)} × ${item.qty}</h3>
+      <h3 class="pc-shop-line-name">${escapeHtml(p.name)}${state.buyNow ? ' × ' + item.qty : ''}</h3>
       <div class="pc-shop-line-opts">${opts}</div>
     </div>
     <div class="pc-shop-line-side">
       <div class="pc-shop-line-price">${fmtMoney(cents)}</div>
-      ${rm}
+      ${controls}
     </div>
   </div>`;
 }
@@ -45,7 +65,8 @@ function shipCost() {
   const ship = state.catalog.config.shipping.find(s => s.id === state.shippingMethod);
   if (!ship) return 0;
   const th = freeShipThresholdCents();
-  if (th && ship.cost > 0 && itemsTotal() >= th) return 0; /* ίδια λογική με τον server */
+  const discounted = itemsTotal() - discountCents();
+  if (th && ship.cost > 0 && discounted >= th) return 0; /* ίδια λογική με τον server */
   return Math.round(ship.cost * 100);
 }
 
@@ -71,13 +92,14 @@ function render() {
 
   const ship = state.catalog.config.shipping.find(s => s.id === state.shippingMethod);
 
-  /* Nudge δωρεάν μεταφορικών: πρόοδος προς το όριο */
+  /* Nudge δωρεάν μεταφορικών: πρόοδος προς το όριο (μετά την έκπτωση) */
   const th = freeShipThresholdCents();
+  const discounted = itemsTotal() - discountCents();
   let shipNudge = '';
   if (th && ship && ship.cost > 0) {
-    const missing = th - itemsTotal();
+    const missing = th - discounted;
     if (missing > 0) {
-      const pct = Math.min(100, Math.round((itemsTotal() / th) * 100));
+      const pct = Math.min(100, Math.round((discounted / th) * 100));
       shipNudge = `<div class="pc-shop-freeship">
         <div class="pc-shop-freeship-txt">🚚 Βάλε άλλα <b>${fmtMoney(missing)}</b> για ΔΩΡΕΑΝ μεταφορικά!</div>
         <div class="pc-shop-freeship-bar"><span style="width:${pct}%"></span></div>
@@ -87,12 +109,16 @@ function render() {
     }
   }
 
+  const discountRow = state.coupon
+    ? `<div class="pc-shop-totals-row discount"><span>ΚΟΥΠΟΝΙ ${escapeHtml(String(state.coupon.code).toUpperCase())}</span><span>−${fmtMoney(discountCents())}</span></div>`
+    : '';
   const shipFree = ship && (ship.cost === 0 || shipCost() === 0);
   $('#totals').innerHTML = `
     ${shipNudge}
     <div class="pc-shop-totals-row"><span>ΠΡΟΪΟΝΤΑ</span><span>${fmtMoney(itemsTotal())}</span></div>
+    ${discountRow}
     <div class="pc-shop-totals-row"><span>ΜΕΤΑΦΟΡΙΚΑ${ship ? ' · ' + escapeHtml(ship.label).toUpperCase() : ''}</span><span>${shipFree ? 'ΔΩΡΕΑΝ' : fmtMoney(shipCost())}</span></div>
-    <div class="pc-shop-totals-row grand"><span>ΣΥΝΟΛΟ</span><span>${fmtMoney(itemsTotal() + shipCost())}</span></div>`;
+    <div class="pc-shop-totals-row grand"><span>ΣΥΝΟΛΟ</span><span>${fmtMoney(discounted + shipCost())}</span></div>`;
 
   /* Διεύθυνση: κρύβεται όταν ο τρόπος δεν τη χρειάζεται (παραλαβή) */
   $('#addrForm').style.display = ship && !ship.needsAddress ? 'none' : '';
@@ -167,6 +193,7 @@ async function pay() {
     customer: { fullName: fieldVal('fFullName'), email: fieldVal('fEmail'), phone: fieldVal('fPhone') },
     shippingMethod: state.shippingMethod,
     address: { street: fieldVal('fStreet'), city: fieldVal('fCity'), zip: fieldVal('fZip'), notes: fieldVal('fNotes') },
+    coupon: state.coupon ? state.coupon.code : undefined,
     items: items().map(i => ({ productId: i.productId, qty: i.qty, selections: i.selections }))
   };
 
@@ -208,10 +235,43 @@ async function init() {
 
   $('#lines').addEventListener('click', e => {
     const rm = e.target.closest('[data-rm]');
-    if (!rm) return;
-    cartRemove(Number(rm.dataset.rm));
+    if (rm) {
+      cartRemove(Number(rm.dataset.rm));
+      render();
+      return;
+    }
+    const qtyBtn = e.target.closest('[data-qty]');
+    if (qtyBtn) {
+      const idx = Number(qtyBtn.dataset.qty);
+      const cur = cartGet()[idx];
+      if (cur) {
+        window.PCShop.cartSetQty(idx, cur.qty + Number(qtyBtn.dataset.dir));
+        render();
+      }
+    }
+  });
+
+  /* Κουπόνι */
+  $('#couponApply')?.addEventListener('click', () => {
+    const box = $('#couponMsg');
+    const input = $('#couponCode');
+    if (!input.value.trim()) return;
+    const found = findCoupon(input.value);
+    if (found) {
+      state.coupon = found;
+      box.textContent = '✓ Το κουπόνι εφαρμόστηκε';
+      box.className = 'pc-shop-coupon-msg ok';
+      input.disabled = true;
+      $('#couponApply').textContent = 'ΟΚ ✓';
+      $('#couponApply').disabled = true;
+    } else {
+      state.coupon = null;
+      box.textContent = 'Το κουπόνι δεν ισχύει';
+      box.className = 'pc-shop-coupon-msg bad';
+    }
     render();
   });
+
   $('#btnPay').addEventListener('click', pay);
   $$('.pc-shop-input').forEach(el =>
     el.addEventListener('input', () => el.classList.remove('is-error')));

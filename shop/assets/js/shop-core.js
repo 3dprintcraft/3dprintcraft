@@ -116,6 +116,156 @@ function updateBadge() {
   });
 }
 
+/* Κοινή κάρτα προϊόντος (κατάλογος, related, είδες πρόσφατα) */
+function cardHtml(p, opts) {
+  const o = opts || {};
+  const CAT_TAGS = { nfc: 'NFC', prints: '3D PRINT' };
+  const tag = o.showTag
+    ? `<span class="pc-shop-card-tag ${p.category === 'nfc' ? 'nfc' : ''}">${CAT_TAGS[p.category] || 'ITEM'}</span>`
+    : '';
+  const hasDeltas = (p.options || []).some(x => x.type === 'select' && (x.choices || []).some(c => c.priceDelta));
+  const from = hasDeltas && o.showFrom ? '<span class="from">ΑΠΟ</span>' : '';
+  const desc = o.showDesc ? `<p class="pc-shop-card-desc">${escapeHtml(p.description)}</p>` : '';
+  return `
+  <a class="pc-shop-card" href="product.html?id=${encodeURIComponent(p.id)}" data-cat="${escapeHtml(p.category)}"${o.delay ? ` style="animation-delay:${o.delay}ms"` : ''}>
+    <div class="pc-shop-card-img">
+      ${tag}
+      <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.name)}" loading="lazy" />
+    </div>
+    <div class="pc-shop-card-body">
+      <h3 class="pc-shop-card-name">${escapeHtml(p.name)}</h3>
+      ${desc}
+      <div class="pc-shop-card-foot">
+        <div class="pc-shop-price">${from}${fmtMoney(unitPriceCents(p, {}))}</div>
+        <span class="pc-shop-card-go">ΔΕΣ ΤΟ →</span>
+      </div>
+    </div>
+  </a>`;
+}
+
+/* ── Mini-cart drawer ──────────────────────────────────────────── */
+let drawerReady = false;
+
+function drawerLineHtml(catalog, item, idx) {
+  const p = getProduct(catalog, item.productId);
+  if (!p) return '';
+  const opts = selectionLabels(p, item.selections)
+    .map(o => `${escapeHtml(o.label)}: <b>${escapeHtml(o.value)}</b>`).join(' · ');
+  const cents = unitPriceCents(p, item.selections) * item.qty;
+  return `<div class="pc-shop-line">
+    <div class="pc-shop-line-img"><img src="${escapeHtml(p.images[0])}" alt="" /></div>
+    <div class="pc-shop-line-main">
+      <h3 class="pc-shop-line-name">${escapeHtml(p.name)}</h3>
+      <div class="pc-shop-line-opts">${opts}</div>
+    </div>
+    <div class="pc-shop-line-side">
+      <div class="pc-shop-line-price">${fmtMoney(cents)}</div>
+      <div class="pc-shop-line-qty">
+        <button type="button" data-dqty="${idx}" data-dir="-1" aria-label="Λιγότερα">−</button>
+        <span>${item.qty}</span>
+        <button type="button" data-dqty="${idx}" data-dir="1" aria-label="Περισσότερα">+</button>
+      </div>
+      <button class="pc-shop-line-rm" type="button" data-drm="${idx}">ΑΦΑΙΡΕΣΗ ✕</button>
+    </div>
+  </div>`;
+}
+
+async function renderCartDrawer() {
+  const body = $('#pcDrawerBody');
+  const foot = $('#pcDrawerFoot');
+  if (!body) return;
+  const items = cartGet();
+  if (!items.length) {
+    body.innerHTML = '<div class="pc-drawer-empty">ΤΟ ΚΑΛΑΘΙ ΣΟΥ ΕΙΝΑΙ ΑΔΕΙΟ</div>';
+    foot.hidden = true;
+    return;
+  }
+  let catalog;
+  try { catalog = await loadProducts(); } catch { return; }
+
+  body.innerHTML = items.map((it, i) => drawerLineHtml(catalog, it, i)).join('');
+
+  const subtotal = items.reduce((sum, it) => {
+    const p = getProduct(catalog, it.productId);
+    return p ? sum + unitPriceCents(p, it.selections) * it.qty : sum;
+  }, 0);
+
+  /* Free shipping progress — ίδια λογική με το checkout */
+  const t = Number(catalog.config.freeShippingOver);
+  let nudge = '';
+  if (Number.isFinite(t) && t > 0) {
+    const th = Math.round(t * 100);
+    const missing = th - subtotal;
+    nudge = missing > 0
+      ? `<div class="pc-shop-freeship">
+          <div class="pc-shop-freeship-txt">🚚 Βάλε άλλα <b>${fmtMoney(missing)}</b> για ΔΩΡΕΑΝ μεταφορικά!</div>
+          <div class="pc-shop-freeship-bar"><span style="width:${Math.min(100, Math.round((subtotal / th) * 100))}%"></span></div>
+        </div>`
+      : `<div class="pc-shop-freeship is-won"><div class="pc-shop-freeship-txt">🎉 Κέρδισες ΔΩΡΕΑΝ μεταφορικά!</div></div>`;
+  }
+
+  foot.hidden = false;
+  foot.innerHTML = `
+    ${nudge}
+    <div class="pc-drawer-sub"><span>ΥΠΟΣΥΝΟΛΟ</span><span class="n">${fmtMoney(subtotal)}</span></div>
+    <a class="pc-btn-primary pc-drawer-cta" href="checkout.html">ΟΛΟΚΛΗΡΩΣΗ ΑΓΟΡΑΣ <span aria-hidden="true">→</span></a>
+    <button class="pc-drawer-continue" type="button" data-drawer-close>ΣΥΝΕΧΙΣΕ ΤΙΣ ΑΓΟΡΕΣ</button>`;
+}
+
+function openCart() {
+  if (!drawerReady) return;
+  renderCartDrawer();
+  document.body.classList.add('pc-drawer-open');
+}
+function closeCart() { document.body.classList.remove('pc-drawer-open'); }
+
+function initDrawer() {
+  /* Στο checkout το καλάθι είναι ήδη στη σελίδα — χωρίς drawer εκεί */
+  if (document.querySelector('main#checkout')) return;
+
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="pc-drawer-backdrop" data-drawer-close></div>
+    <aside class="pc-drawer" role="dialog" aria-label="Καλάθι" aria-modal="true">
+      <div class="pc-drawer-head">
+        <span>ΤΟ ΚΑΛΑΘΙ ΣΟΥ</span>
+        <button class="pc-drawer-close" type="button" data-drawer-close aria-label="Κλείσιμο">✕</button>
+      </div>
+      <div class="pc-drawer-body" id="pcDrawerBody"></div>
+      <div class="pc-drawer-foot" id="pcDrawerFoot" hidden></div>
+    </aside>`;
+  document.body.append(...wrap.children);
+  drawerReady = true;
+
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-drawer-close]')) { closeCart(); return; }
+    const qty = e.target.closest('[data-dqty]');
+    if (qty) {
+      const idx = Number(qty.dataset.dqty);
+      const cur = cartGet()[idx];
+      if (cur) {
+        cartSetQty(idx, cur.qty + Number(qty.dataset.dir));
+        renderCartDrawer();
+      }
+      return;
+    }
+    const rm = e.target.closest('[data-drm]');
+    if (rm) {
+      cartRemove(Number(rm.dataset.drm));
+      renderCartDrawer();
+    }
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
+
+  /* Το «ΚΑΛΑΘΙ» του header ανοίγει το drawer αντί να αλλάζει σελίδα */
+  document.querySelectorAll('.pc-gantry-cta[href="checkout.html"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      openCart();
+    });
+  });
+}
+
 /* Gantry: burger + scroll progress (ίδιο feel με το landing) */
 function initGantry() {
   const burger = $('#navBurger');
@@ -144,8 +294,12 @@ window.PCShop = {
   $, $$, loadProducts, getProduct, unitPriceCents, fmtMoney, selectionLabels,
   cartGet, cartAdd, cartSetQty, cartRemove, cartClear, cartCount,
   buyNowSet, buyNowGet, buyNowClear,
-  escapeHtml, updateBadge, initGantry
+  escapeHtml, updateBadge, initGantry,
+  cardHtml, openCart, closeCart
 };
 
-document.addEventListener('DOMContentLoaded', initGantry);
+document.addEventListener('DOMContentLoaded', () => {
+  initGantry();
+  initDrawer();
+});
 })();

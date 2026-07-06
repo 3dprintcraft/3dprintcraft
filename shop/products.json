@@ -3,6 +3,9 @@
     "currency": "EUR",
     "vatIncluded": true,
     "freeShippingOver": 30,
+    "coupons": [
+      { "code": "PRINT10", "type": "percent", "value": 10 }
+    ],
     "shipping": [
       { "id": "courier", "label": "Courier πόρτα-πόρτα", "cost": 3.50, "needsAddress": true, "note": "Παράδοση σε 1–3 εργάσιμες" },
       { "id": "boxnow", "label": "BOX NOW locker", "cost": 2.50, "needsAddress": true, "note": "Γράψε το locker της επιλογής σου στη διεύθυνση" },
