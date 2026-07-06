@@ -64,12 +64,13 @@
 .pc-shop-card-body { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 16px; flex: 1; }
 .pc-shop-card-name { font-family: var(--font-display); font-size: 17px; letter-spacing: -0.3px; line-height: 1.15; margin: 0; }
 .pc-shop-card-desc { font-family: var(--font-body); font-size: 13px; line-height: 1.45; color: var(--c-ink-3); margin: 0; flex: 1; }
+/* Τιμή και «ΔΕΣ ΤΟ» σε ξεχωριστές γραμμές — δεν συγκρούονται ποτέ,
+   ούτε με μεγεθυμένες γραμματοσειρές κινητού */
 .pc-shop-card-foot {
-  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
   margin-top: 6px; padding-top: 10px; border-top: 1px dashed var(--c-ink-3);
 }
-.pc-shop-card-foot .pc-shop-price { min-width: 0; }
-.pc-shop-card-go { white-space: nowrap; flex-shrink: 0; }
+.pc-shop-card-go { white-space: nowrap; align-self: flex-end; }
 .pc-shop-price { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.5px; }
 .pc-shop-price .from { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; color: var(--c-ink-3); display: block; }
 .pc-shop-card-go { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; font-weight: 700; color: var(--c-accent); }
@@ -204,7 +205,12 @@
 .pc-shop-status-stamp.fail { background: #d02b1f; color: #fff; }
 .pc-shop-status h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 64px); letter-spacing: -1.5px; line-height: 1; margin: 0 0 18px; }
 .pc-shop-status p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--c-ink-2); }
-.pc-shop-status .ordercode { font-family: var(--font-mono); font-weight: 700; background: var(--c-paper-alt); border: 1px solid var(--c-ink); padding: 2px 8px; }
+.pc-shop-status .ordercode {
+  display: inline-block; margin-top: 8px; max-width: 100%;
+  font-family: var(--font-mono); font-weight: 700; font-size: 15px;
+  background: var(--c-paper-alt); border: 1px solid var(--c-ink); padding: 4px 12px;
+  overflow-wrap: break-word;
+}
 .pc-shop-status-actions { display: flex; gap: 14px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
 
 /* ── Κουπόνι (checkout) ───────────────────────────────────────── */
