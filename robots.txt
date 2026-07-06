@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /shop/checkout.html
+Disallow: /shop/thanks.html
+Disallow: /dev/
+
+Sitemap: https://3dprintcraft.gr/sitemap.xml
