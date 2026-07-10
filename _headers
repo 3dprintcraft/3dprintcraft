@@ -1,21 +1,19 @@
-# Security & caching headers (Cloudflare Pages)
-
 /*
   X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
 
-# Στατικά assets: μακρύ cache — τα σπάμε με ?v= στα links
-/assets/*
+/assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
 
-/shop/assets/css/*
-  Cache-Control: public, max-age=31536000, immutable
+/assets/img/*
+  Cache-Control: public, max-age=2592000
 
-/shop/assets/js/*
-  Cache-Control: public, max-age=31536000, immutable
+/assets/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
 
-# Ο κατάλογος πρέπει να φρεσκάρει γρήγορα μετά από αλλαγή προϊόντων
-/shop/products.json
-  Cache-Control: public, max-age=300
+/assets/js/*
+  Cache-Control: public, max-age=3600, must-revalidate

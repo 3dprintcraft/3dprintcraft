@@ -1,11 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "landing",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8000"],
-      "port": 8000
-    }
+    { "name": "printcraft", "runtimeExecutable": "npx", "runtimeArgs": ["http-server", "-c-1", "."], "autoPort": true }
   ]
 }

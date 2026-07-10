@@ -1,0 +1,12 @@
+# 3DPrintCraft — Core Context
+
+## Core Purpose
+3DPrintCraft is a 3D-printing team in Patras, Greece that started as a hobby and grew into a leading local business. It produces custom 3D prints and NFC gadgets, and builds websites for businesses.
+
+## Core Features / Services
+- Custom 3D printing: prototypes, spare parts, gifts, decorative objects from customer files or ideas (PLA, PLA Matte, ABS, PETG, TPU, ASA, PA6-CF, ABS-GF; 40+ filament colors listed at /filaments.html)
+- NFC gadgets: 3D-printed keychains, phone stands, and coasters with embedded NFC tags that open a profile, menu, or website on tap
+- Website creation: modern static websites for businesses with zero monthly hosting cost
+
+## Target Entities & Context
+3D εκτύπωση Πάτρα, custom 3D printing Greece, NFC keychains, NFC stands, NFC coasters, κατασκευή ιστοσελίδων Πάτρα. Contact: Instagram @3dprintcraft or contactprintcraft3d@gmail.com. Pickup in Patras or shipping across Greece.

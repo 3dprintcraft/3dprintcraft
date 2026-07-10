@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://3dprintcraft.gr/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/custom.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/product.html?id=nfc-stand</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/product.html?id=nfc-keychain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/product.html?id=nfc-coasters</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/product.html?id=name-keychain</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://3dprintcraft.gr/shop/product.html?id=lamp</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://3dprintcraft.gr/</loc></url>
+  <url><loc>https://3dprintcraft.gr/portfolio.html</loc></url>
+  <url><loc>https://3dprintcraft.gr/filaments.html</loc></url>
+  <url><loc>https://3dprintcraft.gr/contact.html</loc></url>
 </urlset>

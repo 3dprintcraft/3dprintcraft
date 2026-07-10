@@ -1,1 +1,5 @@
-/hub/demo   /hub/shops/demo   302
+/docs/* / 302
+/CLAUDE.md / 302
+/.claude/* / 302
+/.gitignore / 302
+/claude.md / 302

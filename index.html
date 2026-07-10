@@ -1,436 +1,249 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="el">
 <head>
-<meta charset="utf-8" />
-<title>3DPrintCraft · Custom 3D Εκτυπώσεις & Έξυπνα NFC Προϊόντα — Πάτρα</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<meta name="description" content="Επαγγελματικές 3D εκτυπώσεις κατά παραγγελία και έξυπνα NFC προϊόντα από το εργαστήριό μας στην Πάτρα. Online eshop, personalized δώρα, αποστολή σε όλη την Ελλάδα." />
-<link rel="canonical" href="https://3dprintcraft.gr/" />
-<meta property="og:title" content="3DPrintCraft · Custom 3D Εκτυπώσεις & NFC Προϊόντα — Πάτρα" />
-<meta property="og:description" content="Επαγγελματικές 3D εκτυπώσεις κατά παραγγελία, έξυπνα NFC προϊόντα και personalized δώρα. Online eshop με αποστολή σε όλη την Ελλάδα." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://3dprintcraft.gr/" />
-<meta property="og:locale" content="el_GR" />
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "3DPrintCraft",
-  "description": "Εργαστήριο 3D εκτύπωσης στην Πάτρα: custom εκτυπώσεις κατά παραγγελία, έξυπνα NFC προϊόντα και personalized δώρα με online παραγγελία.",
-  "url": "https://3dprintcraft.gr/",
-  "image": "https://3dprintcraft.gr/favicon.png",
-  "email": "contactprintcraft3d@gmail.com",
-  "foundingDate": "2019",
-  "priceRange": "€€",
-  "address": { "@type": "PostalAddress", "addressLocality": "Πάτρα", "addressCountry": "GR" }
-}
-</script>
-
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="apple-touch-icon" href="favicon.png" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&family=Space+Mono:wght@400;700&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-<link rel="stylesheet" href="assets/css/landing.css?v=24" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3DPrintCraft — 3D εκτύπωση, NFC gadgets & ιστοσελίδες στην Πάτρα</title>
+  <meta name="description" content="Ομάδα 3D εκτύπωσης στην Πάτρα. Custom εκτυπώσεις, NFC μπρελόκ, stands και σουβέρ, και κατασκευή ιστοσελίδων για επιχειρήσεις. Ξεκίνησε ως χόμπι — έγινε κορυφαία επιλογή.">
+  <link rel="canonical" href="https://3dprintcraft.gr/">
+  <meta property="og:title" content="3DPrintCraft — 3D εκτύπωση, NFC gadgets & ιστοσελίδες στην Πάτρα">
+  <meta property="og:description" content="Ομάδα 3D εκτύπωσης στην Πάτρα. Custom εκτυπώσεις, NFC μπρελόκ, stands και σουβέρ, και κατασκευή ιστοσελίδων για επιχειρήσεις. Ξεκίνησε ως χόμπι — έγινε κορυφαία επιλογή.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://3dprintcraft.gr/">
+  <meta property="og:image" content="https://3dprintcraft.gr/assets/img/og.jpg">
+  <meta property="og:locale" content="el_GR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/commissioner-greek.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/commissioner-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://3dprintcraft.gr/#business",
+    "name": "3DPrintCraft",
+    "description": "Ομάδα 3D εκτύπωσης στην Πάτρα: custom εκτυπώσεις, NFC gadgets και κατασκευή ιστοσελίδων. Παραλαβή από Πάτρα ή αποστολή σε όλη την Ελλάδα.",
+    "url": "https://3dprintcraft.gr",
+    "areaServed": "GR",
+    "email": "contactprintcraft3d@gmail.com",
+    "image": "https://3dprintcraft.gr/assets/img/og.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Πάτρα", "addressCountry": "GR" },
+    "sameAs": ["https://instagram.com/3dprintcraft"],
+    "knowsAbout": ["3D printing", "NFC gadgets", "custom keychains", "coasters", "phone stands", "web design"],
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D εκτύπωση κατά παραγγελία" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NFC gadgets — μπρελόκ, stands, σουβέρ" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Κατασκευή ιστοσελίδων για επιχειρήσεις" } }
+    ]
+  }
+  </script>
 </head>
 <body>
-<a class="pc-skip" href="#services">ΠΑΡΑΚΑΜΨΗ ΣΤΟ ΠΕΡΙΕΧΟΜΕΝΟ</a>
+  <a class="skip-link" href="#main">Μετάβαση στο περιεχόμενο</a>
 
-<!-- ═══ GANTRY ═══ -->
-<header class="pc-gantry" id="top">
-  <div class="pc-gantry-top">
-    <div class="pc-gantry-brand">
-      <svg class="pc-gantry-logo" viewBox="0 0 363.92656 207.11638" role="img" aria-label="3DPrintCraft"><path d="M471.80005,425.63486l-.41167-1.1451q46.11641-32.90413,92.23278-65.80828-.24345-.48077-.48685-.96152Q454.67282,391.70084,346.312,425.65021v87.86972l100.8202-24.29579v75.61219L633.2771,539.90326l.06845-.80069-91.6441-23.12741c2.27173-1.45783,3.4508-2.33571,4.73346-3.01932Q573.4637,498.55,600.52423,484.20393c13.74234-7.25218,27.55329-14.37425,41.32443-21.57191q32.546-17.01054,65.07413-34.05519c1.147-.60108,2.21237-1.358,3.31574-2.0423l-.27314-.89967Z" transform="translate(-346.31197 -357.71996)"/><path d="M471.80005,425.63486H709.96539l.27314.89967c-1.10337.68434-2.16871,1.44122-3.31574,2.0423Q674.395,445.62205,641.84866,462.632c-13.77114,7.19766-27.58209,14.31973-41.32443,21.57191q-27.08753,14.29486-54.08932,28.75191c-1.28266.68361-2.46173,1.56149-4.73346,3.01932l91.6441,23.12741-.06845.80069L447.13217,564.83633V489.22414L346.312,513.51993V425.65021Q454.62249,391.7166,563.13431,357.72q.24339.48077.48685.96152-46.11641,32.90415-92.23278,65.80828Z" transform="translate(-346.31197 -357.71996)"/></svg>
-      <div>
-        <div class="pc-gantry-name">3DPRINTCRAFT</div>
-        <div class="pc-gantry-brand-sub">PATRAS · EST 2019</div>
-      </div>
-    </div>
-    <nav class="pc-gantry-nav" id="nav" aria-label="Κύρια πλοήγηση">
-      <a href="#hero" class="is-active">ΑΡΧΙΚΗ</a>
-      <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
-      <a href="#work">ΔΟΥΛΕΙΕΣ</a>
-      <a href="#process">ΔΙΑΔΙΚΑΣΙΑ</a>
-      <a href="#cta">ΠΡΟΣΦΟΡΑ</a>
-    </nav>
-    <div class="pc-gantry-right">
-      <a class="pc-gantry-cta" href="shop/">ESHOP <span class="pc-cart-badge" hidden>0</span> →</a>
-      <button class="pc-gantry-burger" id="navBurger" type="button" aria-label="Μενού" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-  <div class="pc-gantry-prog">
-    <div class="pc-gantry-prog-fill" id="gantryFill"></div>
-    <span class="pc-gantry-tick" style="left:0%"></span>
-    <span class="pc-gantry-tick" style="left:25%"></span>
-    <span class="pc-gantry-tick" style="left:50%"></span>
-    <span class="pc-gantry-tick" style="left:75%"></span>
-    <span class="pc-gantry-tick" style="left:100%"></span>
-  </div>
-  <nav class="pc-gantry-menu" id="navMenu" aria-label="Μενού πλοήγησης">
-    <a href="#hero">ΑΡΧΙΚΗ</a>
-    <a href="#services">ΥΠΗΡΕΣΙΕΣ</a>
-    <a href="#work">ΔΟΥΛΕΙΕΣ</a>
-    <a href="#process">ΔΙΑΔΙΚΑΣΙΑ</a>
-    <a href="#cta">ΠΡΟΣΦΟΡΑ</a>
-    <a href="shop/" class="pc-nav-ext pc-nav-eshop">ESHOP <span class="pc-cart-badge" hidden>0</span></a>
+  <header class="topbar">
+    <a class="logo" href="index.html" aria-label="3DPrintCraft — Αρχική"><img class="logo-mark" src="assets/img/logo.svg" alt="" aria-hidden="true" width="42" height="24"><span class="logo-word">3dprint<em>craft</em></span></a>
+  </header>
+
+  <nav class="dock" aria-label="Κύρια πλοήγηση">
+    <span class="dock-progress" aria-hidden="true"></span>
+    <a href="index.html" aria-current="page">Αρχική</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="filaments.html">Χρώματα</a>
+    <a href="contact.html">Επικοινωνία</a>
+    <span class="dock-soon">Shop<em>σύντομα</em></span>
   </nav>
-</header>
 
-<main>
-<!-- ═══ HERO ═══ -->
-<section class="pc-hero" id="hero">
-  <div class="pc-hero-bg" aria-hidden="true"></div>
-  <div class="pc-hero-meta">
-    <span>FILE · 3dprintcraft.gcode</span>
-    <span>EST. 2019 · ΠΑΤΡΑ · 3D · NFC · WEB</span>
-    <span>VIEWPORT · 01 / 06</span>
-  </div>
-
-  <div class="pc-hero-grid">
-    <!-- LEFT -->
-    <div>
-      <div class="pc-boot">
-        <div class="pc-boot-head">
-          <span>3dprintcraft.gcode</span>
-          <span class="pc-boot-status" id="bootStatus">● BOOTING</span>
+  <main id="main">
+    <section class="hero-sticky">
+      <div class="hero">
+        <!-- floating printed objects, copied verbatim from printcraft3d/index.html lines 34-81 -->
+        <div class="float-obj o1" aria-hidden="true">
+          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="h1a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#c6d4ff"/><stop offset=".5" stop-color="#5f7dff"/><stop offset="1" stop-color="#101a45"/>
+              </linearGradient>
+              <linearGradient id="h1b" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <!-- glossy torus -->
+            <circle cx="150" cy="150" r="120" fill="url(#h1a)"/>
+            <circle cx="150" cy="150" r="52" fill="#2038c9"/>
+            <circle cx="150" cy="150" r="52" fill="#0a1030" opacity=".55"/>
+            <path d="M52 96 a120 120 0 0 1 172 -18" fill="none" stroke="url(#h1b)" stroke-width="26" stroke-linecap="round" opacity=".55"/>
+            <g stroke="#fff" stroke-opacity=".1" stroke-width="2">
+              <ellipse cx="150" cy="150" rx="120" ry="120" fill="none"/>
+              <ellipse cx="150" cy="150" rx="104" ry="104" fill="none"/>
+              <ellipse cx="150" cy="150" rx="88" ry="88" fill="none"/>
+              <ellipse cx="150" cy="150" rx="70" ry="70" fill="none"/>
+            </g>
+          </svg>
         </div>
-        <div class="pc-boot-body" id="bootBody" aria-hidden="true"></div>
-      </div>
+        <div class="float-obj o2" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="h2a" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#e6ecff"/><stop offset="1" stop-color="#2445e6"/>
+              </linearGradient>
+            </defs>
+            <path d="M100 8 l80 46 v92 l-80 46 -80 -46 V54z" fill="url(#h2a)"/>
+            <path d="M100 8 l80 46 -80 46 -80 -46z" fill="#fff" opacity=".38"/>
+            <path d="M100 100 v92 l80 -46 V54z" fill="#0a1030" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="float-obj o3" aria-hidden="true">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="h3a" cx=".35" cy=".3" r="1">
+                <stop offset="0" stop-color="#ffffff"/><stop offset=".4" stop-color="#8ea6ff"/><stop offset="1" stop-color="#16246e"/>
+              </radialGradient>
+            </defs>
+            <circle cx="80" cy="80" r="72" fill="url(#h3a)"/>
+            <g stroke="#fff" stroke-opacity=".16" stroke-width="1.5" fill="none">
+              <ellipse cx="80" cy="80" rx="72" ry="24"/><ellipse cx="80" cy="80" rx="72" ry="46"/><ellipse cx="80" cy="80" rx="72" ry="64"/>
+            </g>
+          </svg>
+        </div>
 
-      <div class="pc-badge"><span class="pc-badge-dot"></span>ΕΡΓΑΣΤΗΡΙΟ — 3D · NFC · WEB</div>
+        <!-- mobile-only hero object: 3DBenchy render (brand-blue WebP, transparent
+             bg) replaces the torus on <=720px screens; same floaty animation. -->
+        <div class="float-obj o-benchy" aria-hidden="true">
+          <img src="assets/img/benchy.webp" alt="" width="640" height="598">
+        </div>
 
-      <h1 class="pc-hero-h1">Δίνουμε <span class="accent">ΜΟΡΦΗ</span> στην <span class="accent">ΙΔΕΑ</span> σου.</h1>
+        <!-- TEMPORARILY REMOVED (owner request 2026-07-10): the self-printing hero
+             print-stage (vase SVG + LAYER HUD + scanline). Restore the figure block
+             from git history: `git show 107c569:index.html` (figure.print-stage).
+             motion.js and CSS are untouched - the scrub, pin and curtain all
+             auto-disable while .print-stage is absent from the DOM. -->
 
-      <p class="pc-hero-lead"><span class="accent">Custom 3D</span> Εκτυπώσεις, <span class="accent">NFC</span> μπρελόκ και <span class="accent">Websites</span> που ξεχωρίζουν.</p>
-
-      <div class="pc-hero-actions">
-        <a class="pc-btn-primary" href="shop/">ΔΕΣ ΤΟ ESHOP <span aria-hidden="true">→</span></a>
-        <a class="pc-btn-ink" href="#cta">ΞΕΚΙΝΗΣΕ ΕΔΩ <span class="arr" aria-hidden="true">→</span></a>
-        <a class="pc-link-arrow" href="#work">ΔΕΣ ΤΑ ΕΡΓΑ ΜΑΣ →</a>
-      </div>
-
-      <div class="pc-hero-stats">
-        <div><div class="pc-stat-n">3.500+</div><div class="pc-stat-d">εκτυπώσεις</div></div>
-        <div><div class="pc-stat-n">80+</div><div class="pc-stat-d">sites &amp; mini hubs</div></div>
-        <div><div class="pc-stat-n">28</div><div class="pc-stat-d">smart NFC προϊόντα</div></div>
-        <div><div class="pc-stat-n">&lt; 2h</div><div class="pc-stat-d">απάντηση σε προσφορά</div></div>
-      </div>
-    </div>
-
-    <!-- RIGHT — lifecycle scene -->
-    <div class="pc-life" id="lifecycle" data-stage="0">
-      <div class="pc-life-bg" aria-hidden="true"></div>
-
-      <div class="pc-tabs">
-        <div class="pc-tab is-active" data-tab="0"><span><span class="num">01</span>ΕΠΑΦΗ</span><span class="dot"></span><span class="check">✓</span><span class="pc-tab-fill"></span></div>
-        <div class="pc-tab" data-tab="1"><span><span class="num">02</span>ΣΧΕΔΙΑΣΗ</span><span class="dot"></span><span class="check">✓</span><span class="pc-tab-fill"></span></div>
-        <div class="pc-tab" data-tab="2"><span><span class="num">03</span>ΕΚΤΥΠΩΣΗ</span><span class="dot"></span><span class="check">✓</span><span class="pc-tab-fill"></span></div>
-      </div>
-
-      <div class="pc-cube-wrap" aria-hidden="true">
-        <div class="pc-cube-scene"><div class="pc-cube">
-          <div class="pc-cube-face f1"></div><div class="pc-cube-face f2"></div>
-          <div class="pc-cube-face f3"></div><div class="pc-cube-face f4"></div>
-          <div class="pc-cube-face f5"></div><div class="pc-cube-face f6"></div>
-        </div></div>
-      </div>
-
-      <!-- Stage 0 · ΕΠΑΦΗ -->
-      <div class="pc-ovl pc-ovl-email">
-        <div class="pc-email-wrap"><div class="pc-email">
-          <div class="pc-email-top"><span>📧 INBOX · 5 NEW</span><span class="unread">● UNREAD</span></div>
-          <div class="pc-email-meta">
-            <div class="pc-email-row"><span class="k">ΑΠΟ</span><span class="v">info@plexus-brand.gr</span></div>
-            <div class="pc-email-row"><span class="k">ΘΕΜΑ</span><span class="v"><b>Προσφορά · NFC Μπρελόκ </b></span></div>
-            <div class="pc-email-row"><span class="k">ΗΜΕΡ</span><span class="v">Μόλις τώρα</span></div>
+        <div class="wrap hero-inner">
+          <span class="kicker" data-hero="1">Σχεδίαση &amp; 3D εκτύπωση</span>
+          <h1 data-split>Δίνουμε μορφή<br>στην ιδέα&nbsp;σου.<br><span class="accent">Στρώση στρώση.</span></h1>
+          <p class="lead" data-hero="2">Custom 3D εκτυπώσεις, NFC gadgets και ιστοσελίδες για επιχειρήσεις — με παράδοση σε όλη την Ελλάδα.</p>
+          <div class="hero-actions" data-hero="3">
+            <a class="btn btn-light" href="portfolio.html">Δες τη δουλειά μας</a>
+            <a class="btn btn-ghost" href="https://instagram.com/3dprintcraft" rel="noopener" target="_blank">Στείλε μας DM</a>
           </div>
-          <div class="pc-email-body"><span id="emailTyped"></span><span class="pc-email-cursor" id="emailCursor"></span></div>
-          <div class="pc-email-foot">
-            <span class="pc-email-att"><span class="clip">📎</span> logo.pdf <span class="sz">2.4 MB</span></span>
-            <span class="pc-email-reply">ΑΠΑΝΤΗΣΗ →</span>
-          </div>
-        </div></div>
-      </div>
-
-      <!-- Stage 1 · ΣΧΕΔΙΑΣΗ -->
-      <div class="pc-ovl pc-ovl-design">
-        <div class="pc-design-tool">CAD · ΑΝΑΛΥΣΗ ΓΕΩΜΕΤΡΙΑΣ</div>
-        <div class="pc-dim" style="left:18px; top:100px">Π · 42mm</div>
-        <div class="pc-dim" style="right:18px; top:130px">Υ · 28mm</div>
-        <div class="pc-dim" style="left:18px; top:200px">Β · 19g</div>
-        <div class="pc-dim" style="right:18px; top:230px">12.403 △</div>
-        <div class="pc-dim" style="left:18px; top:300px">GYROID 40%</div>
-        <div class="pc-dim" style="right:18px; top:330px">PETG · BLK</div>
-      </div>
-
-      <!-- Stage 2 · ΕΚΤΥΠΩΣΗ -->
-      <div class="pc-ovl pc-ovl-print">
-        <div class="pc-print-tool">ΕΚΤΥΠΩΣΗ · LAYER <span id="printLayer">247</span>/412</div>
-        <div class="pc-zrod" style="left:28px"></div>
-        <div class="pc-zrod" style="right:28px"></div>
-        <div class="pc-xrail"></div>
-        <div class="pc-head" style="left:calc(50% - 26px)">
-          <div class="pc-head-body">HEAD</div>
-          <div class="pc-head-nozzle"></div>
-          <div class="pc-head-glow"></div>
         </div>
-        <div class="pc-bed"><div class="pc-bed-grid"></div></div>
+        <span class="scroll-cue" aria-hidden="true">↓ Κύλισε</span>
       </div>
+    </section>
 
-      <div class="pc-readout">
-        <div><span class="arrow">▸</span> <span class="lbl" id="roLbl">ΑΠΟ</span> <span id="roVal">Μαρία @ Plexus-Brand</span></div>
-        <div class="file">logo.pdf</div>
+    <section class="section wrap curtain" aria-labelledby="services-h">
+      <span class="kicker">Τι κάνουμε</span>
+      <h2 id="services-h" class="display display-md" data-split>Τρεις τρόποι να σε βοηθήσουμε</h2>
+      <div class="services-grid" style="margin-top:2.4rem">
+        <article class="service-card fade-rise">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17h16M6 17v-4h12v4M8 13V7h8v6M10 7V4h4v3"/></svg>
+          <h3>3D Εκτύπωση</h3>
+          <p>Στείλε μας το αρχείο ή την ιδέα σου — πρωτότυπα, ανταλλακτικά, δώρα, διακοσμητικά. Ό,τι χωράει στο τραπέζι εκτύπωσης, γίνεται.</p>
+          <div class="chip-row"><span>PLA</span><span>PETG</span><span>ABS</span><span>TPU</span><span>ASA</span><span>ABS-GF</span><span>PA6-CF</span></div>
+        </article>
+        <article class="service-card fade-rise" data-d="1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8.5a7 7 0 0 1 12 0M8.5 11a4 4 0 0 1 7 0M12 14h.01M4 18h16"/></svg>
+          <h3>NFC Gadgets</h3>
+          <p>Premium μπρελόκ, stands και σουβέρ με ενσωματωμένο NFC. Συνδέστε τους πελάτες σας με την επιχείρησή σας με ένα μόνο tap.</p>
+          <div class="chip-row"><span>Μπρελόκ</span><span>Stands</span><span>Σουβέρ</span><span>Social Media</span><span>Ασφαλείς Πληρωμές</span></div>
+        </article>
+        <article class="service-card fade-rise" data-d="2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M7 6h.01M10 6h.01"/></svg>
+          <h3>Ιστοσελίδες</h3>
+          <p>Σύγχρονες, γρήγορες ιστοσελίδες για επιχειρήσεις — από τη σχεδίαση ως τη δημοσίευση, στην χαμηλότερη τιμή της αγοράς.</p>
+          <div class="chip-row"><span>Design</span><span>SEO</span><span>Mobile Responsive</span><span>Custom Web Apps</span></div>
+        </article>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Materials ticker -->
-  <div class="pc-ticker" aria-hidden="true">
-    <div class="pc-ticker-track" id="tickerTrack"></div>
-    <div class="pc-swatches">
-      <span class="pc-swatches-label">ΔΙΑΘΕΣΙΜΑ ΧΡΩΜΑΤΑ — ΕΝΔΕΙΚΤΙΚΑ</span>
-      <div class="pc-swatch-row" id="swatchTrack"></div>
-      <a class="pc-btn-warm pc-swatches-btn" href="colors.html">ΔΕΣ ΟΛΗ ΤΗΝ ΠΑΛΕΤΑ <span class="arr" aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SERVICES ═══ -->
-<section class="pc-services" id="services">
-  <div class="pc-section-head pc-services-head">
-    <div>
-      <div class="eyebrow">02 / ΤΙ ΦΤΙΑΧΝΟΥΜΕ</div>
-      <h2 class="pc-services-title">
-        <span class="svc">3D Design</span><span class="sep" aria-hidden="true">▪</span><span class="svc">NFC Integration</span><span class="sep" aria-hidden="true">▪</span><span class="svc">Web Development</span>
-      </h2>
-    </div>
-  </div>
-
-  <div class="pc-services-grid">
-    <!-- 01 print -->
-    <div class="pc-service-tile">
-      <div class="hoverlines" aria-hidden="true"></div>
-      <div class="pc-service-head">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="pc-service-num">01 /</div>
-          <div class="pc-service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="11"/><rect x="6" y="15" width="12" height="6" fill="var(--c-accent)" stroke="var(--c-ink)"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+    <section class="section section-tight wrap" aria-labelledby="work-h">
+      <div style="display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2.2rem">
+        <div>
+          <span class="kicker">Portfolio</span>
+          <h2 id="work-h" class="display display-md">Πράγματα που εκτυπώσαμε</h2>
         </div>
+        <a class="btn" href="portfolio.html">Όλο το portfolio</a>
       </div>
-      <h3>CUSTOM 3D PRINTS</h3>
-      <p>Λειτουργικά κομμάτια, prototypes, μοντέλα. Από ένα μοναδικό bracket μέχρι μικρή παραγωγή.</p>
-      <div class="pc-service-foot">
-        <div class="pc-chips"><span class="pc-chip">ΧΡΟΝΟΣ 2–5 ημ.</span><span class="pc-chip">ΣΥΝΘΕΤΑ ΥΛΙΚΑ</span><span class="pc-chip">ΑΡΙΣΤΗ ΠΟΙΟΤΗΤΑ</span></div>
-        <span class="pc-service-go">→</span>
+      <div class="work-grid">
+        <a class="work-card fade-rise" href="portfolio.html">
+          <img src="assets/img/work/08-nfc-stand-elia.jpg" alt="NFC stand «Elia» — 3D εκτυπωμένη βάση με ενσωματωμένο NFC tag" width="1484" height="1201" loading="lazy">
+          <span class="work-cap">NFC stand «Elia» <span class="tag">NFC</span></span>
+        </a>
+        <a class="work-card fade-rise" data-d="1" href="portfolio.html">
+          <img src="assets/img/work/03-mannequin-coasters.jpg" alt="Σουβέρ «Mannequin» — σετ 3D εκτυπωμένα σουβέρ" width="900" height="1188" loading="lazy">
+          <span class="work-cap">Σουβέρ «Mannequin» <span class="tag">Σουβέρ</span></span>
+        </a>
+        <a class="work-card fade-rise" data-d="2" href="portfolio.html">
+          <img src="assets/img/work/05-pendant-lamp-white.jpg" alt="Κρεμαστό 3D εκτυπωμένο φωτιστικό με λευκό φως" width="1201" height="1600" loading="lazy">
+          <span class="work-cap">Κρεμαστό φωτιστικό <span class="tag">Φωτιστικά</span></span>
+        </a>
+        <a class="work-card fade-rise" data-d="3" href="portfolio.html">
+          <img src="assets/img/work/01-hopscotch-keychain.jpg" alt="Μπρελόκ «Hopscotch» — 3D εκτυπωμένο μπρελόκ" width="896" height="1110" loading="lazy">
+          <span class="work-cap">Μπρελόκ «Hopscotch» <span class="tag">Μπρελόκ</span></span>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <!-- 02 nfc -->
-    <div class="pc-service-tile">
-      <div class="hoverlines" aria-hidden="true"></div>
-      <div class="pc-service-head">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="pc-service-num">02 /</div>
-          <div class="pc-service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2" fill="var(--c-accent)" stroke="none"/><path d="M9 12a3 3 0 0 1 6 0"/><path d="M7 12a5 5 0 0 1 10 0"/><path d="M5 12a7 7 0 0 1 14 0"/></svg></div>
+    <!-- REMOVED (owner request 2026-07-10): marquee ticker strip + sr-only mirror.
+         Restore the block from git history: `git show 64be406:index.html` (div.ticker).
+         The .ticker CSS in site.css is left intact. -->
+
+    <section class="section section-tight wrap" aria-labelledby="fila-h">
+      <div class="mega-band scale-in" style="text-align:left">
+        <span class="kicker">Χρώματα</span>
+        <h2 id="fila-h" class="display display-md" style="color:#fff">Διάλεξε από 40+ χρώματα</h2>
+        <div class="fila-strip" aria-hidden="true">
+          <span style="background:#C12E1F"></span><span style="background:#FF6A13"></span><span style="background:#F4EE2A"></span><span style="background:#00AE42"></span><span style="background:#00B1B7"></span><span style="background:#0086D6"></span><span style="background:#0A2989"></span><span style="background:#5E43B7"></span><span style="background:#EC008C"></span><span style="background:#F55A74"></span><span style="background:#E4BD68"></span><span style="background:#A6A9AA"></span><span style="background:#6F5034"></span><span style="background:#000000"></span>
+          <span class="fila-more">+ πολλά ακόμα</span>
         </div>
-        <span class="pc-service-badge">★ ΝΕΟ</span>
+        <a class="btn btn-light" href="filaments.html" style="margin-top:1.6rem">Δες όλη την παλέτα</a>
       </div>
-      <h3>NFC KEYCHAINS &amp; STANDS</h3>
-      <p>Branded NFC προϊόντα — άγγιξε με το κινητό για να ανοίξει link, κάρτα, μενού ή playlist. Σχεδιασμένα και εκτυπωμένα εδώ.</p>
-      <div class="pc-service-foot">
-        <div class="pc-chips"><span class="pc-chip">NTAG215 · NTAG216</span><span class="pc-chip">ΜΠΡΕΛΟΚ · STAND · CARD</span><span class="pc-chip">CUSTOM LOGO</span></div>
-        <span class="pc-service-go">→</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- 03 web -->
-    <div class="pc-service-tile">
-      <div class="hoverlines" aria-hidden="true"></div>
-      <div class="pc-service-head">
-        <div style="display:flex;align-items:center;gap:10px">
-          <div class="pc-service-num">03 /</div>
-          <div class="pc-service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="6" cy="6.5" r="0.6" fill="currentColor"/><circle cx="8.5" cy="6.5" r="0.6" fill="currentColor"/><circle cx="11" cy="6.5" r="0.6" fill="currentColor"/><rect x="6" y="12" width="5" height="5" fill="var(--c-accent)" stroke="var(--c-ink)"/></svg></div>
+    <section class="section section-tight wrap" style="text-align:center">
+      <span class="kicker">Ας το φτιάξουμε</span>
+      <h2 class="display" data-split style="font-size:var(--step-4)">Έχεις ιδέα;<br><span class="accent">Άστο πάνω μας.</span></h2>
+      <p class="lead" style="max-width:46ch;margin:1.2rem auto 2.2rem">Στείλε μας DM στο Instagram ή email με αυτό που έχεις στο μυαλό σου — απαντάμε άμεσα με προσφορά.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-primary" href="https://instagram.com/3dprintcraft" rel="noopener" target="_blank">@3dprintcraft</a>
+        <a class="btn" href="mailto:contactprintcraft3d@gmail.com?subject=Ενδιαφέρομαι%20για%203D%20εκτύπωση">Στείλε email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-brand">3dprint<span>craft</span></p>
+          <p class="footer-blurb">Εργαστήριο 3D εκτύπωσης στην Πάτρα. Αυτό που ξεκίνησε ως χόμπι, σήμερα είναι κορυφαία επιλογή για custom εκτυπώσεις, NFC gadgets και ιστοσελίδες.</p>
         </div>
-      </div>
-      <h3>WEBSITES &amp; MINI HUBS</h3>
-      <p>Landing pages και link-hubs που συνεργάζονται με τα NFC προϊόντα σου. Ένα ολόκληρο small-business site. Γρήγορα, δικά σου, χωρίς platform lock-in.</p>
-      <div class="pc-service-foot">
-        <div class="pc-chips"><span class="pc-chip">ΧΡΟΝΟΣ 5–14ημ.</span><span class="pc-chip">SITE · MINI-HUB · MENU</span><span class="pc-chip">MOBILE FRIENDLY</span></div>
-        <span class="pc-service-go">→</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ WORK ═══ -->
-<section class="pc-work" id="work">
-  <div class="pc-section-head">
-    <div>
-      <div class="eyebrow">03 / ΕΠΙΛΕΓΜΕΝΕΣ ΔΟΥΛΕΙΕΣ</div>
-      <h2>Πρόσφατα <i>έργα.</i></h2>
-    </div>
-  </div>
-
-  <div class="pc-work-grid">
-    <!-- 01 · Hopscotch keychain -->
-    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
-      <img src="assets/img/work/01-hopscotch-keychain.jpg" alt="Custom μπρελόκ «Hopscotch» σε δίχρωμη 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">KEYCHAIN</span><span class="pc-work-idx">#001</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Hopscotch</div><div class="pc-work-spec">3D · δίχρωμο μπρελόκ</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 02 · DR8 keychains -->
-    <figure class="pc-work-tile pc-has-img is-square" style="grid-column:span 2;grid-row:span 2">
-      <img src="assets/img/work/02-dr8-keychains.jpg" alt="Σετ μπρελόκ «DR8» σε μπλε και κόκκινο, 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">KEYCHAIN</span><span class="pc-work-idx">#002</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">DR8</div><div class="pc-work-spec">3D · σετ μπρελόκ</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 03 · Scalino keychain -->
-    <figure class="pc-work-tile pc-has-img is-wide" style="grid-column:span 2;grid-row:span 2">
-      <img src="assets/img/work/06-scalino-keychain.jpg" alt="Μπρελόκ «Scalino» σε λευκή 3D εκτύπωση" loading="lazy" decoding="async" style="object-position:38% center">
-      <span class="pc-work-kind">KEYCHAIN</span><span class="pc-work-idx">#003</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Scalino</div><div class="pc-work-spec">3D · μπρελόκ</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 04 · warm pendant lamp -->
-    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
-      <img src="assets/img/work/04-pendant-lamp-warm.jpg" alt="Κρεμαστό φωτιστικό οροφής με ραβδώσεις, 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">LIGHTING</span><span class="pc-work-idx">#004</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Φωτιστικό · θερμό</div><div class="pc-work-spec">3D · ραβδωτό shade</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 05 · Mannequin coasters -->
-    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
-      <img src="assets/img/work/03-mannequin-coasters.jpg" alt="Σετ σουβέρ «Mannequin» με βάση, ασπρόμαυρη 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">COASTERS</span><span class="pc-work-idx">#005</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Mannequin</div><div class="pc-work-spec">3D · σετ + βάση</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 06 · white pendant lamp -->
-    <figure class="pc-work-tile pc-has-img" style="grid-column:span 2;grid-row:span 2">
-      <img src="assets/img/work/05-pendant-lamp-white.jpg" alt="Λευκό κρεμαστό φωτιστικό με σπιράλ υφή, 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">LIGHTING</span><span class="pc-work-idx">#006</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Φωτιστικό · λευκό</div><div class="pc-work-spec">3D · spiral vase</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 07 · NFC stand Milu -->
-    <figure class="pc-work-tile pc-has-img is-wide" style="grid-column:span 3;grid-row:span 2">
-      <img src="assets/img/work/07-nfc-stand-milu.jpg" alt="NFC stand «Milu» με social icons και TAP, 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">NFC STAND</span><span class="pc-work-idx">#007</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Milu</div><div class="pc-work-spec">NFC · review stand</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-    <!-- 08 · NFC stand Elia -->
-    <figure class="pc-work-tile pc-has-img is-wide" style="grid-column:span 3;grid-row:span 2">
-      <img src="assets/img/work/08-nfc-stand-elia.jpg" alt="NFC stand «Elia Mageireio» με social icons και TAP, 3D εκτύπωση" loading="lazy" decoding="async">
-      <span class="pc-work-kind">NFC STAND</span><span class="pc-work-idx">#008</span>
-      <figcaption class="pc-work-foot"><div><div class="pc-work-name">Elia</div><div class="pc-work-spec">NFC · review stand</div></div><span class="pc-work-view">VIEW →</span></figcaption>
-    </figure>
-  </div>
-
-  <div class="pc-work-foot-row"><span>         </span><a class="pc-btn-warm" href="archive.html">ΔΕΣ ΟΛΟ ΤΟ ΑΡΧΕΙΟ <span class="arr" aria-hidden="true">→</span></a></div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<section class="pc-process" id="process">
-  <div class="pc-section-head">
-    <div>
-      <div class="eyebrow">04 / ΠΩΣ ΔΟΥΛΕΥΟΥΜΕ</div>
-      <h2>Από την ιδέα στο <i>τελικό προϊόν.</i></h2>
-    </div>
-  </div>
-
-  <div class="pc-process-wrap">
-    <div class="pc-process-rail-line" aria-hidden="true"></div>
-    <div class="pc-process-rail-dot" aria-hidden="true"></div>
-    <div class="pc-process-grid">
-      <div class="pc-process-step"><div class="pc-process-node">1</div><div class="pc-process-body"><div class="pc-process-time">00:00</div><div class="pc-process-t">ΙΔΕΑ</div><div class="pc-process-d">Στείλε μας ένα σκίτσο, ένα αρχείο ή απλώς μια ιδέα. Σχεδιάζουμε μαζί αυτό που έχει νόημα για το brand σου.</div></div></div>
-      <div class="pc-process-step"><div class="pc-process-node">2</div><div class="pc-process-body"><div class="pc-process-time">+ 02:00 h</div><div class="pc-process-t">ΠΡΟΣΦΟΡΑ</div><div class="pc-process-d">Λαμβάνεις αναλυτική προσφορά και timeline σε λιγότερο από 2 ώρες. Καθαρά κόστη, χωρίς κρυφά platform fees.</div></div></div>
-      <div class="pc-process-step"><div class="pc-process-node">3</div><div class="pc-process-body"><div class="pc-process-time">+ 3–14 ημέρες</div><div class="pc-process-t">ΠΑΡΑΓΩΓΗ</div><div class="pc-process-d">Εκτυπώνουμε το έργο σου και σου στέλνουμε live updates για την πρόοδο των εργασιών σε κάθε στάδιο.</div></div></div>
-      <div class="pc-process-step"><div class="pc-process-node">4</div><div class="pc-process-body"><div class="pc-process-time">+ 1–2 ημέρες</div><div class="pc-process-t">ΠΑΡΑΔΟΣΗ</div><div class="pc-process-d">Άμεση αποστολή σε όλη την Ελλάδα ή local pickup από το εργαστήριό μας στην Πάτρα.</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CTA / FOOTER ═══ -->
-<section class="pc-cta" id="cta">
-  <div class="pc-cta-bg-text" aria-hidden="true">3DPC</div>
-
-  <div class="pc-cta-grid">
-    <div>
-      <div class="pc-cta-tag">05 · ΞΕΚΙΝΑ ΕΡΓΟ</div>
-      <h2 class="pc-cta-h2">Έχεις ιδέα;<br/><span class="accent">Ας τη φτιάξουμε.</span></h2>
-      <p>Ένα 3D-printed κομμάτι. Ένα NFC μπρελόκ για το μαγαζί σου. Ένα επαγγελματικό site για το brand σου. Στείλε ό,τι έχεις — σκίτσο, αρχείο, link ή απλά λέξεις.</p>
-      <div class="pc-cta-actions">
-        <a class="pc-cta-btn" href="mailto:contactprintcraft3d@gmail.com">ΖΗΤΗΣΕ ΠΡΟΣΦΟΡΑ →</a>
-        <a class="pc-cta-email" href="mailto:contactprintcraft3d@gmail.com">contactprintcraft3d@gmail.com</a>
-      </div>
-    </div>
-
-    <div class="pc-contact">
-      <div class="pc-contact-h">ΕΠΙΚΟΙΝΩΝΙΑ</div>
-      <div class="pc-contact-list">
-        <div class="pc-contact-line"><span class="k">EMAIL</span><a class="v" href="mailto:contactprintcraft3d@gmail.com">contactprintcraft3d@gmail.com</a></div>
-        <div class="pc-contact-line"><span class="k">INSTAGRAM</span><a class="v" href="https://instagram.com/3dprintcraft" target="_blank" rel="noopener">@3dprintcraft</a></div>
-      </div>
-      <div class="pc-contact-note">ΑΠΑΝΤΑΜΕ ΣΕ &lt; 2 ΩΡΕΣ</div>
-
-      <!-- totals -->
-      <div class="pc-odo">
-        <div class="pc-odo-head"><span>ΑΠΟ ΤΟ 2019</span></div>
-        <div class="pc-odo-stat">
-          <div class="pc-odo-num"><span class="pc-odo-g">1.400+</span><span class="pc-odo-u">Κιλά</span></div>
-          <div class="pc-odo-lbl">ΣΥΝΟΛΙΚΟ ΥΛΙΚΟ</div>
-          <div class="pc-odo-desc">Πάνω από 1.4 τόνοι high-grade υλικού έχουν περάσει από τα nozzles μας.</div>
+        <div>
+          <h4>Πλοήγηση</h4>
+          <ul>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="filaments.html">Χρώματα νημάτων</a></li>
+            <li><a href="contact.html">Επικοινωνία</a></li>
+          </ul>
         </div>
-        <div class="pc-odo-stat">
-          <div class="pc-odo-num"><span class="pc-odo-m">450.000+</span><span class="pc-odo-u">Μέτρα</span></div>
-          <div class="pc-odo-lbl">ΝΗΜΑΤΟΣ</div>
-          <div class="pc-odo-desc">Σχεδόν μισό εκατομμύριο μέτρα νήματος έχουν πάρει μορφή από το 2019.</div>
+        <div>
+          <h4>Επικοινωνία</h4>
+          <ul>
+            <li><a href="https://instagram.com/3dprintcraft" rel="me noopener" target="_blank">Instagram @3dprintcraft</a></li>
+            <li><a href="mailto:contactprintcraft3d@gmail.com">contactprintcraft3d@gmail.com</a></li>
+            <li><span class="footer-muted">Πάτρα, Ελλάδα</span></li>
+          </ul>
         </div>
       </div>
+      <div class="footer-bar">
+        <span>© 2026 3DPRINTCRAFT</span>
+      </div>
     </div>
-  </div>
-
-  <!-- end-of-print stamp -->
-  <div class="pc-endprint">
-    <div>; ─── END OF FILE ──────────────────────────────────────────</div>
-    <div>; 3dprintcraft.gcode · 412/412 layers</div>
-    <div>; FILAMENT 142.4g · 47.8m · 02:14:38</div>
-    <div>; <span class="ok">print_complete = TRUE</span><span class="dim"> · 0 errors</span></div>
-    <div><span class="dim">; disable steppers</span></div>
-    <div class="nextline">; <span class="next">NEXT JOB →</span> στείλε ιδέα, και ξεκινάμε καινούριο file.</div>
-  </div>
-
-  <footer class="pc-footer">
-    <span>© 2026 3DPRINTCRAFT · ΠΑΤΡΑ, GR</span>
-    <span>ΕΡΓΑΣΤΗΡΙΟ</span>
-    <span>CONTACTPRINTCRAFT3D@GMAIL.COM</span>
+    <p class="giant-mark" aria-hidden="true">3dprintcraft</p>
   </footer>
-</section>
-</main>
 
-<!-- ═══ HUD ═══ -->
-<div class="pc-hud-desktop" id="hudDesktop" aria-hidden="true">
-  <div class="pc-hud-title"><span class="l"><span class="dot"></span>ΕΚΤΥΠΩΣΗ<span class="minpct" id="hudPctMini">0%</span></span><span class="r"><span class="file">3dprintcraft.gcode</span><button class="pc-hud-min" id="hudMin" type="button" tabindex="-1" aria-label="Ελαχιστοποίηση" title="Ελαχιστοποίηση">─</button></span></div>
-  <div class="pc-hud-pct"><span class="big" id="hudPct">0</span><span class="sym">%</span><span class="eta">ETA <span id="hudEta">2:12</span></span></div>
-  <div class="pc-hud-bar-wrap"><div class="pc-hud-bar"><div class="pc-hud-bar-fill" id="hudBar"></div></div></div>
-  <div class="pc-hud-stats">
-    <div class="pc-hud-stat"><span class="k">LAYER</span><span id="hudLayer">1/412</span></div>
-    <div class="pc-hud-stat"><span class="k">NOZZLE</span><span>215°C</span></div>
-    <div class="pc-hud-stat"><span class="k">BED</span><span>60°C</span></div>
-    <div class="pc-hud-stat"><span class="k">SPEED</span><span>120mm/s</span></div>
-  </div>
-  <div class="pc-hud-cur">▸ ΕΚΤΥΠΩΣΗ <span class="name" id="hudName">ΑΡΧΗ</span></div>
-</div>
-
-<div class="pc-hud-mobile" id="hudMobile" aria-hidden="true">
-  <div class="pc-hud-mobile-row">
-    <span class="dot"></span><span class="st">ΕΚΤΥΠΩΣΗ</span><span class="file">3dprintcraft.gcode</span>
-    <span class="pct" id="hudPctM">0%</span><span class="layer" id="hudLayerM">L 1/412</span>
-  </div>
-  <div class="pc-hud-mobile-bar"><div class="pc-hud-mobile-bar-fill" id="hudBarM"></div></div>
-</div>
-
-<button class="pc-arch-top has-hud" id="archiveTop" type="button" aria-label="Επιστροφή στην κορυφή"><span aria-hidden="true">↑</span></button>
-
-<script src="assets/js/landing.js?v=18" defer></script>
-<script src="shop/assets/js/cart-badge.js?v=3" defer></script>
+  <script src="assets/js/motion.js" defer></script>
 </body>
 </html>
