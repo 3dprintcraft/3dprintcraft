@@ -1,5 +1,5 @@
 /* Portfolio — category filters + <dialog> lightbox. Progressive enhancement:
-   without JS all 8 cards are visible; filters and lightbox simply do nothing. */
+   without JS all cards are visible; filters and lightbox simply do nothing. */
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("work-grid");
   const empty = document.getElementById("work-empty");
@@ -126,7 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
        the last few percent */
     const r0 = stage.getBoundingClientRect();
     const total0 = r0.height - innerHeight;
-    if (total0 > 0 && -r0.top / total0 >= 0.943) finishUnfold();
+    /* completion threshold derived from the stagger formula: the last card
+       (i = N-1) reaches cp=1 at p = (1 + 0.45*(N-1)) / (0.55*N) — evaluates
+       to the old hardcoded 0.943 at N=8 and stays correct as the grid grows */
+    const doneAt = (1 + 0.45 * (cards.length - 1)) / (0.55 * cards.length);
+    if (total0 > 0 && -r0.top / total0 >= doneAt) finishUnfold();
     /* viewport shrinking below the gate mid-unfold (tablet rotation)
        force-completes — the CSS gate assumes desktop widths */
     wideQuery.addEventListener("change", (e) => { if (!e.matches) finishUnfold(); });
